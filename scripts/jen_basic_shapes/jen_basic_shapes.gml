@@ -138,23 +138,11 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.x1 = _x1; info.y1 = _y1;
-		info.x2 = _x2; info.y2 = _y2;
-		info.x3 = _x3; info.y3 = _y3;
-		info.replace = _replace;
-		info.new_value = _new_value;
-		info.chance = _chance;
-	}	
 	
 	//Drawing three lines. (That's basically all this function does).
 	jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _function);
 	jen_line(_grid, _x2, _y2, _x3, _y3, _replace, _new_value, _chance, _function);
 	jen_line(_grid, _x3, _y3, _x1, _y1, _replace, _new_value, _chance, _function);
-	
-	delete info;
 }
 #endregion
 #region jen_ellipse(id, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
@@ -175,16 +163,6 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.x1 = _x1; info.y1 = _y1;
-		info.replace = _replace;
-		info.new_value = _new_value;
-		info.angle = _angle;
-		info.outline = _outline;
-		info.chance = _chance;
-	}
 	
 	//Getting width and height of the grid.
 	var _width = ds_grid_width(_grid);
@@ -203,7 +181,7 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 		
 		//Creating the ellipse in the temporary grid.
 		jen_set(_temp_grid, round(_x1 + xx), round(_y1 + yy), all, _new_value);
-		if (_outline) { jen_line(_temp_grid, _x1 + xx, _y1 + yy, _x1, _y1, all, _new_value); }
+		if (!_outline) { jen_line(_temp_grid, _x1 + xx, _y1 + yy, _x1, _y1, all, _new_value); }
 	}
 	
 	//Applying the temporary grid over the base grid.
@@ -212,6 +190,89 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	
 	//Clearing memory.
 	jen_grid_destroy(_temp_grid);
-	delete info;
+}
+#endregion
+#region jen_fill(id, x1, y1, replace, new_value, diagonal);
+/// @description Fills a space of matching values. May cross diagonals or not.
+/// @param id
+/// @param x1
+/// @param y1
+/// @param replace
+/// @param new_value
+/// @param diagonal
+function jen_fill(_grid, xx, yy, _replace, _new_value, _diagonal)
+{
+	//Attempt to set the starting position. Only runs if this part works.
+	if (jen_set(_grid, xx, yy, _replace, _new_value))
+	{
+		//Create a queue to keep track of every position to fill.
+		var _Qx = ds_queue_create();
+		var _Qy = ds_queue_create();
+		
+		//Add the initial point to the queue.
+		ds_queue_enqueue(_Qx, xx);
+		ds_queue_enqueue(_Qy, yy);
+		
+		//In theory, the x and y queue should always be the same size.
+		while (ds_queue_size(_Qx) != 0)
+		{
+			//Get the top point in the queue.
+			xx = ds_queue_dequeue(_Qx);
+			yy = ds_queue_dequeue(_Qy);
+			
+			//Check for fillable positions in each direction and add them to the queue.
+			#region Right/Up/Left/Down
+			if (jen_set(_grid, xx + 1, yy, _replace, _new_value))
+			{
+				ds_queue_enqueue(_Qx, xx + 1);
+				ds_queue_enqueue(_Qy, yy);
+			}
+			if (jen_set(_grid, xx, yy - 1, _replace, _new_value))
+			{
+				ds_queue_enqueue(_Qx, xx);
+				ds_queue_enqueue(_Qy, yy - 1);
+			}
+			if (jen_set(_grid, xx - 1, yy, _replace, _new_value))
+			{
+				ds_queue_enqueue(_Qx, xx - 1);
+				ds_queue_enqueue(_Qy, yy);
+			}
+			if (jen_set(_grid, xx, yy + 1, _replace, _new_value))
+			{
+				ds_queue_enqueue(_Qx, xx);
+				ds_queue_enqueue(_Qy, yy + 1);
+			}
+			#endregion
+			#region Diagonals
+			if (_diagonal)
+			{
+				if (jen_set(_grid, xx + 1, yy + 1, _replace, _new_value))
+				{
+					ds_queue_enqueue(_Qx, xx + 1);
+					ds_queue_enqueue(_Qy, yy + 1);
+				}
+				if (jen_set(_grid, xx + 1, yy - 1, _replace, _new_value))
+				{
+					ds_queue_enqueue(_Qx, xx + 1);
+					ds_queue_enqueue(_Qy, yy - 1);
+				}
+				if (jen_set(_grid, xx - 1, yy - 1, _replace, _new_value))
+				{
+					ds_queue_enqueue(_Qx, xx - 1);
+					ds_queue_enqueue(_Qy, yy - 1);
+				}
+				if (jen_set(_grid, xx - 1, yy + 1, _replace, _new_value))
+				{
+					ds_queue_enqueue(_Qx, xx - 1);
+					ds_queue_enqueue(_Qy, yy + 1);
+				}
+			}
+			#endregion
+		}
+		
+		//Clearing memory.
+		ds_queue_destroy(_Qx);
+		ds_queue_destroy(_Qy);
+	}
 }
 #endregion
