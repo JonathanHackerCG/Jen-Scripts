@@ -6,7 +6,7 @@
     "path": "folders/Jen_scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "jen_grid_template",
+  "name": "jen_function_template",
   "tags": [],
   "resourceType": "GMScript",
 }

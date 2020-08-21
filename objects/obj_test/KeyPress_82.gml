@@ -1,3 +1,2 @@
-/// @description Restart game (to test again).
-
+/// @description Restarting the game.
 game_restart();
