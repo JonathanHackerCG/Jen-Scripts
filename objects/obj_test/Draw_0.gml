@@ -1,3 +1,4 @@
 /// @description Drawing the grid.
 
-//jen_grid_draw(gridA, x + 128, 0);
+draw_set_font(fnt_debug);
+jen_grid_draw(gridA, 4, 4);

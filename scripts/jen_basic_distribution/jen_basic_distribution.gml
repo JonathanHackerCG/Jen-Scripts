@@ -34,8 +34,6 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 	else
 	{
 		info = {};
-		info.replace = _replace;
-		info.new_value = _new_value;
 		info.chance = _chance;
 	}
 	
@@ -57,7 +55,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 			else if (_replace == all || jen_get(_grid, xx, yy) == _replace)
 			{
 				//Run the custom function.
-				_function(_grid, xx, yy, info);
+				_function(_grid, xx, yy, _replace, _new_value, info);
 			}
 		}
 	} }
@@ -80,8 +78,6 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 	else
 	{
 		info = {};
-		info.replace = _replace;
-		info.new_value = _new_value;
 		info.number = _number;
 		info.chance = _chance;
 	}
@@ -125,7 +121,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 				else
 				{
 					//Run the custom function.
-					_function(_grid, xx, yy, info);
+					_function(_grid, xx, yy, _replace, _new_value, info);
 				}
 			}
 		}

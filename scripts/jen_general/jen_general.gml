@@ -80,7 +80,7 @@ function jen_set(_grid, _x, _y, _replace, _new_value)
 /// @param y1
 /// @param [chance]
 /// @param [function]
-function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function, info)
+function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
 {
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
@@ -89,7 +89,6 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function,
 	{
 		info = {};
 		info.x1 = _x1; info.y1 = _y1;
-		info.replace = _replace;
 		info.chance = _chance;
 	}
 	
@@ -116,7 +115,7 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function,
 			else if (_replace == all || jen_get(_target, xx, yy) == _replace)
 			{
 				//Run the custom function.
-				_function(_target, _x1 + xx, _y1 + yy, info);
+				_function(_target, _x1 + xx, _y1 + yy, _replace, _value, info);
 			}
 		}
 	} }

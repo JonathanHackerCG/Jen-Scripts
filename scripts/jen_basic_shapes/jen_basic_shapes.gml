@@ -22,8 +22,6 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 		info = {};
 		info.x1 = _x1; info.y1 = _y1;
 		info.x2 = _x2; info.y2 = _y2;
-		info.replace = _replace;
-		info.new_value = _new_value;
 		info.chance = _chance;
 	}
 	
@@ -50,7 +48,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 			}
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
-				_function(_grid, xx, yy, info);
+				_function(_grid, xx, yy, _replace, _new_value, info);
 			}
 		}
 		//Increment position.
@@ -83,8 +81,6 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 		info = {};
 		info.x1 = _x1; info.y1 = _y1;
 		info.x2 = _x2; info.y2 = _y2;
-		info.replace = _replace;
-		info.new_value = _new_value;
 		info.outline = _outline;
 		info.chance = _chance;
 	}
@@ -107,7 +103,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 				else if (_replace == all || jen_get(_grid, xx, yy) == _replace)
 				{
 					//Run custom function.
-					_function(_grid, xx, yy, info);
+					_function(_grid, xx, yy, _replace, _new_value, info);
 				}
 			}
 		}
