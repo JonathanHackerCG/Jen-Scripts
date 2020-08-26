@@ -1,9 +1,9 @@
 //This contains internal functions referenced inside of other functions in Jen_scripts.
 //These should not be referenced by the user of Jen_scripts. They do not have documentation.
 
-#region _jenternal_autotile(id, xx, yy, test, default);
+#region _jenternal_autotile(grid, xx, yy, test, default);
 /// @description Converts a value between 0-15 reflecting surrounding tiles to an appropriate tilemap index
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param test
@@ -140,8 +140,8 @@ function _jenternal_autotile(_grid, _x1, _y1, _test, _default)
 	return tile;
 }
 #endregion
-#region _jenternal_test(id, x1, y1, test, default);
-/// @param id
+#region _jenternal_test(grid, x1, y1, test, default);
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param test

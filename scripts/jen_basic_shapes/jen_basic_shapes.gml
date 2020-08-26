@@ -1,8 +1,8 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
-#region jen_line(id, x1, y1, x2, y2, replace, new_value, [chance], [function]);
+#region jen_line(grid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
 /// @description Creates a line between two points.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param x2
@@ -59,9 +59,9 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 	delete info;
 }
 #endregion
-#region jen_rectangle(id, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]);
+#region jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]);
 /// @description Creates a rectangle between two positions.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param x2
@@ -116,9 +116,9 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 	delete info;
 }
 #endregion
-#region jen_triangle(id, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);
+#region jen_triangle(grid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);
 /// @description This creates a triangle. There is no option for a filled triangle.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param x2
@@ -141,9 +141,9 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 	jen_line(_grid, _x3, _y3, _x1, _y1, _replace, _new_value, _chance, _function);
 }
 #endregion
-#region jen_ellipse(id, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
+#region jen_ellipse(grid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
 /// @description Creates an ellipse. Define the length of each axis, and the rotation.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param haxis
@@ -188,9 +188,9 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_fill(id, x1, y1, replace, new_value, diagonal);
+#region jen_fill(grid, x1, y1, replace, new_value, diagonal);
 /// @description Fills a space of matching values. May cross diagonals or not.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param replace

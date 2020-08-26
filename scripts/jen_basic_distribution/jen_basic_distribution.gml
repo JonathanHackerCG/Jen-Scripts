@@ -1,8 +1,8 @@
 // Basic distribution functions. Scattering and replacing.
 
-#region jen_replace(id, replace, new_value);
+#region jen_replace(grid, replace, new_value);
 /// @description Replaces all of one value with another value.
-/// @param id
+/// @param grid
 /// @param replace
 /// @param new_value
 function jen_replace(_grid, _replace, _new_value)
@@ -19,9 +19,9 @@ function jen_replace(_grid, _replace, _new_value)
 	} }
 }
 #endregion
-#region jen_scatter(id, replace, new_value, [chance], [function]);
+#region jen_scatter(grid, replace, new_value, [chance], [function]);
 /// @description Replaces some percentage of one value with another.
-/// @param id
+/// @param grid
 /// @param replace
 /// @param new_value
 /// @param [chance]
@@ -62,9 +62,9 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 	delete info;
 }
 #endregion
-#region jen_number(id, replace, new_value, number, [chance], [function]);
+#region jen_number(grid, replace, new_value, number, [chance], [function]);
 /// @description Changes a specific number of one value into another.
-/// @param id
+/// @param grid
 /// @param replace
 /// @param new_value
 /// @param number
@@ -134,9 +134,9 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 	delete info;
 }
 #endregion
-#region jen_near(id, near, replace, new_value, radius, [chance], [function]);
+#region jen_near(grid, near, replace, new_value, radius, [chance], [function]);
 /// @description Changes all values that are within a radius of another value.
-/// @param id
+/// @param grid
 /// @param near
 /// @param replace
 /// @param new_value
@@ -177,9 +177,9 @@ function jen_near(_grid, _near, _replace, _new_value, _radius, _chance, _functio
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_obfuscate(id, value, [chance]);
+#region jen_obfuscate(grid, value, [chance]);
 /// @description Causes certain values to swap with values around them.
-/// @param id
+/// @param grid
 /// @param value
 /// @param [chance]
 function jen_obfuscate(_grid, _value, _chance)

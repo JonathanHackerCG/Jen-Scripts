@@ -1,5 +1,18 @@
 //General Jen_scripts functions. Initialization and grid transformations.
 
+#region Main enumerators and macros.
+//Enumerator to denote directions for maze functions.
+enum jen_dir
+{
+	R,
+	U,
+	D,
+	L,
+	
+	_total
+}
+#endregion
+
 //Initialization and Getters/Setters
 #region jen_grid_cellsize(xcell, ycell);
 /// @description Sets the global cellsize variables.
@@ -29,17 +42,17 @@ function jen_grid_create(_width, _height, _cleared)
 	return _grid;
 }
 #endregion
-#region jen_grid_destroy(id);
+#region jen_grid_destroy(grid);
 /// @description Destroy a jen_grid.
-/// @param id
+/// @param grid
 function jen_grid_destroy(_grid)
 {
 	ds_grid_destroy(_grid);
 }
 #endregion
-#region jen_get(id, x, y);
+#region jen_get(grid, x, y);
 /// @description Return a value at a position. Returns undefined if it is out of bounds.
-/// @param id
+/// @param grid
 /// @param x
 /// @param y
 function jen_get(_grid, _x, _y)
@@ -49,9 +62,9 @@ function jen_get(_grid, _x, _y)
 	return _grid[# _x, _y];
 }
 #endregion
-#region jen_set(id, x, y, replace, new_value);
+#region jen_set(grid, x, y, replace, new_value);
 /// @description Set a value at a position.
-/// @param id
+/// @param grid
 /// @param x
 /// @param y
 /// @param replace
@@ -122,9 +135,9 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
 	delete info;
 }
 #endregion
-#region jen_grid_mirror(id, horizontal, vertical);
+#region jen_grid_mirror(grid, horizontal, vertical);
 /// @description Mirrors the data in a grid horizontally and or vertically.
-/// @param id
+/// @param grid
 /// @param horizontal
 /// @param vertical
 function jen_grid_mirror(_grid, _horizontal, _vertical)
@@ -157,9 +170,9 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 	ds_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_grid_rotate(id, rotations);
+#region jen_grid_rotate(grid, rotations);
 /// @description Rotates a grid counterclockwise by 90 degrees, some number of times. (1-3)
-/// @param id
+/// @param grid
 /// @param rotations
 function jen_grid_rotate(_grid, _rotations)
 {
@@ -225,9 +238,9 @@ function jen_grid_rotate(_grid, _rotations)
 	ds_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_grid_scale(id, factor, upscale);
+#region jen_grid_scale(grid, factor, upscale);
 /// @description Transforms a grid by scaling it up or down by a whole number factor.
-/// @param id
+/// @param grid
 /// @param factor
 /// @param upscale
 function jen_grid_scale(_grid, _factor, _upscale)
@@ -276,9 +289,9 @@ function jen_grid_scale(_grid, _factor, _upscale)
 #endregion
 
 //Instantiation
-#region jen_grid_instantiate_layer(id, x1, y1, layer);
+#region jen_grid_instantiate_layer(grid, x1, y1, layer);
 /// @description Instantiates a grid, treating each value as an object index.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param layer
@@ -300,9 +313,9 @@ function jen_grid_instatiate_layer(_grid, _x1, _y1, _layer)
 	} }
 }
 #endregion
-#region jen_grid_instantiate_depth(id, x1, y1, depth);
+#region jen_grid_instantiate_depth(grid, x1, y1, depth);
 /// @description Instantiates a grid, treating each value as an object index.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param depth
@@ -324,9 +337,9 @@ function jen_grid_instatiate_depth(_grid, _x1, _y1, _depth)
 	} }
 }
 #endregion
-#region jen_grid_instantiate_tiles(id, x1, y1, tilemap/layer);
+#region jen_grid_instantiate_tiles(grid, x1, y1, tilemap/layer);
 /// @description Instantiates a grid, treating each value as a tile index.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param tilemap/layer
@@ -355,9 +368,9 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap)
 	} }
 }
 #endregion
-#region jen_grid_instantiate_autotile(id, x1, y1, test, closed_edge, tilemap/layer, [offset]);
+#region jen_grid_instantiate_autotile(grid, x1, y1, test, closed_edge, tilemap/layer, [offset]);
 /// @description Instantiates a grid, searching for adjacent test values, and converting to an autotile tile index.
-/// @param id
+/// @param grid
 /// @param x1
 /// @param y1
 /// @param test
@@ -396,9 +409,9 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 #endregion
 
 //Debugging Functions
-#region jen_grid_string(id);
+#region jen_grid_string(grid);
 /// @description Returns the jen_grid formatted as a string.
-/// @param id
+/// @param grid
 function jen_grid_string(_grid)
 {
 	//Getting width and height of the grid.
@@ -421,9 +434,9 @@ function jen_grid_string(_grid)
 	return _output;
 }
 #endregion
-#region jen_grid_draw(id, x, y);
+#region jen_grid_draw(grid, x, y);
 /// @description Draws the data within the grid, using jen_grid_string.
-/// @param id
+/// @param grid
 /// @param x
 /// @param y
 function jen_grid_draw(_grid, _x1, _y1)
