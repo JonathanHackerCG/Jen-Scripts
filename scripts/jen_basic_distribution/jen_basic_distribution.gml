@@ -31,11 +31,6 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.chance = _chance;
-	}
 	
 	//Getting width and height of the grid.
 	var _width = ds_grid_width(_grid);
@@ -55,11 +50,10 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 			else if (_replace == all || jen_get(_grid, xx, yy) == _replace)
 			{
 				//Run the custom function.
-				_function(_grid, xx, yy, _replace, _new_value, info);
+				_function(_grid, xx, yy, _replace, _new_value);
 			}
 		}
 	} }
-	delete info;
 }
 #endregion
 #region jen_number(grid, replace, new_value, number, [chance], [function]);
@@ -75,12 +69,6 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.number = _number;
-		info.chance = _chance;
-	}
 	
 	//Getting width and height of the grid.
 	var _width = ds_grid_width(_grid);
@@ -121,7 +109,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 				else
 				{
 					//Run the custom function.
-					_function(_grid, xx, yy, _replace, _new_value, info);
+					_function(_grid, xx, yy, _replace, _new_value);
 				}
 			}
 		}
@@ -131,7 +119,6 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 	var size = ds_list_size(_positions);
 	for (var i = 0; i < size; i++)	{	delete _positions[| i];	}
 	ds_list_destroy(_positions);
-	delete info;
 }
 #endregion
 #region jen_near(grid, near, replace, new_value, radius, [chance], [function]);

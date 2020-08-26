@@ -16,14 +16,6 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		//Create struct containing all the parameters.
-		info = {};
-		info.x1 = _x1; info.y1 = _y1;
-		info.x2 = _x2; info.y2 = _y2;
-		info.chance = _chance;
-	}
 	
 	//Calculating _step amounts for the line.
 	var _xdis = _x2 - _x1;
@@ -48,7 +40,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 			}
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
-				_function(_grid, xx, yy, _replace, _new_value, info);
+				_function(_grid, xx, yy, _replace, _new_value);
 			}
 		}
 		//Increment position.
@@ -56,7 +48,6 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 		yy += _ydis;
 		_count ++;
 	}
-	delete info;
 }
 #endregion
 #region jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]);
@@ -76,14 +67,6 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.x1 = _x1; info.y1 = _y1;
-		info.x2 = _x2; info.y2 = _y2;
-		info.outline = _outline;
-		info.chance = _chance;
-	}
 	
 	//Iterate through the grid.
 	for (var yy = _y1; yy <= _y2; yy++) {
@@ -103,7 +86,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 				else if (_replace == all || jen_get(_grid, xx, yy) == _replace)
 				{
 					//Run custom function.
-					_function(_grid, xx, yy, _replace, _new_value, info);
+					_function(_grid, xx, yy, _replace, _new_value);
 				}
 			}
 		}
@@ -113,7 +96,6 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 			xx = _x2 - 1;
 		}
 	} }
-	delete info;
 }
 #endregion
 #region jen_triangle(grid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);

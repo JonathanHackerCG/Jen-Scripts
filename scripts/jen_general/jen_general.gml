@@ -98,12 +98,6 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.x1 = _x1; info.y1 = _y1;
-		info.chance = _chance;
-	}
 	
 	//Getting width and height of the grids.
 	var _width = ds_grid_width(_target);
@@ -128,11 +122,10 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
 			else if (_replace == all || jen_get(_target, xx, yy) == _replace)
 			{
 				//Run the custom function.
-				_function(_target, _x1 + xx, _y1 + yy, _replace, _value, info);
+				_function(_target, _x1 + xx, _y1 + yy, _replace, _value);
 			}
 		}
 	} }
-	delete info;
 }
 #endregion
 #region jen_grid_mirror(grid, horizontal, vertical);

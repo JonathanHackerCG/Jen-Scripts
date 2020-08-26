@@ -21,18 +21,6 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.x1 = _x1; info.y1 = _y1;
-		info.chance = _chance;
-		info.initial_angle = _initial_angle;
-		info.correction_count = _correction_count;
-		info.correction_accuracy = _correction_accuracy;
-		info.adjustment_count = _adjustment_count;
-		info.adjustment_accuracy = _adjustment_accuracy;
-		info.lifetime = _lifetime;
-	}
 	
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
@@ -50,7 +38,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
 				//Run the custom function.
-				_function(_grid, round(xx), round(yy), _replace, _new_value, info);
+				_function(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 		}
 		
@@ -95,18 +83,6 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 	//Get optional parameters.
 	if (is_undefined(_chance)) { _chance = 100; }
 	if (is_undefined(_function)) { _function = noone; }
-	else
-	{
-		info = {};
-		info.x1 = _x1; info.y1 = _y1;
-		info.x2 = _x2; info.y2 = _y2;
-		info.chance = _chance;
-		info.correction_count = _correction_count;
-		info.correction_accuracy = _correction_accuracy;
-		info.adjustment_count = _adjustment_count;
-		info.adjustment_accuracy = _adjustment_accuracy;
-		info.lifetime = _lifetime;
-	}
 	
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
@@ -124,7 +100,7 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
 				//Run the custom function.
-				_function(_grid, round(xx), round(yy), _replace, _new_value, info);
+				_function(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 		}
 		
