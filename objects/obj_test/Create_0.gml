@@ -7,11 +7,17 @@ var width = room_width / global.jen_xcell;
 var height = room_height / global.jen_ycell;
 gridA = jen_grid_create(width, height, ".");
 
-tree = jen_grid_create(3, 3, noone);
-jen_line(tree, 0, 0, 2, 2, noone, "T");
+tree_list = ds_list_create();
+repeat(5)
+{
+	var tree = jen_grid_create(5, 6, noone);
+	jen_line(tree, 2, irandom_range(2, 4), 2, 5, noone, "O");
+	jen_scatter_offset(tree, "O", 0, -1, noone, "X");
+	jen_near(tree, "X", noone, "X", 1, 25);
+	jen_near(tree, "X", noone, "X", 1);
+	ds_list_add(tree_list, tree);
+}
 
-jen_wander_line(gridA, 0, irandom_range(3, height - 4), width, irandom_range(3, height - 4), 5, 10, 3, 10, 50, ".", "X");
-jen_scatter_offset(gridA, "X", 0, -1, ".", "^", 50);
-jen_number_offset(gridA, "^", 0, -2, ".", "O", 3);
+jen_number_apply_list(gridA, tree_list, ".", -2, -5, ".", 4);
 
-jen_number_apply(gridA, tree, ".", -1, -1, ".", 5);
+heightmapA = jen_heightmap_gradient(40, 40, 5, 0.25);
