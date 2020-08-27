@@ -20,4 +20,8 @@ repeat(5)
 
 jen_number_apply_list(gridA, tree_list, ".", -2, -5, ".", 4);
 
-heightmapA = jen_heightmap_gradient(40, 40, 5, 0.25);
+heightmapA = jen_heightmap_sampling(width, height, 4, 3);
+
+jen_heightmap_apply(gridA, heightmapA, 0, 0, 0, 0.5, all, obj_blue);
+jen_heightmap_apply(gridA, heightmapA, 0, 0, 0.5, 1.0, all, obj_red);
+jen_grid_instantiate_layer(gridA, 0, 0, "Instances");

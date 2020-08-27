@@ -288,7 +288,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 /// @param x1
 /// @param y1
 /// @param layer
-function jen_grid_instatiate_layer(_grid, _x1, _y1, _layer)
+function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer)
 {
 	//Getting width and height of the grid.
 	var _width = ds_grid_width(_grid);
@@ -312,7 +312,7 @@ function jen_grid_instatiate_layer(_grid, _x1, _y1, _layer)
 /// @param x1
 /// @param y1
 /// @param depth
-function jen_grid_instatiate_depth(_grid, _x1, _y1, _depth)
+function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 {
 	//Getting width and height of the grid.
 	var _width = ds_grid_width(_grid);

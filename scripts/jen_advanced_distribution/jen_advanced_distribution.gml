@@ -394,9 +394,40 @@ function jen_heightmap_draw(_heightmap, _x1, _y1)
 	draw_set_alpha(1.0);
 }
 #endregion
+#region jen_heightmap_sampling(width, height, radius, iterations);
+/// @description Generates a new heightmap using average sampling.
+/// @param width
+/// @param height
+/// @param range
+/// @param iterations
+function jen_heightmap_sampling(_width, _height, _range, _iterations)
+{
+	//Create two new heightmaps.
+	var _heightmap_new = jen_heightmap_create(_width, _height);
+	var _heightmap_temp = jen_heightmap_create(_width, _height);
 
-#region jen_heightmap_sampling()
+	//Fill with random values.
+	for (var yy = 0; yy < _height; yy ++) {
+	for (var xx = 0; xx < _width; xx ++) {
+		jen_heightmap_set(_heightmap_new, xx, yy, irandom(1.0));
+	} xx = 0; }
 
+	repeat(_iterations)
+	{
+		//Loop through finding the average for every position.
+		for (var yy = 0; yy < _height; yy ++) {
+		for (var xx = 0; xx < _width; xx ++) {
+			var val = ds_grid_get_disk_mean(_heightmap_new, xx, yy, _range);
+			jen_heightmap_set(_heightmap_temp, xx, yy, val);
+		} }
+		ds_grid_copy(_heightmap_new, _heightmap_temp);
+	}
+
+	//Normalize the final heightmap and return the id.
+	ds_grid_destroy(_heightmap_temp);
+	jen_heightmap_normalize(_heightmap_new);
+	return _heightmap_new;
+}
 #endregion
 #region jen_heightmap_gradient(width, height, radius, density);
 /// @description 
@@ -437,6 +468,42 @@ function jen_heightmap_gradient(_width, _height, _radius, _density)
 	//Normalize the final result and return.
 	jen_heightmap_normalize(_heightmap);
 	return _heightmap;
+}
+#endregion
+#region jen_heightmap_apply(grid, heightmap, x1, y1, min, max, replace, new_value, [chance], [function]);
+/// @description Converts a range of values in a heightmap to values in a grid.
+/// @param grid
+/// @param heightmap
+/// @param x1
+/// @param y1
+/// @param min
+/// @param max
+/// @param replace
+/// @param new_value
+/// @param [chance]
+/// @param [function]
+function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, _new_value, _chance, _function)
+{
+	//Getting the width and height of the heightmap.
+	var _width = ds_grid_width(_heightmap);
+	var _height = ds_grid_height(_heightmap);
+	
+	//Create a temporary grid for storing the changes.
+	var _temp_grid = jen_grid_create(_width, _height, noone);
+	
+	//Checking each value in the heightmap.
+	for (var yy = 0; yy < _height; yy ++) {
+	for (var xx = 0; xx < _width; xx ++) {
+		var val = jen_heightmap_get(_heightmap, xx, yy);
+		if (val >= _min && val <= _max)
+		{
+			jen_set(_temp_grid, xx, yy, all, _new_value);
+		}
+	} }
+	
+	//Apply the changes to the base grid.
+	jen_grid_apply(_grid, _temp_grid, _replace, _x1, _y1, _chance, _function);
+	jen_grid_destroy(_temp_grid);
 }
 #endregion
 #region jen_heightmap_normalize(heightmap)
