@@ -20,6 +20,8 @@ repeat(5)
 
 jen_number_apply_list(gridA, tree_list, ".", -2, -5, ".", 4);
 
+heightmapA = jen_heightmap_sampling(79, 47, 4, 3);
+/*
 heightmapA = jen_heightmap_sampling(width, height, 4, 3);
 
 jen_heightmap_apply(gridA, heightmapA, 0, 0, 0, 0.5, all, obj_blue);

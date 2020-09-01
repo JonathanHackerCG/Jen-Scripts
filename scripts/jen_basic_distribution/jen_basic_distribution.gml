@@ -8,8 +8,8 @@
 function jen_replace(_grid, _replace, _new_value)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _height; yy++) {
@@ -33,8 +33,8 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _height; yy++) {
@@ -71,8 +71,8 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
@@ -137,8 +137,8 @@ function jen_near(_grid, _near, _replace, _new_value, _radius, _chance, _functio
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Create a temporary grid to store changes.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -175,8 +175,8 @@ function jen_obfuscate(_grid, _value, _chance)
 	if (is_undefined(_chance)) { _chance = 100; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Create a list of every position in the array.
 	var _positions = ds_list_create();

@@ -18,8 +18,8 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Create a temporary grid to keep track of changes.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -58,8 +58,8 @@ function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace,
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_target);
-	var _height = ds_grid_height(_target);
+	var _width = jen_grid_width(_target);
+	var _height = jen_grid_height(_target);
 	
 	//Create a temporary grid to keep track of changes.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -101,8 +101,8 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_target);
-	var _height = ds_grid_height(_target);
+	var _width = jen_grid_width(_target);
+	var _height = jen_grid_height(_target);
 	
 	//Create a temporary grid to keep track of changes.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -147,8 +147,8 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Create a temporary grid to store the chances.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -211,8 +211,8 @@ function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, 
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_target);
-	var _height = ds_grid_height(_target);
+	var _width = jen_grid_width(_target);
+	var _height = jen_grid_height(_target);
 	
 	//Create a temporary grid to store the chances.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -274,8 +274,8 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_target);
-	var _height = ds_grid_height(_target);
+	var _width = jen_grid_width(_target);
+	var _height = jen_grid_height(_target);
 	
 	//Create a temporary grid to store the chances.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -352,7 +352,7 @@ function jen_heightmap_destroy(_heightmap)
 function jen_heightmap_get(_heightmap, _x, _y)
 {
 	//Check if it is out of bounds, otherwise return the value directly.
-	if (_x < 0 || _y < 0 || _x >= ds_grid_width(_heightmap) || _y >= ds_grid_height(_heightmap)) { return undefined; }
+	if (_x < 0 || _y < 0 || _x >= jen_heightmap_width(_heightmap) || _y >= jen_heightmap_height(_heightmap)) { return undefined; }
 	return _heightmap[# _x, _y];
 }
 #endregion
@@ -365,11 +365,27 @@ function jen_heightmap_get(_heightmap, _x, _y)
 function jen_heightmap_set(_heightmap, _x, _y, _value)
 {
 	//Checking if it is out of bounds, otherwise attempt to set the value.
-	if (_x < 0 || _y < 0 || _x >= ds_grid_width(_heightmap) || _y >= ds_grid_height(_heightmap)) { return false; }
+	if (_x < 0 || _y < 0 || _x >= jen_heightmap_width(_heightmap) || _y >= jen_heightmap_height(_heightmap)) { return false; }
 
 	//Setting the new value.
 	_heightmap[# _x, _y] = _value;
 	return true;
+}
+#endregion
+#region jen_heightmap_width(heightmap);
+/// @description Returns the width of a heightmap.
+/// @param heightmap
+function jen_heightmap_width(_heightmap)
+{
+	return ds_grid_width(_heightmap);
+}
+#endregion
+#region jen_heightmap_height(heightmap);
+/// @description Returns the height of a jen_heightmap.
+/// @param heightmap
+function jen_heightmap_height(_heightmap)
+{
+	return ds_grid_height(_heightmap);
 }
 #endregion
 #region jen_heightmap_draw(heightmap, x1, y1);
@@ -380,8 +396,8 @@ function jen_heightmap_set(_heightmap, _x, _y, _value)
 function jen_heightmap_draw(_heightmap, _x1, _y1)
 {
 	//Getting the width and height of the heightmap.
-	var _width = ds_grid_width(_heightmap);
-	var _height = ds_grid_height(_heightmap);
+	var _width = jen_heightmap_width(_heightmap);
+	var _height = jen_heightmap_height(_heightmap);
 	
 	//Drawing each cell of the heightmap.
 	var scale = 8;
@@ -485,8 +501,8 @@ function jen_heightmap_gradient(_width, _height, _radius, _density)
 function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, _new_value, _chance, _function)
 {
 	//Getting the width and height of the heightmap.
-	var _width = ds_grid_width(_heightmap);
-	var _height = ds_grid_height(_heightmap);
+	var _width = jen_heightmap_width(_heightmap);
+	var _height = jen_heightmap_height(_heightmap);
 	
 	//Create a temporary grid for storing the changes.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -512,8 +528,8 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 function jen_heightmap_normalize(_heightmap)
 {
 	//Getting the width and height of the heightmap.
-	var _width = ds_grid_width(_heightmap);
-	var _height = ds_grid_height(_heightmap);
+	var _width = jen_heightmap_width(_heightmap);
+	var _height = jen_heightmap_height(_heightmap);
 	
 	//Find the maximum and minimum.
 	var _max = ds_grid_get_max(_heightmap, 0, 0, _width - 1, _height - 1);

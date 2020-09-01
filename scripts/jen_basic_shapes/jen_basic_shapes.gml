@@ -143,8 +143,8 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Estimating the required increment.
 	var _increment = 90 / (2 * pi * max(_haxis, _vaxis));

@@ -58,7 +58,7 @@ function jen_grid_destroy(_grid)
 function jen_get(_grid, _x, _y)
 {
 	//Check if it is out of bounds, otherwise return the value directly.
-	if (_x < 0 || _y < 0 || _x >= ds_grid_width(_grid) || _y >= ds_grid_height(_grid)) { return undefined; }
+	if (_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid)) { return undefined; }
 	return _grid[# _x, _y];
 }
 #endregion
@@ -72,7 +72,7 @@ function jen_get(_grid, _x, _y)
 function jen_set(_grid, _x, _y, _replace, _new_value)
 {
 	//Checking if it is out of bounds, otherwise attempt to set the value.
-	if (_x < 0 || _y < 0 || _x >= ds_grid_width(_grid) || _y >= ds_grid_height(_grid)) { return false; }
+	if (_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid)) { return false; }
 	if (_replace == all || _grid[# _x, _y] == _replace)
 	{
 		//Setting the new value.
@@ -80,6 +80,22 @@ function jen_set(_grid, _x, _y, _replace, _new_value)
 		return true;
 	}
 	return false;
+}
+#endregion
+#region jen_grid_width(grid);
+/// @description Returns the width of a jen_grid.
+/// @param grid
+function jen_grid_width(_grid)
+{
+	return ds_grid_width(_grid);
+}
+#endregion
+#region jen_grid_height(grid);
+/// @description Returns the height of a jen_grid.
+/// @param grid
+function jen_grid_height(_grid)
+{
+	return ds_grid_height(_grid);
 }
 #endregion
 
@@ -100,10 +116,10 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
 	if (is_undefined(_function)) { _function = noone; }
 	
 	//Getting width and height of the grids.
-	var _width = ds_grid_width(_target);
-	var _height = ds_grid_height(_target);
-	var _width_apply = min(ds_grid_width(_apply), _width);
-	var _height_apply = min(ds_grid_height(_apply), _height);
+	var _width = jen_grid_width(_target);
+	var _height = jen_grid_height(_target);
+	var _width_apply = min(jen_grid_width(_apply), _width);
+	var _height_apply = min(jen_grid_height(_apply), _height);
 	
 	//Iterate through the application grid.
 	var _value;
@@ -136,8 +152,8 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
 function jen_grid_mirror(_grid, _horizontal, _vertical)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Create a temporary grid.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
@@ -170,8 +186,8 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 function jen_grid_rotate(_grid, _rotations)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Different rotation operations depending on the angle.
 	if (_rotations < 1 || _rotations > 3) { show_error("Jen_scripts function jen_rotate requires a rotation number of 1, 2, or 3.", false); exit; }
@@ -242,8 +258,8 @@ function jen_grid_scale(_grid, _factor, _upscale)
 	_factor = abs(round(_factor));
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	if (_upscale) //Upscaling.
 	{
@@ -291,8 +307,8 @@ function jen_grid_scale(_grid, _factor, _upscale)
 function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	for (var xx = 0; xx < _width; xx++) {
 	for (var yy = 0; yy < _height; yy++)
@@ -315,8 +331,8 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer)
 function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	for (var xx = 0; xx < _width; xx++) {
 	for (var yy = 0; yy < _height; yy++)
@@ -339,8 +355,8 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Converting a layer name into a tilemap id.
 	if (is_string(_tilemap))
@@ -376,8 +392,8 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 	if (is_undefined(_offset)) { _offset = 0; }
 	
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Converting a layer name into a tilemap id.
 	if (is_string(_tilemap))
@@ -408,8 +424,8 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 function jen_grid_string(_grid)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_grid);
-	var _height = ds_grid_height(_grid);
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
 	
 	//Looping through the grid to build the string.
 	var _output = "";

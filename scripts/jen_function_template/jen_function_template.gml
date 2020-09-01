@@ -12,7 +12,7 @@ function jen_function_template(grid, xx, yy, replace, new_value)
 /// The new values will be more dense along a vertical line down the center of the grid.
 function jen_function_sin(grid, xx, yy, replace, new_value)
 {
-	var width = ds_grid_width(grid);
+	var width = jen_grid_width(grid);
 	var chance = sin((pi * xx) / width) * 100;
 	if (random(100) < chance)
 	{

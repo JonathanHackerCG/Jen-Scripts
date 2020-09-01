@@ -205,6 +205,23 @@ function jen_maze_set(_maze, _x1, _y1, _dir, _connected)
 	}
 }
 #endregion
+#region jen_maze_width(maze);
+/// @description Returns the width of a maze.
+/// @param maze
+function jen_maze_width(_maze)
+{
+	return ds_grid_width(_maze);
+}
+#endregion
+#region jen_maze_height(maze);
+/// @description Returns the height of a jen_maze.
+/// @param maze
+function jen_maze_height(_maze)
+{
+	return ds_grid_height(_maze);
+}
+#endregion
+
 #region jen_maze_prim(width, height);
 /// @description Creates a new maze using Prim's algorithm.
 /// @param width
@@ -372,8 +389,8 @@ function jen_maze_backtrack(_width, _height)
 function jen_maze_draw(_maze, _x1, _y1)
 {
 	//Getting the width and height of the grid.
-	var _height = ds_grid_height(_maze);
-	var _width = ds_grid_width(_maze);
+	var _height = jen_maze_height(_maze);
+	var _width = jen_maze_width(_maze);
 	
 	for (var yy = 0; yy < _height; yy++) {
 	for (var xx = 0; xx < _width; xx++)
@@ -397,8 +414,8 @@ function jen_maze_draw(_maze, _x1, _y1)
 function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD, _numL)
 {
 	//Getting width and height of the grid.
-	var _width = ds_grid_width(_maze);
-	var _height = ds_grid_height(_maze);	
+	var _width = jen_maze_width(_maze);
+	var _height = jen_maze_height(_maze);	
 	
 	#region UP
 	if (_numU > 0)
