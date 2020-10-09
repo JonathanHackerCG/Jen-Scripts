@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Jen_scripts",
-    "path": "folders/Jen_scripts.yy",
+    "name": "Templates",
+    "path": "folders/Jen_scripts/Templates.yy",
   },
   "resourceVersion": "1.0",
   "name": "jen_function_template",

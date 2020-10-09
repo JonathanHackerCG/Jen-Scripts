@@ -25,7 +25,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Test Objects",
-    "path": "folders/Jen_scripts/Test Objects.yy",
+    "path": "folders/Jen_scripts Extra/Test Objects.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_red",

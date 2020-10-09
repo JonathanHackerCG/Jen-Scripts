@@ -5,8 +5,18 @@ jen_grid_cellsize(16, 16);
 
 var width = room_width / global.jen_xcell;
 var height = room_height / global.jen_ycell;
-gridA = jen_grid_create(width, height, ".");
+gridA = jen_grid_create(width, height, noone);
 
+room_list = jen_grid_room_array(0, 0, 7, 7, 3, 4, 1, 1);
+jen_number_apply_list(gridA, room_list, noone, -3, -3, all, 5);
+
+with (all) { if (object_index != obj_test) { instance_destroy(); } }
+
+jen_grid_instantiate_layer(gridA, 0, 0, "Instances");
+
+
+
+/*
 tree_list = ds_list_create();
 repeat(5)
 {
@@ -17,7 +27,7 @@ repeat(5)
 	jen_near(tree, "X", noone, "X", 1);
 	ds_list_add(tree_list, tree);
 }
-
+ 
 jen_number_apply_list(gridA, tree_list, ".", -2, -5, ".", 4);
 
 heightmapA = jen_heightmap_sampling(79, 47, 4, 3);

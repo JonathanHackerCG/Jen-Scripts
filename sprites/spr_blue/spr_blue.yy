@@ -1,5 +1,5 @@
 {
-  "bboxMode": 0,
+  "bboxMode": 1,
   "collisionKind": 1,
   "type": 0,
   "origin": 4,
@@ -8,9 +8,9 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 0,
-  "bbox_right": 0,
+  "bbox_right": 15,
   "bbox_top": 0,
-  "bbox_bottom": 0,
+  "bbox_bottom": 15,
   "HTile": false,
   "VTile": false,
   "For3D": false,
@@ -69,7 +69,7 @@
   ],
   "parent": {
     "name": "Test Objects",
-    "path": "folders/Jen_scripts/Test Objects.yy",
+    "path": "folders/Jen_scripts Extra/Test Objects.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_blue",

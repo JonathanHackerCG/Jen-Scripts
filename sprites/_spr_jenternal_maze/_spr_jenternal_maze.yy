@@ -128,8 +128,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"4b7f0f81-7917-4069-9cc9-f55beb8086f8","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Jen_scripts",
-    "path": "folders/Jen_scripts.yy",
+    "name": "Internal",
+    "path": "folders/Jen_scripts/Internal.yy",
   },
   "resourceVersion": "1.0",
   "name": "_spr_jenternal_maze",

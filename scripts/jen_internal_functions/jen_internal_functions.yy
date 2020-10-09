@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Jen_scripts",
-    "path": "folders/Jen_scripts.yy",
+    "name": "Internal",
+    "path": "folders/Jen_scripts/Internal.yy",
   },
   "resourceVersion": "1.0",
   "name": "jen_internal_functions",
