@@ -323,3 +323,53 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
+#region jen_automata(grid, living, empty, bounds, birth, death, [chance], [function]);
+/// @description Applies cellular automata between two different values.
+/// @param grid
+/// @param living
+/// @param empty
+/// @param bounds
+/// @param birth
+/// @param death
+/// @param [chance]
+/// @param [function]
+function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance, _function)
+{
+	//Get optional parameters.
+	if (is_undefined(_chance)) { _chance = 100; }
+	if (is_undefined(_function)) { _function = noone; }
+	
+	//Initialize variables.
+	var _width = jen_grid_width(_grid);
+	var _height = jen_grid_height(_grid);
+	var _temp = jen_grid_create(_width, _height);
+	
+	//Iterate through the grid.
+	for (var yy = 0; yy < _height; yy ++) {
+	for (var xx = 0; xx < _width; xx ++) {
+		var count = 0;
+		var cell = jen_get(_grid, xx, yy);
+
+		//Counting the surrounding cells.
+		if (_jenternal_test(_grid, xx + 1, yy + 0, _living, _bounds)) { count ++; }
+		if (_jenternal_test(_grid, xx - 1, yy + 0, _living, _bounds)) { count ++; }
+		if (_jenternal_test(_grid, xx + 0, yy + 1, _living, _bounds)) { count ++; }
+		if (_jenternal_test(_grid, xx + 0, yy - 1, _living, _bounds)) { count ++; }
+		if (_jenternal_test(_grid, xx + 1, yy + 1, _living, _bounds)) { count ++; }
+		if (_jenternal_test(_grid, xx + 1, yy - 1, _living, _bounds)) { count ++; }
+		if (_jenternal_test(_grid, xx - 1, yy + 1, _living, _bounds)) { count ++; }
+		if (_jenternal_test(_grid, xx - 1, yy - 1, _living, _bounds)) { count ++; }
+		
+		if (cell == _living && count <= _death)
+		{
+			jen_set(_temp, xx, yy, all, _empty);
+		}
+		if (cell == _empty && count >= _birth)
+		{
+			jen_set(_temp, xx, yy, all, _living);
+		}
+	}	}
+	
+	jen_grid_apply(_grid, _temp, all, 0, 0, _chance, _function);
+}
+#endregion

@@ -5,16 +5,8 @@ jen_grid_cellsize(16, 16);
 
 var width = room_width / global.jen_xcell;
 var height = room_height / global.jen_ycell;
-gridA = jen_grid_create(width, height, noone);
-
-room_list = jen_grid_room_array(0, 0, 7, 7, 3, 4, 1, 1);
-jen_number_apply_list(gridA, room_list, noone, -3, -3, all, 5);
-
-with (all) { if (object_index != obj_test) { instance_destroy(); } }
-
-jen_grid_instantiate_layer(gridA, 0, 0, "Instances");
-
-
+gridA = jen_grid_create(width, height, ".");
+jen_scatter(gridA, ".", "O", 40);
 
 /*
 tree_list = ds_list_create();

@@ -19,16 +19,3 @@ function jen_function_sin(grid, xx, yy, replace, new_value)
 		jen_set(grid, xx, yy, replace, new_value);
 	}
 }
-
-/// @description This is another example function, of a different application of custom functions.
-/// This function will add the point to a list. For instance, it may be used with jen_number.
-global.output_list = ds_list_create();
-function jen_function_log(grid, xx, yy, replace, new_value)
-{
-	//Create a struct storing the position this change was made.
-	var pos = { x1 : xx, y1 : yy}
-	ds_list_add(global.output_list, pos);
-	
-	//Then set the value normally.
-	jen_set(grid, xx, yy, replace, new_value);
-}
