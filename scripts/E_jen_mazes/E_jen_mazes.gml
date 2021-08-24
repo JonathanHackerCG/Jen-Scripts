@@ -580,7 +580,8 @@ function jen_maze_build_special(_maze, _value, _room_w, _room_h, _wall_w, _wall_
 		#region Rotating each room to fit.
 		if (_data == 15)
 		{
-			jen_grid_rotate(_temp, irandom(3));
+			var _rotations = irandom(3);
+			if (_rotations != 0) { jen_grid_rotate(_temp, _rotations); }
 		}
 		else
 		{
