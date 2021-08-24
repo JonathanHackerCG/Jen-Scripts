@@ -1,6 +1,7 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
 #region jen_line(grid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
+/// @function jen_line
 /// @description Creates a line between two points.
 /// @param grid
 /// @param x1
@@ -11,12 +12,8 @@
 /// @param new_value
 /// @param [chance]
 /// @param [function]
-function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _function)
+function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Calculating _step amounts for the line.
 	var _xdis = _x2 - _x1;
 	var _ydis = _y2 - _y1;
@@ -51,6 +48,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 }
 #endregion
 #region jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]);
+/// @function jen_rectangle
 /// @description Creates a rectangle between two positions.
 /// @param grid
 /// @param x1
@@ -62,12 +60,8 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _fun
 /// @param outline
 /// @param [chance]
 /// @param [function]
-function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline, _chance, _function)
+function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Iterate through the grid.
 	for (var yy = _y1; yy <= _y2; yy++) {
 	for (var xx = _x1; xx <= _x2; xx++)
@@ -99,6 +93,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 }
 #endregion
 #region jen_triangle(grid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);
+/// @function jen_triangle
 /// @description This creates a triangle. There is no option for a filled triangle.
 /// @param grid
 /// @param x1
@@ -111,12 +106,8 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 /// @param new_value
 /// @param [chance]
 /// @param [function]
-function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance, _function)
+function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Drawing three lines. (That's basically all this function does).
 	jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _function);
 	jen_line(_grid, _x2, _y2, _x3, _y3, _replace, _new_value, _chance, _function);
@@ -124,6 +115,7 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 }
 #endregion
 #region jen_ellipse(grid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
+/// @function jen_ellipse
 /// @description Creates an ellipse. Define the length of each axis, and the rotation.
 /// @param grid
 /// @param x1
@@ -136,12 +128,8 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 /// @param outline
 /// @param [chance]
 /// @param [function]
-function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance, _function)
+function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
@@ -171,6 +159,7 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 }
 #endregion
 #region jen_fill(grid, x1, y1, replace, new_value, diagonal);
+/// @function jen_fill
 /// @description Fills a space of matching values. May cross diagonals or not.
 /// @param grid
 /// @param x1

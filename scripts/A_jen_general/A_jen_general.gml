@@ -15,6 +15,7 @@ enum jen_dir
 
 //Initialization and Getters/Setters
 #region jen_grid_cellsize(xcell, ycell);
+/// @function jen_grid_cellsize
 /// @description Sets the global cellsize variables.
 /// @param xcell
 /// @param ycell
@@ -25,15 +26,13 @@ function jen_grid_cellsize(_xcell, _ycell)
 }
 #endregion
 #region jen_grid_create(width, height, [cleared]);
+/// @function jen_grid_create
 /// @description Create a new jen_grid data structure.
 /// @param width
 /// @param height
 /// @param [cleared]
-function jen_grid_create(_width, _height, _cleared)
+function jen_grid_create(_width, _height, _cleared = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_cleared)) { _cleared = noone; }
-	
 	//Create and fill the new grid.
 	var _grid = ds_grid_create(_width, _height);
 	ds_grid_clear(_grid, _cleared);
@@ -43,6 +42,7 @@ function jen_grid_create(_width, _height, _cleared)
 }
 #endregion
 #region jen_grid_destroy(grid);
+/// @function jen_grid_destroy
 /// @description Destroy a jen_grid.
 /// @param grid
 function jen_grid_destroy(_grid)
@@ -51,6 +51,7 @@ function jen_grid_destroy(_grid)
 }
 #endregion
 #region jen_get(grid, x, y);
+/// @function jen_get
 /// @description Return a value at a position. Returns undefined if it is out of bounds.
 /// @param grid
 /// @param x
@@ -63,6 +64,7 @@ function jen_get(_grid, _x, _y)
 }
 #endregion
 #region jen_set(grid, x, y, replace, new_value);
+/// @function jen_set
 /// @description Set a value at a position.
 /// @param grid
 /// @param x
@@ -83,6 +85,7 @@ function jen_set(_grid, _x, _y, _replace, _new_value)
 }
 #endregion
 #region jen_grid_width(grid);
+/// @function jen_grid_width
 /// @description Returns the width of a jen_grid.
 /// @param grid
 function jen_grid_width(_grid)
@@ -91,6 +94,7 @@ function jen_grid_width(_grid)
 }
 #endregion
 #region jen_grid_height(grid);
+/// @function jen_grid_height
 /// @description Returns the height of a jen_grid.
 /// @param grid
 function jen_grid_height(_grid)
@@ -101,6 +105,7 @@ function jen_grid_height(_grid)
 
 //Transformations
 #region jen_grid_apply(target_grid, apply_grid, replace, x1, y1, [chance], [function]);
+/// @function jen_grid_apply
 /// @description Applies one grid onto another, transfering all filled values to the target.
 /// @param target_grid
 /// @param apply_grid
@@ -109,12 +114,8 @@ function jen_grid_height(_grid)
 /// @param y1
 /// @param [chance]
 /// @param [function]
-function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
+function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grids.
 	var _width = jen_grid_width(_target);
 	var _height = jen_grid_height(_target);
@@ -145,6 +146,7 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance, _function)
 }
 #endregion
 #region jen_grid_mirror(grid, horizontal, vertical);
+/// @function jen_grid_mirror
 /// @description Mirrors the data in a grid horizontally and or vertically.
 /// @param grid
 /// @param horizontal
@@ -180,6 +182,7 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 }
 #endregion
 #region jen_grid_rotate(grid, rotations);
+/// @function jen_grid_rotate
 /// @description Rotates a grid counterclockwise by 90 degrees, some number of times. (1-3)
 /// @param grid
 /// @param rotations
@@ -248,6 +251,7 @@ function jen_grid_rotate(_grid, _rotations)
 }
 #endregion
 #region jen_grid_scale(grid, factor, upscale);
+/// @function jen_grid_scale
 /// @description Transforms a grid by scaling it up or down by a whole number factor.
 /// @param grid
 /// @param factor
@@ -299,6 +303,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 
 //Instantiation
 #region jen_grid_instantiate_layer(grid, x1, y1, layer);
+/// @function jen_grid_instatiate_layer
 /// @description Instantiates a grid, treating each value as an object index.
 /// @param grid
 /// @param x1
@@ -323,6 +328,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer)
 }
 #endregion
 #region jen_grid_instantiate_depth(grid, x1, y1, depth);
+/// @function jen_grid_instatiate_depth
 /// @description Instantiates a grid, treating each value as an object index.
 /// @param grid
 /// @param x1
@@ -347,6 +353,7 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 }
 #endregion
 #region jen_grid_instantiate_tiles(grid, x1, y1, tilemap/layer);
+/// @function jen_grid_instatiate_tiles
 /// @description Instantiates a grid, treating each value as a tile index.
 /// @param grid
 /// @param x1
@@ -378,6 +385,7 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap)
 }
 #endregion
 #region jen_grid_instantiate_autotile(grid, x1, y1, test, closed_edge, tilemap/layer, [offset]);
+/// @function jen_grid_instatiate_autotile
 /// @description Instantiates a grid, searching for adjacent test values, and converting to an autotile tile index.
 /// @param grid
 /// @param x1
@@ -386,11 +394,8 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap)
 /// @param closed_edge
 /// @param tilemap/layer
 /// @param [offset]
-function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _tilemap, _offset)
+function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _tilemap, _offset = 0)
 {
-	//Getting optional parameters.
-	if (is_undefined(_offset)) { _offset = 0; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
@@ -419,6 +424,7 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 
 //Debugging Functions
 #region jen_grid_string(grid);
+/// @function jen_grid_string
 /// @description Returns the jen_grid formatted as a string.
 /// @param grid
 function jen_grid_string(_grid)
@@ -444,6 +450,7 @@ function jen_grid_string(_grid)
 }
 #endregion
 #region jen_grid_draw(grid, x, y);
+/// @function jen_grid_draw
 /// @description Draws the data within the grid, using jen_grid_string.
 /// @param grid
 /// @param x

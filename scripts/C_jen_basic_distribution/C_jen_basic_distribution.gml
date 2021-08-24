@@ -1,6 +1,7 @@
 // Basic distribution functions. Scattering and replacing.
 
 #region jen_replace(grid, replace, new_value);
+/// @function jen_replace
 /// @description Replaces all of one value with another value.
 /// @param grid
 /// @param replace
@@ -20,18 +21,15 @@ function jen_replace(_grid, _replace, _new_value)
 }
 #endregion
 #region jen_scatter(grid, replace, new_value, [chance], [function]);
+/// @function jen_scatter
 /// @description Replaces some percentage of one value with another.
 /// @param grid
 /// @param replace
 /// @param new_value
 /// @param [chance]
 /// @param [function]
-function jen_scatter(_grid, _replace, _new_value, _chance, _function)
+function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
@@ -57,6 +55,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 }
 #endregion
 #region jen_number(grid, replace, new_value, number, [chance], [function]);
+/// @function jen_number
 /// @description Changes a specific number of one value into another.
 /// @param grid
 /// @param replace
@@ -64,12 +63,8 @@ function jen_scatter(_grid, _replace, _new_value, _chance, _function)
 /// @param number
 /// @param [chance]
 /// @param [function]
-function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
+function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
@@ -122,6 +117,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 }
 #endregion
 #region jen_near(grid, near, replace, new_value, radius, [chance], [function]);
+/// @function jen_near
 /// @description Changes all values that are within a radius of another value.
 /// @param grid
 /// @param near
@@ -130,12 +126,8 @@ function jen_number(_grid, _replace, _new_value, _number, _chance, _function)
 /// @param radius
 /// @param [chance]
 /// @param [function]
-function jen_near(_grid, _near, _replace, _new_value, _radius, _chance, _function)
+function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
@@ -165,15 +157,13 @@ function jen_near(_grid, _near, _replace, _new_value, _radius, _chance, _functio
 }
 #endregion
 #region jen_obfuscate(grid, value, [chance]);
+/// @function jen_obfuscate
 /// @description Causes certain values to swap with values around them.
 /// @param grid
 /// @param value
 /// @param [chance]
-function jen_obfuscate(_grid, _value, _chance)
+function jen_obfuscate(_grid, _value, _chance = 100)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);

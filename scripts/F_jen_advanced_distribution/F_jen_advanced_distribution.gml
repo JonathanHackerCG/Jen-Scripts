@@ -2,6 +2,7 @@
 
 //Advanced scattering functions.
 #region jen_scatter_offset(grid, find_value, x_offset, y_offset, replace, new_value, [chance], [function]);
+/// @function jen_scatter_offset
 /// @description Replaces some percentage of one value with another, offset by a search value.
 /// @param grid
 /// @param find_value
@@ -11,12 +12,8 @@
 /// @param new_value
 /// @param [chance]
 /// @param [function]
-function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance, _function)
+function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
@@ -42,6 +39,7 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 }
 #endregion
 #region jen_scatter_apply(target_grid, apply_grid, find_value, x_offset, y_offset, replace, [chance], [function]);
+/// @function jen_scatter_apply
 /// @description Replaces some percentage of one value with the values of another grid with jen_apply.
 /// @param target_grid
 /// @param apply_grid
@@ -51,12 +49,8 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 /// @param replace
 /// @param [chance]
 /// @param [function]
-function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _chance, _function)
+function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
 	var _height = jen_grid_height(_target);
@@ -85,6 +79,7 @@ function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace,
 }
 #endregion
 #region jen_scatter_apply_list(target_grid, apply_list, find_value, x_offset, y_offset, replace, [chance], [function]);
+/// @function jen_scatter_apply_list
 /// @description Replaces some percentage of one value with the values of another grid with jen_apply.
 /// @param target_grid
 /// @param apply_list
@@ -94,12 +89,8 @@ function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace,
 /// @param replace
 /// @param [chance]
 /// @param [function]
-function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _chance, _function)
+function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
 	var _height = jen_grid_height(_target);
@@ -130,6 +121,7 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 }
 #endregion
 #region jen_number_offset(grid, find_value x_offset, y_offset, replace, new_value, number, [chance], [function]);
+/// @function jen_number_offset
 /// @description Sets a new value some number of times, offset from a particular search value.
 /// @param grid
 /// @param find_values
@@ -140,12 +132,8 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 /// @param number
 /// @param [chance]
 /// @param [function]
-function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance, _function)
+function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
@@ -194,6 +182,7 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 }
 #endregion
 #region jen_number_apply(target_grid, apply_grid, find_value x_offset, y_offset, replace, number, [chance], [function]);
+/// @function jen_number_apply
 /// @description Sets a new value some number of times, offset from a particular search value.
 /// @param target_grid
 /// @param apply_grid
@@ -204,12 +193,8 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 /// @param number
 /// @param [chance]
 /// @param [function]
-function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _number, _chance, _function)
+function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
 	var _height = jen_grid_height(_target);
@@ -257,6 +242,7 @@ function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, 
 }
 #endregion
 #region jen_number_apply_list(target_grid, apply_list, find_value x_offset, y_offset, replace, number, [chance], [function]);
+/// @function jen_number_apply_list
 /// @description Sets a new value some number of times, offset from a particular search value.
 /// @param target_grid
 /// @param apply_list
@@ -267,12 +253,8 @@ function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, 
 /// @param number
 /// @param [chance]
 /// @param [function]
-function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _number, _chance, _function)
+function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
 	var _height = jen_grid_height(_target);
@@ -324,6 +306,7 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 }
 #endregion
 #region jen_automata(grid, living, empty, bounds, birth, death, [chance], [function]);
+/// @function jen_automata
 /// @description Applies cellular automata between two different values.
 /// @param grid
 /// @param living
@@ -333,12 +316,8 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 /// @param death
 /// @param [chance]
 /// @param [function]
-function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance, _function)
+function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Initialize variables.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);

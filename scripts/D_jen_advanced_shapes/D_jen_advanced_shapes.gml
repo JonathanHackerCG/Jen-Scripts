@@ -2,6 +2,7 @@
 
 //Wandering lines.
 #region jen_wander_direction(grid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+/// @function jen_wander_direction
 /// @description Will create a wandering line between two positions.
 /// @param grid
 /// @param x1
@@ -16,12 +17,8 @@
 /// @param new_value
 /// @param [chance]
 /// @param [function]
-function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance, _function)
+function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
 	var _angle = _initial_angle + irandom_range(-_correction_accuracy, _correction_accuracy);
@@ -63,6 +60,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 }
 #endregion
 #region jen_wander_line(grid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+/// @function jen_wander_line
 /// @description Will create a wandering line between two positions.
 /// @param grid
 /// @param x1
@@ -78,12 +76,8 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 /// @param new_value
 /// @param [chance]
 /// @param [function]
-function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance, _function)
+function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = noone)
 {
-	//Get optional parameters.
-	if (is_undefined(_chance)) { _chance = 100; }
-	if (is_undefined(_function)) { _function = noone; }
-	
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
 	var _angle = point_direction(_x1, _y1, _x2, _y2) + irandom_range(-_correction_accuracy, _correction_accuracy);
@@ -137,6 +131,7 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 
 //Handcrafted content (room functions).
 #region jen_grid_room();
+/// @function jen_grid_room
 /// @description Will convert the instances of the current room into a new jen_grid.
 function jen_grid_room()
 {
@@ -164,6 +159,7 @@ function jen_grid_room()
 }
 #endregion
 #region jen_grid_room_part(x1, y1, width, height);
+/// @function jen_grid_room_part
 /// @description Converts a region of the room into a new jen_grid.
 /// @param x1
 /// @param y1
@@ -192,6 +188,7 @@ function jen_grid_room_part(_x1, _y1, _width, _height)
 }
 #endregion
 #region jen_grid_room_array(x1, y1, width, height, rooms_w, rooms_h, [xspace], [yspace]);
+/// @function jen_grid_room_array
 /// @description Divides the current room into a grid, and outputs a list of jen_grids.
 /// @param x1
 /// @param y1
@@ -201,11 +198,8 @@ function jen_grid_room_part(_x1, _y1, _width, _height)
 /// @param rooms_h
 /// @param [xspace]
 /// @param [yspace]
-function jen_grid_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h, _xspace, _yspace)
+function jen_grid_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h, _xspace = 0, _yspace = 0)
 {
-	if (is_undefined(_xspace)) { _xspace = 0; }
-	if (is_undefined(_yspace)) { _yspace = 0; }
-	
 	var _xgrid = global.jen_xcell;
 	var _ygrid = global.jen_ycell;
 	var _list = ds_list_create();
