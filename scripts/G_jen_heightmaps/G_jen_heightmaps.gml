@@ -198,7 +198,7 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_heightmap_normalize(heightmap)
+#region jen_heightmap_normalize(heightmap);
 /// @description Maps all values in a heightmap to a scale between 0.0 and 1.0.
 /// @param heightmap
 function jen_heightmap_normalize(_heightmap)
