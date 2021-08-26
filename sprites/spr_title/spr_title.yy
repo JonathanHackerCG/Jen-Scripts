@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Jen_scripts 2.0",
-    "path": "Jen_scripts 2.0.yyp",
+    "name": "Jen_scripts Extra",
+    "path": "folders/Jen_scripts Extra.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_title",

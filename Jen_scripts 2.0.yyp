@@ -33,7 +33,7 @@
     {"id":{"name":"obj_tree","path":"objects/obj_tree/obj_tree.yy",},"order":8,},
     {"id":{"name":"obj_grass","path":"objects/obj_grass/obj_grass.yy",},"order":1,},
     {"id":{"name":"jen_internal_functions","path":"scripts/jen_internal_functions/jen_internal_functions.yy",},"order":0,},
-    {"id":{"name":"spr_title","path":"sprites/spr_title/spr_title.yy",},"order":15,},
+    {"id":{"name":"spr_title","path":"sprites/spr_title/spr_title.yy",},"order":2,},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},"order":9,},
     {"id":{"name":"spr_spikes","path":"sprites/spr_spikes/spr_spikes.yy",},"order":5,},
     {"id":{"name":"obj_copper","path":"objects/obj_copper/obj_copper.yy",},"order":3,},

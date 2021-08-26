@@ -303,7 +303,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 
 //Instantiation
 #region jen_grid_instantiate_layer(grid, x1, y1, layer);
-/// @function jen_grid_instatiate_layer
+/// @function jen_grid_instantiate_layer
 /// @description Instantiates a grid, treating each value as an object index.
 /// @param grid
 /// @param x1
@@ -328,7 +328,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer)
 }
 #endregion
 #region jen_grid_instantiate_depth(grid, x1, y1, depth);
-/// @function jen_grid_instatiate_depth
+/// @function jen_grid_instantiate_depth
 /// @description Instantiates a grid, treating each value as an object index.
 /// @param grid
 /// @param x1
@@ -353,7 +353,7 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 }
 #endregion
 #region jen_grid_instantiate_tiles(grid, x1, y1, tilemap/layer);
-/// @function jen_grid_instatiate_tiles
+/// @function jen_grid_instantiate_tiles
 /// @description Instantiates a grid, treating each value as a tile index.
 /// @param grid
 /// @param x1
@@ -385,7 +385,7 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap)
 }
 #endregion
 #region jen_grid_instantiate_autotile(grid, x1, y1, test, closed_edge, tilemap/layer, [offset]);
-/// @function jen_grid_instatiate_autotile
+/// @function jen_grid_instantiate_autotile
 /// @description Instantiates a grid, searching for adjacent test values, and converting to an autotile tile index.
 /// @param grid
 /// @param x1
