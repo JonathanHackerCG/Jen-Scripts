@@ -605,6 +605,7 @@ function jen_maze_build_special(_maze, _value, _room_w, _room_h, _wall_w, _wall_
 		#endregion
 	} }
 	
+	jen_grid_destroy(_temp);
 	return _grid;
 }
 #endregion

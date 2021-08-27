@@ -146,13 +146,13 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 		yy = (_haxis * dcos(theta) * dsin(_angle)) + (_vaxis * dsin(theta) * dcos(_angle));
 		
 		//Creating the ellipse in the temporary grid.
-		jen_set(_temp_grid, round(_x1 + xx), round(_y1 + yy), all, _new_value);
-		if (!_outline) { jen_line(_temp_grid, _x1 + xx, _y1 + yy, _x1, _y1, all, _new_value); }
+		jen_set(_temp_grid, round(_x1 + xx), round(_y1 + yy), all, "_jenternal_undefined");
+		if (!_outline) { jen_line(_temp_grid, _x1 + xx, _y1 + yy, _x1, _y1, all, "_jenternal_undefined"); }
 	}
 	
 	//Applying the temporary grid over the base grid.
-	if (_function == noone)	{	jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance);	}
-	else { jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function); }
+	jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function);
+	jen_replace(_grid, "_jenternal_undefined", _new_value);
 	
 	//Clearing memory.
 	jen_grid_destroy(_temp_grid);

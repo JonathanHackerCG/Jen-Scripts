@@ -27,12 +27,13 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 	{
 		if (jen_get(_grid, xx, yy) == _find_value)
 		{
-			jen_set(_temp_grid, xx + _xoff, yy + _yoff, all, _new_value);
+			jen_set(_temp_grid, xx + _xoff, yy + _yoff, all, "_jenternal_undefined");
 		}
 	} }
 	
 	//Apply the temporary grid to the base grid.
 	jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function);
+	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	
 	//Clearing memory.
 	jen_grid_destroy(_temp_grid);
@@ -166,13 +167,13 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 			//Get the coordinates of this valid position.
 			var xx = _positions[| i].x1;
 			var yy = _positions[| i].y1;
-			jen_set(_temp_grid, xx + _xoff, yy + _yoff, all, _new_value);
+			jen_set(_temp_grid, xx + _xoff, yy + _yoff, all, "_jenternal_undefined");
 		}
 	}
 	
 	//Apply the temporary grid to the base grid.
-	if (_function == noone) { jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance); }
-	else { jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function); }	
+	jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function);
+	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	
 	//Clearing memory.
 	var size = ds_list_size(_positions);
@@ -341,14 +342,17 @@ function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance =
 		
 		if (cell == _living && count <= _death)
 		{
-			jen_set(_temp, xx, yy, all, _empty);
+			jen_set(_temp, xx, yy, all, "_jenternal_empty");
 		}
 		if (cell == _empty && count >= _birth)
 		{
-			jen_set(_temp, xx, yy, all, _living);
+			jen_set(_temp, xx, yy, all, "_jenternal_living");
 		}
 	}	}
 	
 	jen_grid_apply(_grid, _temp, all, 0, 0, _chance, _function);
+	jen_replace(_grid, "_jenternal_empty", _empty);
+	jen_replace(_grid, "_jenternal_living", _living);
+	jen_grid_destroy(_temp);
 }
 #endregion

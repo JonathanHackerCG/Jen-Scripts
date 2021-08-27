@@ -199,12 +199,13 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 		var val = jen_heightmap_get(_heightmap, xx, yy);
 		if (val >= _min && val <= _max)
 		{
-			jen_set(_temp_grid, xx, yy, all, _new_value);
+			jen_set(_temp_grid, xx, yy, all, "_jenternal_undefined");
 		}
 	} }
 	
 	//Apply the changes to the base grid.
 	jen_grid_apply(_grid, _temp_grid, _replace, _x1, _y1, _chance, _function);
+	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	jen_grid_destroy(_temp_grid);
 }
 #endregion

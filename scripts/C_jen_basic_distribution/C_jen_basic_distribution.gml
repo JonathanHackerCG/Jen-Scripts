@@ -148,8 +148,7 @@ function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _f
 	} }
 	
 	//Apply the temporary grid to the target grid.
-	if (_function == noone) { jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance); }
-	else { jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function); }
+	jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function);
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	
 	//Clearing memory.
