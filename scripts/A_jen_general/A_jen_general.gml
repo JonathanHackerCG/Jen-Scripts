@@ -352,18 +352,24 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 	} }
 }
 #endregion
-#region jen_grid_instantiate_tiles(grid, x1, y1, tilemap/layer);
+#region jen_grid_instantiate_tiles(grid, x1, y1, tilemap/layer, [flipx], [flipy]);
 /// @function jen_grid_instantiate_tiles
 /// @description Instantiates a grid, treating each value as a tile index.
 /// @param grid
 /// @param x1
 /// @param y1
 /// @param tilemap/layer
-function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap)
+/// @param [flipx]
+/// @param [flipy]
+function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _flipy = false)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_grid);
 	var _height = jen_grid_height(_grid);
+	
+	//Updating the coordinate position to cell position.
+	_x1 = _x1 div global.jen_xcell;
+	_y1 = _y1 div global.jen_ycell;
 	
 	//Converting a layer name into a tilemap id.
 	if (is_string(_tilemap))
@@ -379,7 +385,12 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap)
 		var val = jen_get(_grid, xx, yy);
 		if (is_real(val) && val >= 1)
 		{
-			tilemap_set(_tilemap, val, _x1 + xx, _y1 + yy);
+			var _data = tilemap_get(_tilemap, xx, yy);
+			_data = tile_set_index(data, val);
+			if (_flipx) { data = tile_set_mirror(data, irandom(1)); }
+			if (_flipy) { data = tile_set_flip(data, irandom(1)); }
+			//Feather ignore once GM1029
+			tilemap_set(_tilemap, _data, _x1 + xx, _y1 + yy);
 		}
 	} }
 }
@@ -416,6 +427,7 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 		if (val == _test)
 		{
 			var tile = _jenternal_autotile(_grid, xx, yy, _test, _closed_edge);
+			//Feather ignore once GM1029
 			if (tile != -1) { tilemap_set(_tilemap, tile + (_offset * 20), _x1 + xx, _y1 + yy); }
 		}
 	} }
