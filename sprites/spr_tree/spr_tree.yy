@@ -71,8 +71,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Objects Sprites",
-    "path": "folders/Objects/Objects/Objects Sprites.yy",
+    "name": "_Sprites",
+    "path": "folders/Testing/Terrain/Overworld/_Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_tree",

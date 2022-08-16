@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Test Objects",
-    "path": "folders/Jen_scripts Extra/Test Objects.yy",
+    "name": "_Sprites",
+    "path": "folders/Testing/Terrain/Generic/_Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_blue",

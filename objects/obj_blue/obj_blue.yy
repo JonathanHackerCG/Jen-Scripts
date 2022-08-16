@@ -5,6 +5,7 @@
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
@@ -24,8 +25,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Test Objects",
-    "path": "folders/Jen_scripts Extra/Test Objects.yy",
+    "name": "Generic",
+    "path": "folders/Testing/Terrain/Generic.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_blue",

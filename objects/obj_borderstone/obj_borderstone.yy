@@ -5,6 +5,7 @@
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": null,
@@ -24,8 +25,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects/Objects.yy",
+    "name": "Overworld",
+    "path": "folders/Testing/Terrain/Overworld.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_borderstone",

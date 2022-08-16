@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Jen_scripts",
-    "path": "folders/Jen_scripts.yy",
+    "name": "Jen-Scripts",
+    "path": "folders/Jen-Scripts.yy",
   },
   "resourceVersion": "1.0",
   "name": "C_jen_basic_distribution",

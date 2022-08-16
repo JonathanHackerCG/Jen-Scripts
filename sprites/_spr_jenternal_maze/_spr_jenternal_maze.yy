@@ -129,8 +129,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Internal",
-    "path": "folders/Jen_scripts/Internal.yy",
+    "name": "_Internal",
+    "path": "folders/Jen-Scripts/_Internal.yy",
   },
   "resourceVersion": "1.0",
   "name": "_spr_jenternal_maze",

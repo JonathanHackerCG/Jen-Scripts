@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Terrain Sprites",
-    "path": "folders/Objects/Terrain/Terrain Sprites.yy",
+    "name": "_Sprites",
+    "path": "folders/Testing/Terrain/Overworld/_Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_sand",

@@ -1,4 +1,4 @@
-//General Jen_scripts functions. Initialization and grid transformations.
+//General Jen-Scripts functions. Initialization and grid transformations.
 
 #region Main enumerators and macros.
 //Enumerator to denote directions for maze functions.
@@ -193,7 +193,7 @@ function jen_grid_rotate(_grid, _rotations)
 	var _height = jen_grid_height(_grid);
 	
 	//Different rotation operations depending on the angle.
-	if (_rotations < 1 || _rotations > 3) { show_error("Jen_scripts function jen_rotate requires a rotation number of 1, 2, or 3.", false); exit; }
+	if (_rotations < 1 || _rotations > 3) { show_error("Jen-Scripts function jen_rotate requires a rotation number of 1, 2, or 3.", false); exit; }
 	
 	//Apply each rotation based on the number of rotations.
 	#region 90 degrees.

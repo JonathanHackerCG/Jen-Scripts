@@ -152,8 +152,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Jen_scripts Extra",
-    "path": "folders/Jen_scripts Extra.yy",
+    "name": "Assets",
+    "path": "folders/Testing/Assets.yy",
   },
   "resourceVersion": "1.0",
   "name": "_spr_autotile_documentation",
