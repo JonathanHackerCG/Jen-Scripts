@@ -12,25 +12,31 @@ enum jen_dir
 	_total
 }
 #endregion
+#region Main global variables.
+global.jen_cellh = 16;
+global.jen_cellw = 16;
+#endregion
 
 //Initialization and Getters/Setters
-#region jen_grid_cellsize(xcell, ycell);
-/// @function jen_grid_cellsize
-/// @description Sets the global cellsize variables.
-/// @param xcell
-/// @param ycell
-function jen_grid_cellsize(_xcell, _ycell)
+#region jen_grid_cellsize(cellw, cellh);
+/// @func								jen_grid_cellsize(cellw, cellh):
+/// @desc								Sets the cell width and cell height of your terrain.
+///											Referenced with global.jen_cellw and global.jen_cellh.
+/// @arg {Real} cellw		Width of cells (in pixels).
+/// @arg {Real} cellh		Height of cells (in pixels).
+function jen_grid_cellsize(_cellw, _cellh)
 {
-	global.jen_xcell = _xcell;
-	global.jen_ycell = _ycell;
+	global.jen_cellw = _cellw;
+	global.jen_cellh = _cellh;
 }
 #endregion
 #region jen_grid_create(width, height, [cleared]);
-/// @function jen_grid_create
-/// @description Create a new jen_grid data structure.
-/// @param width
-/// @param height
-/// @param [cleared]
+/// @func									jen_grid_create(width, height, [cleared]):
+/// @desc									Create a new JenGrid of specified width and height.
+/// @arg {Real} width			The width of the JenGrid (in cells).
+/// @arg {Real} height		The height of the JenGrid (in cells).
+/// @arg {Any} [cleared]	The initialized value of the JenGrid. Defaults to noone.
+/// @returns {Id.DsGrid}
 function jen_grid_create(_width, _height, _cleared = noone)
 {
 	//Create and fill the new grid.
@@ -42,14 +48,24 @@ function jen_grid_create(_width, _height, _cleared = noone)
 }
 #endregion
 #region jen_grid_destroy(grid);
-/// @function jen_grid_destroy
-/// @description Destroy a jen_grid.
-/// @param grid
+/// @func							jen_grid_destroy(grid):
+/// @desc							Destroy a JenGrid, clearing it from memory.
+///										Returns true if the JenGrid was successfully destroyed.
+/// @arg {Real} grid	JenGrid to destroy.
+/// @returns {Bool}
 function jen_grid_destroy(_grid)
 {
-	ds_grid_destroy(_grid);
+	//Check if the grid exists.
+	if (ds_exists(_grid, ds_type_grid))
+	{
+		//Destroy the grid and return true.
+		ds_grid_destroy(_grid);
+		return true;
+	}
+	return false;
 }
 #endregion
+// >>> TODO_CG: jen_grid_exists(grid);
 #region jen_get(grid, x, y);
 /// @function jen_get
 /// @description Return a value at a position. Returns undefined if it is out of bounds.
@@ -59,28 +75,56 @@ function jen_grid_destroy(_grid)
 function jen_get(_grid, _x, _y)
 {
 	//Check if it is out of bounds, otherwise return the value directly.
-	if (_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid)) { return undefined; }
+	if (!jen_grid_inbounds(_grid, _x, _y)) { return undefined; }
 	return _grid[# _x, _y];
 }
 #endregion
 #region jen_set(grid, x, y, replace, new_value);
-/// @function jen_set
-/// @description Set a value at a position.
-/// @param grid
-/// @param x
-/// @param y
-/// @param replace
-/// @param new_value
+/// @func							jen_set(grid, x, y, replace, new_value):
+/// @desc							Set a value at an eligible position.
+///										The replace and new_value parameters both accept Arrays.
+///										Returns true if the value is sucessfully set.
+/// @arg {Id.DsGrid}	grid
+/// @arg {Real}				x
+/// @arg {Real}				y
+/// @arg {Any}				replace
+/// @arg {Any}				new_value
+/// @returns {Bool}
 function jen_set(_grid, _x, _y, _replace, _new_value)
 {
-	//Checking if it is out of bounds, otherwise attempt to set the value.
-	if (_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid)) { return false; }
-	if (_replace == all || _grid[# _x, _y] == _replace)
+	//Array conversions and other checks.
+	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
+	_new_value = _jenternal_convert_new_value(_new_value);
+	
+	if (jen_test(_grid, _x, _y, _replace))
 	{
 		//Setting the new value.
 		_grid[# _x, _y] = _new_value;
 		return true;
 	}
+	return false;
+}
+#endregion
+#region NEW jen_test(grid, x, y, replace);
+/// @func jen_test(grid, x, y, replace):
+/// @desc Returns true if a position on the grid matches the provided replace value or array.
+/// @arg {Id.DsGrid}	grid
+/// @arg {Real}				x
+/// @arg {Real}				y
+/// @arg {Any}				replace
+/// @returns {Bool}
+function jen_test(_grid, _x, _y, _replace)
+{
+	//Array conversions.
+	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
+	if (!is_array(_replace)) { _replace = [_replace]; }
+	
+	//Testing this position.
+	var _test = jen_get(_grid, _x, _y);
+	var i = 0; repeat(array_length(_replace))
+	{
+		if (_replace[i] == all || _replace[i] == _test) { return true; }
+	i++; }
 	return false;
 }
 #endregion
@@ -100,6 +144,17 @@ function jen_grid_width(_grid)
 function jen_grid_height(_grid)
 {
 	return ds_grid_height(_grid);
+}
+#endregion
+#region NEW jen_grid_inbounds(grid, x, y);
+/// @func jen_grid_inbounds
+/// @desc Returns true if the position is in bounds of the JenGrid.
+/// @arg grid
+/// @arg x
+/// @arg y
+function jen_grid_inbounds(_grid, _x, _y)
+{
+	return !(_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid));
 }
 #endregion
 
@@ -322,7 +377,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer)
 		var index = jen_get(_grid, xx, yy);
 		if (is_real(index) && index != noone && object_exists(index))
 		{
-			instance_create_layer(_x1 + (xx * global.jen_xcell), _y1 + (yy * global.jen_ycell), _layer, index);
+			instance_create_layer(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _layer, index);
 		}
 	} }
 }
@@ -347,7 +402,7 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 		var index = jen_get(_grid, xx, yy);
 		if (is_real(index) && index != noone && object_exists(index))
 		{
-			instance_create_depth(_x1 + (xx * global.jen_xcell), _y1 + (yy * global.jen_ycell), _depth, index);
+			instance_create_depth(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _depth, index);
 		}
 	} }
 }
@@ -368,8 +423,8 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 	var _height = jen_grid_height(_grid);
 	
 	//Updating the coordinate position to cell position.
-	_x1 = _x1 div global.jen_xcell;
-	_y1 = _y1 div global.jen_ycell;
+	_x1 = _x1 div global.jen_cellw;
+	_y1 = _y1 div global.jen_cellh;
 	
 	//Converting a layer name into a tilemap id.
 	if (is_string(_tilemap))

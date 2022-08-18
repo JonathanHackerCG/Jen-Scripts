@@ -48,26 +48,36 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 }
 #endregion
 #region jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]);
-/// @function jen_rectangle
-/// @description Creates a rectangle between two positions.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-/// @param replace
-/// @param new_value
-/// @param outline
-/// @param [chance]
-/// @param [function]
-function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline, _chance = 100, _function = noone)
+/// @func							jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]):
+/// @desc							Creates a rectangle between two positions.
+///										The replace and new_value parameters both accept Arrays.
+/// @arg {Id.DsGrid}	grid
+/// @arg {Real}				x1
+/// @arg {Real}				y1
+/// @arg {Real}				x2
+/// @arg {Real}				y2
+/// @arg {Any}				replace
+/// @arg {Any}				new_value
+/// @arg {Real}				[outline]
+/// @arg {Real}				[chance]
+/// @arg {Function}		[function]
+function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _function = noone)
 {
+	//Finding corners.
+	var _xx1 = min(_x1, _x2);
+	var _xx2 = max(_x1, _x2);
+	var _yy1 = min(_y1, _y2);
+	var _yy2 = max(_y1, _y2);
+	
+	//Array conversions.
+	_replace = _jenternal_convert_replace(_replace);
+	
 	//Iterate through the grid.
-	for (var yy = _y1; yy <= _y2; yy++) {
-	for (var xx = _x1; xx <= _x2; xx++)
-	{
+	for (var yy = _yy1; yy <= _yy2; yy++) {
+	for (var xx = _xx1; xx <= _xx2; xx++) {
 		//Only checking spaces in the rectangle, based on outline.
-		if (!_outline || (xx == _x1 || xx == _x2 || yy == _y1 || yy == _y2))
+		var _o = _outline;
+		if (!_o || (xx < _xx1 + _o || yy < _yy1 + _o || xx > _xx2 - _o || yy > _yy2 - _o))
 		{
 			//Random chance and using the appropriate function.
 			if (random(100) < _chance)
@@ -77,7 +87,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 					//Replace matching values.
 					jen_set(_grid, xx, yy, _replace, _new_value);
 				}
-				else if (_replace == all || jen_get(_grid, xx, yy) == _replace)
+				else if (_replace == all || jen_test(_grid, xx, yy, _replace))
 				{
 					//Run custom function.
 					_function(_grid, xx, yy, _replace, _new_value);
@@ -87,7 +97,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 		else
 		{
 			//To skip some unnecessary checks when it is an outline.
-			xx = _x2 - 1;
+			xx = _xx2 - _o;
 		}
 	} }
 }

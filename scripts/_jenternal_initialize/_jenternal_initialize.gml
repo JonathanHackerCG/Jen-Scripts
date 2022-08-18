@@ -162,3 +162,32 @@ function _jenternal_test(_grid, _x1, _y1, _test, _default)
 	else { return val == _test; }
 }
 #endregion
+
+#region _jenternal_convert_new_value(new_value);
+/// @func _jenternal_convert_new_value
+/// @arg new_value
+function _jenternal_convert_new_value(_new_value)
+{
+	if (is_array(_new_value))
+	{
+		//Pick one random value from an array to return.
+		var _size = array_length(_new_value);
+		var _output = _new_value[irandom(_size - 1)];
+		return _output;
+	}
+	//If it is not an array, return the original value.
+	return _new_value;
+}
+#endregion
+#region _jenternal_convert_replace(replace);
+/// @func _jenternal_convert_replace
+/// @arg replace
+function _jenternal_convert_replace(_replace)
+{
+	if (!is_array(_replace))
+	{
+		return [_replace];
+	}
+	return _replace;
+}
+#endregion
