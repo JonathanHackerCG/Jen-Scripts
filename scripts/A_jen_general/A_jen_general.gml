@@ -373,12 +373,12 @@ function jen_grid_scale(_grid, _factor, _upscale)
 //Instantiation
 #region jen_grid_instantiate_layer(grid, x, y, layer, [struct]);
 /// @func										jen_grid_instantiate_layer(grid, x, y, layer, [struct]):
-/// @desc										Instantiates a JenGrid, treating each value as an object index.
+/// @desc										Instantiates a JenGrid on a particular layer, treating each value as an object index.
 /// @arg {Id.DsGrid} grid		JenGrid to instantiate.
 /// @arg {Real} x						The x-position in the room to instantiate the JenGrid.
 /// @arg {Real} y						The x-position in the room to instantiate the JenGrid.
 /// @arg {Any} layer				The layer ID or layer name to instantiate the objects.
-/// @arg {Struct} [struct]	A struct of variables copied onto the instance when it is created.
+/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created.
 function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined)
 {
 	//Getting width and height of the grid.
@@ -404,14 +404,15 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 	} }
 }
 #endregion
-#region jen_grid_instantiate_depth(grid, x1, y1, depth);
-/// @function jen_grid_instantiate_depth
-/// @description Instantiates a grid, treating each value as an object index.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param depth
-function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
+#region jen_grid_instantiate_depth(grid, x1, y1, depth, [struct]);
+/// @func										jen_grid_instantiate_depth(grid, x, y, depth, [struct]):
+/// @desc										Instantiates a JenGrid at a particular depth, treating each value as an object index.
+/// @arg {Id.DsGrid} grid		JenGrid to instantiate.
+/// @arg {Real} x						The x-position in the room to instantiate the JenGrid.
+/// @arg {Real} y						The x-position in the room to instantiate the JenGrid.
+/// @arg {Real} depth				The depth to instantiate the JenGrid.
+/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created.
+function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -421,10 +422,17 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 	for (var yy = 0; yy < _h; yy++)
 	{
 		//Instantiating each object.
-		var index = jen_get(_grid, xx, yy);
-		if (is_real(index) && index != noone && object_exists(index))
+		var _index = jen_get(_grid, xx, yy);
+		if (is_real(_index) && _index != noone && object_exists(_index))
 		{
-			instance_create_depth(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _depth, index);
+			if (!is_undefined(_struct))
+			{
+				instance_create_depth(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _depth, _index, _struct);
+			}
+			else
+			{
+				instance_create_depth(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _depth, _index);
+			}
 		}
 	} }
 }
@@ -515,9 +523,10 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 
 //Debugging Functions
 #region jen_grid_string(grid);
-/// @function jen_grid_string
-/// @description Returns the jen_grid formatted as a string.
-/// @param grid
+/// @func										jen_grid_string(grid):
+/// @desc										Returns the jen_grid formatted as a string.
+/// @arg {Id.DsGrid} grid		JenGrid to format as a string.
+/// @returns {String}
 function jen_grid_string(_grid)
 {
 	//Getting width and height of the grid.
