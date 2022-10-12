@@ -56,7 +56,7 @@ function jen_grid_create(_width, _height, _cleared = noone)
 function jen_grid_destroy(_grid)
 {
 	//Check if the grid exists.
-	if (ds_exists(_grid, ds_type_grid))
+	if (jen_grid_exists(_grid))
 	{
 		//Destroy the grid and return true.
 		ds_grid_destroy(_grid);
@@ -65,7 +65,17 @@ function jen_grid_destroy(_grid)
 	return false;
 }
 #endregion
-// >>> TODO_CG: jen_grid_exists(grid);
+#region jen_grid_exists(grid);
+/// @func							jen_grid_exists(grid):
+/// @desc							Returns true if a JenGrid exists.
+///										NOTE: Currently cannot distinguish between a JenGrid and a DS Grid.
+/// @arg {Real} grid	JenGrid to check.
+/// @returns {Bool}
+function jen_grid_exists(_grid)
+{
+	return ds_exists(_grid, ds_type_grid);
+}
+#endregion
 #region jen_get(grid, x, y);
 /// @func jen_get(grid, x, y):
 /// @desc								Return a value at a position.
