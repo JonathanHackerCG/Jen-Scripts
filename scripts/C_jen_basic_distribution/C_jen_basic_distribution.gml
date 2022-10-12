@@ -9,12 +9,12 @@
 function jen_replace(_grid, _replace, _new_value)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Looping through the grid to replace each matching value.
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		jen_set(_grid, xx, yy, _replace, _new_value);
 	} }
@@ -31,12 +31,12 @@ function jen_replace(_grid, _replace, _new_value)
 function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Looping through the grid to replace each matching value.
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (_chance >= 100 || random(100) < _chance)
 		{
@@ -66,13 +66,13 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noo
 function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (_replace == all || jen_get(_grid, xx, yy) == _replace)
 		{
@@ -129,15 +129,15 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Create a temporary grid to store changes.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
 	
 	//Create circles around every matching value.
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		//Finding matching values.
 		if (jen_get(_grid, xx, yy) == _near)
@@ -164,13 +164,13 @@ function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _f
 function jen_obfuscate(_grid, _value, _chance = 100)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Create a list of every position in the array.
 	var _positions = ds_list_create();
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (_value == all || jen_get(_grid, xx, yy) == _value)
 		{

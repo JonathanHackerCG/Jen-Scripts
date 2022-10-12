@@ -141,8 +141,8 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Estimating the required increment.
 	var _increment = 90 / (2 * pi * max(_haxis, _vaxis));

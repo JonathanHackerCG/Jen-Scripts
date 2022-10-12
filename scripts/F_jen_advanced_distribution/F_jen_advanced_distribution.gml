@@ -15,15 +15,15 @@
 function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Create a temporary grid to keep track of changes.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
 	
 	//Search for every find value in the base grid.
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (jen_get(_grid, xx, yy) == _find_value)
 		{
@@ -60,8 +60,8 @@ function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace,
 	var _temp_grid = jen_grid_create(_width, _height, noone);
 	
 	//Search for every find value in the base grid.
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (jen_get(_target, xx, yy) == _find_value)
 		{
@@ -100,8 +100,8 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 	var _temp_grid = jen_grid_create(_width, _height, noone);
 	
 	//Search for every find value in the base grid.
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (jen_get(_target, xx, yy) == _find_value)
 		{
@@ -136,16 +136,16 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	
 	//Create a temporary grid to store the chances.
 	var _temp_grid = jen_grid_create(_width, _height, noone);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (_replace == all || jen_get(_grid, xx, yy) == _find_value)
 		{
@@ -205,8 +205,8 @@ function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, 
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (_replace == all || jen_get(_target, xx, yy) == _find_value)
 		{
@@ -265,8 +265,8 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (_replace == all || jen_get(_target, xx, yy) == _find_value)
 		{
@@ -320,8 +320,8 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _function = noone)
 {
 	//Initialize variables.
-	var _width = jen_grid_width(_grid);
-	var _height = jen_grid_height(_grid);
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
 	var _temp = jen_grid_create(_width, _height);
 	
 	//Iterate through the grid.

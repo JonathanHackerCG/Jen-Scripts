@@ -267,8 +267,8 @@ function jen_maze_draw(_maze, _x1, _y1)
 	var _height = jen_maze_height(_maze);
 	var _width = jen_maze_width(_maze);
 	
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		if (_maze[# xx, yy] >= 0)
 		{

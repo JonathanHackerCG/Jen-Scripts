@@ -13,5 +13,5 @@ jen_rectangle(terrain, 18, 0, 0, 18, [obj_dirt, obj_grass], [obj_water_light, ob
 jen_rectangle(terrain, 0,  0, w - 1, h - 1, [obj_dirt, obj_grass, obj_water], [obj_stone, obj_wall], 0, 50, jen_function_sin);
 
 //Instantiate Grid
-jen_grid_instantiate_layer(terrain, 16, 8, "Instances");
+jen_grid_instantiate_layer(terrain, 16, 8, "Instances", { image_xscale : 0.5 });
 jen_grid_destroy(terrain);

@@ -223,8 +223,8 @@ function jen_heightmap_normalize(_heightmap)
 	var _max = ds_grid_get_max(_heightmap, 0, 0, _width - 1, _height - 1);
 	var _min = ds_grid_get_min(_heightmap, 0, 0, _width - 1, _height - 1);
 	
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		var _value = (jen_heightmap_get(_heightmap, xx, yy) - _min) / (_max - _min);
 		jen_heightmap_set(_heightmap, xx, yy, _value);

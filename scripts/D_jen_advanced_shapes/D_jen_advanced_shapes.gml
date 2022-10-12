@@ -144,8 +144,8 @@ function jen_grid_room()
 	var _grid = jen_grid_create(_width, _height, noone);
 	
 	//Iterate through the entire grid.
-	for (var yy = 0; yy < _height; yy++) {
-	for (var xx = 0; xx < _width; xx++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		var inst = collision_rectangle((xx * _xgrid), (yy * _ygrid), ((xx + 1) * _xgrid) - 1, ((yy + 1) * _ygrid) - 1, all, false, true);
 		if (inst != noone)
