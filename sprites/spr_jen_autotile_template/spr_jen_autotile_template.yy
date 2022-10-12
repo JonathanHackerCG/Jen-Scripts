@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "spr_jen_autotile_template",
   "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
@@ -103,14 +106,12 @@
   "gridX": 16,
   "gridY": 16,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"LayerId":{"name":"293fe6f9-35bb-44cc-b266-a53e2e72cabc","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"LayerId":{"name":"06764d05-2190-452b-a751-b39a7f6c8784","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"LayerId":{"name":"807d5e74-2cec-42a3-9642-0a2080b84f21","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_jen_autotile_template","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_jen_autotile_template","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "spr_jen_autotile_template",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 15.0,
@@ -118,12 +119,12 @@
     "autoRecord": true,
     "volume": 1.0,
     "length": 1.0,
-    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MessageEventKeyframe",},
-    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MomentsEventKeyframe",},
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"da0e8b41-3355-4824-9793-2863391d5e1f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"SpriteFrameKeyframe",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"da0e8b41-3355-4824-9793-2863391d5e1f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -139,24 +140,15 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_jen_autotile_template","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},
-    "resourceVersion": "1.4",
-    "name": "spr_jen_autotile_template",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":false,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"labels","resourceVersion":"1.0","name":"293fe6f9-35bb-44cc-b266-a53e2e72cabc","tags":[],"resourceType":"GMImageLayer",},
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"base_template","resourceVersion":"1.0","name":"06764d05-2190-452b-a751-b39a7f6c8784","tags":[],"resourceType":"GMImageLayer",},
-    {"visible":false,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"background","resourceVersion":"1.0","name":"807d5e74-2cec-42a3-9642-0a2080b84f21","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"293fe6f9-35bb-44cc-b266-a53e2e72cabc","visible":false,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"labels",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"06764d05-2190-452b-a751-b39a7f6c8784","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"base_template",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"807d5e74-2cec-42a3-9642-0a2080b84f21","visible":false,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"background",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "Templates",
     "path": "folders/Jen-Scripts/Templates.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "spr_jen_autotile_template",
-  "tags": [],
-  "resourceType": "GMSprite",
 }

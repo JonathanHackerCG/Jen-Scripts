@@ -67,11 +67,13 @@ function jen_grid_destroy(_grid)
 #endregion
 // >>> TODO_CG: jen_grid_exists(grid);
 #region jen_get(grid, x, y);
-/// @function jen_get
-/// @description Return a value at a position. Returns undefined if it is out of bounds.
-/// @param grid
-/// @param x
-/// @param y
+/// @func jen_get(grid, x, y):
+/// @desc								Return a value at a position.
+///											Returns undefined if it is out of bounds.
+/// @param {Id.DsGrid}	grid
+/// @param {Real}				x
+/// @param {Real}				y
+/// @returns {Any}
 function jen_get(_grid, _x, _y)
 {
 	//Check if it is out of bounds, otherwise return the value directly.
@@ -129,29 +131,32 @@ function jen_test(_grid, _x, _y, _replace)
 }
 #endregion
 #region jen_grid_width(grid);
-/// @function jen_grid_width
-/// @description Returns the width of a jen_grid.
-/// @param grid
+/// @func							jen_grid_width(grid):
+/// @desc							Returns the width of a JenGrid.
+/// @arg {Id.DsGrid}	grid
+/// @returns {Real}
 function jen_grid_width(_grid)
 {
 	return ds_grid_width(_grid);
 }
 #endregion
 #region jen_grid_height(grid);
-/// @function jen_grid_height
-/// @description Returns the height of a jen_grid.
-/// @param grid
+/// @func							jen_grid_height(grid):
+/// @description			Returns the height of a JenGrid.
+/// @arg {Id.DsGrid}	grid
+/// @returns {Real}
 function jen_grid_height(_grid)
 {
 	return ds_grid_height(_grid);
 }
 #endregion
 #region NEW jen_grid_inbounds(grid, x, y);
-/// @func jen_grid_inbounds
-/// @desc Returns true if the position is in bounds of the JenGrid.
-/// @arg grid
-/// @arg x
-/// @arg y
+/// @func							jen_grid_inbounds(grid, x, y):
+/// @desc							Returns true if the position is in bounds of the JenGrid.
+/// @arg {Id.DsGrid}	grid
+/// @arg {Real}				x
+/// @arg {Real}				y
+/// @returns {Bool}
 function jen_grid_inbounds(_grid, _x, _y)
 {
 	return !(_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid));

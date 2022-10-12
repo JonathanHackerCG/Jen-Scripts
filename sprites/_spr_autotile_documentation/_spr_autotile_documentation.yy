@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "_spr_autotile_documentation",
   "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
@@ -103,14 +106,12 @@
   "gridX": 16,
   "gridY": 16,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"LayerId":{"name":"f4c3c307-9948-4d9b-b20f-52c7921475b7","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"LayerId":{"name":"06764d05-2190-452b-a751-b39a7f6c8784","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-        {"FrameId":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"LayerId":{"name":"68f6fb07-06f9-404e-8165-fca9fdd342c6","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"_spr_autotile_documentation","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"resourceVersion":"1.0","name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5",},
   ],
   "sequence": {
-    "spriteId": {"name":"_spr_autotile_documentation","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "_spr_autotile_documentation",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 15.0,
@@ -118,12 +119,12 @@
     "autoRecord": true,
     "volume": 1.0,
     "length": 1.0,
-    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MessageEventKeyframe",},
-    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MomentsEventKeyframe",},
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"856b4e4b-aa29-4013-bd66-9bd87b8a5370","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"SpriteFrameKeyframe",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"856b4e4b-aa29-4013-bd66-9bd87b8a5370","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -139,24 +140,15 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"_spr_autotile_documentation","path":"sprites/_spr_autotile_documentation/_spr_autotile_documentation.yy",},
-    "resourceVersion": "1.4",
-    "name": "_spr_autotile_documentation",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"labels","resourceVersion":"1.0","name":"f4c3c307-9948-4d9b-b20f-52c7921475b7","tags":[],"resourceType":"GMImageLayer",},
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"base_template","resourceVersion":"1.0","name":"06764d05-2190-452b-a751-b39a7f6c8784","tags":[],"resourceType":"GMImageLayer",},
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"background","resourceVersion":"1.0","name":"68f6fb07-06f9-404e-8165-fca9fdd342c6","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"f4c3c307-9948-4d9b-b20f-52c7921475b7","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"labels",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"06764d05-2190-452b-a751-b39a7f6c8784","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"base_template",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"68f6fb07-06f9-404e-8165-fca9fdd342c6","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"background",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "Assets",
     "path": "folders/Testing/Assets.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "_spr_autotile_documentation",
-  "tags": [],
-  "resourceType": "GMSprite",
 }
