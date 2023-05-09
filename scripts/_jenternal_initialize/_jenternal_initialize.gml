@@ -3,6 +3,8 @@
 
 //Internal Jen-Scripts Macros
 #macro JEN_SCRIPTS_VERSION "2.1.0 DEV"
+#macro JEN_CELLH global.jen_cellh
+#macro JEN_CELLW global.jen_cellw
 
 //Initialization Message
 show_debug_message(">>> Jen-Scripts version '" + JEN_SCRIPTS_VERSION + "' initialized!");

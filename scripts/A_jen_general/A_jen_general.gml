@@ -13,21 +13,21 @@ enum jen_dir
 }
 #endregion
 #region Main global variables.
-global.jen_cellh = 16;
-global.jen_cellw = 16;
+JEN_CELLH = 16;
+JEN_CELLW = 16;
 #endregion
 
 //Initialization and Getters/Setters
 #region jen_grid_cellsize(cellw, cellh);
 /// @func								jen_grid_cellsize(cellw, cellh):
 /// @desc								Sets the cell width and cell height of your terrain.
-///											Referenced with global.jen_cellw and global.jen_cellh.
+///											Referenced with JEN_CELLW and JEN_CELLH.
 /// @arg {Real} cellw		Width of cells (in pixels).
 /// @arg {Real} cellh		Height of cells (in pixels).
 function jen_grid_cellsize(_cellw, _cellh)
 {
-	global.jen_cellw = _cellw;
-	global.jen_cellh = _cellh;
+	JEN_CELLW = _cellw;
+	JEN_CELLH = _cellh;
 }
 #endregion
 #region jen_grid_create(width, height, [cleared]);
@@ -394,11 +394,11 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 		{
 			if (!is_undefined(_struct))
 			{
-				instance_create_layer(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _layer, _index, _struct);
+				instance_create_layer(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _layer, _index, _struct);
 			}
 			else
 			{
-				instance_create_layer(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _layer, _index);
+				instance_create_layer(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _layer, _index);
 			}
 		}
 	} }
@@ -427,11 +427,11 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 		{
 			if (!is_undefined(_struct))
 			{
-				instance_create_depth(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _depth, _index, _struct);
+				instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index, _struct);
 			}
 			else
 			{
-				instance_create_depth(_x1 + (xx * global.jen_cellw), _y1 + (yy * global.jen_cellh), _depth, _index);
+				instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index);
 			}
 		}
 	} }
@@ -453,8 +453,8 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 	var _h = jen_grid_height(_grid);
 	
 	//Updating the coordinate position to cell position.
-	_x1 = _x1 div global.jen_cellw;
-	_y1 = _y1 div global.jen_cellh;
+	_x1 = _x1 div JEN_CELLW;
+	_y1 = _y1 div JEN_CELLH;
 	
 	//Converting a layer name into a tilemap id.
 	if (is_string(_tilemap))
@@ -474,7 +474,6 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 			_data = tile_set_index(data, val);
 			if (_flipx) { data = tile_set_mirror(data, irandom(1)); }
 			if (_flipy) { data = tile_set_flip(data, irandom(1)); }
-			//Feather ignore once GM1029
 			tilemap_set(_tilemap, _data, _x1 + xx, _y1 + yy);
 		}
 	} }
@@ -514,7 +513,6 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 		if (val == _test)
 		{
 			var tile = _jenternal_autotile(_grid, xx, yy, _test, _closed_edge);
-			//Feather ignore once GM1029
 			if (tile != -1) { tilemap_set(_tilemap, tile + (_offset * 20), _x1 + xx, _y1 + yy); }
 		}
 	} }

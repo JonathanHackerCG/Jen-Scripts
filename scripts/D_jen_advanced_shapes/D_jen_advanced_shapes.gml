@@ -136,8 +136,8 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 function jen_grid_room()
 {
 	//Getting grid variables, making the grid.
-	var _xgrid = global.jen_cellw;
-	var _ygrid = global.jen_cellh;
+	var _xgrid = JEN_CELLW;
+	var _ygrid = JEN_CELLH;
 	
 	var _width = room_width / _xgrid;
 	var _height = room_height / _ygrid;
@@ -168,8 +168,8 @@ function jen_grid_room()
 function jen_grid_room_part(_x1, _y1, _width, _height)
 {
 	//Getting grid variables, making the grid.
-	var _xgrid = global.jen_cellw;
-	var _ygrid = global.jen_cellh;
+	var _xgrid = JEN_CELLW;
+	var _ygrid = JEN_CELLH;
 	var _grid = jen_grid_create(_width, _height, noone);
 	
 	//Iterate through the entire grid.
@@ -200,8 +200,8 @@ function jen_grid_room_part(_x1, _y1, _width, _height)
 /// @arg  [yspace]
 function jen_grid_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h, _xspace = 0, _yspace = 0)
 {
-	var _xgrid = global.jen_cellw;
-	var _ygrid = global.jen_cellh;
+	var _xgrid = JEN_CELLW;
+	var _ygrid = JEN_CELLH;
 	var _list = ds_list_create();
 	
 	//Iterate through entire grid

@@ -3,15 +3,15 @@
 #region jen_line(grid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
 /// @func jen_line
 /// @desc Creates a line between two points.
-/// @arg  grid
-/// @arg  x1
-/// @arg  y1
-/// @arg  x2
-/// @arg  y2
-/// @arg  replace
-/// @arg  new_value
-/// @arg  [chance]
-/// @arg  [function]
+/// @arg  {Id.Grid} grid
+/// @arg  {Real} x1
+/// @arg  {Real} y1
+/// @arg  {Real} x2
+/// @arg  {Real} y2
+/// @arg  {Any} replace
+/// @arg  {Any} new_value
+/// @arg  {Real} [chance]
+/// @arg  {Function} [function]
 function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Calculating _step amounts for the line.
