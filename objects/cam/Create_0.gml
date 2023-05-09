@@ -1,4 +1,4 @@
-/// @description 
+/// @desc 
 event_inherited();
 
 w = 640;

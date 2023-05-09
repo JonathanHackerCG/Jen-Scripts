@@ -1,4 +1,4 @@
-/// @description Basic Testing
+/// @desc Basic Testing
 event_inherited();
 
 //Terrain Properties

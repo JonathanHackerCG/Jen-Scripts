@@ -1,17 +1,17 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
 #region jen_line(grid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
-/// @function jen_line
-/// @description Creates a line between two points.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-/// @param replace
-/// @param new_value
-/// @param [chance]
-/// @param [function]
+/// @func jen_line
+/// @desc Creates a line between two points.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  x2
+/// @arg  y2
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
 function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Calculating _step amounts for the line.
@@ -103,19 +103,19 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 }
 #endregion
 #region jen_triangle(grid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);
-/// @function jen_triangle
-/// @description This creates a triangle. There is no option for a filled triangle.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-/// @param x3
-/// @param y3
-/// @param replace
-/// @param new_value
-/// @param [chance]
-/// @param [function]
+/// @func jen_triangle
+/// @desc This creates a triangle. There is no option for a filled triangle.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  x2
+/// @arg  y2
+/// @arg  x3
+/// @arg  y3
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
 function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Drawing three lines. (That's basically all this function does).
@@ -125,19 +125,19 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 }
 #endregion
 #region jen_ellipse(grid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
-/// @function jen_ellipse
-/// @description Creates an ellipse. Define the length of each axis, and the rotation.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param haxis
-/// @param vaxis
-/// @param replace
-/// @param new_value
-/// @param angle
-/// @param outline
-/// @param [chance]
-/// @param [function]
+/// @func jen_ellipse
+/// @desc Creates an ellipse. Define the length of each axis, and the rotation.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  haxis
+/// @arg  vaxis
+/// @arg  replace
+/// @arg  new_value
+/// @arg  angle
+/// @arg  outline
+/// @arg  [chance]
+/// @arg  [function]
 function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -169,14 +169,14 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 }
 #endregion
 #region jen_fill(grid, x1, y1, replace, new_value, diagonal);
-/// @function jen_fill
-/// @description Fills a space of matching values. May cross diagonals or not.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param replace
-/// @param new_value
-/// @param diagonal
+/// @func jen_fill
+/// @desc Fills a space of matching values. May cross diagonals or not.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  replace
+/// @arg  new_value
+/// @arg  diagonal
 function jen_fill(_grid, xx, yy, _replace, _new_value, _diagonal)
 {
 	//Attempt to set the starting position. Only runs if this part works.

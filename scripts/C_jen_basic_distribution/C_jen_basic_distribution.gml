@@ -1,11 +1,11 @@
 // Basic distribution functions. Scattering and replacing.
 
 #region jen_replace(grid, replace, new_value);
-/// @function jen_replace
-/// @description Replaces all of one value with another value.
-/// @param grid
-/// @param replace
-/// @param new_value
+/// @func jen_replace
+/// @desc Replaces all of one value with another value.
+/// @arg  grid
+/// @arg  replace
+/// @arg  new_value
 function jen_replace(_grid, _replace, _new_value)
 {
 	//Getting width and height of the grid.
@@ -21,13 +21,13 @@ function jen_replace(_grid, _replace, _new_value)
 }
 #endregion
 #region jen_scatter(grid, replace, new_value, [chance], [function]);
-/// @function jen_scatter
-/// @description Replaces some percentage of one value with another.
-/// @param grid
-/// @param replace
-/// @param new_value
-/// @param [chance]
-/// @param [function]
+/// @func jen_scatter
+/// @desc Replaces some percentage of one value with another.
+/// @arg  grid
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
 function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -55,14 +55,14 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noo
 }
 #endregion
 #region jen_number(grid, replace, new_value, number, [chance], [function]);
-/// @function jen_number
-/// @description Changes a specific number of one value into another.
-/// @param grid
-/// @param replace
-/// @param new_value
-/// @param number
-/// @param [chance]
-/// @param [function]
+/// @func jen_number
+/// @desc Changes a specific number of one value into another.
+/// @arg  grid
+/// @arg  replace
+/// @arg  new_value
+/// @arg  number
+/// @arg  [chance]
+/// @arg  [function]
 function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -117,15 +117,15 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 }
 #endregion
 #region jen_near(grid, near, replace, new_value, radius, [chance], [function]);
-/// @function jen_near
-/// @description Changes all values that are within a radius of another value.
-/// @param grid
-/// @param near
-/// @param replace
-/// @param new_value
-/// @param radius
-/// @param [chance]
-/// @param [function]
+/// @func jen_near
+/// @desc Changes all values that are within a radius of another value.
+/// @arg  grid
+/// @arg  near
+/// @arg  replace
+/// @arg  new_value
+/// @arg  radius
+/// @arg  [chance]
+/// @arg  [function]
 function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -156,11 +156,11 @@ function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _f
 }
 #endregion
 #region jen_obfuscate(grid, value, [chance]);
-/// @function jen_obfuscate
-/// @description Causes certain values to swap with values around them.
-/// @param grid
-/// @param value
-/// @param [chance]
+/// @func jen_obfuscate
+/// @desc Causes certain values to swap with values around them.
+/// @arg  grid
+/// @arg  value
+/// @arg  [chance]
 function jen_obfuscate(_grid, _value, _chance = 100)
 {
 	//Getting width and height of the grid.

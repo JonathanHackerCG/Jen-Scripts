@@ -151,7 +151,7 @@ function jen_grid_width(_grid)
 #endregion
 #region jen_grid_height(grid);
 /// @func										jen_grid_height(grid):
-/// @description						Returns the height of a JenGrid.
+/// @desc						Returns the height of a JenGrid.
 /// @arg {Id.DsGrid} grid		JenGrid to check the height of.
 /// @returns {Real}
 function jen_grid_height(_grid)
@@ -174,15 +174,15 @@ function jen_grid_inbounds(_grid, _x, _y)
 
 //NOT DONE YET Transformations
 #region jen_grid_apply(target_grid, apply_grid, replace, x1, y1, [chance], [function]);
-/// @function jen_grid_apply
-/// @description Applies one grid onto another, transfering all filled values to the target.
-/// @param target_grid
-/// @param apply_grid
-/// @param replace
-/// @param x1
-/// @param y1
-/// @param [chance]
-/// @param [function]
+/// @func jen_grid_apply
+/// @desc Applies one grid onto another, transfering all filled values to the target.
+/// @arg  target_grid
+/// @arg  apply_grid
+/// @arg  replace
+/// @arg  x1
+/// @arg  y1
+/// @arg  [chance]
+/// @arg  [function]
 function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grids.
@@ -215,11 +215,11 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _fun
 }
 #endregion
 #region jen_grid_mirror(grid, horizontal, vertical);
-/// @function jen_grid_mirror
-/// @description Mirrors the data in a grid horizontally and or vertically.
-/// @param grid
-/// @param horizontal
-/// @param vertical
+/// @func jen_grid_mirror
+/// @desc Mirrors the data in a grid horizontally and or vertically.
+/// @arg  grid
+/// @arg  horizontal
+/// @arg  vertical
 function jen_grid_mirror(_grid, _horizontal, _vertical)
 {
 	//Getting width and height of the grid.
@@ -251,10 +251,10 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 }
 #endregion
 #region jen_grid_rotate(grid, rotations);
-/// @function jen_grid_rotate
-/// @description Rotates a grid counterclockwise by 90 degrees, some number of times. (1-3)
-/// @param grid
-/// @param rotations
+/// @func jen_grid_rotate
+/// @desc Rotates a grid counterclockwise by 90 degrees, some number of times. (1-3)
+/// @arg  grid
+/// @arg  rotations
 function jen_grid_rotate(_grid, _rotations)
 {
 	//Getting width and height of the grid.
@@ -320,11 +320,11 @@ function jen_grid_rotate(_grid, _rotations)
 }
 #endregion
 #region jen_grid_scale(grid, factor, upscale);
-/// @function jen_grid_scale
-/// @description Transforms a grid by scaling it up or down by a whole number factor.
-/// @param grid
-/// @param factor
-/// @param upscale
+/// @func jen_grid_scale
+/// @desc Transforms a grid by scaling it up or down by a whole number factor.
+/// @arg  grid
+/// @arg  factor
+/// @arg  upscale
 function jen_grid_scale(_grid, _factor, _upscale)
 {
 	//Modify parameters.
@@ -438,14 +438,14 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 }
 #endregion
 #region jen_grid_instantiate_tiles(grid, x1, y1, tilemap/layer, [flipx], [flipy]);
-/// @function jen_grid_instantiate_tiles
-/// @description Instantiates a grid, treating each value as a tile index.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param tilemap/layer
-/// @param [flipx]
-/// @param [flipy]
+/// @func jen_grid_instantiate_tiles
+/// @desc Instantiates a grid, treating each value as a tile index.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  tilemap/layer
+/// @arg  [flipx]
+/// @arg  [flipy]
 function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _flipy = false)
 {
 	//Getting width and height of the grid.
@@ -481,15 +481,15 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 }
 #endregion
 #region jen_grid_instantiate_autotile(grid, x1, y1, test, closed_edge, tilemap/layer, [offset]);
-/// @function jen_grid_instantiate_autotile
-/// @description Instantiates a grid, searching for adjacent test values, and converting to an autotile tile index.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param test
-/// @param closed_edge
-/// @param tilemap/layer
-/// @param [offset]
+/// @func jen_grid_instantiate_autotile
+/// @desc Instantiates a grid, searching for adjacent test values, and converting to an autotile tile index.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  test
+/// @arg  closed_edge
+/// @arg  tilemap/layer
+/// @arg  [offset]
 function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _tilemap, _offset = 0)
 {
 	//Getting width and height of the grid.
@@ -550,11 +550,11 @@ function jen_grid_string(_grid)
 }
 #endregion
 #region jen_grid_draw(grid, x, y);
-/// @function jen_grid_draw
-/// @description Draws the data within the grid, using jen_grid_string.
-/// @param grid
-/// @param x
-/// @param y
+/// @func jen_grid_draw
+/// @desc Draws the data within the grid, using jen_grid_string.
+/// @arg  grid
+/// @arg  x
+/// @arg  y
 function jen_grid_draw(_grid, _x1, _y1)
 {
 	var _text = jen_grid_string(_grid);

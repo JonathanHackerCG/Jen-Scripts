@@ -2,21 +2,21 @@
 
 //Wandering lines.
 #region jen_wander_direction(grid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
-/// @function jen_wander_direction
-/// @description Will create a wandering line between two positions.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param initial_angle
-/// @param correction_count
-/// @param correction_accuracy
-/// @param adjustment_count
-/// @param adjustment_accuracy
-/// @param lifetime
-/// @param replace
-/// @param new_value
-/// @param [chance]
-/// @param [function]
+/// @func jen_wander_direction
+/// @desc Will create a wandering line between two positions.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  initial_angle
+/// @arg  correction_count
+/// @arg  correction_accuracy
+/// @arg  adjustment_count
+/// @arg  adjustment_accuracy
+/// @arg  lifetime
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
 function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Execute the wandering.
@@ -60,22 +60,22 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 }
 #endregion
 #region jen_wander_line(grid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
-/// @function jen_wander_line
-/// @description Will create a wandering line between two positions.
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-/// @param correction_count
-/// @param correction_accuracy
-/// @param adjustment_count
-/// @param adjustment_accuracy
-/// @param lifetime
-/// @param replace
-/// @param new_value
-/// @param [chance]
-/// @param [function]
+/// @func jen_wander_line
+/// @desc Will create a wandering line between two positions.
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  x2
+/// @arg  y2
+/// @arg  correction_count
+/// @arg  correction_accuracy
+/// @arg  adjustment_count
+/// @arg  adjustment_accuracy
+/// @arg  lifetime
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
 function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Execute the wandering.
@@ -131,8 +131,8 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 
 //Handcrafted content (room functions).
 #region jen_grid_room();
-/// @function jen_grid_room
-/// @description Will convert the instances of the current room into a new jen_grid.
+/// @func jen_grid_room
+/// @desc Will convert the instances of the current room into a new jen_grid.
 function jen_grid_room()
 {
 	//Getting grid variables, making the grid.
@@ -159,12 +159,12 @@ function jen_grid_room()
 }
 #endregion
 #region jen_grid_room_part(x1, y1, width, height);
-/// @function jen_grid_room_part
-/// @description Converts a region of the room into a new jen_grid.
-/// @param x1
-/// @param y1
-/// @param width
-/// @param height
+/// @func jen_grid_room_part
+/// @desc Converts a region of the room into a new jen_grid.
+/// @arg  x1
+/// @arg  y1
+/// @arg  width
+/// @arg  height
 function jen_grid_room_part(_x1, _y1, _width, _height)
 {
 	//Getting grid variables, making the grid.
@@ -188,16 +188,16 @@ function jen_grid_room_part(_x1, _y1, _width, _height)
 }
 #endregion
 #region jen_grid_room_array(x1, y1, width, height, rooms_w, rooms_h, [xspace], [yspace]);
-/// @function jen_grid_room_array
-/// @description Divides the current room into a grid, and outputs a list of jen_grids.
-/// @param x1
-/// @param y1
-/// @param width
-/// @param height
-/// @param rooms_w
-/// @param rooms_h
-/// @param [xspace]
-/// @param [yspace]
+/// @func jen_grid_room_array
+/// @desc Divides the current room into a grid, and outputs a list of jen_grids.
+/// @arg  x1
+/// @arg  y1
+/// @arg  width
+/// @arg  height
+/// @arg  rooms_w
+/// @arg  rooms_h
+/// @arg  [xspace]
+/// @arg  [yspace]
 function jen_grid_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h, _xspace = 0, _yspace = 0)
 {
 	var _xgrid = global.jen_cellw;

@@ -2,10 +2,10 @@
 
 //Basic maze functions.
 #region jen_maze_create(width, height);
-/// @function jen_maze_create
-/// @description Creates a blank maze. Mostly for internal use.
-/// @param width
-/// @param height
+/// @func jen_maze_create
+/// @desc Creates a blank maze. Mostly for internal use.
+/// @arg  width
+/// @arg  height
 function jen_maze_create(_width, _height)
 {
 	var _grid = ds_grid_create(_width, _height);
@@ -14,21 +14,21 @@ function jen_maze_create(_width, _height)
 }
 #endregion
 #region jen_maze_destroy(maze);
-/// @function jen_maze_destroy
-/// @description Destroy a maze grid.
-/// @param maze
+/// @func jen_maze_destroy
+/// @desc Destroy a maze grid.
+/// @arg  maze
 function jen_maze_destroy(_maze)
 {
 	ds_grid_destroy(_maze);
 }
 #endregion
 #region jen_maze_get(maze, x1, y1, jen_dir);
-/// @function jen_maze_get
-/// @description Returns true/false if a particular direction is connected.
-/// @param maze
-/// @param x1
-/// @param y1
-/// @param jen_dir
+/// @func jen_maze_get
+/// @desc Returns true/false if a particular direction is connected.
+/// @arg  maze
+/// @arg  x1
+/// @arg  y1
+/// @arg  jen_dir
 function jen_maze_get(_maze, _x1, _y1, _dir)
 {
 	switch(_dir)
@@ -41,13 +41,13 @@ function jen_maze_get(_maze, _x1, _y1, _dir)
 }
 #endregion
 #region jen_maze_set(maze, x1, y1, jen_dir, connected);
-/// @function jen_maze_set
-/// @description Sets a particular direction to be connected (true/false).
-/// @param maze
-/// @param x1
-/// @param y1
-/// @param jen_dir
-/// @param connected
+/// @func jen_maze_set
+/// @desc Sets a particular direction to be connected (true/false).
+/// @arg  maze
+/// @arg  x1
+/// @arg  y1
+/// @arg  jen_dir
+/// @arg  connected
 function jen_maze_set(_maze, _x1, _y1, _dir, _connected)
 {
 	if (_connected)
@@ -75,18 +75,18 @@ function jen_maze_set(_maze, _x1, _y1, _dir, _connected)
 }
 #endregion
 #region jen_maze_width(maze);
-/// @function jen_maze_width
-/// @description Returns the width of a maze.
-/// @param maze
+/// @func jen_maze_width
+/// @desc Returns the width of a maze.
+/// @arg  maze
 function jen_maze_width(_maze)
 {
 	return ds_grid_width(_maze);
 }
 #endregion
 #region jen_maze_height(maze);
-/// @function jen_maze_height
-/// @description Returns the height of a jen_maze.
-/// @param maze
+/// @func jen_maze_height
+/// @desc Returns the height of a jen_maze.
+/// @arg  maze
 function jen_maze_height(_maze)
 {
 	return ds_grid_height(_maze);
@@ -95,10 +95,10 @@ function jen_maze_height(_maze)
 
 //Maze creation/modification.
 #region jen_maze_prim(width, height);
-/// @function jen_maze_prim
-/// @description Creates a new maze using Prim's algorithm.
-/// @param width
-/// @param height
+/// @func jen_maze_prim
+/// @desc Creates a new maze using Prim's algorithm.
+/// @arg  width
+/// @arg  height
 function jen_maze_prim(_width, _height)
 {
 	//Create an empty maze to fill with the new maze.
@@ -175,10 +175,10 @@ function jen_maze_prim(_width, _height)
 }
 #endregion
 #region jen_maze_backtrack(width, height);
-/// @function jen_maze_backtrack
-/// @description Creates a new maze using Recursive Backtrack algorithm.
-/// @param width
-/// @param height
+/// @func jen_maze_backtrack
+/// @desc Creates a new maze using Recursive Backtrack algorithm.
+/// @arg  width
+/// @arg  height
 function jen_maze_backtrack(_width, _height)
 {
 	//Create an empty maze to fill.
@@ -256,11 +256,11 @@ function jen_maze_backtrack(_width, _height)
 }
 #endregion
 #region jen_maze_draw(maze, x1, y1);
-/// @function jen_maze_draw
-/// @description Draws the layout of a maze grid.
-/// @param maze
-/// @param x1
-/// @param y1
+/// @func jen_maze_draw
+/// @desc Draws the layout of a maze grid.
+/// @arg  maze
+/// @arg  x1
+/// @arg  y1
 function jen_maze_draw(_maze, _x1, _y1)
 {
 	//Getting the width and height of the grid.
@@ -278,15 +278,15 @@ function jen_maze_draw(_maze, _x1, _y1)
 }
 #endregion
 #region jen_maze_exits(maze, edge_buffer_min, edge_buffer_max, numU, numR, numD, numL);
-/// @function jen_maze_exits
-/// @description Adds exits on the edges of a maze.
-/// @param maze
-/// @param edge_buffer_min
-/// @param edge_buffer_max
-/// @param numU
-/// @param numR
-/// @param numD
-/// @param numL
+/// @func jen_maze_exits
+/// @desc Adds exits on the edges of a maze.
+/// @arg  maze
+/// @arg  edge_buffer_min
+/// @arg  edge_buffer_max
+/// @arg  numU
+/// @arg  numR
+/// @arg  numD
+/// @arg  numL
 function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD, _numL)
 {
 	//Getting width and height of the grid.
@@ -386,16 +386,16 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 
 //Maze buidling.
 #region jen_maze_build(maze, value, room_w, room_h, wall_w, wall_h, door_w, door_h);
-/// @function jen_maze_build
-/// @description Will create a new jen_grid with walls based on provided jen_maze.
-/// @param maze
-/// @param value
-/// @param room_w
-/// @param room_h
-/// @param wall_w
-/// @param wall_h
-/// @param door_w
-/// @param door_h
+/// @func jen_maze_build
+/// @desc Will create a new jen_grid with walls based on provided jen_maze.
+/// @arg  maze
+/// @arg  value
+/// @arg  room_w
+/// @arg  room_h
+/// @arg  wall_w
+/// @arg  wall_h
+/// @arg  door_w
+/// @arg  door_h
 function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door_w, _door_h)
 {
 	//Various width/height calculations.
@@ -476,17 +476,17 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 }
 #endregion
 #region jen_maze_build_list(maze, list, value, room_w, room_h, wall_w, wall_h, door_w, door_h);
-/// @function jen_maze_build_list
-/// @description This will generate a new grid based on a maze. It will apply a list of small grids to each room in the maze.
-/// @param maze
-/// @param list
-/// @param value
-/// @param room_w
-/// @param room_h
-/// @param wall_w
-/// @param wall_h
-/// @param door_w
-/// @param door_h
+/// @func jen_maze_build_list
+/// @desc This will generate a new grid based on a maze. It will apply a list of small grids to each room in the maze.
+/// @arg  maze
+/// @arg  list
+/// @arg  value
+/// @arg  room_w
+/// @arg  room_h
+/// @arg  wall_w
+/// @arg  wall_h
+/// @arg  door_w
+/// @arg  door_h
 function jen_maze_build_list(_maze, _list, _value, _room_w, _room_h, _wall_w, _wall_h, _door_w, _door_h)
 {
 	//Create the base maze.
@@ -509,22 +509,22 @@ function jen_maze_build_list(_maze, _list, _value, _room_w, _room_h, _wall_w, _w
 }
 #endregion
 #region jen_maze_build_special(maze, value, room_w, room_h, wall_w, wall_h, door_w, door_h, list_U, list_L, list_I, list_T, list_O, [reflections]);
-/// @function jen_maze_build_special
-/// @description Generates a new jen_grid based on a provided maze. Each room will be filled with a random jen_grid from a list, based on the type of exits it has.
-/// @param maze
-/// @param value
-/// @param room_w
-/// @param room_h
-/// @param wall_w
-/// @param wall_h
-/// @param door_w
-/// @param door_h
-/// @param list_U
-/// @param list_L
-/// @param list_I
-/// @param list_T
-/// @param list_O
-/// @param [reflections]
+/// @func jen_maze_build_special
+/// @desc Generates a new jen_grid based on a provided maze. Each room will be filled with a random jen_grid from a list, based on the type of exits it has.
+/// @arg  maze
+/// @arg  value
+/// @arg  room_w
+/// @arg  room_h
+/// @arg  wall_w
+/// @arg  wall_h
+/// @arg  door_w
+/// @arg  door_h
+/// @arg  list_U
+/// @arg  list_L
+/// @arg  list_I
+/// @arg  list_T
+/// @arg  list_O
+/// @arg  [reflections]
 function jen_maze_build_special(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door_w, _door_h, _list_U, _list_L, _list_I, _list_T, _list_O, _reflections = false)
 {
 	//Create the base maze.

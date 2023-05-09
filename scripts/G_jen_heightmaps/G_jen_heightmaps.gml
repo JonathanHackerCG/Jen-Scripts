@@ -2,10 +2,10 @@
 
 //Heightmaps.
 #region jen_heightmap_create(width, height);
-/// @function jen_heightmap_create
-/// @description Creates a new empty heightmap.
-/// @param width
-/// @param height
+/// @func jen_heightmap_create
+/// @desc Creates a new empty heightmap.
+/// @arg  width
+/// @arg  height
 function jen_heightmap_create(_width, _height)
 {
 	var _grid = ds_grid_create(_width, _height);
@@ -14,20 +14,20 @@ function jen_heightmap_create(_width, _height)
 }
 #endregion
 #region jen_heightmap_destroy(heightmap);
-/// @function jen_heightmap_destroy
-/// @description Destroys a heightmap.
-/// @param heightmap
+/// @func jen_heightmap_destroy
+/// @desc Destroys a heightmap.
+/// @arg  heightmap
 function jen_heightmap_destroy(_heightmap)
 {
 	ds_grid_destroy(_heightmap);
 }
 #endregion
 #region jen_heightmap_get(heightmap, x1, y1);
-/// @function jen_heightmap_get
-/// @description Returns the value of a heightmap at a position.
-/// @param heightmap
-/// @param x1
-/// @param y1
+/// @func jen_heightmap_get
+/// @desc Returns the value of a heightmap at a position.
+/// @arg  heightmap
+/// @arg  x1
+/// @arg  y1
 function jen_heightmap_get(_heightmap, _x, _y)
 {
 	//Check if it is out of bounds, otherwise return the value directly.
@@ -36,12 +36,12 @@ function jen_heightmap_get(_heightmap, _x, _y)
 }
 #endregion
 #region jen_heightmap_set(heightmap, x1, y1, value);
-/// @function jen_heightmap_set
-/// @description 
-/// @param heightmap
-/// @param x1
-/// @param y1
-/// @param value
+/// @func jen_heightmap_set
+/// @desc 
+/// @arg  heightmap
+/// @arg  x1
+/// @arg  y1
+/// @arg  value
 function jen_heightmap_set(_heightmap, _x, _y, _value)
 {
 	//Checking if it is out of bounds, otherwise attempt to set the value.
@@ -53,29 +53,29 @@ function jen_heightmap_set(_heightmap, _x, _y, _value)
 }
 #endregion
 #region jen_heightmap_width(heightmap);
-/// @function jen_heightmap_width
-/// @description Returns the width of a heightmap.
-/// @param heightmap
+/// @func jen_heightmap_width
+/// @desc Returns the width of a heightmap.
+/// @arg  heightmap
 function jen_heightmap_width(_heightmap)
 {
 	return ds_grid_width(_heightmap);
 }
 #endregion
 #region jen_heightmap_height(heightmap);
-/// @function jen_heightmap_height
-/// @description Returns the height of a jen_heightmap.
-/// @param heightmap
+/// @func jen_heightmap_height
+/// @desc Returns the height of a jen_heightmap.
+/// @arg  heightmap
 function jen_heightmap_height(_heightmap)
 {
 	return ds_grid_height(_heightmap);
 }
 #endregion
 #region jen_heightmap_draw(heightmap, x1, y1);
-/// @function jen_heightmap_draw
-/// @description Displays the values of a heightmap.
-/// @param heightmap
-/// @param x1
-/// @param y1
+/// @func jen_heightmap_draw
+/// @desc Displays the values of a heightmap.
+/// @arg  heightmap
+/// @arg  x1
+/// @arg  y1
 function jen_heightmap_draw(_heightmap, _x1, _y1)
 {
 	//Getting the width and height of the heightmap.
@@ -94,12 +94,12 @@ function jen_heightmap_draw(_heightmap, _x1, _y1)
 }
 #endregion
 #region jen_heightmap_sampling(width, height, radius, iterations);
-/// @function jen_heightmap_sampling
-/// @description Generates a new heightmap using average sampling.
-/// @param width
-/// @param height
-/// @param range
-/// @param iterations
+/// @func jen_heightmap_sampling
+/// @desc Generates a new heightmap using average sampling.
+/// @arg  width
+/// @arg  height
+/// @arg  range
+/// @arg  iterations
 function jen_heightmap_sampling(_width, _height, _range, _iterations)
 {
 	//Create two new heightmaps.
@@ -130,12 +130,12 @@ function jen_heightmap_sampling(_width, _height, _range, _iterations)
 }
 #endregion
 #region jen_heightmap_gradient(width, height, radius, density);
-/// @function jen_heightmap_gradient
-/// @description 
-/// @param width
-/// @param height
-/// @param radius
-/// @param density
+/// @func jen_heightmap_gradient
+/// @desc 
+/// @arg  width
+/// @arg  height
+/// @arg  radius
+/// @arg  density
 function jen_heightmap_gradient(_width, _height, _radius, _density)
 {
 	//Create the empty heightmap.
@@ -172,18 +172,18 @@ function jen_heightmap_gradient(_width, _height, _radius, _density)
 }
 #endregion
 #region jen_heightmap_apply(grid, heightmap, x1, y1, min, max, replace, new_value, [chance], [function]);
-/// @function jen_heightmap_apply
-/// @description Converts a range of values in a heightmap to values in a grid.
-/// @param grid
-/// @param heightmap
-/// @param x1
-/// @param y1
-/// @param min
-/// @param max
-/// @param replace
-/// @param new_value
-/// @param [chance]
-/// @param [function]
+/// @func jen_heightmap_apply
+/// @desc Converts a range of values in a heightmap to values in a grid.
+/// @arg  grid
+/// @arg  heightmap
+/// @arg  x1
+/// @arg  y1
+/// @arg  min
+/// @arg  max
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
 function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Getting the width and height of the heightmap.
@@ -210,9 +210,9 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 }
 #endregion
 #region jen_heightmap_normalize(heightmap);
-/// @function jen_heightmap_normalize
-/// @description Maps all values in a heightmap to a scale between 0.0 and 1.0.
-/// @param heightmap
+/// @func jen_heightmap_normalize
+/// @desc Maps all values in a heightmap to a scale between 0.0 and 1.0.
+/// @arg  heightmap
 function jen_heightmap_normalize(_heightmap)
 {
 	//Getting the width and height of the heightmap.

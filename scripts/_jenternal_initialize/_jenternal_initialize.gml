@@ -9,13 +9,13 @@ show_debug_message(">>> Jen-Scripts version '" + JEN_SCRIPTS_VERSION + "' initia
 
 //Internal Jen-Scripts Functions (Undocumented)
 #region _jenternal_autotile(grid, xx, yy, test, default);
-/// @function _jenternal_autotile
-/// @description Converts a value between 0-15 reflecting surrounding tiles to an appropriate tilemap index
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param test
-/// @param open_edges
+/// @func _jenternal_autotile
+/// @desc Converts a value between 0-15 reflecting surrounding tiles to an appropriate tilemap index
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  test
+/// @arg  open_edges
 function _jenternal_autotile(_grid, _x1, _y1, _test, _default)
 {
 #region Getting _test values
@@ -149,12 +149,12 @@ function _jenternal_autotile(_grid, _x1, _y1, _test, _default)
 }
 #endregion
 #region _jenternal_test(grid, x1, y1, test, default);
-/// @function _jenternal_test
-/// @param grid
-/// @param x1
-/// @param y1
-/// @param test
-/// @param default
+/// @func _jenternal_test
+/// @arg  grid
+/// @arg  x1
+/// @arg  y1
+/// @arg  test
+/// @arg  default
 function _jenternal_test(_grid, _x1, _y1, _test, _default)
 {
 	var val = jen_get(_grid, _x1, _y1);

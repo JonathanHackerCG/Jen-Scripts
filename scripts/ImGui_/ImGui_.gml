@@ -1,13 +1,13 @@
 function ImGui_() constructor {
 	/// @section Binds
-	/// @function CreateContext()
+	/// @func CreateContext()
 	/// @context ImGui
 	/// @return {Pointer}
 	static CreateContext = function() {
 		return __imgui_create_context();
 	}
 
-	/// @function DestroyContext(ctx)
+	/// @func DestroyContext(ctx)
 	/// @argument {Pointer} ctx
 	/// @context ImGui
 	/// @return {Undefined}
@@ -15,14 +15,14 @@ function ImGui_() constructor {
 		return __imgui_destroy_context(ctx);
 	}
 
-	/// @function GetCurrentContext()
+	/// @func GetCurrentContext()
 	/// @context ImGui
 	/// @return {Pointer}
 	static GetCurrentContext = function() {
 		return __imgui_get_current_context();
 	}
 
-	/// @function SetCurrentContext(ctx)
+	/// @func SetCurrentContext(ctx)
 	/// @argument {Pointer} ctx
 	/// @context ImGui
 	/// @return {Undefined}
@@ -30,7 +30,7 @@ function ImGui_() constructor {
 		return __imgui_set_current_context(ctx);
 	}
 
-	/// @function ShowDemoWindow(open)
+	/// @func ShowDemoWindow(open)
 	/// @argument {Bool} [open=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -38,7 +38,7 @@ function ImGui_() constructor {
 		return __imgui_show_demo_window(open);
 	}
 
-	/// @function ShowMetricsWindow(open)
+	/// @func ShowMetricsWindow(open)
 	/// @argument {Bool} [open=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -46,7 +46,7 @@ function ImGui_() constructor {
 		return __imgui_show_metrics_window(open);
 	}
 
-	/// @function ShowDebugLogWindow(open)
+	/// @func ShowDebugLogWindow(open)
 	/// @argument {Bool} [open=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -54,7 +54,7 @@ function ImGui_() constructor {
 		return __imgui_show_debug_log_window(open);
 	}
 
-	/// @function ShowStackToolWindow(open)
+	/// @func ShowStackToolWindow(open)
 	/// @argument {Bool} [open=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -62,7 +62,7 @@ function ImGui_() constructor {
 		return __imgui_show_stack_tool_window(open);
 	}
 
-	/// @function ShowAboutWindow(open)
+	/// @func ShowAboutWindow(open)
 	/// @argument {Bool} [open=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -70,14 +70,14 @@ function ImGui_() constructor {
 		return __imgui_show_about_window(open);
 	}
 
-	/// @function ShowStyleEditor()
+	/// @func ShowStyleEditor()
 	/// @context ImGui
 	/// @return {Undefined}
 	static ShowStyleEditor = function() {
 		return __imgui_show_style_editor();
 	}
 
-	/// @function ShowStyleSelector(label)
+	/// @func ShowStyleSelector(label)
 	/// @argument {String} label
 	/// @context ImGui
 	/// @return {Bool}
@@ -85,7 +85,7 @@ function ImGui_() constructor {
 		return __imgui_show_style_selector(label);
 	}
 
-	/// @function ShowFontSelector(label)
+	/// @func ShowFontSelector(label)
 	/// @argument {String} label
 	/// @context ImGui
 	/// @return {Undefined}
@@ -93,21 +93,21 @@ function ImGui_() constructor {
 		return __imgui_show_font_selector(label);
 	}
 
-	/// @function ShowUserGuide()
+	/// @func ShowUserGuide()
 	/// @context ImGui
 	/// @return {Undefined}
 	static ShowUserGuide = function() {
 		return __imgui_show_user_guide();
 	}
 
-	/// @function GetVersion()
+	/// @func GetVersion()
 	/// @context ImGui
 	/// @return {String}
 	static GetVersion = function() {
 		return __imgui_get_version();
 	}
 
-	/// @function PushID(_id)
+	/// @func PushID(_id)
 	/// @argument {String|Real} _id
 	/// @context ImGui
 	/// @return {Undefined}
@@ -115,14 +115,14 @@ function ImGui_() constructor {
 		return __imgui_push_id(_id);
 	}
 
-	/// @function PopID()
+	/// @func PopID()
 	/// @context ImGui
 	/// @return {Undefined}
 	static PopID = function() {
 		return __imgui_pop_id();
 	}
 
-	/// @function GetID(str_id)
+	/// @func GetID(str_id)
 	/// @argument {String} str_id
 	/// @context ImGui
 	/// @return {Real}
@@ -130,7 +130,7 @@ function ImGui_() constructor {
 		return __imgui_get_id(str_id);
 	}
 
-	/// @function BeginDisabled(disabled)
+	/// @func BeginDisabled(disabled)
 	/// @argument {Bool} [disabled=true]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -138,14 +138,14 @@ function ImGui_() constructor {
 		return __imgui_begin_disabled(disabled);
 	}
 
-	/// @function EndDisabled()
+	/// @func EndDisabled()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndDisabled = function() {
 		return __imgui_end_disabled();
 	}
 
-	/// @function IsItemHovered(flags)
+	/// @func IsItemHovered(flags)
 	/// @argument {Enum.ImGuiHoveredFlags} [flags=ImGuiHoveredFlags.None]
 	/// @context ImGui
 	/// @return {Bool}
@@ -153,21 +153,21 @@ function ImGui_() constructor {
 		return __imgui_is_item_hovered(flags);
 	}
 
-	/// @function IsItemActive()
+	/// @func IsItemActive()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemActive = function() {
 		return __imgui_is_item_active();
 	}
 
-	/// @function IsItemFocused()
+	/// @func IsItemFocused()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemFocused = function() {
 		return __imgui_is_item_focused();
 	}
 
-	/// @function IsItemClicked(mouse_button)
+	/// @func IsItemClicked(mouse_button)
 	/// @argument {Enum.ImGuiMouseButton} [mouse_button=ImGuiMouseButton.Left]
 	/// @context ImGui
 	/// @return {Bool}
@@ -175,126 +175,126 @@ function ImGui_() constructor {
 		return __imgui_is_item_clicked(mouse_button);
 	}
 
-	/// @function IsItemVisible()
+	/// @func IsItemVisible()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemVisible = function() {
 		return __imgui_is_item_visible();
 	}
 
-	/// @function IsItemEdited()
+	/// @func IsItemEdited()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemEdited = function() {
 		return __imgui_is_item_edited();
 	}
 
-	/// @function IsItemActivated()
+	/// @func IsItemActivated()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemActivated = function() {
 		return __imgui_is_item_activated();
 	}
 
-	/// @function IsItemDeactivated()
+	/// @func IsItemDeactivated()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemDeactivated = function() {
 		return __imgui_is_item_deactivated();
 	}
 
-	/// @function IsItemDeactivatedAfterEdit()
+	/// @func IsItemDeactivatedAfterEdit()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemDeactivatedAfterEdit = function() {
 		return __imgui_is_item_deactivated_after_edit();
 	}
 
-	/// @function IsItemToggledOpen()
+	/// @func IsItemToggledOpen()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsItemToggledOpen = function() {
 		return __imgui_is_item_toggled_open();
 	}
 
-	/// @function IsAnyItemHovered()
+	/// @func IsAnyItemHovered()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsAnyItemHovered = function() {
 		return __imgui_is_any_item_hovered();
 	}
 
-	/// @function IsAnyItemActive()
+	/// @func IsAnyItemActive()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsAnyItemActive = function() {
 		return __imgui_is_any_item_active();
 	}
 
-	/// @function IsAnyItemFocused()
+	/// @func IsAnyItemFocused()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsAnyItemFocused = function() {
 		return __imgui_is_any_item_focused();
 	}
 
-	/// @function GetItemID()
+	/// @func GetItemID()
 	/// @context ImGui
 	/// @return {Real}
 	static GetItemID = function() {
 		return __imgui_get_item_id();
 	}
 
-	/// @function GetItemRectMinX()
+	/// @func GetItemRectMinX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetItemRectMinX = function() {
 		return __imgui_get_item_rect_min_x();
 	}
 
-	/// @function GetItemRectMinY()
+	/// @func GetItemRectMinY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetItemRectMinY = function() {
 		return __imgui_get_item_rect_min_y();
 	}
 
-	/// @function GetItemRectMaxX()
+	/// @func GetItemRectMaxX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetItemRectMaxX = function() {
 		return __imgui_get_item_rect_max_x();
 	}
 
-	/// @function GetItemRectMaxY()
+	/// @func GetItemRectMaxY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetItemRectMaxY = function() {
 		return __imgui_get_item_rect_max_y();
 	}
 
-	/// @function GetItemRectSizeX()
+	/// @func GetItemRectSizeX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetItemRectSizeX = function() {
 		return __imgui_get_item_rect_size_x();
 	}
 
-	/// @function GetItemRectSizeY()
+	/// @func GetItemRectSizeY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetItemRectSizeY = function() {
 		return __imgui_get_item_rect_size_y();
 	}
 
-	/// @function SetItemAllowOverlap()
+	/// @func SetItemAllowOverlap()
 	/// @context ImGui
 	/// @return {Undefined}
 	static SetItemAllowOverlap = function() {
 		return __imgui_set_item_allow_overlap();
 	}
 
-	/// @function IsRectVisible(x1, y1, x2, y2)
+	/// @func IsRectVisible(x1, y1, x2, y2)
 	/// @argument {Real} x1
 	/// @argument {Real} y1
 	/// @argument {Real} x2
@@ -305,21 +305,21 @@ function ImGui_() constructor {
 		return __imgui_is_rect_visible(x1, y1, x2, y2);
 	}
 
-	/// @function GetTime()
+	/// @func GetTime()
 	/// @context ImGui
 	/// @return {Real}
 	static GetTime = function() {
 		return __imgui_get_time();
 	}
 
-	/// @function GetFrameCount()
+	/// @func GetFrameCount()
 	/// @context ImGui
 	/// @return {Real}
 	static GetFrameCount = function() {
 		return __imgui_get_frame_count();
 	}
 
-	/// @function CalcTextWidth(text, hide_text_after_double_hash, wrap_width)
+	/// @func CalcTextWidth(text, hide_text_after_double_hash, wrap_width)
 	/// @argument {String} text
 	/// @argument {Bool} [hide_text_after_double_hash=false]
 	/// @argument {Real} [wrap_width=-1]
@@ -329,7 +329,7 @@ function ImGui_() constructor {
 		return __imgui_calc_text_width(text, hide_text_after_double_hash, wrap_width);
 	}
 
-	/// @function CalcTextHeight(text, hide_text_after_double_hash, wrap_width)
+	/// @func CalcTextHeight(text, hide_text_after_double_hash, wrap_width)
 	/// @argument {String} text
 	/// @argument {Bool} [hide_text_after_double_hash=false]
 	/// @argument {Real} [wrap_width=-1]
@@ -339,7 +339,7 @@ function ImGui_() constructor {
 		return __imgui_calc_text_height(text, hide_text_after_double_hash, wrap_width);
 	}
 
-	/// @function PushAllowKeyboardFocus(allow_keyboard_focus)
+	/// @func PushAllowKeyboardFocus(allow_keyboard_focus)
 	/// @argument {Bool} allow_keyboard_focus
 	/// @context ImGui
 	/// @return {Undefined}
@@ -347,14 +347,14 @@ function ImGui_() constructor {
 		return __imgui_push_allow_keyboard_focus(allow_keyboard_focus);
 	}
 
-	/// @function PopAllowKeyboardFocus()
+	/// @func PopAllowKeyboardFocus()
 	/// @context ImGui
 	/// @return {Undefined}
 	static PopAllowKeyboardFocus = function() {
 		return __imgui_pop_allow_keyboard_focus();
 	}
 
-	/// @function SetKeyboardFocusHere(offset)
+	/// @func SetKeyboardFocusHere(offset)
 	/// @argument {Real} [offset=0]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -362,7 +362,7 @@ function ImGui_() constructor {
 		return __imgui_set_keyboard_focus_here(offset);
 	}
 
-	/// @function PushButtonRepeat(_repeat)
+	/// @func PushButtonRepeat(_repeat)
 	/// @argument {Bool} _repeat
 	/// @context ImGui
 	/// @return {Undefined}
@@ -370,28 +370,28 @@ function ImGui_() constructor {
 		return __imgui_push_button_repeat(_repeat);
 	}
 
-	/// @function PopButtonRepeat()
+	/// @func PopButtonRepeat()
 	/// @context ImGui
 	/// @return {Undefined}
 	static PopButtonRepeat = function() {
 		return __imgui_pop_button_repeat();
 	}
 
-	/// @function SetItemDefaultFocus()
+	/// @func SetItemDefaultFocus()
 	/// @context ImGui
 	/// @return {Undefined}
 	static SetItemDefaultFocus = function() {
 		return __imgui_set_item_default_focus();
 	}
 
-	/// @function ConfigFlagsGet()
+	/// @func ConfigFlagsGet()
 	/// @context ImGui
 	/// @return {Real}
 	static ConfigFlagsGet = function() {
 		return __imgui_config_flags_get();
 	}
 
-	/// @function ConfigFlagsSet(flags)
+	/// @func ConfigFlagsSet(flags)
 	/// @argument {Real} flags
 	/// @context ImGui
 	/// @return {Unknown<unset>}
@@ -399,7 +399,7 @@ function ImGui_() constructor {
 		return __imgui_config_flags_set(flags);
 	}
 
-	/// @function ConfigFlagToggle(flag)
+	/// @func ConfigFlagToggle(flag)
 	/// @argument {Real} flag
 	/// @context ImGui
 	/// @return {Bool}
@@ -407,14 +407,14 @@ function ImGui_() constructor {
 		return __imgui_config_flag_toggle(flag);
 	}
 
-	/// @function GetMainViewport()
+	/// @func GetMainViewport()
 	/// @context ImGui
 	/// @return {Pointer}
 	static GetMainViewport = function() {
 		return __imgui_get_main_viewport();
 	}
 
-	/// @function LogText(text)
+	/// @func LogText(text)
 	/// @argument {String} text
 	/// @context ImGui
 	/// @return {Undefined}
@@ -422,7 +422,7 @@ function ImGui_() constructor {
 		return __imgui_log_text(text);
 	}
 
-	/// @function WantKeyboardCapture(val)
+	/// @func WantKeyboardCapture(val)
 	/// @argument {Bool} [val=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -430,7 +430,7 @@ function ImGui_() constructor {
 		return __imgui_want_keyboard_capture(val);
 	}
 
-	/// @function WantMouseCapture(val)
+	/// @func WantMouseCapture(val)
 	/// @argument {Bool} [val=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -438,7 +438,7 @@ function ImGui_() constructor {
 		return __imgui_want_mouse_capture(val);
 	}
 
-	/// @function WantTextInput(val)
+	/// @func WantTextInput(val)
 	/// @argument {Bool} [val=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -446,7 +446,7 @@ function ImGui_() constructor {
 		return __imgui_want_text_input(val);
 	}
 
-	/// @function WantMouseCaptureUnlessPopupClose(val)
+	/// @func WantMouseCaptureUnlessPopupClose(val)
 	/// @argument {Bool} [val=undefined]
 	/// @context ImGui
 	/// @return {Bool}
@@ -454,7 +454,7 @@ function ImGui_() constructor {
 		return __imgui_want_mouse_unless_popup_close(val);
 	}
 
-	/// @function ColorEdit3(label, col, flags)
+	/// @func ColorEdit3(label, col, flags)
 	/// @argument {String} label
 	/// @argument {Real} col
 	/// @argument {Enum.ImGuiCol} [flags=ImGuiColorEditFlags.None]
@@ -464,7 +464,7 @@ function ImGui_() constructor {
 		return __imgui_color_edit3(label, col, flags);
 	}
 
-	/// @function ColorPicker3(label, col, flags)
+	/// @func ColorPicker3(label, col, flags)
 	/// @argument {String} label
 	/// @argument {Real} col
 	/// @argument {Enum.ImGuiCol} [flags=ImGuiColorEditFlags.None]
@@ -474,7 +474,7 @@ function ImGui_() constructor {
 		return __imgui_color_picker3(label, col, flags);
 	}
 
-	/// @function ColorEdit4(label, col, flags)
+	/// @func ColorEdit4(label, col, flags)
 	/// @argument {String} label
 	/// @argument {ImColor} col
 	/// @argument {Enum.ImGuiCol} [flags=ImGuiColorEditFlags.None]
@@ -484,7 +484,7 @@ function ImGui_() constructor {
 		return __imgui_color_edit4(label, col, flags);
 	}
 
-	/// @function ColorPicker4(label, col, flags)
+	/// @func ColorPicker4(label, col, flags)
 	/// @argument {String} label
 	/// @argument {ImColor} col
 	/// @argument {Enum.ImGuiCol} [flags=ImGuiColorEditFlags.None]
@@ -494,7 +494,7 @@ function ImGui_() constructor {
 		return __imgui_color_picker4(label, col, flags);
 	}
 
-	/// @function ColorButton(desc_id, color, alpha, flags, width, height)
+	/// @func ColorButton(desc_id, color, alpha, flags, width, height)
 	/// @argument {String} desc_id
 	/// @argument {Real} color
 	/// @argument {Real} [alpha=1]
@@ -507,7 +507,7 @@ function ImGui_() constructor {
 		return __imgui_color_button(desc_id, color, alpha, flags, width, height);
 	}
 
-	/// @function SetColorEditOptions(flags)
+	/// @func SetColorEditOptions(flags)
 	/// @argument {Enum.ImGuiCol} [flags=ImGuiColorEditFlags.None]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -515,7 +515,7 @@ function ImGui_() constructor {
 		return __imgui_set_color_edit_options(flags);
 	}
 
-	/// @function BeginCombo(label, preview, flags)
+	/// @func BeginCombo(label, preview, flags)
 	/// @argument {String} label
 	/// @argument {String} preview
 	/// @argument {Real} flags
@@ -525,21 +525,21 @@ function ImGui_() constructor {
 		return __imgui_begin_combo(label, preview, flags);
 	}
 
-	/// @function EndCombo()
+	/// @func EndCombo()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndCombo = function() {
 		return __imgui_end_combo();
 	}
 
-	/// @function Combo()
+	/// @func Combo()
 	/// @context ImGui
 	/// @return {Unknown<unset>}
 	static Combo = function() {
 		return __imgui_combo();
 	}
 
-	/// @function DockSpace(_id, width, height, flags)
+	/// @func DockSpace(_id, width, height, flags)
 	/// @argument {Real} _id
 	/// @argument {Real} [width=0]
 	/// @argument {Real} [height=0]
@@ -550,7 +550,7 @@ function ImGui_() constructor {
 		return __imgui_dock_space(_id, width, height, flags);
 	}
 
-	/// @function DockSpaceOverViewport(flags)
+	/// @func DockSpaceOverViewport(flags)
 	/// @argument {Enum.ImGuiDockNodeFlags} [flags=ImGuiDockNodeFlags.None]
 	/// @context ImGui
 	/// @return {Real}
@@ -558,7 +558,7 @@ function ImGui_() constructor {
 		return __imgui_dock_space_over_viewport(flags);
 	}
 
-	/// @function SetNextWindowDockID(dock_id, cond)
+	/// @func SetNextWindowDockID(dock_id, cond)
 	/// @argument {Real} dock_id
 	/// @argument {Real} cond
 	/// @context ImGui
@@ -567,28 +567,28 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_dock_id(dock_id, cond);
 	}
 
-	/// @function SetNextWindowClass()
+	/// @func SetNextWindowClass()
 	/// @context ImGui
 	/// @return {Unknown<unset>}
 	static SetNextWindowClass = function() {
 		return __imgui_set_next_window_class();
 	}
 
-	/// @function GetWindowDockID()
+	/// @func GetWindowDockID()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowDockID = function() {
 		return __imgui_get_window_dock_id();
 	}
 
-	/// @function IsWindowDocked()
+	/// @func IsWindowDocked()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsWindowDocked = function() {
 		return __imgui_is_window_docked();
 	}
 
-	/// @function DragFloat(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragFloat(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} v
 	/// @argument {Real} [v_speed=1]
@@ -602,7 +602,7 @@ function ImGui_() constructor {
 		return __imgui_drag_float(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragFloat2(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragFloat2(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -616,7 +616,7 @@ function ImGui_() constructor {
 		return __imgui_drag_float2(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragFloat3(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragFloat3(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -630,7 +630,7 @@ function ImGui_() constructor {
 		return __imgui_drag_float3(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragFloat4(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragFloat4(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -644,7 +644,7 @@ function ImGui_() constructor {
 		return __imgui_drag_float4(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragFloatN(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragFloatN(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -658,7 +658,7 @@ function ImGui_() constructor {
 		return __imgui_drag_floatn(label, v, v_speed, v_min, v_max, format, flags, array_length(v));
 	}
 
-	/// @function DragFloatRange2(label, v, v_speed, v_min, v_max, format_min, format_max, flags)
+	/// @func DragFloatRange2(label, v, v_speed, v_min, v_max, format_min, format_max, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -673,7 +673,7 @@ function ImGui_() constructor {
 		return __imgui_drag_float_range2(label, v, v_speed, v_min, v_max, format_min, format_max, flags);
 	}
 
-	/// @function DragInt(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragInt(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} v
 	/// @argument {Real} [v_speed=1]
@@ -687,7 +687,7 @@ function ImGui_() constructor {
 		return __imgui_drag_int(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragInt2(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragInt2(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -701,7 +701,7 @@ function ImGui_() constructor {
 		return __imgui_drag_int2(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragInt3(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragInt3(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -715,7 +715,7 @@ function ImGui_() constructor {
 		return __imgui_drag_int3(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragInt4(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragInt4(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -729,7 +729,7 @@ function ImGui_() constructor {
 		return __imgui_drag_int4(label, v, v_speed, v_min, v_max, format, flags);
 	}
 
-	/// @function DragIntN(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func DragIntN(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -743,7 +743,7 @@ function ImGui_() constructor {
 		return __imgui_drag_intn(label, v, v_speed, v_min, v_max, format, flags, array_length(v));
 	}
 
-	/// @function DragIntRange2(label, v, v_current_max, v_speed, v_min, v_max, format_max, flags)
+	/// @func DragIntRange2(label, v, v_current_max, v_speed, v_min, v_max, format_max, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} v_current_max
@@ -758,7 +758,7 @@ function ImGui_() constructor {
 		return __imgui_drag_int_range2(label, v, v_current_max, v_speed, v_min, v_max, format_max, flags);
 	}
 
-	/// @function GetBackgroundDrawList(viewport)
+	/// @func GetBackgroundDrawList(viewport)
 	/// @argument {Pointer} [viewport=undefined]
 	/// @context ImGui
 	/// @return {Pointer}
@@ -766,7 +766,7 @@ function ImGui_() constructor {
 		return __imgui_get_background_drawlist(viewport);
 	}
 
-	/// @function GetForegroundDrawList(viewport)
+	/// @func GetForegroundDrawList(viewport)
 	/// @argument {Pointer} [viewport=undefined]
 	/// @context ImGui
 	/// @return {Pointer}
@@ -774,14 +774,14 @@ function ImGui_() constructor {
 		return __imgui_get_foreground_drawlist(viewport);
 	}
 
-	/// @function GetWindowDrawList()
+	/// @func GetWindowDrawList()
 	/// @context ImGui
 	/// @return {Pointer}
 	static GetWindowDrawList = function() {
 		return __imgui_get_window_drawlist();
 	}
 
-	/// @function DrawListAddLine(list, x1, y1, x2, y2, col, thickness)
+	/// @func DrawListAddLine(list, x1, y1, x2, y2, col, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -795,7 +795,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_line(list, x1, y1, x2, y2, col, thickness);
 	}
 
-	/// @function DrawListAddRect(list, x1, y1, x2, y2, col, rounding, flags, thickness)
+	/// @func DrawListAddRect(list, x1, y1, x2, y2, col, rounding, flags, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -811,7 +811,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_rect(list, x1, y1, x2, y2, col, rounding, flags, thickness);
 	}
 
-	/// @function DrawListAddRectFilled(list, x1, y1, x2, y2, col, rounding, flags)
+	/// @func DrawListAddRectFilled(list, x1, y1, x2, y2, col, rounding, flags)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -826,7 +826,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_rect_filled(list, x1, y1, x2, y2, col, rounding, flags);
 	}
 
-	/// @function DrawListAddRectFilledMultiColor(list, x1, y1, x2, y2, col1, col2, col3, col4)
+	/// @func DrawListAddRectFilledMultiColor(list, x1, y1, x2, y2, col1, col2, col3, col4)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -842,7 +842,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_rect_filled_multicolor(list, x1, y1, x2, y2, col1, col2, col3, col4);
 	}
 
-	/// @function DrawListAddQuad(list, x1, y1, x2, y2, x3, y3, x4, y4, col, thickness)
+	/// @func DrawListAddQuad(list, x1, y1, x2, y2, x3, y3, x4, y4, col, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -860,7 +860,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_quad(list, x1, y1, x2, y2, x3, y3, x4, y4, col, thickness);
 	}
 
-	/// @function DrawListAddQuadFilled(list, x1, y1, x2, y2, x3, y3, x4, y4, col)
+	/// @func DrawListAddQuadFilled(list, x1, y1, x2, y2, x3, y3, x4, y4, col)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -877,7 +877,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_quad_filled(list, x1, y1, x2, y2, x3, y3, x4, y4, col);
 	}
 
-	/// @function DrawListAddTriangle(list, x1, y1, x2, y2, x3, y3, col, thickness)
+	/// @func DrawListAddTriangle(list, x1, y1, x2, y2, x3, y3, col, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -893,7 +893,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_triangle(list, x1, y1, x2, y2, x3, y3, col, thickness);
 	}
 
-	/// @function DrawListAddTriangleFilled(list, x1, y1, x2, y2, x3, y3, col)
+	/// @func DrawListAddTriangleFilled(list, x1, y1, x2, y2, x3, y3, col)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -908,7 +908,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_triangle_filled(list, x1, y1, x2, y2, x3, y3, col);
 	}
 
-	/// @function DrawListAddCircle(list, _x, _y, radius, col, num_segments, thickness)
+	/// @func DrawListAddCircle(list, _x, _y, radius, col, num_segments, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -922,7 +922,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_circle(list, _x, _y, radius, col, num_segments, thickness);
 	}
 
-	/// @function DrawListAddCircleFilled(list, _x, _y, radius, col, num_segments)
+	/// @func DrawListAddCircleFilled(list, _x, _y, radius, col, num_segments)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -935,7 +935,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_circle_filled(list, _x, _y, radius, col, num_segments);
 	}
 
-	/// @function DrawListAddNgon(list, _x, _y, radius, col, num_segments, thickness)
+	/// @func DrawListAddNgon(list, _x, _y, radius, col, num_segments, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -949,7 +949,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_ngon(list, _x, _y, radius, col, num_segments, thickness);
 	}
 
-	/// @function DrawListAddNgonFilled(list, _x, _y, radius, col, num_segments)
+	/// @func DrawListAddNgonFilled(list, _x, _y, radius, col, num_segments)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -962,7 +962,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_ngon_filled(list, _x, _y, radius, col, num_segments);
 	}
 
-	/// @function DrawListAddText(list, _x, _y, text, col)
+	/// @func DrawListAddText(list, _x, _y, text, col)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -974,7 +974,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_text(list, _x, _y, text, col);
 	}
 
-	/// @function DrawListAddTextFont(list, _x, _y, text, col, font, font_size, wrap_width)
+	/// @func DrawListAddTextFont(list, _x, _y, text, col, font, font_size, wrap_width)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -989,7 +989,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_text_font(list, _x, _y, text, col, font, font_size, wrap_width);
 	}
 
-	/// @function DrawListAddPolyline(list, positions, col, flags, thickness)
+	/// @func DrawListAddPolyline(list, positions, col, flags, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Array<Real>} positions
 	/// @argument {Real} col
@@ -1001,7 +1001,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_polyline(list, positions, col, flags, thickness, array_length(positions));
 	}
 
-	/// @function DrawListAddConvexPolyFilled(list, positions, col)
+	/// @func DrawListAddConvexPolyFilled(list, positions, col)
 	/// @argument {Pointer} list
 	/// @argument {Array<Real>} positions
 	/// @argument {Real} col
@@ -1011,7 +1011,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_convex_poly_filled(list, positions, col, array_length(positions));
 	}
 
-	/// @function DrawListAddBezierCubic(list, x1, y1, x2, y2, x3, y3, x4, y4, col, thickness, num_segments)
+	/// @func DrawListAddBezierCubic(list, x1, y1, x2, y2, x3, y3, x4, y4, col, thickness, num_segments)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -1030,7 +1030,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_bezier_cubic(list, x1, y1, x2, y2, x3, y3, x4, y4, col, thickness, num_segments);
 	}
 
-	/// @function DrawListAddBezierQuadratic(list, x1, y1, x2, y2, x3, y3, col, thickness, num_segments)
+	/// @func DrawListAddBezierQuadratic(list, x1, y1, x2, y2, x3, y3, col, thickness, num_segments)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -1047,7 +1047,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_bezier_quadratic(list, x1, y1, x2, y2, x3, y3, col, thickness, num_segments);
 	}
 
-	/// @function DrawListPathFillConvex(list, col)
+	/// @func DrawListPathFillConvex(list, col)
 	/// @argument {Pointer} list
 	/// @argument {Real} col
 	/// @context ImGui
@@ -1056,7 +1056,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_fill_convex(list, col);
 	}
 
-	/// @function DrawListPathStroke(list, col, flags, thickness)
+	/// @func DrawListPathStroke(list, col, flags, thickness)
 	/// @argument {Pointer} list
 	/// @argument {Real} col
 	/// @argument {Enum.ImDrawFlags} [flags=ImDrawFlags.None]
@@ -1067,7 +1067,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_stroke(list, col, flags, thickness);
 	}
 
-	/// @function DrawListPathClear(list)
+	/// @func DrawListPathClear(list)
 	/// @argument {Pointer} list
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1075,7 +1075,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_clear(list);
 	}
 
-	/// @function DrawListPathLineTo(list, _x, _y)
+	/// @func DrawListPathLineTo(list, _x, _y)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -1085,7 +1085,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_line_to(list, _x, _y);
 	}
 
-	/// @function DrawListPathLineToMergeDuplicate(list, _x, _y)
+	/// @func DrawListPathLineToMergeDuplicate(list, _x, _y)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -1095,7 +1095,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_line_to_merge_duplicate(list, _x, _y);
 	}
 
-	/// @function DrawListPathArcTo(list, _x, _y, radius, a_min, a_max, num_segments)
+	/// @func DrawListPathArcTo(list, _x, _y, radius, a_min, a_max, num_segments)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -1109,7 +1109,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_arc_to(list, _x, _y, radius, a_min, a_max, num_segments);
 	}
 
-	/// @function DrawListPathArcToFast(list, _x, _y, radius, a_min_of_12, a_max_of_12)
+	/// @func DrawListPathArcToFast(list, _x, _y, radius, a_min_of_12, a_max_of_12)
 	/// @argument {Pointer} list
 	/// @argument {Real} _x
 	/// @argument {Real} _y
@@ -1122,7 +1122,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_arc_to_fast(list, _x, _y, radius, a_min_of_12, a_max_of_12);
 	}
 
-	/// @function DrawListPathBezierCubicCurveTo(list, x2, y2, x3, y3, x4, y4, num_segments)
+	/// @func DrawListPathBezierCubicCurveTo(list, x2, y2, x3, y3, x4, y4, num_segments)
 	/// @argument {Pointer} list
 	/// @argument {Real} x2
 	/// @argument {Real} y2
@@ -1137,7 +1137,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_bezier_cubic_curve_to(list, x2, y2, x3, y3, x4, y4, num_segments);
 	}
 
-	/// @function DrawListPathBezierQuadraticCurveTo(list, x2, y2, x3, y3, num_segments)
+	/// @func DrawListPathBezierQuadraticCurveTo(list, x2, y2, x3, y3, num_segments)
 	/// @argument {Pointer} list
 	/// @argument {Real} x2
 	/// @argument {Real} y2
@@ -1150,7 +1150,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_bezier_quadratic_curve_to(list, x2, y2, x3, y3, num_segments);
 	}
 
-	/// @function DrawListPathRect(list, x1, y1, x2, y2, rounding, flags)
+	/// @func DrawListPathRect(list, x1, y1, x2, y2, rounding, flags)
 	/// @argument {Pointer} list
 	/// @argument {Real} x1
 	/// @argument {Real} y1
@@ -1164,7 +1164,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_path_rect(list, x1, y1, x2, y2, rounding, flags);
 	}
 
-	/// @function DrawListAddImage(list, sprite, subimg, x1, y1, x2, y2, col)
+	/// @func DrawListAddImage(list, sprite, subimg, x1, y1, x2, y2, col)
 	/// @argument {Pointer} list
 	/// @argument {Real} sprite
 	/// @argument {Real} subimg
@@ -1179,7 +1179,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_image(list, sprite, subimg, x1, y1, x2, y2, col, sprite_get_uvs(sprite, subimg));
 	}
 
-	/// @function DrawListAddImageRounded(list, sprite, subimg, x1, y1, x2, y2, col, rounding, flags)
+	/// @func DrawListAddImageRounded(list, sprite, subimg, x1, y1, x2, y2, col, rounding, flags)
 	/// @argument {Pointer} list
 	/// @argument {Real} sprite
 	/// @argument {Real} subimg
@@ -1196,7 +1196,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_add_image_rounded(list, sprite, subimg, x1, y1, x2, y2, col, rounding, flags, sprite_get_uvs(sprite, subimg));
 	}
 
-	/// @function DrawListPushClipRect(list, clip_min_x, clip_min_y, clip_max_x, clip_max_y, intersect_with_current_clip_rect)
+	/// @func DrawListPushClipRect(list, clip_min_x, clip_min_y, clip_max_x, clip_max_y, intersect_with_current_clip_rect)
 	/// @argument {Pointer} list
 	/// @argument {Real} clip_min_x
 	/// @argument {Real} clip_min_y
@@ -1209,7 +1209,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_push_clip_rect(list, clip_min_x, clip_min_y, clip_max_x, clip_max_y, intersect_with_current_clip_rect);
 	}
 
-	/// @function DrawlistPushClipRectFullscreen(list)
+	/// @func DrawlistPushClipRectFullscreen(list)
 	/// @argument {Pointer} list
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1217,7 +1217,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_push_clip_rect_fullscreen(list);
 	}
 
-	/// @function DrawListPopClipRect(list)
+	/// @func DrawListPopClipRect(list)
 	/// @argument {Pointer} list
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1225,7 +1225,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_pop_clip_rect(list);
 	}
 
-	/// @function DrawListPushTextureID(list, sprite, subimg)
+	/// @func DrawListPushTextureID(list, sprite, subimg)
 	/// @argument {Pointer} list
 	/// @argument {Real} sprite
 	/// @argument {Real} subimg
@@ -1235,7 +1235,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_push_textureid(list, sprite, subimg);
 	}
 
-	/// @function DrawListPopTextureID(list)
+	/// @func DrawListPopTextureID(list)
 	/// @argument {Pointer} list
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1243,7 +1243,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_pop_textureid(list);
 	}
 
-	/// @function DrawListFlagsGet(list)
+	/// @func DrawListFlagsGet(list)
 	/// @argument {Pointer} list
 	/// @context ImGui
 	/// @return {Real}
@@ -1251,7 +1251,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_flags_get(list);
 	}
 
-	/// @function DrawListFlagsSet(list, flags)
+	/// @func DrawListFlagsSet(list, flags)
 	/// @argument {Pointer} list
 	/// @argument {Real} flags
 	/// @context ImGui
@@ -1260,7 +1260,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_flags_set(list, flags);
 	}
 
-	/// @function DrawListFlagToggle(list, flag)
+	/// @func DrawListFlagToggle(list, flag)
 	/// @argument {Pointer} list
 	/// @argument {Real} flag
 	/// @context ImGui
@@ -1269,7 +1269,7 @@ function ImGui_() constructor {
 		return __imgui_drawlist_flag_toggle(list, flag);
 	}
 
-	/// @function MemoryEditorShowWindow(title, buffer, offset, size)
+	/// @func MemoryEditorShowWindow(title, buffer, offset, size)
 	/// @argument {String} title
 	/// @argument {Real} buffer
 	/// @argument {Real} [offset=0]
@@ -1280,7 +1280,7 @@ function ImGui_() constructor {
 		return __imgui_memory_editor_window(title, buffer, offset, size);
 	}
 
-	/// @function MemoryEditorDrawContents(buffer, offset, size)
+	/// @func MemoryEditorDrawContents(buffer, offset, size)
 	/// @argument {Real} buffer
 	/// @argument {Real} [offset=0]
 	/// @argument {Real} [size=buffer_get_size⌊buffer⌉]
@@ -1290,21 +1290,21 @@ function ImGui_() constructor {
 		return __imgui_memory_editor_contents(buffer, offset, size);
 	}
 
-	/// @function GetFont()
+	/// @func GetFont()
 	/// @context ImGui
 	/// @return {Pointer}
 	static GetFont = function() {
 		return __imgui_get_font();
 	}
 
-	/// @function GetFontSize()
+	/// @func GetFontSize()
 	/// @context ImGui
 	/// @return {Real}
 	static GetFontSize = function() {
 		return __imgui_get_font_size();
 	}
 
-	/// @function PushFont(ptr)
+	/// @func PushFont(ptr)
 	/// @argument {Any} [ptr=undefined]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1312,14 +1312,14 @@ function ImGui_() constructor {
 		return __imgui_push_font(ptr);
 	}
 
-	/// @function PopFont()
+	/// @func PopFont()
 	/// @context ImGui
 	/// @return {Undefined}
 	static PopFont = function() {
 		return __imgui_pop_font();
 	}
 
-	/// @function AddFontFromFile(file, size)
+	/// @func AddFontFromFile(file, size)
 	/// @argument {String} file
 	/// @argument {Real} size
 	/// @context ImGui
@@ -1328,14 +1328,14 @@ function ImGui_() constructor {
 		return __imgui_add_font_from_file(file, size);
 	}
 
-	/// @function AddFontDefault()
+	/// @func AddFontDefault()
 	/// @context ImGui
 	/// @return {Unknown<unset>}
 	static AddFontDefault = function() {
 		return __imgui_add_font_default();
 	}
 
-	/// @function InputText(label, val, flags)
+	/// @func InputText(label, val, flags)
 	/// @argument {String} label
 	/// @argument {String} val
 	/// @argument {Enum.ImGuiInputTextFlags} [flags=ImGuiInputTextFlags.None]
@@ -1345,7 +1345,7 @@ function ImGui_() constructor {
 		return __imgui_input_text(label, val, flags);
 	}
 
-	/// @function InputTextMultiline(label, val, width, height, flags)
+	/// @func InputTextMultiline(label, val, width, height, flags)
 	/// @argument {String} label
 	/// @argument {String} val
 	/// @argument {Real} [width=0]
@@ -1357,7 +1357,7 @@ function ImGui_() constructor {
 		return __imgui_input_textmultiline(label, val, width, height, flags);
 	}
 
-	/// @function InputTextWithHint(label, hint, val, flags)
+	/// @func InputTextWithHint(label, hint, val, flags)
 	/// @argument {String} label
 	/// @argument {String} hint
 	/// @argument {String} val
@@ -1368,7 +1368,7 @@ function ImGui_() constructor {
 		return __imgui_input_textwithhint(label, hint, val, flags);
 	}
 
-	/// @function InputFloat(label, v, step, step_fast, format, flags)
+	/// @func InputFloat(label, v, step, step_fast, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} v
 	/// @argument {Real} [step=0]
@@ -1381,7 +1381,7 @@ function ImGui_() constructor {
 		return __imgui_input_float(label, v, step, step_fast, format, flags);
 	}
 
-	/// @function InputFloat2(label, v, step, step_fast, format, flags)
+	/// @func InputFloat2(label, v, step, step_fast, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [step=0]
@@ -1394,7 +1394,7 @@ function ImGui_() constructor {
 		return __imgui_input_float2(label, v, step, step_fast, format, flags);
 	}
 
-	/// @function InputFloat3(label, v, step, step_fast, format, flags)
+	/// @func InputFloat3(label, v, step, step_fast, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [step=0]
@@ -1407,7 +1407,7 @@ function ImGui_() constructor {
 		return __imgui_input_float3(label, v, step, step_fast, format, flags);
 	}
 
-	/// @function InputFloat4(label, v, step, step_fast, format, flags)
+	/// @func InputFloat4(label, v, step, step_fast, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [step=0]
@@ -1420,7 +1420,7 @@ function ImGui_() constructor {
 		return __imgui_input_float4(label, v, step, step_fast, format, flags);
 	}
 
-	/// @function InputFloatN(label, v, step, step_fast, format, flags)
+	/// @func InputFloatN(label, v, step, step_fast, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [step=0]
@@ -1433,7 +1433,7 @@ function ImGui_() constructor {
 		return __imgui_input_floatn(label, v, step, step_fast, format, flags, array_length(v));
 	}
 
-	/// @function InputInt(label, v, step, step_fast, flags)
+	/// @func InputInt(label, v, step, step_fast, flags)
 	/// @argument {String} label
 	/// @argument {Real} v
 	/// @argument {Real} [step=0]
@@ -1445,7 +1445,7 @@ function ImGui_() constructor {
 		return __imgui_input_int(label, v, step, step_fast, flags);
 	}
 
-	/// @function InputInt2(label, v, flags)
+	/// @func InputInt2(label, v, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Enum.ImGuiInputTextFlags} [flags=ImGuiInputTextFlags.None]
@@ -1455,7 +1455,7 @@ function ImGui_() constructor {
 		return __imgui_input_int2(label, v, flags);
 	}
 
-	/// @function InputInt3(label, v, flags)
+	/// @func InputInt3(label, v, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Enum.ImGuiInputTextFlags} [flags=ImGuiInputTextFlags.None]
@@ -1465,7 +1465,7 @@ function ImGui_() constructor {
 		return __imgui_input_int3(label, v, flags);
 	}
 
-	/// @function InputInt4(label, v, flags)
+	/// @func InputInt4(label, v, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Enum.ImGuiInputTextFlags} [flags=ImGuiInputTextFlags.None]
@@ -1475,7 +1475,7 @@ function ImGui_() constructor {
 		return __imgui_input_int4(label, v, flags);
 	}
 
-	/// @function InputIntN(label, v, flags)
+	/// @func InputIntN(label, v, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Enum.ImGuiInputTextFlags} [flags=ImGuiInputTextFlags.None]
@@ -1485,7 +1485,7 @@ function ImGui_() constructor {
 		return __imgui_input_intn(label, v, flags, array_length(v));
 	}
 
-	/// @function InputDouble(label, v, step, step_fast, format, flags)
+	/// @func InputDouble(label, v, step, step_fast, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} v
 	/// @argument {Real} [step=0]
@@ -1498,14 +1498,14 @@ function ImGui_() constructor {
 		return __imgui_input_double(label, v, step, step_fast, format, flags);
 	}
 
-	/// @function Spacing()
+	/// @func Spacing()
 	/// @context ImGui
 	/// @return {Undefined}
 	static Spacing = function() {
 		return __imgui_spacing();
 	}
 
-	/// @function Dummy(width, height)
+	/// @func Dummy(width, height)
 	/// @argument {Real} width
 	/// @argument {Real} height
 	/// @context ImGui
@@ -1514,28 +1514,28 @@ function ImGui_() constructor {
 		return __imgui_dummy(width, height);
 	}
 
-	/// @function NewLine()
+	/// @func NewLine()
 	/// @context ImGui
 	/// @return {Undefined}
 	static NewLine = function() {
 		return __imgui_newline();
 	}
 
-	/// @function AlignTextToFramePadding()
+	/// @func AlignTextToFramePadding()
 	/// @context ImGui
 	/// @return {Undefined}
 	static AlignTextToFramePadding = function() {
 		return __imgui_align_text_to_frame_padding();
 	}
 
-	/// @function Separator()
+	/// @func Separator()
 	/// @context ImGui
 	/// @return {Undefined}
 	static Separator = function() {
 		return __imgui_separator();
 	}
 
-	/// @function Indent(indent_w)
+	/// @func Indent(indent_w)
 	/// @argument {Real} [indent_w=0]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1543,7 +1543,7 @@ function ImGui_() constructor {
 		return __imgui_indent(indent_w);
 	}
 
-	/// @function Unindent(indent_w)
+	/// @func Unindent(indent_w)
 	/// @argument {Real} [indent_w=0]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1551,7 +1551,7 @@ function ImGui_() constructor {
 		return __imgui_unindent(indent_w);
 	}
 
-	/// @function SameLine(offset_from_start_x, spacing)
+	/// @func SameLine(offset_from_start_x, spacing)
 	/// @argument {Real} [offset_from_start_x=0]
 	/// @argument {Real} [spacing=-1]
 	/// @context ImGui
@@ -1560,63 +1560,63 @@ function ImGui_() constructor {
 		return __imgui_sameline(offset_from_start_x, spacing);
 	}
 
-	/// @function BeginGroup()
+	/// @func BeginGroup()
 	/// @context ImGui
 	/// @return {Undefined}
 	static BeginGroup = function() {
 		return __imgui_begin_group();
 	}
 
-	/// @function EndGroup()
+	/// @func EndGroup()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndGroup = function() {
 		return __imgui_end_group();
 	}
 
-	/// @function GetCursorPosX()
+	/// @func GetCursorPosX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetCursorPosX = function() {
 		return __imgui_get_cursor_pos_x();
 	}
 
-	/// @function GetCursorPosY()
+	/// @func GetCursorPosY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetCursorPosY = function() {
 		return __imgui_get_cursor_pos_y();
 	}
 
-	/// @function GetCursorStartPosX()
+	/// @func GetCursorStartPosX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetCursorStartPosX = function() {
 		return __imgui_get_cursor_start_pos_x();
 	}
 
-	/// @function GetCursorStartPosY()
+	/// @func GetCursorStartPosY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetCursorStartPosY = function() {
 		return __imgui_get_cursor_start_pos_y();
 	}
 
-	/// @function GetCursorScreenPosX()
+	/// @func GetCursorScreenPosX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetCursorScreenPosX = function() {
 		return __imgui_get_cursor_screen_pos_x();
 	}
 
-	/// @function GetCursorScreenPosY()
+	/// @func GetCursorScreenPosY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetCursorScreenPosY = function() {
 		return __imgui_get_cursor_screen_pos_y();
 	}
 
-	/// @function SetCursorScreenPos(_x, _y)
+	/// @func SetCursorScreenPos(_x, _y)
 	/// @argument {Real} _x
 	/// @argument {Real} _y
 	/// @context ImGui
@@ -1625,7 +1625,7 @@ function ImGui_() constructor {
 		return __imgui_set_cursor_screen_pos(_x, _y);
 	}
 
-	/// @function SetCursorPos(local_x, local_y)
+	/// @func SetCursorPos(local_x, local_y)
 	/// @argument {Real} local_x
 	/// @argument {Real} local_y
 	/// @context ImGui
@@ -1634,7 +1634,7 @@ function ImGui_() constructor {
 		return __imgui_set_cursor_pos(local_x, local_y);
 	}
 
-	/// @function SetCursorPosX(local_x)
+	/// @func SetCursorPosX(local_x)
 	/// @argument {Real} local_x
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1642,7 +1642,7 @@ function ImGui_() constructor {
 		return __imgui_set_cursor_pos_x(local_x);
 	}
 
-	/// @function SetCursorPosY(local_y)
+	/// @func SetCursorPosY(local_y)
 	/// @argument {Real} local_y
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1650,91 +1650,91 @@ function ImGui_() constructor {
 		return __imgui_set_cursor_pos_y(local_y);
 	}
 
-	/// @function GetTextLineHeight()
+	/// @func GetTextLineHeight()
 	/// @context ImGui
 	/// @return {Real}
 	static GetTextLineHeight = function() {
 		return __imgui_get_text_line_height();
 	}
 
-	/// @function GetTextLineHeightWithSpacing()
+	/// @func GetTextLineHeightWithSpacing()
 	/// @context ImGui
 	/// @return {Real}
 	static GetTextLineHeightWithSpacing = function() {
 		return __imgui_get_text_line_height_with_spacing();
 	}
 
-	/// @function GetFrameHeight()
+	/// @func GetFrameHeight()
 	/// @context ImGui
 	/// @return {Real}
 	static GetFrameHeight = function() {
 		return __imgui_get_frame_height();
 	}
 
-	/// @function GetFrameHeightWithSpacing()
+	/// @func GetFrameHeightWithSpacing()
 	/// @context ImGui
 	/// @return {Real}
 	static GetFrameHeightWithSpacing = function() {
 		return __imgui_get_frame_height_with_spacing();
 	}
 
-	/// @function GetContentRegionAvailX()
+	/// @func GetContentRegionAvailX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetContentRegionAvailX = function() {
 		return __imgui_get_content_region_avail_x();
 	}
 
-	/// @function GetContentRegionAvailY()
+	/// @func GetContentRegionAvailY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetContentRegionAvailY = function() {
 		return __imgui_get_content_region_avail_y();
 	}
 
-	/// @function GetContentRegionMaxX()
+	/// @func GetContentRegionMaxX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetContentRegionMaxX = function() {
 		return __imgui_get_content_region_max_x();
 	}
 
-	/// @function GetContentRegionMaxY()
+	/// @func GetContentRegionMaxY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetContentRegionMaxY = function() {
 		return __imgui_get_content_region_max_y();
 	}
 
-	/// @function GetWindowContentRegionMinX()
+	/// @func GetWindowContentRegionMinX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowContentRegionMinX = function() {
 		return __imgui_get_window_content_region_min_x();
 	}
 
-	/// @function GetWindowContentRegionMinY()
+	/// @func GetWindowContentRegionMinY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowContentRegionMinY = function() {
 		return __imgui_get_window_content_region_min_y();
 	}
 
-	/// @function GetWindowContentRegionMaxX()
+	/// @func GetWindowContentRegionMaxX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowContentRegionMaxX = function() {
 		return __imgui_get_window_content_region_max_x();
 	}
 
-	/// @function GetWindowContentRegionMaxY()
+	/// @func GetWindowContentRegionMaxY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowContentRegionMaxY = function() {
 		return __imgui_get_window_content_region_max_y();
 	}
 
-	/// @function PushItemWidth(item_width)
+	/// @func PushItemWidth(item_width)
 	/// @argument {Real} item_width
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1742,14 +1742,14 @@ function ImGui_() constructor {
 		return __imgui_push_item_width(item_width);
 	}
 
-	/// @function PopItemWidth()
+	/// @func PopItemWidth()
 	/// @context ImGui
 	/// @return {Undefined}
 	static PopItemWidth = function() {
 		return __imgui_pop_item_width();
 	}
 
-	/// @function SetNextItemWidth(item_width)
+	/// @func SetNextItemWidth(item_width)
 	/// @argument {Real} item_width
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1757,14 +1757,14 @@ function ImGui_() constructor {
 		return __imgui_set_next_item_width(item_width);
 	}
 
-	/// @function CalcItemWidth()
+	/// @func CalcItemWidth()
 	/// @context ImGui
 	/// @return {Real}
 	static CalcItemWidth = function() {
 		return __imgui_calc_item_width();
 	}
 
-	/// @function PushTextWrapPos(wrap_local_pos_x)
+	/// @func PushTextWrapPos(wrap_local_pos_x)
 	/// @argument {Real} [wrap_local_pos_x=0]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -1772,14 +1772,14 @@ function ImGui_() constructor {
 		return __imgui_push_text_wrap_pos(wrap_local_pos_x);
 	}
 
-	/// @function PopTextWrapPos()
+	/// @func PopTextWrapPos()
 	/// @context ImGui
 	/// @return {Undefined}
 	static PopTextWrapPos = function() {
 		return __imgui_pop_text_wrap_pos();
 	}
 
-	/// @function PushClipRect(clip_min_x, clip_min_y, clip_max_x, clip_max_y, intersect_with_current_clip_rect)
+	/// @func PushClipRect(clip_min_x, clip_min_y, clip_max_x, clip_max_y, intersect_with_current_clip_rect)
 	/// @argument {Real} clip_min_x
 	/// @argument {Real} clip_min_y
 	/// @argument {Real} clip_max_x
@@ -1791,14 +1791,14 @@ function ImGui_() constructor {
 		return __imgui_push_clip_rect(clip_min_x, clip_min_y, clip_max_x, clip_max_y, intersect_with_current_clip_rect);
 	}
 
-	/// @function PopClipRect()
+	/// @func PopClipRect()
 	/// @context ImGui
 	/// @return {Undefined}
 	static PopClipRect = function() {
 		return __imgui_pop_clip_rect();
 	}
 
-	/// @function BeginListBox(label, width, height)
+	/// @func BeginListBox(label, width, height)
 	/// @argument {String} label
 	/// @argument {Real} [width=0]
 	/// @argument {Real} [height=0]
@@ -1808,49 +1808,49 @@ function ImGui_() constructor {
 		return __imgui_begin_listbox(label, width, height);
 	}
 
-	/// @function EndListBox()
+	/// @func EndListBox()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndListBox = function() {
 		return __imgui_end_listbox();
 	}
 
-	/// @function ListBox()
+	/// @func ListBox()
 	/// @context ImGui
 	/// @return {Unknown<unset>}
 	static ListBox = function() {
 		return __imgui_listbox();
 	}
 
-	/// @function BeginMenuBar()
+	/// @func BeginMenuBar()
 	/// @context ImGui
 	/// @return {Bool}
 	static BeginMenuBar = function() {
 		return __imgui_begin_menubar();
 	}
 
-	/// @function EndMenuBar()
+	/// @func EndMenuBar()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndMenuBar = function() {
 		return __imgui_end_menubar();
 	}
 
-	/// @function BeginMainMenuBar()
+	/// @func BeginMainMenuBar()
 	/// @context ImGui
 	/// @return {Bool}
 	static BeginMainMenuBar = function() {
 		return __imgui_begin_mainmenubar();
 	}
 
-	/// @function EndMainMenuBar()
+	/// @func EndMainMenuBar()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndMainMenuBar = function() {
 		return __imgui_end_mainmenubar();
 	}
 
-	/// @function BeginMenu(label, enabled)
+	/// @func BeginMenu(label, enabled)
 	/// @argument {String} label
 	/// @argument {Bool} [enabled=true]
 	/// @context ImGui
@@ -1859,14 +1859,14 @@ function ImGui_() constructor {
 		return __imgui_begin_menu(label, enabled);
 	}
 
-	/// @function EndMenu()
+	/// @func EndMenu()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndMenu = function() {
 		return __imgui_end_menu();
 	}
 
-	/// @function MenuItem(label, shortcut, selected, enabled, mask)
+	/// @func MenuItem(label, shortcut, selected, enabled, mask)
 	/// @argument {String} label
 	/// @argument {String} [shortcut=]
 	/// @argument {Bool} [selected=undefined]
@@ -1878,7 +1878,7 @@ function ImGui_() constructor {
 		return __imgui_menu_item(label, shortcut, selected, enabled, mask);
 	}
 
-	/// @function BeginDragDropSource(flags)
+	/// @func BeginDragDropSource(flags)
 	/// @argument {Enum.ImGuiDragDropFlags} [flags=ImGuiDragDropFlags.None]
 	/// @context ImGui
 	/// @return {Bool}
@@ -1886,28 +1886,28 @@ function ImGui_() constructor {
 		return __imgui_begin_drag_drop_source(flags);
 	}
 
-	/// @function EndDragDropSource()
+	/// @func EndDragDropSource()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndDragDropSource = function() {
 		return __imgui_end_drag_drop_source();
 	}
 
-	/// @function BeginDragDropTarget()
+	/// @func BeginDragDropTarget()
 	/// @context ImGui
 	/// @return {Bool}
 	static BeginDragDropTarget = function() {
 		return __imgui_begin_drag_drop_target();
 	}
 
-	/// @function EndDragDropTarget()
+	/// @func EndDragDropTarget()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndDragDropTarget = function() {
 		return __imgui_end_drag_drop_target();
 	}
 
-	/// @function SetDragDropPayload(type, data, cond)
+	/// @func SetDragDropPayload(type, data, cond)
 	/// @argument {String} type
 	/// @argument {Any} data
 	/// @argument {Enum.ImGuiCond} [cond=ImGuiCond.None]
@@ -1917,7 +1917,7 @@ function ImGui_() constructor {
 		return __imgui_set_drag_drop_payload(type, data, cond);
 	}
 
-	/// @function AcceptDragDropPayload(type, flags)
+	/// @func AcceptDragDropPayload(type, flags)
 	/// @argument {String} type
 	/// @argument {Enum.ImGuiDragDropFlags} [flags=ImGuiDragDropFlags.None]
 	/// @context ImGui
@@ -1926,21 +1926,21 @@ function ImGui_() constructor {
 		return __imgui_accept_drag_drop_payload(type, flags);
 	}
 
-	/// @function GetDragDropPayload()
+	/// @func GetDragDropPayload()
 	/// @context ImGui
 	/// @return {Any|Undefined}
 	static GetDragDropPayload = function() {
 		return __imgui_get_drag_drop_payload();
 	}
 
-	/// @function GetDragDropPayloadType()
+	/// @func GetDragDropPayloadType()
 	/// @context ImGui
 	/// @return {String|Undefined}
 	static GetDragDropPayloadType = function() {
 		return __imgui_get_payload_type();
 	}
 
-	/// @function PlotLines(label, values, values_offset, overlay_text, scale_min, scale_max, graph_width, graph_height)
+	/// @func PlotLines(label, values, values_offset, overlay_text, scale_min, scale_max, graph_width, graph_height)
 	/// @argument {String} label
 	/// @argument {Array<Real>} values
 	/// @argument {Real} [values_offset=0]
@@ -1955,7 +1955,7 @@ function ImGui_() constructor {
 		return __imgui_plot_lines(label, values, values_offset, overlay_text, scale_min, scale_max, graph_width, graph_height, array_length(values));
 	}
 
-	/// @function PlotHistogram(label, values, values_offset, overlay_text, scale_min, scale_max, graph_width, graph_height)
+	/// @func PlotHistogram(label, values, values_offset, overlay_text, scale_min, scale_max, graph_width, graph_height)
 	/// @argument {String} label
 	/// @argument {Array<Real>} values
 	/// @argument {Real} [values_offset=0]
@@ -1970,7 +1970,7 @@ function ImGui_() constructor {
 		return __imgui_plot_histogram(label, values, values_offset, overlay_text, scale_min, scale_max, graph_width, graph_height, array_length(values));
 	}
 
-	/// @function BeginPopup(str_id, flags)
+	/// @func BeginPopup(str_id, flags)
 	/// @argument {String} str_id
 	/// @argument {Enum.ImGuiWindowFlags} [flags=ImGuiWindowFlags.None]
 	/// @context ImGui
@@ -1979,7 +1979,7 @@ function ImGui_() constructor {
 		return __imgui_begin_popup(str_id, flags);
 	}
 
-	/// @function BeginPopupModal(name, open, flags, mask)
+	/// @func BeginPopupModal(name, open, flags, mask)
 	/// @argument {String} name
 	/// @argument {Bool} [open=undefined]
 	/// @argument {Enum.ImGuiWindowFlags} [flags=ImGuiWindowFlags.None]
@@ -1990,14 +1990,14 @@ function ImGui_() constructor {
 		return __imgui_begin_popup_modal(name, open, flags, mask);
 	}
 
-	/// @function EndPopup()
+	/// @func EndPopup()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndPopup = function() {
 		return __imgui_end_popup();
 	}
 
-	/// @function OpenPopup(str_id, flags)
+	/// @func OpenPopup(str_id, flags)
 	/// @argument {String} str_id
 	/// @argument {Enum.ImGuiPopupFlags} [flags=ImGuiPopupFlags.None]
 	/// @context ImGui
@@ -2006,7 +2006,7 @@ function ImGui_() constructor {
 		return __imgui_open_popup(str_id, flags);
 	}
 
-	/// @function OpenPopupOnItemClick(str_id, flags)
+	/// @func OpenPopupOnItemClick(str_id, flags)
 	/// @argument {String} [str_id=undefined]
 	/// @argument {Enum.ImGuiPopupFlags} [flags=ImGuiPopupFlags.MouseButtonRight]
 	/// @context ImGui
@@ -2015,14 +2015,14 @@ function ImGui_() constructor {
 		return __imgui_open_popup_on_item_click(str_id, flags);
 	}
 
-	/// @function CloseCurrentPopup()
+	/// @func CloseCurrentPopup()
 	/// @context ImGui
 	/// @return {Undefined}
 	static CloseCurrentPopup = function() {
 		return __imgui_close_current_popup();
 	}
 
-	/// @function BeginPopupContextItem(str_id, flags)
+	/// @func BeginPopupContextItem(str_id, flags)
 	/// @argument {String} [str_id=undefined]
 	/// @argument {Enum.ImGuiPopupFlags} [flags=ImGuiPopupFlags.MouseButtonRight]
 	/// @context ImGui
@@ -2031,7 +2031,7 @@ function ImGui_() constructor {
 		return __imgui_begin_popup_context_item(str_id, flags);
 	}
 
-	/// @function BeginPopupContextWindow(str_id, flags)
+	/// @func BeginPopupContextWindow(str_id, flags)
 	/// @argument {String} [str_id=undefined]
 	/// @argument {Enum.ImGuiPopupFlags} [flags=ImGuiPopupFlags.MouseButtonRight]
 	/// @context ImGui
@@ -2040,7 +2040,7 @@ function ImGui_() constructor {
 		return __imgui_begin_popup_context_window(str_id, flags);
 	}
 
-	/// @function BeginPopupContextVoid(str_id, flags)
+	/// @func BeginPopupContextVoid(str_id, flags)
 	/// @argument {String} [str_id=undefined]
 	/// @argument {Enum.ImGuiPopupFlags} [flags=ImGuiPopupFlags.MouseButtonRight]
 	/// @context ImGui
@@ -2049,7 +2049,7 @@ function ImGui_() constructor {
 		return __imgui_begin_popup_context_void(str_id, flags);
 	}
 
-	/// @function IsPopupOpen(str_id, flags)
+	/// @func IsPopupOpen(str_id, flags)
 	/// @argument {String} str_id
 	/// @argument {Enum.ImGuiPopupFlags} [flags=ImGuiPopupFlags.None]
 	/// @context ImGui
@@ -2058,7 +2058,7 @@ function ImGui_() constructor {
 		return __imgui_is_popup_open(str_id, flags);
 	}
 
-	/// @function Selectable(label, selected, flags, width, height)
+	/// @func Selectable(label, selected, flags, width, height)
 	/// @argument {String} label
 	/// @argument {Bool} [selected=false]
 	/// @argument {Enum.ImGuiSelectableFlags} [flags=ImGuiSelectableFlags.None]
@@ -2070,7 +2070,7 @@ function ImGui_() constructor {
 		return __imgui_selectable(label, selected, flags, width, height);
 	}
 
-	/// @function SliderFloat(label, v, v_min, v_max, format, flags)
+	/// @func SliderFloat(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} v
 	/// @argument {Real} [v_min=0]
@@ -2083,7 +2083,7 @@ function ImGui_() constructor {
 		return __imgui_slider_float(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderFloat2(label, v, v_min, v_max, format, flags)
+	/// @func SliderFloat2(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_min=0]
@@ -2096,7 +2096,7 @@ function ImGui_() constructor {
 		return __imgui_slider_float2(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderFloat3(label, v, v_min, v_max, format, flags)
+	/// @func SliderFloat3(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_min=0]
@@ -2109,7 +2109,7 @@ function ImGui_() constructor {
 		return __imgui_slider_float3(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderFloat4(label, v, v_min, v_max, format, flags)
+	/// @func SliderFloat4(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_min=0]
@@ -2122,7 +2122,7 @@ function ImGui_() constructor {
 		return __imgui_slider_float4(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderFloatN(label, v, v_speed, v_min, v_max, format, flags)
+	/// @func SliderFloatN(label, v, v_speed, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_speed=1]
@@ -2136,7 +2136,7 @@ function ImGui_() constructor {
 		return __imgui_slider_floatn(label, v, v_speed, v_min, v_max, format, flags, array_length(v));
 	}
 
-	/// @function SliderInt(label, v, v_min, v_max, format, flags)
+	/// @func SliderInt(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} v
 	/// @argument {Real} [v_min=0]
@@ -2149,7 +2149,7 @@ function ImGui_() constructor {
 		return __imgui_slider_int(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderInt2(label, v, v_min, v_max, format, flags)
+	/// @func SliderInt2(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_min=0]
@@ -2162,7 +2162,7 @@ function ImGui_() constructor {
 		return __imgui_slider_int2(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderInt3(label, v, v_min, v_max, format, flags)
+	/// @func SliderInt3(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_min=0]
@@ -2175,7 +2175,7 @@ function ImGui_() constructor {
 		return __imgui_slider_int3(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderInt4(label, v, v_min, v_max, format, flags)
+	/// @func SliderInt4(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_min=0]
@@ -2188,7 +2188,7 @@ function ImGui_() constructor {
 		return __imgui_slider_int4(label, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderIntN(label, v, v_min, v_max, format, flags)
+	/// @func SliderIntN(label, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Array<Real>} v
 	/// @argument {Real} [v_min=0]
@@ -2201,7 +2201,7 @@ function ImGui_() constructor {
 		return __imgui_slider_intn(label, v, v_min, v_max, format, flags, array_length(v));
 	}
 
-	/// @function VSliderFloat(label, width, height, v, v_min, v_max, format, flags)
+	/// @func VSliderFloat(label, width, height, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} width
 	/// @argument {Real} height
@@ -2216,7 +2216,7 @@ function ImGui_() constructor {
 		return __imgui_vslider_float(label, width, height, v, v_min, v_max, format, flags);
 	}
 
-	/// @function VSliderInt(label, width, height, v, v_min, v_max, format, flags)
+	/// @func VSliderInt(label, width, height, v, v_min, v_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} width
 	/// @argument {Real} height
@@ -2231,7 +2231,7 @@ function ImGui_() constructor {
 		return __imgui_vslider_int(label, width, height, v, v_min, v_max, format, flags);
 	}
 
-	/// @function SliderAngle(label, v_rad, v_degrees_min, v_degrees_max, format, flags)
+	/// @func SliderAngle(label, v_rad, v_degrees_min, v_degrees_max, format, flags)
 	/// @argument {String} label
 	/// @argument {Real} v_rad
 	/// @argument {Real} [v_degrees_min=0]
@@ -2244,28 +2244,28 @@ function ImGui_() constructor {
 		return __imgui_slider_angle(label, v_rad, v_degrees_min, v_degrees_max, format, flags);
 	}
 
-	/// @function StyleColorsDark()
+	/// @func StyleColorsDark()
 	/// @context ImGui
 	/// @return {Undefined}
 	static StyleColorsDark = function() {
 		return __imgui_style_colors_dark();
 	}
 
-	/// @function StyleColorsLight()
+	/// @func StyleColorsLight()
 	/// @context ImGui
 	/// @return {Undefined}
 	static StyleColorsLight = function() {
 		return __imgui_style_colors_light();
 	}
 
-	/// @function StyleColorsClassic()
+	/// @func StyleColorsClassic()
 	/// @context ImGui
 	/// @return {Undefined}
 	static StyleColorsClassic = function() {
 		return __imgui_style_colors_classic();
 	}
 
-	/// @function PushStyleColor(idx, col, alpha)
+	/// @func PushStyleColor(idx, col, alpha)
 	/// @argument {Real} idx
 	/// @argument {Real} col
 	/// @argument {Real} alpha
@@ -2275,7 +2275,7 @@ function ImGui_() constructor {
 		return __imgui_push_style_color(idx, col, alpha);
 	}
 
-	/// @function PopStyleColor(count)
+	/// @func PopStyleColor(count)
 	/// @argument {Real} [count=1]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2283,7 +2283,7 @@ function ImGui_() constructor {
 		return __imgui_pop_style_color(count);
 	}
 
-	/// @function PushStyleVar(idx, val, val2)
+	/// @func PushStyleVar(idx, val, val2)
 	/// @argument {Real} idx
 	/// @argument {Real} val
 	/// @argument {Any} [val2=undefined]
@@ -2293,7 +2293,7 @@ function ImGui_() constructor {
 		return __imgui_push_style_var(idx, val, val2);
 	}
 
-	/// @function PopStyleVar(count)
+	/// @func PopStyleVar(count)
 	/// @argument {Real} [count=1]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2301,7 +2301,7 @@ function ImGui_() constructor {
 		return __imgui_pop_style_var(count);
 	}
 
-	/// @function GetStyleColor(idx)
+	/// @func GetStyleColor(idx)
 	/// @argument {Real} idx
 	/// @context ImGui
 	/// @return {Real}
@@ -2309,7 +2309,7 @@ function ImGui_() constructor {
 		return __imgui_get_style_color(idx);
 	}
 
-	/// @function GetStyleColorName(idx)
+	/// @func GetStyleColorName(idx)
 	/// @argument {Real} idx
 	/// @context ImGui
 	/// @return {String}
@@ -2317,7 +2317,7 @@ function ImGui_() constructor {
 		return __imgui_get_style_color_name(idx);
 	}
 
-	/// @function BeginTable(str_id, column, flags, outer_width, outer_height, inner_width)
+	/// @func BeginTable(str_id, column, flags, outer_width, outer_height, inner_width)
 	/// @argument {String} str_id
 	/// @argument {Real} column
 	/// @argument {Enum.ImGuiTableFlags} [flags=ImGuiTableFlags.None]
@@ -2330,14 +2330,14 @@ function ImGui_() constructor {
 		return __imgui_begin_table(str_id, column, flags, outer_width, outer_height, inner_width);
 	}
 
-	/// @function EndTable()
+	/// @func EndTable()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndTable = function() {
 		return __imgui_end_table();
 	}
 
-	/// @function TableNextRow(row_flags, min_row_height)
+	/// @func TableNextRow(row_flags, min_row_height)
 	/// @argument {Enum.ImGuiTableRowFlags} [row_flags=ImGuiTableRowFlags.None]
 	/// @argument {Real} [min_row_height=0]
 	/// @context ImGui
@@ -2346,14 +2346,14 @@ function ImGui_() constructor {
 		return __imgui_table_next_row(row_flags, min_row_height);
 	}
 
-	/// @function TableNextColumn()
+	/// @func TableNextColumn()
 	/// @context ImGui
 	/// @return {Bool}
 	static TableNextColumn = function() {
 		return __imgui_table_next_column();
 	}
 
-	/// @function TableSetColumnIndex(column_n)
+	/// @func TableSetColumnIndex(column_n)
 	/// @argument {Real} column_n
 	/// @context ImGui
 	/// @return {Bool}
@@ -2361,7 +2361,7 @@ function ImGui_() constructor {
 		return __imgui_table_set_column_index(column_n);
 	}
 
-	/// @function TableSetupColumn(label, flags, user_id)
+	/// @func TableSetupColumn(label, flags, user_id)
 	/// @argument {String} label
 	/// @argument {Enum.ImGuiTableColumnFlags} [flags=ImGuiTableColumnFlags.None]
 	/// @argument {Real} [user_id=0]
@@ -2371,7 +2371,7 @@ function ImGui_() constructor {
 		return __imgui_table_setup_column(label, flags, user_id);
 	}
 
-	/// @function TableSetupScrollFreeze(cols, rows)
+	/// @func TableSetupScrollFreeze(cols, rows)
 	/// @argument {Real} cols
 	/// @argument {Real} rows
 	/// @context ImGui
@@ -2380,14 +2380,14 @@ function ImGui_() constructor {
 		return __imgui_table_setup_scroll_freeze(cols, rows);
 	}
 
-	/// @function TableHeadersRow()
+	/// @func TableHeadersRow()
 	/// @context ImGui
 	/// @return {Undefined}
 	static TableHeadersRow = function() {
 		return __imgui_table_headers_row();
 	}
 
-	/// @function TableHeader(label)
+	/// @func TableHeader(label)
 	/// @argument {String} label
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2395,21 +2395,21 @@ function ImGui_() constructor {
 		return __imgui_table_header(label);
 	}
 
-	/// @function TableGetColumnCount()
+	/// @func TableGetColumnCount()
 	/// @context ImGui
 	/// @return {Real}
 	static TableGetColumnCount = function() {
 		return __imgui_table_get_column_count();
 	}
 
-	/// @function TableGetColumnIndex()
+	/// @func TableGetColumnIndex()
 	/// @context ImGui
 	/// @return {Real}
 	static TableGetColumnIndex = function() {
 		return __imgui_table_get_column_index();
 	}
 
-	/// @function TableGetColumnName(column_n)
+	/// @func TableGetColumnName(column_n)
 	/// @argument {Real} [column_n=-1]
 	/// @context ImGui
 	/// @return {String}
@@ -2417,7 +2417,7 @@ function ImGui_() constructor {
 		return __imgui_table_get_column_name(column_n);
 	}
 
-	/// @function TableGetColumnFlags(column_n)
+	/// @func TableGetColumnFlags(column_n)
 	/// @argument {Real} [column_n=-1]
 	/// @context ImGui
 	/// @return {Real}
@@ -2425,14 +2425,14 @@ function ImGui_() constructor {
 		return __imgui_table_get_column_flags(column_n);
 	}
 
-	/// @function TableGetRowIndex()
+	/// @func TableGetRowIndex()
 	/// @context ImGui
 	/// @return {Real}
 	static TableGetRowIndex = function() {
 		return __imgui_table_get_row_index();
 	}
 
-	/// @function TableSetColumnEnabled(column_n, v)
+	/// @func TableSetColumnEnabled(column_n, v)
 	/// @argument {Real} column_n
 	/// @argument {Bool} v
 	/// @context ImGui
@@ -2441,7 +2441,7 @@ function ImGui_() constructor {
 		return __imgui_table_set_column_enabled(column_n, v);
 	}
 
-	/// @function TableSetBgColor(target, col, column_n)
+	/// @func TableSetBgColor(target, col, column_n)
 	/// @argument {Real} target
 	/// @argument {Real} col
 	/// @argument {Real} [column_n=-1]
@@ -2451,7 +2451,7 @@ function ImGui_() constructor {
 		return __imgui_table_set_bg_color(target, col, column_n);
 	}
 
-	/// @function Columns(count, _id, border)
+	/// @func Columns(count, _id, border)
 	/// @argument {Real} [count=1]
 	/// @argument {String} [_id=]
 	/// @argument {Bool} [border=true]
@@ -2461,21 +2461,21 @@ function ImGui_() constructor {
 		return __imgui_columns(count, _id, border);
 	}
 
-	/// @function NextColumn()
+	/// @func NextColumn()
 	/// @context ImGui
 	/// @return {Undefined}
 	static NextColumn = function() {
 		return __imgui_next_column();
 	}
 
-	/// @function GetColumnIndex()
+	/// @func GetColumnIndex()
 	/// @context ImGui
 	/// @return {Real}
 	static GetColumnIndex = function() {
 		return __imgui_get_column_index();
 	}
 
-	/// @function GetColumnWidth(column_index)
+	/// @func GetColumnWidth(column_index)
 	/// @argument {Real} [column_index=-1]
 	/// @context ImGui
 	/// @return {Real}
@@ -2483,7 +2483,7 @@ function ImGui_() constructor {
 		return __imgui_get_column_width(column_index);
 	}
 
-	/// @function SetColumnWidth(column_index, width)
+	/// @func SetColumnWidth(column_index, width)
 	/// @argument {Real} column_index
 	/// @argument {Real} width
 	/// @context ImGui
@@ -2492,7 +2492,7 @@ function ImGui_() constructor {
 		return __imgui_set_column_width(column_index, width);
 	}
 
-	/// @function GetColumnOffset(column_index)
+	/// @func GetColumnOffset(column_index)
 	/// @argument {Real} [column_index=-1]
 	/// @context ImGui
 	/// @return {Real}
@@ -2500,7 +2500,7 @@ function ImGui_() constructor {
 		return __imgui_get_column_offset(column_index);
 	}
 
-	/// @function SetColumnOffset(column_index, offset_x)
+	/// @func SetColumnOffset(column_index, offset_x)
 	/// @argument {Real} column_index
 	/// @argument {Real} offset_x
 	/// @context ImGui
@@ -2509,14 +2509,14 @@ function ImGui_() constructor {
 		return __imgui_set_column_offset(column_index, offset_x);
 	}
 
-	/// @function GetColumnsCount()
+	/// @func GetColumnsCount()
 	/// @context ImGui
 	/// @return {Real}
 	static GetColumnsCount = function() {
 		return __imgui_get_columns_count();
 	}
 
-	/// @function BeginTabBar(str_id, flags)
+	/// @func BeginTabBar(str_id, flags)
 	/// @argument {String} str_id
 	/// @argument {Enum.ImGuiTabBarFlags} [flags=ImGuiTabBarFlags.None]
 	/// @context ImGui
@@ -2525,14 +2525,14 @@ function ImGui_() constructor {
 		return __imgui_begin_tab_bar(str_id, flags);
 	}
 
-	/// @function EndTabBar()
+	/// @func EndTabBar()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndTabBar = function() {
 		return __imgui_end_tab_bar();
 	}
 
-	/// @function BeginTabItem(label, open, flags, mask)
+	/// @func BeginTabItem(label, open, flags, mask)
 	/// @argument {String} label
 	/// @argument {Bool} [open=undefined]
 	/// @argument {Enum.ImGuiTabItemFlags} [flags=ImGuiTabItemFlags.None]
@@ -2543,14 +2543,14 @@ function ImGui_() constructor {
 		return __imgui_begin_tab_item(label, open, flags, mask);
 	}
 
-	/// @function EndTabItem()
+	/// @func EndTabItem()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndTabItem = function() {
 		return __imgui_end_tab_item();
 	}
 
-	/// @function TabItemButton(label, flags)
+	/// @func TabItemButton(label, flags)
 	/// @argument {String} label
 	/// @argument {Enum.ImGuiTabItemFlags} [flags=ImGuiTabItemFlags.None]
 	/// @context ImGui
@@ -2559,7 +2559,7 @@ function ImGui_() constructor {
 		return __imgui_tab_item_button(label, flags);
 	}
 
-	/// @function SetTabItemClosed(tab_or_docked_window_label)
+	/// @func SetTabItemClosed(tab_or_docked_window_label)
 	/// @argument {String} tab_or_docked_window_label
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2567,7 +2567,7 @@ function ImGui_() constructor {
 		return __imgui_set_tab_item_closed(tab_or_docked_window_label);
 	}
 
-	/// @function TextUnformatted(text)
+	/// @func TextUnformatted(text)
 	/// @argument {String} text
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2575,7 +2575,7 @@ function ImGui_() constructor {
 		return __imgui_text_unformatted(text);
 	}
 
-	/// @function Text(val)
+	/// @func Text(val)
 	/// @argument {String} val
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2583,7 +2583,7 @@ function ImGui_() constructor {
 		return __imgui_text(val);
 	}
 
-	/// @function TextColored(val, color, alpha)
+	/// @func TextColored(val, color, alpha)
 	/// @argument {String} val
 	/// @argument {Real} color
 	/// @argument {Real} [alpha=1]
@@ -2593,7 +2593,7 @@ function ImGui_() constructor {
 		return __imgui_text_colored(val, color, alpha);
 	}
 
-	/// @function TextDisabled(val)
+	/// @func TextDisabled(val)
 	/// @argument {String} val
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2601,7 +2601,7 @@ function ImGui_() constructor {
 		return __imgui_text_disabled(val);
 	}
 
-	/// @function TextWrapped(val)
+	/// @func TextWrapped(val)
 	/// @argument {String} val
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2609,7 +2609,7 @@ function ImGui_() constructor {
 		return __imgui_text_wrapped(val);
 	}
 
-	/// @function LabelText(label, val)
+	/// @func LabelText(label, val)
 	/// @argument {String} label
 	/// @argument {String} val
 	/// @context ImGui
@@ -2618,7 +2618,7 @@ function ImGui_() constructor {
 		return __imgui_label_text(label, val);
 	}
 
-	/// @function BulletText(val)
+	/// @func BulletText(val)
 	/// @argument {String} val
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2626,28 +2626,28 @@ function ImGui_() constructor {
 		return __imgui_bullet_text(val);
 	}
 
-	/// @function Value()
+	/// @func Value()
 	/// @context ImGui
 	/// @return {Unknown<unset>}
 	static Value = function() {
 		return __imgui_value();
 	}
 
-	/// @function BeginTooltip()
+	/// @func BeginTooltip()
 	/// @context ImGui
 	/// @return {Undefined}
 	static BeginTooltip = function() {
 		return __imgui_begin_tooltip();
 	}
 
-	/// @function EndTooltip()
+	/// @func EndTooltip()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndTooltip = function() {
 		return __imgui_end_tooltip();
 	}
 
-	/// @function SetTooltip(val)
+	/// @func SetTooltip(val)
 	/// @argument {String} val
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2655,7 +2655,7 @@ function ImGui_() constructor {
 		return __imgui_set_tooltip(val);
 	}
 
-	/// @function TreeNode(label)
+	/// @func TreeNode(label)
 	/// @argument {String} label
 	/// @context ImGui
 	/// @return {Bool}
@@ -2663,7 +2663,7 @@ function ImGui_() constructor {
 		return __imgui_tree_node(label);
 	}
 
-	/// @function TreeNodeEx(label, flags)
+	/// @func TreeNodeEx(label, flags)
 	/// @argument {String} label
 	/// @argument {Enum.ImGuiTreeNodeFlags} [flags=ImGuiTreeNodeFlags.None]
 	/// @context ImGui
@@ -2672,7 +2672,7 @@ function ImGui_() constructor {
 		return __imgui_tree_node_ex(label, flags);
 	}
 
-	/// @function TreePush(str_id)
+	/// @func TreePush(str_id)
 	/// @argument {String} str_id
 	/// @context ImGui
 	/// @return {Undefined}
@@ -2680,21 +2680,21 @@ function ImGui_() constructor {
 		return __imgui_tree_push(str_id);
 	}
 
-	/// @function TreePop()
+	/// @func TreePop()
 	/// @context ImGui
 	/// @return {Undefined}
 	static TreePop = function() {
 		return __imgui_tree_pop();
 	}
 
-	/// @function GetTreeNodeToLabelSpacing()
+	/// @func GetTreeNodeToLabelSpacing()
 	/// @context ImGui
 	/// @return {Real}
 	static GetTreeNodeToLabelSpacing = function() {
 		return __imgui_get_tree_node_to_label_spacing();
 	}
 
-	/// @function SetNextItemOpen(is_open, cond)
+	/// @func SetNextItemOpen(is_open, cond)
 	/// @argument {Bool} is_open
 	/// @argument {Enum.ImGuiCond} [cond=ImGuiCond.None]
 	/// @context ImGui
@@ -2703,7 +2703,7 @@ function ImGui_() constructor {
 		return __imgui_set_next_item_open(is_open, cond);
 	}
 
-	/// @function CollapsingHeader(label, _visible, flags, mask)
+	/// @func CollapsingHeader(label, _visible, flags, mask)
 	/// @argument {String} label
 	/// @argument {Bool} [_visible=undefined]
 	/// @argument {Enum.ImGuiTreeNodeFlags} [flags=ImGuiTreeNodeFlags.None]
@@ -2714,7 +2714,7 @@ function ImGui_() constructor {
 		return __imgui_collapsing_header(label, _visible, flags, mask);
 	}
 
-	/// @function Button(label, width, height)
+	/// @func Button(label, width, height)
 	/// @argument {String} label
 	/// @argument {Real} [width=0]
 	/// @argument {Real} [height=0]
@@ -2724,7 +2724,7 @@ function ImGui_() constructor {
 		return __imgui_button(label, width, height);
 	}
 
-	/// @function SmallButton(label)
+	/// @func SmallButton(label)
 	/// @argument {String} label
 	/// @context ImGui
 	/// @return {Bool}
@@ -2732,7 +2732,7 @@ function ImGui_() constructor {
 		return __imgui_small_button(label);
 	}
 
-	/// @function InvisibleButton(_id, width, height, flags)
+	/// @func InvisibleButton(_id, width, height, flags)
 	/// @argument {String} _id
 	/// @argument {Real} [width=0]
 	/// @argument {Real} [height=0]
@@ -2743,7 +2743,7 @@ function ImGui_() constructor {
 		return __imgui_invisible_button(_id, width, height, flags);
 	}
 
-	/// @function ArrowButton(str_id, dir)
+	/// @func ArrowButton(str_id, dir)
 	/// @argument {String} str_id
 	/// @argument {Real} dir
 	/// @context ImGui
@@ -2752,7 +2752,7 @@ function ImGui_() constructor {
 		return __imgui_arrow_button(str_id, dir);
 	}
 
-	/// @function Image(sprite, subimg, color, alpha, width, height)
+	/// @func Image(sprite, subimg, color, alpha, width, height)
 	/// @argument {Real} sprite
 	/// @argument {Real} subimg
 	/// @argument {Real} [color=c_white]
@@ -2765,7 +2765,7 @@ function ImGui_() constructor {
 		return __imgui_image(sprite, subimg, color, alpha, width, height, sprite_get_uvs(sprite, subimg));
 	}
 
-	/// @function ImageButton(str_id, sprite, subimg, color, alpha, bg_color, bg_alpha, width, height)
+	/// @func ImageButton(str_id, sprite, subimg, color, alpha, bg_color, bg_alpha, width, height)
 	/// @argument {String} str_id
 	/// @argument {Real} sprite
 	/// @argument {Real} subimg
@@ -2781,7 +2781,7 @@ function ImGui_() constructor {
 		return __imgui_image_button(str_id, sprite, subimg, color, alpha, bg_color, bg_alpha, width, height, sprite_get_uvs(sprite, subimg));
 	}
 
-	/// @function Surface(surface, color, alpha, width, height)
+	/// @func Surface(surface, color, alpha, width, height)
 	/// @argument {Real} surface
 	/// @argument {Real} [color=c_white]
 	/// @argument {Real} [alpha=1]
@@ -2794,7 +2794,7 @@ function ImGui_() constructor {
 		return __imgui_surface(surface, color, alpha, width, height, texture_get_uvs(_tex));
 	}
 
-	/// @function Checkbox(label, checked)
+	/// @func Checkbox(label, checked)
 	/// @argument {String} label
 	/// @argument {Bool} checked
 	/// @context ImGui
@@ -2803,7 +2803,7 @@ function ImGui_() constructor {
 		return __imgui_checkbox(label, checked);
 	}
 
-	/// @function CheckboxFlags(label, flags, flags_value)
+	/// @func CheckboxFlags(label, flags, flags_value)
 	/// @argument {String} label
 	/// @argument {Real} flags
 	/// @argument {Real} flags_value
@@ -2813,7 +2813,7 @@ function ImGui_() constructor {
 		return __imgui_checkbox_flags(label, flags, flags_value);
 	}
 
-	/// @function RadioButton(label, active)
+	/// @func RadioButton(label, active)
 	/// @argument {String} label
 	/// @argument {Bool} active
 	/// @context ImGui
@@ -2822,7 +2822,7 @@ function ImGui_() constructor {
 		return __imgui_radio_button(label, active);
 	}
 
-	/// @function ProgressBar(_frac, width, height, overlay)
+	/// @func ProgressBar(_frac, width, height, overlay)
 	/// @argument {Real} _frac
 	/// @argument {Real} [width=0]
 	/// @argument {Real} [height=0]
@@ -2833,14 +2833,14 @@ function ImGui_() constructor {
 		return __imgui_progressbar(_frac, width, height, overlay);
 	}
 
-	/// @function Bullet()
+	/// @func Bullet()
 	/// @context ImGui
 	/// @return {Undefined}
 	static Bullet = function() {
 		return __imgui_bullet();
 	}
 
-	/// @function Begin(name, open, flags, mask)
+	/// @func Begin(name, open, flags, mask)
 	/// @argument {String} name
 	/// @argument {Bool} [open=undefined]
 	/// @argument {Enum.ImGuiWindowFlags} [flags=ImGuiWindowFlags.None]
@@ -2851,14 +2851,14 @@ function ImGui_() constructor {
 		return __imgui_begin(name, open, flags, mask);
 	}
 
-	/// @function End()
+	/// @func End()
 	/// @context ImGui
 	/// @return {Undefined}
 	static End = function() {
 		return __imgui_end();
 	}
 
-	/// @function BeginChild(str_id, width, height, border, flags)
+	/// @func BeginChild(str_id, width, height, border, flags)
 	/// @argument {String} str_id
 	/// @argument {Real} [width=0]
 	/// @argument {Real} [height=0]
@@ -2870,14 +2870,14 @@ function ImGui_() constructor {
 		return __imgui_begin_child(str_id, width, height, border, flags);
 	}
 
-	/// @function EndChild()
+	/// @func EndChild()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndChild = function() {
 		return __imgui_end_child();
 	}
 
-	/// @function BeginChildFrame(_id, width, height, flags)
+	/// @func BeginChildFrame(_id, width, height, flags)
 	/// @argument {Real} _id
 	/// @argument {Real} [width=0]
 	/// @argument {Real} [height=0]
@@ -2888,28 +2888,28 @@ function ImGui_() constructor {
 		return __imgui_begin_child_frame(_id, width, height, flags);
 	}
 
-	/// @function EndChildFrame()
+	/// @func EndChildFrame()
 	/// @context ImGui
 	/// @return {Undefined}
 	static EndChildFrame = function() {
 		return __imgui_end_child_frame();
 	}
 
-	/// @function IsWindowAppearing()
+	/// @func IsWindowAppearing()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsWindowAppearing = function() {
 		return __imgui_is_window_appearing();
 	}
 
-	/// @function IsWindowCollapsed()
+	/// @func IsWindowCollapsed()
 	/// @context ImGui
 	/// @return {Bool}
 	static IsWindowCollapsed = function() {
 		return __imgui_is_window_collapsed();
 	}
 
-	/// @function IsWindowFocused(flags)
+	/// @func IsWindowFocused(flags)
 	/// @argument {Enum.ImGuiFocusedFlags} [flags=ImGuiFocusedFlags.None]
 	/// @context ImGui
 	/// @return {Bool}
@@ -2917,7 +2917,7 @@ function ImGui_() constructor {
 		return __imgui_is_window_focused(flags);
 	}
 
-	/// @function IsWindowHovered(flags)
+	/// @func IsWindowHovered(flags)
 	/// @argument {Enum.ImGuiHoveredFlags} [flags=ImGuiHoveredFlags.None]
 	/// @context ImGui
 	/// @return {Bool}
@@ -2925,42 +2925,42 @@ function ImGui_() constructor {
 		return __imgui_is_window_hovered(flags);
 	}
 
-	/// @function GetWindowDpiScale()
+	/// @func GetWindowDpiScale()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowDpiScale = function() {
 		return __imgui_get_window_dpi_scale();
 	}
 
-	/// @function GetWindowPosX()
+	/// @func GetWindowPosX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowPosX = function() {
 		return __imgui_get_window_x();
 	}
 
-	/// @function GetWindowPosY()
+	/// @func GetWindowPosY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowPosY = function() {
 		return __imgui_get_window_y();
 	}
 
-	/// @function GetWindowWidth()
+	/// @func GetWindowWidth()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowWidth = function() {
 		return __imgui_get_window_width();
 	}
 
-	/// @function GetWindowHeight()
+	/// @func GetWindowHeight()
 	/// @context ImGui
 	/// @return {Real}
 	static GetWindowHeight = function() {
 		return __imgui_get_window_height();
 	}
 
-	/// @function SetNextWindowPos(_x, _y, cond, pivot_x, pivot_y)
+	/// @func SetNextWindowPos(_x, _y, cond, pivot_x, pivot_y)
 	/// @argument {Real} _x
 	/// @argument {Real} _y
 	/// @argument {Enum.ImGuiCond} [cond=ImGuiCond.None]
@@ -2972,7 +2972,7 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_pos(_x, _y, cond, pivot_x, pivot_y);
 	}
 
-	/// @function SetNextWindowSize(width, height, cond)
+	/// @func SetNextWindowSize(width, height, cond)
 	/// @argument {Real} width
 	/// @argument {Real} height
 	/// @argument {Enum.ImGuiCond} [cond=ImGuiCond.None]
@@ -2982,7 +2982,7 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_size(width, height, cond);
 	}
 
-	/// @function SetNextWindowSizeConstraints(min_width, min_height, max_width, max_height)
+	/// @func SetNextWindowSizeConstraints(min_width, min_height, max_width, max_height)
 	/// @argument {Real} min_width
 	/// @argument {Real} min_height
 	/// @argument {Real} max_width
@@ -2993,7 +2993,7 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_size_constraints(min_width, min_height, max_width, max_height);
 	}
 
-	/// @function SetNextWindowContentSize(width, height)
+	/// @func SetNextWindowContentSize(width, height)
 	/// @argument {Real} width
 	/// @argument {Real} height
 	/// @context ImGui
@@ -3002,7 +3002,7 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_content_size(width, height);
 	}
 
-	/// @function SetNextWindowCollapsed(collapsed, cond)
+	/// @func SetNextWindowCollapsed(collapsed, cond)
 	/// @argument {Bool} collapsed
 	/// @argument {Enum.ImGuiCond} [cond=ImGuiCond.None]
 	/// @context ImGui
@@ -3011,14 +3011,14 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_collapsed(collapsed, cond);
 	}
 
-	/// @function SetNextWindowFocus()
+	/// @func SetNextWindowFocus()
 	/// @context ImGui
 	/// @return {Undefined}
 	static SetNextWindowFocus = function() {
 		return __imgui_set_next_window_focus();
 	}
 
-	/// @function SetNextWindowScroll(scroll_x, scroll_y)
+	/// @func SetNextWindowScroll(scroll_x, scroll_y)
 	/// @argument {Real} scroll_x
 	/// @argument {Real} scroll_y
 	/// @context ImGui
@@ -3027,7 +3027,7 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_scroll(scroll_x, scroll_y);
 	}
 
-	/// @function SetNextWindowBgAlpha(alpha)
+	/// @func SetNextWindowBgAlpha(alpha)
 	/// @argument {Real} alpha
 	/// @context ImGui
 	/// @return {Undefined}
@@ -3035,21 +3035,21 @@ function ImGui_() constructor {
 		return __imgui_set_next_window_bgalpha(alpha);
 	}
 
-	/// @function GetScrollX()
+	/// @func GetScrollX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetScrollX = function() {
 		return __imgui_get_scroll_x();
 	}
 
-	/// @function GetScrollY()
+	/// @func GetScrollY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetScrollY = function() {
 		return __imgui_get_scroll_y();
 	}
 
-	/// @function SetScrollX(scroll_x)
+	/// @func SetScrollX(scroll_x)
 	/// @argument {Real} scroll_x
 	/// @context ImGui
 	/// @return {Undefined}
@@ -3057,7 +3057,7 @@ function ImGui_() constructor {
 		return __imgui_set_scroll_x(scroll_x);
 	}
 
-	/// @function SetScrollY(scroll_y)
+	/// @func SetScrollY(scroll_y)
 	/// @argument {Real} scroll_y
 	/// @context ImGui
 	/// @return {Undefined}
@@ -3065,21 +3065,21 @@ function ImGui_() constructor {
 		return __imgui_set_scroll_y(scroll_y);
 	}
 
-	/// @function GetScrollMaxX()
+	/// @func GetScrollMaxX()
 	/// @context ImGui
 	/// @return {Real}
 	static GetScrollMaxX = function() {
 		return __imgui_get_scroll_max_x();
 	}
 
-	/// @function GetScrollMaxY()
+	/// @func GetScrollMaxY()
 	/// @context ImGui
 	/// @return {Real}
 	static GetScrollMaxY = function() {
 		return __imgui_get_scroll_max_y();
 	}
 
-	/// @function SetScrollHereX(center_x_ratio)
+	/// @func SetScrollHereX(center_x_ratio)
 	/// @argument {Real} [center_x_ratio=0.5]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -3087,7 +3087,7 @@ function ImGui_() constructor {
 		return __imgui_set_scroll_here_x(center_x_ratio);
 	}
 
-	/// @function SetScrollHereY(center_y_ratio)
+	/// @func SetScrollHereY(center_y_ratio)
 	/// @argument {Real} [center_y_ratio=0.5]
 	/// @context ImGui
 	/// @return {Undefined}
@@ -3095,7 +3095,7 @@ function ImGui_() constructor {
 		return __imgui_set_scroll_here_y(center_y_ratio);
 	}
 
-	/// @function SetScrollFromPosX(local_x, center_x_ratio)
+	/// @func SetScrollFromPosX(local_x, center_x_ratio)
 	/// @argument {Real} local_x
 	/// @argument {Real} [center_x_ratio=0.5]
 	/// @context ImGui
@@ -3104,7 +3104,7 @@ function ImGui_() constructor {
 		return __imgui_set_scroll_from_pos_x(local_x, center_x_ratio);
 	}
 
-	/// @function SetScrollFromPosY(local_y, center_y_ratio)
+	/// @func SetScrollFromPosY(local_y, center_y_ratio)
 	/// @argument {Real} local_y
 	/// @argument {Real} [center_y_ratio=0.5]
 	/// @context ImGui
@@ -3113,7 +3113,7 @@ function ImGui_() constructor {
 		return __imgui_set_scroll_from_pos_y(local_y, center_y_ratio);
 	}
 
-	/// @function SetWindowPos(_x, _y, cond)
+	/// @func SetWindowPos(_x, _y, cond)
 	/// @argument {Real} _x
 	/// @argument {Real} _y
 	/// @argument {Enum.ImGuiCond} [cond=ImGuiCond.None]
@@ -3123,7 +3123,7 @@ function ImGui_() constructor {
 		return __imgui_set_window_pos(_x, _y, cond);
 	}
 
-	/// @function SetWindowSize(name, width, height, cond)
+	/// @func SetWindowSize(name, width, height, cond)
 	/// @argument {String} [name=]
 	/// @argument {Real} width
 	/// @argument {Real} height
@@ -3134,7 +3134,7 @@ function ImGui_() constructor {
 		return __imgui_set_window_size(name, width, height, cond);
 	}
 
-	/// @function SetWindowCollapsed(name, collapsed, cond)
+	/// @func SetWindowCollapsed(name, collapsed, cond)
 	/// @argument {String} [name=]
 	/// @argument {Bool} collapsed
 	/// @argument {Enum.ImGuiCond} [cond=ImGuiCond.None]
@@ -3144,7 +3144,7 @@ function ImGui_() constructor {
 		return __imgui_set_window_collapsed(name, collapsed, cond);
 	}
 
-	/// @function SetWindowFocus(name)
+	/// @func SetWindowFocus(name)
 	/// @argument {String} [name=]
 	/// @context ImGui
 	/// @return {Undefined}

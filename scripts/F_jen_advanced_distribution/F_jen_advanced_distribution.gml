@@ -2,16 +2,16 @@
 
 //Advanced scattering functions.
 #region jen_scatter_offset(grid, find_value, x_offset, y_offset, replace, new_value, [chance], [function]);
-/// @function jen_scatter_offset
-/// @description Replaces some percentage of one value with another, offset by a search value.
-/// @param grid
-/// @param find_value
-/// @param x_offset
-/// @param y_offset
-/// @param replace
-/// @param new_value
-/// @param [chance]
-/// @param [function]
+/// @func jen_scatter_offset
+/// @desc Replaces some percentage of one value with another, offset by a search value.
+/// @arg  grid
+/// @arg  find_value
+/// @arg  x_offset
+/// @arg  y_offset
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
 function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -40,16 +40,16 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 }
 #endregion
 #region jen_scatter_apply(target_grid, apply_grid, find_value, x_offset, y_offset, replace, [chance], [function]);
-/// @function jen_scatter_apply
-/// @description Replaces some percentage of one value with the values of another grid with jen_apply.
-/// @param target_grid
-/// @param apply_grid
-/// @param find_value
-/// @param x_offset
-/// @param y_offset
-/// @param replace
-/// @param [chance]
-/// @param [function]
+/// @func jen_scatter_apply
+/// @desc Replaces some percentage of one value with the values of another grid with jen_apply.
+/// @arg  target_grid
+/// @arg  apply_grid
+/// @arg  find_value
+/// @arg  x_offset
+/// @arg  y_offset
+/// @arg  replace
+/// @arg  [chance]
+/// @arg  [function]
 function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -80,16 +80,16 @@ function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace,
 }
 #endregion
 #region jen_scatter_apply_list(target_grid, apply_list, find_value, x_offset, y_offset, replace, [chance], [function]);
-/// @function jen_scatter_apply_list
-/// @description Replaces some percentage of one value with the values of another grid with jen_apply.
-/// @param target_grid
-/// @param apply_list
-/// @param find_value
-/// @param x_offset
-/// @param y_offset
-/// @param replace
-/// @param [chance]
-/// @param [function]
+/// @func jen_scatter_apply_list
+/// @desc Replaces some percentage of one value with the values of another grid with jen_apply.
+/// @arg  target_grid
+/// @arg  apply_list
+/// @arg  find_value
+/// @arg  x_offset
+/// @arg  y_offset
+/// @arg  replace
+/// @arg  [chance]
+/// @arg  [function]
 function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -122,17 +122,17 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 }
 #endregion
 #region jen_number_offset(grid, find_value x_offset, y_offset, replace, new_value, number, [chance], [function]);
-/// @function jen_number_offset
-/// @description Sets a new value some number of times, offset from a particular search value.
-/// @param grid
-/// @param find_values
-/// @param x_offset
-/// @param y_offset
-/// @param replace
-/// @param new_value
-/// @param number
-/// @param [chance]
-/// @param [function]
+/// @func jen_number_offset
+/// @desc Sets a new value some number of times, offset from a particular search value.
+/// @arg  grid
+/// @arg  find_values
+/// @arg  x_offset
+/// @arg  y_offset
+/// @arg  replace
+/// @arg  new_value
+/// @arg  number
+/// @arg  [chance]
+/// @arg  [function]
 function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -183,17 +183,17 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 }
 #endregion
 #region jen_number_apply(target_grid, apply_grid, find_value x_offset, y_offset, replace, number, [chance], [function]);
-/// @function jen_number_apply
-/// @description Sets a new value some number of times, offset from a particular search value.
-/// @param target_grid
-/// @param apply_grid
-/// @param find_values
-/// @param x_offset
-/// @param y_offset
-/// @param replace
-/// @param number
-/// @param [chance]
-/// @param [function]
+/// @func jen_number_apply
+/// @desc Sets a new value some number of times, offset from a particular search value.
+/// @arg  target_grid
+/// @arg  apply_grid
+/// @arg  find_values
+/// @arg  x_offset
+/// @arg  y_offset
+/// @arg  replace
+/// @arg  number
+/// @arg  [chance]
+/// @arg  [function]
 function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -243,17 +243,17 @@ function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, 
 }
 #endregion
 #region jen_number_apply_list(target_grid, apply_list, find_value x_offset, y_offset, replace, number, [chance], [function]);
-/// @function jen_number_apply_list
-/// @description Sets a new value some number of times, offset from a particular search value.
-/// @param target_grid
-/// @param apply_list
-/// @param find_values
-/// @param x_offset
-/// @param y_offset
-/// @param replace
-/// @param number
-/// @param [chance]
-/// @param [function]
+/// @func jen_number_apply_list
+/// @desc Sets a new value some number of times, offset from a particular search value.
+/// @arg  target_grid
+/// @arg  apply_list
+/// @arg  find_values
+/// @arg  x_offset
+/// @arg  y_offset
+/// @arg  replace
+/// @arg  number
+/// @arg  [chance]
+/// @arg  [function]
 function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -307,16 +307,16 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 }
 #endregion
 #region jen_automata(grid, living, empty, bounds, birth, death, [chance], [function]);
-/// @function jen_automata
-/// @description Applies cellular automata between two different values.
-/// @param grid
-/// @param living
-/// @param empty
-/// @param bounds
-/// @param birth
-/// @param death
-/// @param [chance]
-/// @param [function]
+/// @func jen_automata
+/// @desc Applies cellular automata between two different values.
+/// @arg  grid
+/// @arg  living
+/// @arg  empty
+/// @arg  bounds
+/// @arg  birth
+/// @arg  death
+/// @arg  [chance]
+/// @arg  [function]
 function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _function = noone)
 {
 	//Initialize variables.
