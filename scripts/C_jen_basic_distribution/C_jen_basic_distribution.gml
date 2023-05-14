@@ -3,7 +3,7 @@
 #region jen_replace(grid, replace, new_value);
 /// @func							jen_replace(grid, replace, new_value):
 /// @desc							Replaces all matching values with a new value.
-///										The replace and new_value parameters both accept Arrays.
+///										The replace and new_value parameters both also accept Arrays.
 /// @arg  {Id.DsGrid} grid
 /// @arg  {Any}				replace
 /// @arg  {Any}				new_value
@@ -27,7 +27,7 @@ function jen_replace(_grid, _replace, _new_value)
 #region NEW jen_replace_not(grid, replace, new_value);
 /// @func							jen_replace_not(grid, replace, new_value):
 /// @desc							Replaces all NOT matching values with a new value.
-///										The replace and new_value parameters both accept Arrays.
+///										The replace and new_value parameters both also accept Arrays.
 /// @arg  {Id.DsGrid} grid
 /// @arg  {Any}				replace
 /// @arg  {Any}				new_value
@@ -49,18 +49,22 @@ function jen_replace_not(_grid, _replace, _new_value)
 }
 #endregion
 #region jen_scatter(grid, replace, new_value, [chance], [function]);
-/// @func jen_scatter
-/// @desc Replaces some percentage of one value with another.
-/// @arg  grid
-/// @arg  replace
-/// @arg  new_value
-/// @arg  [chance]
-/// @arg  [function]
+/// @func							jen_scatter(grid, replace, new_value, [chance], [function]):
+/// @desc							Replaces some percentage of matching values with a new value.
+/// @desc							The replace and new_value parameters both also accept Arrays.
+/// @arg  {Id.DsGrid}	grid
+/// @arg  {Any}				replace
+/// @arg  {Any}				new_value
+/// @arg  {Real}			[chance]
+/// @arg  {Function}	[function]
 function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
+	
+	//Array conversions.
+	_replace = _jenternal_convert_replace(_replace);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
@@ -73,7 +77,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noo
 				//Replace matching values.
 				jen_set(_grid, xx, yy, _replace, _new_value);
 			}
-			else if (_replace == all || jen_get(_grid, xx, yy) == _replace)
+			else if (_replace == all || jen_test(_grid, xx, yy, _replace))
 			{
 				//Run the custom function.
 				_function(_grid, xx, yy, _replace, _new_value);

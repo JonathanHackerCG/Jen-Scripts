@@ -17,7 +17,7 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	#region Second Layer (Decorations)
 	jen_replace_not(_terrain, obj_grass, noone); //Remove everything except grass.
 	
-	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, obj_grass, obj_tree, false, 20);
+	jen_scatter(_terrain, obj_grass, obj_tree, 20);
 	
 	//Instantiate the second layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_2)
