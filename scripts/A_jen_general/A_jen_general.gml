@@ -403,7 +403,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 /// @arg {Real} x						The x-position in the room to instantiate the JenGrid.
 /// @arg {Real} y						The x-position in the room to instantiate the JenGrid.
 /// @arg {Any} layer				The layer ID or layer name to instantiate the objects.
-/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created.
+/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created. Or, a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined)
 {
 	//Getting width and height of the grid.
@@ -419,7 +419,14 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 		{
 			if (!is_undefined(_struct))
 			{
-				instance_create_layer(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _layer, _index, _struct);
+				if (is_struct(_struct))
+				{
+					instance_create_layer(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _layer, _index, _struct);
+				}
+				else
+				{
+					instance_create_layer(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _layer, _index, _struct(xx, yy));
+				}
 			}
 			else
 			{
@@ -436,7 +443,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 /// @arg {Real} x						The x-position in the room to instantiate the JenGrid.
 /// @arg {Real} y						The x-position in the room to instantiate the JenGrid.
 /// @arg {Real} depth				The depth to instantiate the JenGrid.
-/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created.
+/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created. Or, a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined)
 {
 	//Getting width and height of the grid.
@@ -452,7 +459,14 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 		{
 			if (!is_undefined(_struct))
 			{
-				instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index, _struct);
+				if (is_struct(_struct))
+				{
+					instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index, _struct);
+				}
+				else
+				{
+					instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index, _struct(xx, yy));
+				}
 			}
 			else
 			{

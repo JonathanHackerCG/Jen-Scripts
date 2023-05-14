@@ -1,6 +1,4 @@
 /// @desc 
-event_inherited();
-
 w = 640;
 h = 360;
 
