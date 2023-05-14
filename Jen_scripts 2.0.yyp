@@ -57,7 +57,6 @@
     {"id":{"name":"obj_dirt","path":"objects/obj_dirt/obj_dirt.yy",},"order":3,},
     {"id":{"name":"rm_initialize","path":"rooms/rm_initialize/rm_initialize.yy",},"order":1,},
     {"id":{"name":"spr_dirt","path":"sprites/spr_dirt/spr_dirt.yy",},"order":2,},
-    {"id":{"name":"imgui_gm_snake_case","path":"scripts/imgui_gm_snake_case/imgui_gm_snake_case.yy",},"order":1,},
     {"id":{"name":"spr_wood","path":"sprites/spr_wood/spr_wood.yy",},"order":7,},
     {"id":{"name":"rm_dungeons","path":"rooms/rm_dungeons/rm_dungeons.yy",},"order":2,},
     {"id":{"name":"obj_water_light","path":"objects/obj_water_light/obj_water_light.yy",},"order":7,},

@@ -1,22 +1,50 @@
 // Basic distribution functions. Scattering and replacing.
 
 #region jen_replace(grid, replace, new_value);
-/// @func jen_replace
-/// @desc Replaces all of one value with another value.
-/// @arg  grid
-/// @arg  replace
-/// @arg  new_value
+/// @func							jen_replace(grid, replace, new_value):
+/// @desc							Replaces all matching values with a new value.
+///										The replace and new_value parameters both accept Arrays.
+/// @arg  {Id.DsGrid} grid
+/// @arg  {Any}				replace
+/// @arg  {Any}				new_value
 function jen_replace(_grid, _replace, _new_value)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
 	
+	//Array conversions.
+	_replace = _jenternal_convert_replace(_replace);
+	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
 		jen_set(_grid, xx, yy, _replace, _new_value);
+	} }
+}
+#endregion
+#region NEW jen_replace_not(grid, replace, new_value);
+/// @func							jen_replace_not(grid, replace, new_value):
+/// @desc							Replaces all NOT matching values with a new value.
+///										The replace and new_value parameters both accept Arrays.
+/// @arg  {Id.DsGrid} grid
+/// @arg  {Any}				replace
+/// @arg  {Any}				new_value
+function jen_replace_not(_grid, _replace, _new_value)
+{
+	//Getting width and height of the grid.
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
+	
+	//Array conversions.
+	_replace = _jenternal_convert_replace(_replace);
+	
+	//Looping through the grid to replace each matching value.
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
+	{
+		jen_set_not(_grid, xx, yy, _replace, _new_value);
 	} }
 }
 #endregion

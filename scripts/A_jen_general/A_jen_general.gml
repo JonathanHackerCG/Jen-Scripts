@@ -116,6 +116,31 @@ function jen_set(_grid, _x, _y, _replace, _new_value)
 	return false;
 }
 #endregion
+#region NEW jen_set_not(grid, x, y, replace, new_value);
+/// @func										jen_set_not(grid, x, y, replace, new_value):
+/// @desc										Set a value at a position NOT matching the replace value(s).
+///													Returns true if the value is sucessfully set.
+/// @arg {Id.DsGrid} grid		JenGrid to set the value of.
+/// @arg {Real} x						The x-position of the cell to set the value of.
+/// @arg {Real} y						The y-position of the cell to set the value of.
+/// @arg {Any} replace			Matching value to keep. If an Array, will keep all values in the Array.
+/// @arg {Any} new_value		New value to replace with. If an Array, will randomly choose one to replace.
+/// @returns {Bool}
+function jen_set_not(_grid, _x, _y, _replace, _new_value)
+{
+	//Array conversions and other checks.
+	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
+	_new_value = _jenternal_convert_new_value(_new_value);
+	
+	if (!jen_test(_grid, _x, _y, _replace))
+	{
+		//Setting the new value.
+		_grid[# _x, _y] = _new_value;
+		return true;
+	}
+	return false;
+}
+#endregion
 #region NEW jen_test(grid, x, y, replace);
 /// @func										jen_test(grid, x, y, replace):
 /// @desc										Returns true if a position on the grid matches the provided replace value or array.
