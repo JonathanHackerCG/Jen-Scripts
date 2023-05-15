@@ -20,6 +20,8 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 	
 	jen_grid_apply(_terrain, _ruin, obj_grass, 0, 0, 80);
 	
+	jen_grid_mirror(_terrain, irandom(1), irandom(1));
+	
 	//Instantiate the first layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);
 	#endregion

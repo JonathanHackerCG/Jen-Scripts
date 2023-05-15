@@ -244,11 +244,11 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _fun
 }
 #endregion
 #region jen_grid_mirror(JenGrid, horizontal, vertical);
-/// @func jen_grid_mirror
-/// @desc Mirrors the data in a grid horizontally and or vertically.
+/// @func jen_grid_mirror(JenGrid, horizontal, vertical):
+/// @desc Flips the data in a grid horizontally and/or vertically.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  horizontal
-/// @arg  vertical
+/// @arg  {Bool}				horizontal
+/// @arg  {Bool}				vertical
 function jen_grid_mirror(_grid, _horizontal, _vertical)
 {
 	//Getting width and height of the grid.
@@ -256,7 +256,7 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 	var _h = jen_grid_height(_grid);
 	
 	//Create a temporary grid.
-	var _temp_grid = jen_grid_create(_width, _height, noone);
+	var _temp_grid = jen_grid_create(_w, _h, noone);
 	
 	//Iterate through the target grid, copying values.
 	var set, xcopy, ycopy;
@@ -267,8 +267,8 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 		ycopy = yy;
 		
 		//Change positions to mirror the values.
-		if (_vertical) { xcopy = _width - xx - 1; }
-		if (_horizontal) { ycopy = _height - yy - 1; }
+		if (_vertical) { xcopy = _w - xx - 1; }
+		if (_horizontal) { ycopy = _h - yy - 1; }
 		
 		set = jen_get(_grid, xx, yy);
 		jen_set(_temp_grid, xcopy, ycopy, all, set);
