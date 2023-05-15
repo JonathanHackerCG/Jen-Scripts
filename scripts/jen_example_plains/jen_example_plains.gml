@@ -1,10 +1,12 @@
+/// NOTE TO SELF: When finishing an example script, check off "test cases" for all the functions used.
+
 /// @func jen_example_plains
 /// @desc A field with boulders and flowers.
 /// @arg	cellsw
 /// @arg	cellsh
 function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 {
-	//Create a new Jen-Grid to store the terrain.
+	//Create a new JenGrid to store the terrain.
 	var _terrain = jen_grid_create(_cellsw, _cellsh, obj_grass);
 	
 	#region First Layer (Terrain)

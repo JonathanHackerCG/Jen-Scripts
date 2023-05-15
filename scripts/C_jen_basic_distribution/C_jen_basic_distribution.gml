@@ -1,12 +1,11 @@
 // Basic distribution functions. Scattering and replacing.
 
 #region jen_replace(grid, replace, new_value);
-/// @func							jen_replace(grid, replace, new_value):
-/// @desc							Replaces all matching values with a new value.
-///										The replace and new_value parameters both also accept Arrays.
+/// @func jen_replace(grid, replace, new_value):
+/// @desc Replaces all matching values with a new value.
 /// @arg  {Id.DsGrid} grid
-/// @arg  {Any}				replace
-/// @arg  {Any}				new_value
+/// @arg  {Any}				replace			Supports Array (Any)
+/// @arg  {Any}				new_value		Supports Array (Choose)
 function jen_replace(_grid, _replace, _new_value)
 {
 	//Getting width and height of the grid.
@@ -25,12 +24,11 @@ function jen_replace(_grid, _replace, _new_value)
 }
 #endregion
 #region NEW jen_replace_not(grid, replace, new_value);
-/// @func							jen_replace_not(grid, replace, new_value):
-/// @desc							Replaces all NOT matching values with a new value.
-///										The replace and new_value parameters both also accept Arrays.
+/// @func jen_replace_not(grid, replace, new_value):
+/// @desc Replaces all NOT matching values with a new value.
 /// @arg  {Id.DsGrid} grid
-/// @arg  {Any}				replace
-/// @arg  {Any}				new_value
+/// @arg  {Any}				replace			Supports Array (Any)
+/// @arg  {Any}				new_value		Supports Array (Choose)
 function jen_replace_not(_grid, _replace, _new_value)
 {
 	//Getting width and height of the grid.
@@ -49,12 +47,11 @@ function jen_replace_not(_grid, _replace, _new_value)
 }
 #endregion
 #region jen_scatter(grid, replace, new_value, [chance], [function]);
-/// @func							jen_scatter(grid, replace, new_value, [chance], [function]):
-/// @desc							Replaces some percentage of matching values with a new value.
-/// @desc							The replace and new_value parameters both also accept Arrays.
+/// @func jen_scatter(grid, replace, new_value, [chance], [function]):
+/// @desc Replaces some percentage of matching values with a new value.
 /// @arg  {Id.DsGrid}	grid
-/// @arg  {Any}				replace
-/// @arg  {Any}				new_value
+/// @arg  {Any}				replace			Supports Array (Any)
+/// @arg  {Any}				new_value		Supports Array (Choose)
 /// @arg  {Real}			[chance]
 /// @arg  {Function}	[function]
 function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noone)
@@ -148,16 +145,16 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 	ds_list_destroy(_positions);
 }
 #endregion
-#region jen_near(grid, near, replace, new_value, radius, [chance], [function]);
-/// @func jen_near
-/// @desc Changes all values that are within a radius of another value.
-/// @arg  grid
-/// @arg  near
-/// @arg  replace
-/// @arg  new_value
-/// @arg  radius
-/// @arg  [chance]
-/// @arg  [function]
+#region jen_near(grid, target, replace, new_value, radius, [chance], [function]);
+/// @func jen_near(grid, target, replace, new_value, radius, [chance], [function]):
+/// @desc Replaces all matching values with a new value, within radius distance of matching target values.
+/// @arg  {Id.DsGrid}	grid
+/// @arg  {Any}				target			Supports Array (Any)
+/// @arg  {Any}				replace			Supports Array (Any)
+/// @arg  {Any}				new_value		Supports Array (Chooses)
+/// @arg  {Real}			radius
+/// @arg  {Real}			[chance]
+/// @arg  {Function}	[function]
 function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.

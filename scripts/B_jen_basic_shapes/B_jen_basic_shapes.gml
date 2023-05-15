@@ -50,14 +50,13 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 #region jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]);
 /// @func							jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]):
 /// @desc							Creates a rectangle between two positions.
-///										The replace and new_value parameters both also accept Arrays.
 /// @arg {Id.DsGrid}	grid
 /// @arg {Real}				x1
 /// @arg {Real}				y1
 /// @arg {Real}				x2
 /// @arg {Real}				y2
-/// @arg {Any}				replace
-/// @arg {Any}				new_value
+/// @arg {Any}				replace			Supports Array (Any)
+/// @arg {Any}				new_value		Supports Array (Chooses)
 /// @arg {Real}				[outline]
 /// @arg {Real}				[chance]
 /// @arg {Function}		[function]

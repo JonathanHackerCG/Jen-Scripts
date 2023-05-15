@@ -19,11 +19,11 @@ JEN_CELLW = 16;
 
 //Initialization and Getters/Setters
 #region jen_grid_cellsize(cellw, cellh);
-/// @func								jen_grid_cellsize(cellw, cellh):
-/// @desc								Sets the cell width and cell height of your terrain.
-///											Referenced with JEN_CELLW and JEN_CELLH.
-/// @arg {Real} cellw		Width of cells (in pixels).
-/// @arg {Real} cellh		Height of cells (in pixels).
+/// @func jen_grid_cellsize(cellw, cellh):
+/// @desc Sets the terrain cell width and cell height in pixels.
+///				Referenced with JEN_CELLW and JEN_CELLH.
+/// @arg {Real} cellw
+/// @arg {Real} cellh
 function jen_grid_cellsize(_cellw, _cellh)
 {
 	JEN_CELLW = _cellw;
@@ -31,11 +31,11 @@ function jen_grid_cellsize(_cellw, _cellh)
 }
 #endregion
 #region jen_grid_create(width, height, [cleared]);
-/// @func									jen_grid_create(width, height, [cleared]):
-/// @desc									Create a new JenGrid of specified width and height.
-/// @arg {Real} width			The width of the JenGrid (in cells).
-/// @arg {Real} height		The height of the JenGrid (in cells).
-/// @arg {Any} [cleared]	The initialized value of the JenGrid. Defaults to noone.
+/// @func jen_grid_create(width, height, [cleared]):
+/// @desc Create a new JenGrid of specified width and height (in cells).
+/// @arg {Real} width
+/// @arg {Real} height
+/// @arg {Any} [cleared]	= noone
 /// @returns {Id.DsGrid}
 function jen_grid_create(_width, _height, _cleared = noone)
 {
@@ -91,15 +91,15 @@ function jen_get(_grid, _x, _y)
 	return _grid[# _x, _y];
 }
 #endregion
-#region jen_set(grid, x, y, replace, new_value);
-/// @func										jen_set(grid, x, y, replace, new_value):
-/// @desc										Set a value at an eligible position.
-///													Returns true if the value is sucessfully set.
-/// @arg {Id.DsGrid} grid		JenGrid to set the value of.
-/// @arg {Real} x						The x-position of the cell to set the value of.
-/// @arg {Real} y						The y-position of the cell to set the value of.
-/// @arg {Any} replace			Matching value to replace. If an Array, will replace all values in the Array.
-/// @arg {Any} new_value		New value to replace with. If an Array, will randomly choose one to replace.
+#region jen_set(grid, xcell, ycell, replace, new_value);
+/// @func jen_set(grid, xcell, ycell, replace, new_value):
+/// @desc Set a value at an eligible position.
+///				Returns true if the value is sucessfully set.
+/// @arg {Id.DsGrid}	grid
+/// @arg {Real}				xcell
+/// @arg {Real}				ycell
+/// @arg {Any}				replace			Supports Array (Any)
+/// @arg {Any}				new_value		Supports Array (Choose)
 /// @returns {Bool}
 function jen_set(_grid, _x, _y, _replace, _new_value)
 {
