@@ -10,10 +10,10 @@
 show_debug_message(">>> Jen-Scripts version '" + JEN_SCRIPTS_VERSION + "' initialized!");
 
 //Internal Jen-Scripts Functions (Undocumented)
-#region _jenternal_autotile(grid, xx, yy, test, default);
+#region _jenternal_autotile(JenGrid, xx, yy, test, default);
 /// @func _jenternal_autotile
 /// @desc Converts a value between 0-15 reflecting surrounding tiles to an appropriate tilemap index
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
 /// @arg  test
@@ -150,9 +150,9 @@ function _jenternal_autotile(_grid, _x1, _y1, _test, _default)
 	return tile;
 }
 #endregion
-#region _jenternal_test(grid, x1, y1, test, default);
+#region _jenternal_test(JenGrid, x1, y1, test, default);
 /// @func _jenternal_test
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
 /// @arg  test

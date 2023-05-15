@@ -93,6 +93,7 @@
     {"roomId":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
   ],
   "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Examples","folderPath":"folders/Examples.yy","order":18,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy","order":5,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Jen-Scripts","folderPath":"folders/Jen-Scripts.yy","order":12,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_Internal","folderPath":"folders/Jen-Scripts/_Internal.yy","order":11,},
@@ -110,7 +111,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_Sprites","folderPath":"folders/Testing/Terrain/Generic/_Sprites.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Overworld","folderPath":"folders/Testing/Terrain/Overworld.yy","order":18,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_Sprites","folderPath":"folders/Testing/Terrain/Overworld/_Sprites.yy","order":0,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Examples","folderPath":"folders/Examples.yy","order":18,},
   ],
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},

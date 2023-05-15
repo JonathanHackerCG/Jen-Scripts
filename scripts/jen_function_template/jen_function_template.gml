@@ -1,4 +1,5 @@
 // A template function for use in the option [function] parameter.
+// TODO: Update these for proper formatting.
 
 /// @desc This function will be applied at a position instead of simply writing a value.
 /// This function will be provided the grid, and the x/y position and values currently being changed.

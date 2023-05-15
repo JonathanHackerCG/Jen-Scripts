@@ -22,8 +22,8 @@ JEN_CELLW = 16;
 /// @func jen_grid_cellsize(cellw, cellh):
 /// @desc Sets the terrain cell width and cell height in pixels.
 ///				Referenced with JEN_CELLW and JEN_CELLH.
-/// @arg {Real} cellw
-/// @arg {Real} cellh
+/// @arg	{Real} cellw
+/// @arg	{Real} cellh
 function jen_grid_cellsize(_cellw, _cellh)
 {
 	JEN_CELLW = _cellw;
@@ -33,9 +33,9 @@ function jen_grid_cellsize(_cellw, _cellh)
 #region jen_grid_create(width, height, [cleared]);
 /// @func jen_grid_create(width, height, [cleared]):
 /// @desc Create a new JenGrid of specified width and height (in cells).
-/// @arg {Real} width
-/// @arg {Real} height
-/// @arg {Any} [cleared]	= noone
+/// @arg	{Real}	width
+/// @arg	{Real}	height
+/// @arg	{Any}	[cleared]	Default: noone
 /// @returns {Id.DsGrid}
 function jen_grid_create(_width, _height, _cleared = noone)
 {
@@ -48,10 +48,10 @@ function jen_grid_create(_width, _height, _cleared = noone)
 }
 #endregion
 #region jen_grid_destroy(grid);
-/// @func										jen_grid_destroy(grid):
-/// @desc										Destroy a JenGrid, clearing it from memory.
-///													Returns true if the JenGrid was successfully destroyed.
-/// @arg {Id.DsGrid} grid		JenGrid to destroy.
+/// @func jen_grid_destroy(grid):
+/// @desc Destroy a JenGrid, clearing it from memory.
+///				Returns true if the JenGrid was successfully destroyed.
+/// @arg	{Id.DsGrid}		JenGrid
 /// @returns {Bool}
 function jen_grid_destroy(_grid)
 {
@@ -66,23 +66,23 @@ function jen_grid_destroy(_grid)
 }
 #endregion
 #region NEW jen_grid_exists(grid);
-/// @func							jen_grid_exists(grid):
-/// @desc							Returns true if a JenGrid exists.
-///										NOTE: Currently cannot distinguish between a JenGrid and a DS Grid.
-/// @arg {Real} grid	JenGrid to check if it exists.
+/// @func jen_grid_exists(grid):
+/// @desc Returns true if a JenGrid exists.
+///				NOTE: Currently cannot distinguish between a JenGrid and a DS Grid.
+/// @arg	{Id.DsGrid}		JenGrid
 /// @returns {Bool}
 function jen_grid_exists(_grid)
 {
 	return ds_exists(_grid, ds_type_grid);
 }
 #endregion
-#region jen_get(grid, x, y);
-/// @func jen_get(grid, x, y):
-/// @desc										Return a value at a position.
-///													Returns undefined if it is out of bounds.
-/// @arg {Id.DsGrid} grid		JenGrid to get a value from.
-/// @arg {Real} x						The x-position of the cell to get a value from.
-/// @arg {Real} y						The y-position of the cell to get a value from.
+#region jen_get(JenGrid, xcell, ycell);
+/// @func jen_get(JenGrid, xcell, ycell):
+/// @desc Return a value at a position.
+///				Returns undefined if it is out of bounds.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				xcell
+/// @arg	{Real}				ycell
 /// @returns {Any}
 function jen_get(_grid, _x, _y)
 {
@@ -91,15 +91,15 @@ function jen_get(_grid, _x, _y)
 	return _grid[# _x, _y];
 }
 #endregion
-#region jen_set(grid, xcell, ycell, replace, new_value);
-/// @func jen_set(grid, xcell, ycell, replace, new_value):
+#region jen_set(JenGrid, xcell, ycell, replace, new_value);
+/// @func jen_set(JenGrid, xcell, ycell, replace, new_value):
 /// @desc Set a value at an eligible position.
 ///				Returns true if the value is sucessfully set.
-/// @arg {Id.DsGrid}	grid
-/// @arg {Real}				xcell
-/// @arg {Real}				ycell
-/// @arg {Any}				replace			Supports Array (Any)
-/// @arg {Any}				new_value		Supports Array (Choose)
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				xcell
+/// @arg	{Real}				ycell
+/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					new_value		Supports Array (Choose)
 /// @returns {Bool}
 function jen_set(_grid, _x, _y, _replace, _new_value)
 {
@@ -116,15 +116,15 @@ function jen_set(_grid, _x, _y, _replace, _new_value)
 	return false;
 }
 #endregion
-#region NEW jen_set_not(grid, x, y, replace, new_value);
-/// @func										jen_set_not(grid, x, y, replace, new_value):
-/// @desc										Set a value at a position NOT matching the replace value(s).
-///													Returns true if the value is sucessfully set.
-/// @arg {Id.DsGrid} grid		JenGrid to set the value of.
-/// @arg {Real} x						The x-position of the cell to set the value of.
-/// @arg {Real} y						The y-position of the cell to set the value of.
-/// @arg {Any} replace			Matching value to keep. If an Array, will keep all values in the Array.
-/// @arg {Any} new_value		New value to replace with. If an Array, will randomly choose one to replace.
+#region NEW jen_set_not(JenGrid, xcell, ycell, replace, new_value);
+/// @func jen_set_not(JenGrid, xcell, ycell, replace, new_value):
+/// @desc Set a value at a position NOT matching the replace value(s).
+///				Returns true if the value is sucessfully set.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				xcell
+/// @arg	{Real}				ycell
+/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					new_value		Supports Array (Choose)
 /// @returns {Bool}
 function jen_set_not(_grid, _x, _y, _replace, _new_value)
 {
@@ -141,13 +141,13 @@ function jen_set_not(_grid, _x, _y, _replace, _new_value)
 	return false;
 }
 #endregion
-#region NEW jen_test(grid, x, y, replace);
-/// @func										jen_test(grid, x, y, replace):
-/// @desc										Returns true if a position on the grid matches the provided replace value or array.
-/// @arg {Id.DsGrid} grid		JenGrid to check the value of.
-/// @arg {Real} x						The x-position of the cell to check the value of.
-/// @arg {Real} y						The y-position of the cell to check the value of.
-/// @arg {Any} replace			Matching value to check. If an Array, will check all values in the Array.
+#region NEW jen_test(JenGrid, xcell, ycell, target);
+/// @func jen_test(JenGrid, xcell, ycell, target):
+/// @desc Returns true if a position on the grid matches the provided target value(s).
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				xcell
+/// @arg	{Real}				ycell
+/// @arg	{Any}					target			Supports Array (Any)
 /// @returns {Bool}
 function jen_test(_grid, _x, _y, _replace)
 {
@@ -165,31 +165,31 @@ function jen_test(_grid, _x, _y, _replace)
 }
 #endregion
 #region jen_grid_width(grid);
-/// @func										jen_grid_width(grid):
-/// @desc										Returns the width of a JenGrid.
-/// @arg {Id.DsGrid} grid		JenGrid to check the width of.
-/// @returns {Real}
+/// @func jen_grid_width(grid):
+/// @desc Returns the width of a JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @returns {Integer}
 function jen_grid_width(_grid)
 {
 	return ds_grid_width(_grid);
 }
 #endregion
 #region jen_grid_height(grid);
-/// @func										jen_grid_height(grid):
-/// @desc						Returns the height of a JenGrid.
-/// @arg {Id.DsGrid} grid		JenGrid to check the height of.
+/// @func jen_grid_height(grid):
+/// @desc Returns the height of a JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
 /// @returns {Real}
 function jen_grid_height(_grid)
 {
 	return ds_grid_height(_grid);
 }
 #endregion
-#region NEW jen_grid_inbounds(grid, x, y);
-/// @func										jen_grid_inbounds(grid, x, y):
-/// @desc										Returns true if the position is in bounds of the JenGrid.
-/// @arg {Id.DsGrid} grid		JenGrid to check the value of.
-/// @arg {Real} x						The x-position of the cell to check the value of.
-/// @arg {Real} y						The y-position of the cell to check the value of.
+#region NEW jen_grid_inbounds(JenGrid, xcell, ycell);
+/// @func jen_grid_inbounds(JenGrid, xcell, ycell):
+/// @desc Returns true if the position is in bounds of the JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				xcell
+/// @arg	{Real}				ycell
 /// @returns {Bool}
 function jen_grid_inbounds(_grid, _x, _y)
 {
@@ -239,10 +239,10 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _fun
 	} }
 }
 #endregion
-#region jen_grid_mirror(grid, horizontal, vertical);
+#region jen_grid_mirror(JenGrid, horizontal, vertical);
 /// @func jen_grid_mirror
 /// @desc Mirrors the data in a grid horizontally and or vertically.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  horizontal
 /// @arg  vertical
 function jen_grid_mirror(_grid, _horizontal, _vertical)
@@ -275,10 +275,10 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 	ds_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_grid_rotate(grid, rotations);
+#region jen_grid_rotate(JenGrid, rotations);
 /// @func jen_grid_rotate
 /// @desc Rotates a grid counterclockwise by 90 degrees, some number of times. (1-3)
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  rotations
 function jen_grid_rotate(_grid, _rotations)
 {
@@ -344,10 +344,10 @@ function jen_grid_rotate(_grid, _rotations)
 	ds_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_grid_scale(grid, factor, upscale);
+#region jen_grid_scale(JenGrid, factor, upscale);
 /// @func jen_grid_scale
 /// @desc Transforms a grid by scaling it up or down by a whole number factor.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  factor
 /// @arg  upscale
 function jen_grid_scale(_grid, _factor, _upscale)
@@ -396,14 +396,14 @@ function jen_grid_scale(_grid, _factor, _upscale)
 #endregion
 
 //Instantiation
-#region jen_grid_instantiate_layer(grid, x, y, layer, [struct]);
-/// @func										jen_grid_instantiate_layer(grid, x, y, layer, [struct]):
-/// @desc										Instantiates a JenGrid on a particular layer, treating each value as an object index.
-/// @arg {Id.DsGrid} grid		JenGrid to instantiate.
-/// @arg {Real} x						The x-position in the room to instantiate the JenGrid.
-/// @arg {Real} y						The x-position in the room to instantiate the JenGrid.
-/// @arg {Any} layer				The layer ID or layer name to instantiate the objects.
-/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created. Or, a function(xcell, ycell) that returns a struct.
+#region jen_grid_instantiate_layer(JenGrid, x, y, layer, [struct]);
+/// @func jen_grid_instantiate_layer(JenGrid, x, y, layer, [struct]):
+/// @desc Instantiates a JenGrid on a particular layer, treating each value as an object index.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				x
+/// @arg	{Real}				y
+/// @arg	{Any}					layer
+/// @arg	{Struct}			[struct]		Supports a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined)
 {
 	//Getting width and height of the grid.
@@ -436,14 +436,14 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 	} }
 }
 #endregion
-#region jen_grid_instantiate_depth(grid, x1, y1, depth, [struct]);
-/// @func										jen_grid_instantiate_depth(grid, x, y, depth, [struct]):
-/// @desc										Instantiates a JenGrid at a particular depth, treating each value as an object index.
-/// @arg {Id.DsGrid} grid		JenGrid to instantiate.
-/// @arg {Real} x						The x-position in the room to instantiate the JenGrid.
-/// @arg {Real} y						The x-position in the room to instantiate the JenGrid.
-/// @arg {Real} depth				The depth to instantiate the JenGrid.
-/// @arg {Struct} [struct]	A struct of variables copied onto the instances when they are created. Or, a function(xcell, ycell) that returns a struct.
+#region jen_grid_instantiate_depth(JenGrid, x, y, depth, [struct]);
+/// @func jen_grid_instantiate_depth(JenGrid, x, y, depth, [struct]):
+/// @desc Instantiates a JenGrid at a particular depth, treating each value as an object index.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				x
+/// @arg	{Real}				y
+/// @arg	{Real}				depth
+/// @arg	{Struct}			[struct]		Supports a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined)
 {
 	//Getting width and height of the grid.
@@ -476,12 +476,12 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 	} }
 }
 #endregion
-#region jen_grid_instantiate_tiles(grid, x1, y1, tilemap/layer, [flipx], [flipy]);
+#region TODO jen_grid_instantiate_tiles(JenGrid, x, y, tilemap/layer, [flipx], [flipy]);
 /// @func jen_grid_instantiate_tiles
 /// @desc Instantiates a grid, treating each value as a tile index.
-/// @arg  grid
-/// @arg  x1
-/// @arg  y1
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg  x
+/// @arg  y
 /// @arg  tilemap/layer
 /// @arg  [flipx]
 /// @arg  [flipy]
@@ -518,12 +518,12 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 	} }
 }
 #endregion
-#region jen_grid_instantiate_autotile(grid, x1, y1, test, closed_edge, tilemap/layer, [offset]);
+#region TODO jen_grid_instantiate_autotile(JenGrid, x, y, test, closed_edge, tilemap/layer, [offset]);
 /// @func jen_grid_instantiate_autotile
 /// @desc Instantiates a grid, searching for adjacent test values, and converting to an autotile tile index.
-/// @arg  grid
-/// @arg  x1
-/// @arg  y1
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg  x
+/// @arg  y
 /// @arg  test
 /// @arg  closed_edge
 /// @arg  tilemap/layer
@@ -559,10 +559,10 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 #endregion
 
 //Debugging Functions
-#region jen_grid_string(grid);
-/// @func										jen_grid_string(grid):
-/// @desc										Returns the jen_grid formatted as a string.
-/// @arg {Id.DsGrid} grid		JenGrid to format as a string.
+#region jen_grid_string(JenGrid);
+/// @func jen_grid_string(JenGrid):
+/// @desc Returns the JenGrid formatted as a string.
+/// @arg	{Id.DsGrid}		JenGrid
 /// @returns {String}
 function jen_grid_string(_grid)
 {
@@ -586,12 +586,12 @@ function jen_grid_string(_grid)
 	return _output;
 }
 #endregion
-#region jen_grid_draw(grid, x, y);
-/// @func jen_grid_draw
+#region jen_grid_draw(JenGrid, x, y);
+/// @func jen_grid_draw(JenGrid, x, y):
 /// @desc Draws the data within the grid, using jen_grid_string.
-/// @arg  grid
-/// @arg  x
-/// @arg  y
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg  {Real}				x
+/// @arg  {Real}				y
 function jen_grid_draw(_grid, _x1, _y1)
 {
 	var _text = jen_grid_string(_grid);

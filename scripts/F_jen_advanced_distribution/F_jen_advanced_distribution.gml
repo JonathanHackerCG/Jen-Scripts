@@ -1,10 +1,10 @@
 //Advanced distribution functions. Scattering and heightmaps.
 
 //Advanced scattering functions.
-#region jen_scatter_offset(grid, find_value, x_offset, y_offset, replace, new_value, [chance], [function]);
+#region jen_scatter_offset(JenGrid, find_value, x_offset, y_offset, replace, new_value, [chance], [function]);
 /// @func jen_scatter_offset
 /// @desc Replaces some percentage of one value with another, offset by a search value.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  find_value
 /// @arg  x_offset
 /// @arg  y_offset
@@ -121,10 +121,10 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_number_offset(grid, find_value x_offset, y_offset, replace, new_value, number, [chance], [function]);
+#region jen_number_offset(JenGrid, find_value x_offset, y_offset, replace, new_value, number, [chance], [function]);
 /// @func jen_number_offset
 /// @desc Sets a new value some number of times, offset from a particular search value.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  find_values
 /// @arg  x_offset
 /// @arg  y_offset
@@ -306,10 +306,10 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_automata(grid, living, empty, bounds, birth, death, [chance], [function]);
+#region jen_automata(JenGrid, living, empty, bounds, birth, death, [chance], [function]);
 /// @func jen_automata
 /// @desc Applies cellular automata between two different values.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  living
 /// @arg  empty
 /// @arg  bounds

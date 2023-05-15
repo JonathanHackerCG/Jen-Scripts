@@ -1,10 +1,10 @@
 //Advanced shapes, wandering lines and mazes.
 
 //Wandering lines.
-#region jen_wander_direction(grid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+#region jen_wander_direction(JenGrid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
 /// @func jen_wander_direction
 /// @desc Will create a wandering line between two positions.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
 /// @arg  initial_angle
@@ -59,10 +59,10 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 	}
 }
 #endregion
-#region jen_wander_line(grid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+#region jen_wander_line(JenGrid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
 /// @func jen_wander_line
 /// @desc Will create a wandering line between two positions.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
 /// @arg  x2

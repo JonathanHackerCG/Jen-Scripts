@@ -1,6 +1,6 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
-#region jen_line(grid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
+#region jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
 /// @func jen_line
 /// @desc Creates a line between two points.
 /// @arg  {Id.Grid} grid
@@ -47,19 +47,19 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 	}
 }
 #endregion
-#region jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]);
-/// @func							jen_rectangle(grid, x1, y1, x2, y2, replace, new_value, outline, [chance], [function]):
-/// @desc							Creates a rectangle between two positions.
-/// @arg {Id.DsGrid}	grid
-/// @arg {Real}				x1
-/// @arg {Real}				y1
-/// @arg {Real}				x2
-/// @arg {Real}				y2
-/// @arg {Any}				replace			Supports Array (Any)
-/// @arg {Any}				new_value		Supports Array (Chooses)
-/// @arg {Real}				[outline]
-/// @arg {Real}				[chance]
-/// @arg {Function}		[function]
+#region jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [function]);
+/// @func jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [function]):
+/// @desc Creates a rectangle between two positions.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				xcell1
+/// @arg	{Real}				ycell1
+/// @arg	{Real}				xcell2
+/// @arg	{Real}				ycell2
+/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					new_value		Supports Array (Chooses)
+/// @arg	{Real}				[outline]		Default: 0
+/// @arg	{Real}				[chance]		Default: 100
+/// @arg	{Function}		[function]	Default: noone
 function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _function = noone)
 {
 	//Finding corners.
@@ -101,10 +101,10 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 	} }
 }
 #endregion
-#region jen_triangle(grid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);
+#region jen_triangle(JenGrid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);
 /// @func jen_triangle
 /// @desc This creates a triangle. There is no option for a filled triangle.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
 /// @arg  x2
@@ -123,10 +123,10 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 	jen_line(_grid, _x3, _y3, _x1, _y1, _replace, _new_value, _chance, _function);
 }
 #endregion
-#region jen_ellipse(grid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
+#region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
 /// @func jen_ellipse
 /// @desc Creates an ellipse. Define the length of each axis, and the rotation.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
 /// @arg  haxis
@@ -167,10 +167,10 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_fill(grid, x1, y1, replace, new_value, diagonal);
+#region jen_fill(JenGrid, x1, y1, replace, new_value, diagonal);
 /// @func jen_fill
 /// @desc Fills a space of matching values. May cross diagonals or not.
-/// @arg  grid
+/// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
 /// @arg  replace
