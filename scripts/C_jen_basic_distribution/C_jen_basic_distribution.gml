@@ -26,9 +26,9 @@ function jen_replace(_grid, _replace, _new_value)
 #region NEW jen_replace_not(JenGrid, replace, new_value);
 /// @func jen_replace_not(JenGrid, replace, new_value):
 /// @desc Replaces all NOT matching values with a new value.
-/// @arg  {Id.DsGrid} grid
-/// @arg  {Any}				replace			Supports Array (Any)
-/// @arg  {Any}				new_value		Supports Array (Choose)
+/// @arg  {Id.DsGrid}		JenGrid
+/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					new_value		Supports Array (Choose)
 function jen_replace_not(_grid, _replace, _new_value)
 {
 	//Getting width and height of the grid.
@@ -49,11 +49,11 @@ function jen_replace_not(_grid, _replace, _new_value)
 #region jen_scatter(JenGrid, replace, new_value, [chance], [function]);
 /// @func jen_scatter(JenGrid, replace, new_value, [chance], [function]):
 /// @desc Replaces some percentage of matching values with a new value.
-/// @arg  {Id.DsGrid}	grid
-/// @arg  {Any}				replace			Supports Array (Any)
-/// @arg  {Any}				new_value		Supports Array (Choose)
-/// @arg  {Real}			[chance]		Default: 100
-/// @arg  {Function}	[function]	Default: noone
+/// @arg  {Id.DsGrid}		JenGrid
+/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					new_value		Supports Array (Choose)
+/// @arg  {Real}				[chance]		Default: 100
+/// @arg  {Function}		[function]	Default: noone
 function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
@@ -84,26 +84,29 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noo
 }
 #endregion
 #region jen_number(JenGrid, replace, new_value, number, [chance], [function]);
-/// @func jen_number
-/// @desc Changes a specific number of one value into another.
+/// @func jen_number(JenGrid, replace, new_value, number, [chance], [function]):
+/// @desc Replaces a specific number of matching values with a new value.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  replace
-/// @arg  new_value
-/// @arg  number
-/// @arg  [chance]
-/// @arg  [function]
+/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					new_value		Supports Array (Choose)
+/// @arg	{Real}				number
+/// @arg  {Real}				[chance]		Default: 100
+/// @arg  {Function}		[function]	Default: noone
 function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
 	
+	//Array conversions.
+	_replace = _jenternal_convert_replace(_replace);
+	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_replace == all || jen_get(_grid, xx, yy) == _replace)
+		if (_replace == all || jen_test(_grid, xx, yy, _replace))
 		{
 			var pos = { x1 : xx, y1 : yy };
 			ds_list_add(_positions, pos);
@@ -140,8 +143,6 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 	}
 	
 	//Clearing memory.
-	var size = ds_list_size(_positions);
-	for (var i = 0; i < size; i++)	{	delete _positions[| i];	}
 	ds_list_destroy(_positions);
 }
 #endregion

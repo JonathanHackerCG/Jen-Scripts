@@ -13,6 +13,8 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, all, obj_borderstone, true);
 	jen_rectangle(_terrain, 1, 1, _cellsw - 2, _cellsh - 2, all, obj_borderstone, true, 50);
 	
+	jen_number(_terrain, obj_grass, obj_stone, 3);
+	
 	//Instantiate the first layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);
 	#endregion
