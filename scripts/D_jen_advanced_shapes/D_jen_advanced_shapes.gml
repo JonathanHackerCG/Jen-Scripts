@@ -17,7 +17,7 @@
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = noone)
+function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = undefined)
 {
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
@@ -27,7 +27,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 		//Set the value for that new position.
 		if (_chance >= 100 || random(100) < _chance)
 		{
-			if (_function == noone)
+			if (_function == undefined)
 			{
 				//Directly set the target value to the application value.
 				jen_set(_grid, round(xx), round(yy), _replace, _new_value);
@@ -76,7 +76,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = noone)
+function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = undefined)
 {
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
@@ -86,7 +86,7 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 		//Set the value for that new position.
 		if (_chance >= 100 || random(100) < _chance)
 		{
-			if (_function == noone)
+			if (_function == undefined)
 			{
 				//Directly set the target value to the application value.
 				jen_set(_grid, round(xx), round(yy), _replace, _new_value);

@@ -12,7 +12,7 @@
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _function = noone)
+function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -50,7 +50,7 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 /// @arg  replace
 /// @arg  [chance]
 /// @arg  [function]
-function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = noone)
+function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
@@ -90,7 +90,7 @@ function jen_scatter_apply(_target, _apply, _find_value, _xoff, _yoff, _replace,
 /// @arg  replace
 /// @arg  [chance]
 /// @arg  [function]
-function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = noone)
+function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
@@ -133,7 +133,7 @@ function jen_scatter_apply_list(_target, _apply_list, _find_value, _xoff, _yoff,
 /// @arg  number
 /// @arg  [chance]
 /// @arg  [function]
-function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance = 100, _function = noone)
+function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -194,7 +194,7 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 /// @arg  number
 /// @arg  [chance]
 /// @arg  [function]
-function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = noone)
+function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
@@ -254,7 +254,7 @@ function jen_number_apply(_target, _apply, _find_value, _xoff, _yoff, _replace, 
 /// @arg  number
 /// @arg  [chance]
 /// @arg  [function]
-function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = noone)
+function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
@@ -317,7 +317,7 @@ function jen_number_apply_list(_target, _apply_list, _find_value, _xoff, _yoff, 
 /// @arg  death
 /// @arg  [chance]
 /// @arg  [function]
-function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _function = noone)
+function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _function = undefined)
 {
 	//Initialize variables.
 	var _w = jen_grid_width(_grid);

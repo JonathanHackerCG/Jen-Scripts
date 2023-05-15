@@ -53,8 +53,8 @@ function jen_replace_not(_grid, _replace, _new_value)
 /// @arg  {Any}					replace			Supports Array (Any)
 /// @arg  {Any}					new_value		Supports Array (Choose)
 /// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: noone
-function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noone)
+/// @arg  {Function}		[function]	Default: undefined
+function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -69,7 +69,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noo
 	{
 		if (_chance >= 100 || random(100) < _chance)
 		{
-			if (_function == noone)
+			if (_function == undefined)
 			{
 				//Replace matching values.
 				jen_set(_grid, xx, yy, _replace, _new_value);
@@ -91,8 +91,8 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = noo
 /// @arg  {Any}					new_value		Supports Array (Choose)
 /// @arg	{Real}				number
 /// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: noone
-function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = noone)
+/// @arg  {Function}		[function]	Default: undefined
+function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -128,7 +128,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 			var yy = _positions[| i].y1;
 			if (_chance >= 100 || random(100) < _chance)
 			{
-				if (_function == noone)
+				if (_function == undefined)
 				{
 					//Replace matching values.
 					jen_set(_grid, xx, yy, _replace, _new_value);
@@ -149,28 +149,32 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 #region jen_near(JenGrid, target, replace, new_value, radius, [chance], [function]);
 /// @func jen_near(JenGrid, target, replace, new_value, radius, [chance], [function]):
 /// @desc Replaces all matching values with a new value, within radius distance of matching target values.
-/// @arg  {Id.DsGrid}	grid
-/// @arg  {Any}				target			Supports Array (Any)
-/// @arg  {Any}				replace			Supports Array (Any)
-/// @arg  {Any}				new_value		Supports Array (Chooses)
-/// @arg  {Real}			radius
-/// @arg  {Real}			[chance]
-/// @arg  {Function}	[function]
-function jen_near(_grid, _near, _replace, _new_value, _radius, _chance = 100, _function = noone)
+/// @arg  {Id.DsGrid}		JenGrid
+/// @arg  {Any}					target			Supports Array (Any)
+/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					new_value		Supports Array (Chooses)
+/// @arg  {Real}				radius
+/// @arg  {Real}				[chance]		Default: 100
+/// @arg  {Function}		[function]	Default: undefined
+function jen_near(_grid, _target, _replace, _new_value, _radius, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
 	
+	//Array conversions.
+	_replace = _jenternal_convert_replace(_replace);
+	_target = _jenternal_convert_replace(_target);
+	
 	//Create a temporary grid to store changes.
-	var _temp_grid = jen_grid_create(_width, _height, noone);
+	var _temp_grid = jen_grid_create(_w, _h, noone);
 	
 	//Create circles around every matching value.
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
 		//Finding matching values.
-		if (jen_get(_grid, xx, yy) == _near)
+		if (jen_test(_grid, xx, yy, _target))
 		{
 			//Set to an undefined value (to allow the jen_grid_apply to override noone).
 			ds_grid_set_disk(_temp_grid, xx, yy, _radius, "_jenternal_undefined");

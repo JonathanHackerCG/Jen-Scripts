@@ -12,7 +12,7 @@
 /// @arg  {Any} new_value
 /// @arg  {Real} [chance]
 /// @arg  {Function} [function]
-function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100, _function = noone)
+function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100, _function = undefined)
 {
 	//Calculating _step amounts for the line.
 	var _xdis = _x2 - _x1;
@@ -31,7 +31,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 		if (_chance >= 100 || random(100) < _chance)
 		{
 			//Setting the line position/appropriate function.
-			if (_function == noone)
+			if (_function == undefined)
 			{
 				jen_set(_grid, xx, yy, all, _new_value);
 			}
@@ -59,8 +59,8 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 /// @arg	{Any}					new_value		Supports Array (Chooses)
 /// @arg	{Real}				[outline]		Default: 0
 /// @arg	{Real}				[chance]		Default: 100
-/// @arg	{Function}		[function]	Default: noone
-function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _function = noone)
+/// @arg	{Function}		[function]	Default: undefined
+function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _function = undefined)
 {
 	//Finding corners.
 	var _xx1 = min(_x1, _x2);
@@ -81,7 +81,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 			//Random chance and using the appropriate function.
 			if (_chance >= 100 || random(100) < _chance)
 			{
-				if (_function == noone)
+				if (_function == undefined)
 				{
 					//Replace matching values.
 					jen_set(_grid, xx, yy, _replace, _new_value);
@@ -115,7 +115,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _function = noone)
+function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _function = undefined)
 {
 	//Drawing three lines. (That's basically all this function does).
 	jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _function);
@@ -137,7 +137,7 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 /// @arg  outline
 /// @arg  [chance]
 /// @arg  [function]
-function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = noone)
+function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);

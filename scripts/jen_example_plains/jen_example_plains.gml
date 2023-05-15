@@ -13,7 +13,15 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, all, obj_borderstone, 1);
 	jen_rectangle(_terrain, 1, 1, _cellsw - 2, _cellsh - 2, all, obj_borderstone, 1, 50);
 	
+	//Generating 3 clumps of stone.
 	jen_number(_terrain, obj_grass, obj_stone, 3);
+	jen_near(_terrain, obj_stone, obj_grass, obj_stone, 2, 50);
+	jen_near(_terrain, obj_stone, obj_grass, obj_stone, 1, 50);
+	jen_near(_terrain, obj_stone, obj_grass, obj_stone, 1, 100);
+	
+	//Generating some rare copper veins.
+	jen_scatter(_terrain, obj_stone, obj_copper, 1);
+	jen_near(_terrain, obj_copper, obj_stone, obj_copper, 2, 20);
 	
 	//Instantiate the first layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);

@@ -35,7 +35,7 @@ function jen_grid_cellsize(_cellw, _cellh)
 /// @desc Create a new JenGrid of specified width and height (in cells).
 /// @arg	{Real}	width
 /// @arg	{Real}	height
-/// @arg	{Any}	[cleared]	Default: noone
+/// @arg	{Any}		[cleared]		Default: noone
 /// @returns {Id.DsGrid}
 function jen_grid_create(_width, _height, _cleared = noone)
 {
@@ -208,8 +208,8 @@ function jen_grid_inbounds(_grid, _x, _y)
 /// @arg	{Real}				xcell
 /// @arg	{Real}				ycell
 /// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: noone
-function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _function = noone)
+/// @arg  {Function}		[function]	Default: undefined
+function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _function = undefined)
 {
 	//Getting width and height of the grids.
 	var _width = jen_grid_width(_target);
@@ -229,7 +229,7 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _fun
 		_value = jen_get(_apply, xx, yy);
 		if (_value != noone) && (_chance >= 100 || random(100) < _chance)
 		{
-			if (_function == noone)
+			if (_function == undefined)
 			{
 				//Directly set the target value to the application value.
 				jen_set(_target, _x1 + xx, _y1 + yy, _replace, _value);

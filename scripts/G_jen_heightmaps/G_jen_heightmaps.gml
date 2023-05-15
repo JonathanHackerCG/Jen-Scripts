@@ -184,7 +184,7 @@ function jen_heightmap_gradient(_width, _height, _radius, _density)
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, _new_value, _chance = 100, _function = noone)
+function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, _new_value, _chance = 100, _function = undefined)
 {
 	//Getting the width and height of the heightmap.
 	var _width = jen_heightmap_width(_heightmap);
