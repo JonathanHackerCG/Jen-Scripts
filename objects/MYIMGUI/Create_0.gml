@@ -3,7 +3,7 @@ ImGui.__Initialize();
 
 _examples = [];
 _examples_count = 0;
-_examples_4x = false;
+_examples_4x = true;
 #region register_example(name, function, [params]);
 /// @func register_example(name, function, [params]):
 /// @desc Store an example function to be called later.
@@ -36,3 +36,4 @@ function run_example(_example)
 #endregion
 
 register_example("Plains", jen_example_plains);
+register_example("Ruins", jen_example_ruins);

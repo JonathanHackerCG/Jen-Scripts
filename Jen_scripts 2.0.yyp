@@ -60,6 +60,7 @@
     {"id":{"name":"rm_initialize","path":"rooms/rm_initialize/rm_initialize.yy",},"order":1,},
     {"id":{"name":"spr_dirt","path":"sprites/spr_dirt/spr_dirt.yy",},"order":2,},
     {"id":{"name":"spr_wood","path":"sprites/spr_wood/spr_wood.yy",},"order":7,},
+    {"id":{"name":"jen_example_ruins","path":"scripts/jen_example_ruins/jen_example_ruins.yy",},"order":1,},
     {"id":{"name":"rm_dungeons","path":"rooms/rm_dungeons/rm_dungeons.yy",},"order":2,},
     {"id":{"name":"obj_water_light","path":"objects/obj_water_light/obj_water_light.yy",},"order":7,},
     {"id":{"name":"CONTROL","path":"objects/CONTROL/CONTROL.yy",},"order":0,},
@@ -93,7 +94,7 @@
     {"roomId":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
   ],
   "Folders": [
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Examples","folderPath":"folders/Examples.yy","order":18,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Jen-Scripts Examples","folderPath":"folders/Jen-Scripts Examples.yy","order":18,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy","order":5,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Jen-Scripts","folderPath":"folders/Jen-Scripts.yy","order":12,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_Internal","folderPath":"folders/Jen-Scripts/_Internal.yy","order":11,},

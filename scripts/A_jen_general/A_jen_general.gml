@@ -198,16 +198,17 @@ function jen_grid_inbounds(_grid, _x, _y)
 #endregion
 
 //NOT DONE YET Transformations
-#region jen_grid_apply(target_grid, apply_grid, replace, x1, y1, [chance], [function]);
-/// @func jen_grid_apply
-/// @desc Applies one grid onto another, transfering all filled values to the target.
-/// @arg  target_grid
-/// @arg  apply_grid
-/// @arg  replace
-/// @arg  x1
-/// @arg  y1
-/// @arg  [chance]
-/// @arg  [function]
+#region jen_grid_apply(target_JenGrid, apply_JenGrid, replace, xcell, ycell, [chance], [function]);
+/// @func jen_grid_apply(target_JenGrid, apply_JenGrid, replace, xcell, ycell, [chance], [function]):
+/// @desc Transfer all values from applied grid to a target grid.
+///				Values of 'noone' in the applied grid will be ignored.
+/// @arg	{Id.DsGrid}		target_JenGrid
+/// @arg  {Id.DsGrid}		apply_JenGrid
+/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Real}				xcell
+/// @arg	{Real}				ycell
+/// @arg  {Real}				[chance]		Default: 100
+/// @arg  {Function}		[function]	Default: noone
 function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _function = noone)
 {
 	//Getting width and height of the grids.
@@ -215,6 +216,9 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _fun
 	var _height = jen_grid_height(_target);
 	var _width_apply = min(jen_grid_width(_apply), _width);
 	var _height_apply = min(jen_grid_height(_apply), _height);
+	
+	//Array conversions.
+	_replace = _jenternal_convert_replace(_replace);
 	
 	//Iterate through the application grid.
 	var _value;
@@ -230,7 +234,7 @@ function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _fun
 				//Directly set the target value to the application value.
 				jen_set(_target, _x1 + xx, _y1 + yy, _replace, _value);
 			}
-			else if (_replace == all || jen_get(_target, xx, yy) == _replace)
+			else if (_replace == all || jen_test(_target, xx, yy, _replace))
 			{
 				//Run the custom function.
 				_function(_target, _x1 + xx, _y1 + yy, _replace, _value);
