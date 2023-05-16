@@ -94,8 +94,8 @@
     {"roomId":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
   ],
   "Folders": [
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Jen-Scripts Examples","folderPath":"folders/Jen-Scripts Examples.yy","order":18,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy","order":5,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Jen-Scripts Examples","folderPath":"folders/Jen-Scripts Examples.yy","order":18,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Jen-Scripts","folderPath":"folders/Jen-Scripts.yy","order":12,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_Internal","folderPath":"folders/Jen-Scripts/_Internal.yy","order":11,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Templates","folderPath":"folders/Jen-Scripts/Templates.yy","order":12,},

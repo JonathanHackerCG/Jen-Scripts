@@ -197,7 +197,7 @@ function jen_grid_inbounds(_grid, _x, _y)
 }
 #endregion
 
-//NOT DONE YET Transformations
+//Transformations
 #region jen_grid_apply(target_JenGrid, apply_JenGrid, replace, xcell, ycell, [chance], [function]);
 /// @func jen_grid_apply(target_JenGrid, apply_JenGrid, replace, xcell, ycell, [chance], [function]):
 /// @desc Transfer all values from applied grid to a target grid.
@@ -280,10 +280,10 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 }
 #endregion
 #region jen_grid_rotate(JenGrid, rotations);
-/// @func jen_grid_rotate
-/// @desc Rotates a grid counterclockwise by 90 degrees, some number of times. (1-3)
+/// @func jen_grid_rotate(JenGrid, rotations):
+/// @desc Rotates a JenGrid counterclockwise by 90 degrees, some number of times.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  rotations
+/// @arg  {Real}				rotations		Supports 0, 1, 2, or 3.
 function jen_grid_rotate(_grid, _rotations)
 {
 	//Getting width and height of the grid.
@@ -291,13 +291,14 @@ function jen_grid_rotate(_grid, _rotations)
 	var _h = jen_grid_height(_grid);
 	
 	//Different rotation operations depending on the angle.
-	if (_rotations < 1 || _rotations > 3) { show_error("Jen-Scripts function jen_rotate requires a rotation number of 1, 2, or 3.", false); exit; }
+	if (_rotations < 0 || _rotations > 3) { show_error("Jen-Scripts 'jen_rotate' expects a rotation number of 0, 1, 2, or 3.", false); exit; }
+	if (_rotations == 0) { exit; }
 	
 	//Apply each rotation based on the number of rotations.
 	#region 90 degrees.
 	if (_rotations == 1)
 	{
-		var _temp_grid = jen_grid_create(_height, _width);
+		var _temp_grid = jen_grid_create(_h, _w);
 		
 		var xcopy, ycopy, val;
 		for (var yy = 0; yy < _h; yy++) {			
@@ -305,7 +306,7 @@ function jen_grid_rotate(_grid, _rotations)
 		{
 			val = jen_get(_grid, xx, yy);
 			xcopy = yy;
-			ycopy = _width - xx - 1;
+			ycopy = _w - xx - 1;
 			jen_set(_temp_grid, xcopy, ycopy, all, val);
 		}	}
 	}
@@ -313,15 +314,15 @@ function jen_grid_rotate(_grid, _rotations)
 	#region 180 degrees.
 	else if (_rotations == 2)
 	{
-		var _temp_grid = jen_grid_create(_width, _height);
+		var _temp_grid = jen_grid_create(_w, _h);
 		
 		var xcopy, ycopy, val;
 		for (var yy = 0; yy < _h; yy++) {			
 		for (var xx = 0; xx < _w; xx++)
 		{
 			val = jen_get(_grid, xx, yy);
-			xcopy = _width - xx - 1;
-			ycopy = _height - yy - 1;
+			xcopy = _w - xx - 1;
+			ycopy = _h - yy - 1;
 			jen_set(_temp_grid, xcopy, ycopy, all, val);
 		}	}
 	}
@@ -329,14 +330,14 @@ function jen_grid_rotate(_grid, _rotations)
 	#region 270 degrees.
 	else if (_rotations == 3)
 	{
-		var _temp_grid = jen_grid_create(_height, _width);
+		var _temp_grid = jen_grid_create(_h, _w);
 		
 		var xcopy, ycopy, val;
 		for (var yy = 0; yy < _h; yy++) {			
 		for (var xx = 0; xx < _w; xx++)
 		{
 			val = jen_get(_grid, xx, yy);
-			xcopy = _height - yy - 1;
+			xcopy = _h - yy - 1;
 			ycopy = xx;
 			jen_set(_temp_grid, xcopy, ycopy, all, val);
 		}	}
@@ -352,8 +353,8 @@ function jen_grid_rotate(_grid, _rotations)
 /// @func jen_grid_scale
 /// @desc Transforms a grid by scaling it up or down by a whole number factor.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  factor
-/// @arg  upscale
+/// @arg  {Real}				factor
+/// @arg  {Bool}				upscale
 function jen_grid_scale(_grid, _factor, _upscale)
 {
 	//Modify parameters.
@@ -365,7 +366,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 	
 	if (_upscale) //Upscaling.
 	{
-		var _temp_grid = ds_grid_create(_width * _factor, _height * _factor);
+		var _temp_grid = ds_grid_create(_w * _factor, _h * _factor);
 	
 		var x1, y1, val;
 		for (var xx = 0; xx < _w; xx++) {
@@ -380,11 +381,11 @@ function jen_grid_scale(_grid, _factor, _upscale)
 	}
 	else //Downscaling.
 	{
-		var _temp_grid = ds_grid_create(_width / _factor, _height / _factor);
+		var _temp_grid = ds_grid_create(_w / _factor, _h / _factor);
 		
 		var x1, y1, val;
-		for (var xx = 0; xx < _width; xx += _factor) {
-		for (var yy = 0; yy < _height; yy += _factor)
+		for (var xx = 0; xx < _w; xx += _factor) {
+		for (var yy = 0; yy < _h; yy += _factor)
 		{
 			x1 = xx / _factor;
 			y1 = yy / _factor;
