@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "B_jen_basic_shapes",
+  "name": "F_jen_mazes",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

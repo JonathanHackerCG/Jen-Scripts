@@ -1,6 +1,6 @@
 //Maze generation, including creation, modification, and instantiation.
 
-//Basic maze functions.
+//Initialization
 #region jen_maze_create(width, height);
 /// @func jen_maze_create
 /// @desc Creates a blank maze. Mostly for internal use.
@@ -22,6 +22,9 @@ function jen_maze_destroy(_maze)
 	ds_grid_destroy(_maze);
 }
 #endregion
+//TODO: jen_maze_exists(maze);
+
+//Getters/Setters
 #region jen_maze_get(maze, x1, y1, jen_dir);
 /// @func jen_maze_get
 /// @desc Returns true/false if a particular direction is connected.
@@ -255,28 +258,6 @@ function jen_maze_backtrack(_width, _height)
 	return _grid;
 }
 #endregion
-#region jen_maze_draw(maze, x1, y1);
-/// @func jen_maze_draw
-/// @desc Draws the layout of a maze grid.
-/// @arg  maze
-/// @arg  x1
-/// @arg  y1
-function jen_maze_draw(_maze, _x1, _y1)
-{
-	//Getting the width and height of the grid.
-	var _height = jen_maze_height(_maze);
-	var _width = jen_maze_width(_maze);
-	
-	for (var yy = 0; yy < _h; yy++) {
-	for (var xx = 0; xx < _w; xx++)
-	{
-		if (_maze[# xx, yy] >= 0)
-		{
-			draw_sprite(_spr_jenternal_maze, _maze[# xx, yy], _x1 + (xx * 16), _y1 + (yy * 16));
-		}
-	} }
-}
-#endregion
 #region jen_maze_exits(maze, edge_buffer_min, edge_buffer_max, numU, numR, numD, numL);
 /// @func jen_maze_exits
 /// @desc Adds exits on the edges of a maze.
@@ -384,7 +365,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 }
 #endregion
 
-//Maze buidling.
+//Maze building.
 #region jen_maze_build(maze, value, room_w, room_h, wall_w, wall_h, door_w, door_h);
 /// @func jen_maze_build
 /// @desc Will create a new jen_grid with walls based on provided jen_maze.
@@ -502,7 +483,7 @@ function jen_maze_build_list(_maze, _list, _value, _room_w, _room_h, _wall_w, _w
 	for (var xx = 0; xx < _width; xx ++) {
 		var x1 = xx * (_room_w + _wall_w);
 		var y1 = yy * (_room_h + _wall_h);
-		jen_grid_apply(_grid, _list[| irandom(_size - 1)], noone, x1 + _wall_w, y1 + _wall_h);
+		jen_grid_paste(_grid, _list[| irandom(_size - 1)], noone, x1 + _wall_w, y1 + _wall_h);
 	} }
 	
 	return _grid;
@@ -601,7 +582,7 @@ function jen_maze_build_special(_maze, _value, _room_w, _room_h, _wall_w, _wall_
 		}
 		
 		//Applying the final temp grid to the place in the output maze.
-		jen_grid_apply(_grid, _temp, noone, x1 + _wall_w, y1 + _wall_h);
+		jen_grid_paste(_grid, _temp, noone, x1 + _wall_w, y1 + _wall_h);
 		#endregion
 	} }
 	

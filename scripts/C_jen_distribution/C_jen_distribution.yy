@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "C_jen_basic_distribution",
+  "name": "C_jen_distribution",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

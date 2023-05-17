@@ -1,6 +1,6 @@
 //Heightmap functions, and noise functions (once added).
 
-//Heightmaps.
+//Instantiation
 #region jen_heightmap_create(width, height);
 /// @func jen_heightmap_create
 /// @desc Creates a new empty heightmap.
@@ -22,6 +22,9 @@ function jen_heightmap_destroy(_heightmap)
 	ds_grid_destroy(_heightmap);
 }
 #endregion
+//TODO: jen_heightmap_exists
+
+//Properties
 #region jen_heightmap_get(heightmap, x1, y1);
 /// @func jen_heightmap_get
 /// @desc Returns the value of a heightmap at a position.
@@ -70,29 +73,8 @@ function jen_heightmap_height(_heightmap)
 	return ds_grid_height(_heightmap);
 }
 #endregion
-#region jen_heightmap_draw(heightmap, x1, y1);
-/// @func jen_heightmap_draw
-/// @desc Displays the values of a heightmap.
-/// @arg  heightmap
-/// @arg  x1
-/// @arg  y1
-function jen_heightmap_draw(_heightmap, _x1, _y1)
-{
-	//Getting the width and height of the heightmap.
-	var _width = jen_heightmap_width(_heightmap);
-	var _height = jen_heightmap_height(_heightmap);
-	
-	//Drawing each cell of the heightmap.
-	var scale = 8;
-	for (var yy = 0; yy < _height; yy ++) {
-	for (var xx = 0; xx < _width; xx ++)
-	{
-		draw_set_alpha(jen_heightmap_get(_heightmap, xx, yy));
-		draw_rectangle(_x1 + (xx * scale), _y1 + (yy * scale), _x1 + (xx * scale) + scale - 1, _y1 + (yy * scale) + scale - 1, false);
-	} }
-	draw_set_alpha(1.0);
-}
-#endregion
+
+//Generation
 #region jen_heightmap_sampling(width, height, radius, iterations);
 /// @func jen_heightmap_sampling
 /// @desc Generates a new heightmap using average sampling.
@@ -204,7 +186,7 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 	} }
 	
 	//Apply the changes to the base grid.
-	jen_grid_apply(_grid, _temp_grid, _replace, _x1, _y1, _chance, _function);
+	jen_grid_paste(_grid, _temp_grid, _replace, _x1, _y1, _chance, _function);
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	jen_grid_destroy(_temp_grid);
 }

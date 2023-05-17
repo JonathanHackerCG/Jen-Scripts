@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "A_jen_general",
+  "name": "B_jen_shapes",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

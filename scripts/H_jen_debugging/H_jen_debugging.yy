@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "D_jen_advanced_shapes",
+  "name": "H_jen_debugging",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

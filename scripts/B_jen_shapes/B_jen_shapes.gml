@@ -1,5 +1,6 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
+//Primitive shapes.
 #region jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
 /// @func jen_line
 /// @desc Creates a line between two points.
@@ -123,6 +124,8 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 	jen_line(_grid, _x3, _y3, _x1, _y1, _replace, _new_value, _chance, _function);
 }
 #endregion
+//TO ADD: jen_polygon???
+//TO ADD: jen_circle
 #region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
 /// @func jen_ellipse
 /// @desc Creates an ellipse. Define the length of each axis, and the rotation.
@@ -160,95 +163,139 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	}
 	
 	//Applying the temporary grid over the base grid.
-	jen_grid_apply(_grid, _temp_grid, _replace, 0, 0, _chance, _function);
+	jen_grid_paste(_grid, _temp_grid, _replace, 0, 0, _chance, _function);
 	jen_replace(_grid, "_jenternal_undefined", _new_value);
 	
 	//Clearing memory.
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_fill(JenGrid, x1, y1, replace, new_value, diagonal);
-/// @func jen_fill
-/// @desc Fills a space of matching values. May cross diagonals or not.
+
+//Wandering lines.
+#region jen_wander_direction(JenGrid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+/// @func jen_wander_direction
+/// @desc Will create a wandering line between two positions.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
+/// @arg  initial_angle
+/// @arg  correction_count
+/// @arg  correction_accuracy
+/// @arg  adjustment_count
+/// @arg  adjustment_accuracy
+/// @arg  lifetime
 /// @arg  replace
 /// @arg  new_value
-/// @arg  diagonal
-function jen_fill(_grid, xx, yy, _replace, _new_value, _diagonal)
+/// @arg  [chance]
+/// @arg  [function]
+function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = undefined)
 {
-	//Attempt to set the starting position. Only runs if this part works.
-	if (jen_set(_grid, xx, yy, _replace, _new_value))
+	//Execute the wandering.
+	var _count = 0; var xx = _x1; var yy = _y1;
+	var _angle = _initial_angle + irandom_range(-_correction_accuracy, _correction_accuracy);
+	repeat(_lifetime)
 	{
-		//Create a queue to keep track of every position to fill.
-		var _Qx = ds_queue_create();
-		var _Qy = ds_queue_create();
-		
-		//Add the initial point to the queue.
-		ds_queue_enqueue(_Qx, xx);
-		ds_queue_enqueue(_Qy, yy);
-		
-		//In theory, the x and y queue should always be the same size.
-		while (ds_queue_size(_Qx) != 0)
+		//Set the value for that new position.
+		if (_chance >= 100 || random(100) < _chance)
 		{
-			//Get the top point in the queue.
-			xx = ds_queue_dequeue(_Qx);
-			yy = ds_queue_dequeue(_Qy);
-			
-			//Check for fillable positions in each direction and add them to the queue.
-			#region Right/Up/Left/Down
-			if (jen_set(_grid, xx + 1, yy, _replace, _new_value))
+			if (_function == undefined)
 			{
-				ds_queue_enqueue(_Qx, xx + 1);
-				ds_queue_enqueue(_Qy, yy);
+				//Directly set the target value to the application value.
+				jen_set(_grid, round(xx), round(yy), _replace, _new_value);
 			}
-			if (jen_set(_grid, xx, yy - 1, _replace, _new_value))
+			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
-				ds_queue_enqueue(_Qx, xx);
-				ds_queue_enqueue(_Qy, yy - 1);
+				//Run the custom function.
+				_function(_grid, round(xx), round(yy), _replace, _new_value);
 			}
-			if (jen_set(_grid, xx - 1, yy, _replace, _new_value))
-			{
-				ds_queue_enqueue(_Qx, xx - 1);
-				ds_queue_enqueue(_Qy, yy);
-			}
-			if (jen_set(_grid, xx, yy + 1, _replace, _new_value))
-			{
-				ds_queue_enqueue(_Qx, xx);
-				ds_queue_enqueue(_Qy, yy + 1);
-			}
-			#endregion
-			#region Diagonals
-			if (_diagonal)
-			{
-				if (jen_set(_grid, xx + 1, yy + 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx + 1);
-					ds_queue_enqueue(_Qy, yy + 1);
-				}
-				if (jen_set(_grid, xx + 1, yy - 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx + 1);
-					ds_queue_enqueue(_Qy, yy - 1);
-				}
-				if (jen_set(_grid, xx - 1, yy - 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx - 1);
-					ds_queue_enqueue(_Qy, yy - 1);
-				}
-				if (jen_set(_grid, xx - 1, yy + 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx - 1);
-					ds_queue_enqueue(_Qy, yy + 1);
-				}
-			}
-			#endregion
 		}
 		
-		//Clearing memory.
-		ds_queue_destroy(_Qx);
-		ds_queue_destroy(_Qy);
+		//Updating primary angle.
+		if (_correction_count == 0 || _count % _correction_count == 0)
+		{
+			_angle = _initial_angle + irandom_range(-_correction_accuracy, _correction_accuracy);
+		}
+		//Updating movement angle.
+		if (_adjustment_count == 0 || _count % _adjustment_count == 0)
+		{
+			var _angle_off = irandom_range(-_adjustment_accuracy, _adjustment_accuracy);
+		}
+		_angle += _angle_off;
+		
+		//Calculating a new position.
+		xx += lengthdir_x(1, _angle);
+		yy += lengthdir_y(1, _angle);
+
+		_count++; //Increment the count.
+	}
+}
+#endregion
+#region jen_wander_line(JenGrid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+/// @func jen_wander_line
+/// @desc Will create a wandering line between two positions.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg  x1
+/// @arg  y1
+/// @arg  x2
+/// @arg  y2
+/// @arg  correction_count
+/// @arg  correction_accuracy
+/// @arg  adjustment_count
+/// @arg  adjustment_accuracy
+/// @arg  lifetime
+/// @arg  replace
+/// @arg  new_value
+/// @arg  [chance]
+/// @arg  [function]
+function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = undefined)
+{
+	//Execute the wandering.
+	var _count = 0; var xx = _x1; var yy = _y1;
+	var _angle = point_direction(_x1, _y1, _x2, _y2) + irandom_range(-_correction_accuracy, _correction_accuracy);
+	repeat(_lifetime)
+	{
+		//Set the value for that new position.
+		if (_chance >= 100 || random(100) < _chance)
+		{
+			if (_function == undefined)
+			{
+				//Directly set the target value to the application value.
+				jen_set(_grid, round(xx), round(yy), _replace, _new_value);
+			}
+			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
+			{
+				//Run the custom function.
+				_function(_grid, round(xx), round(yy), _replace, _new_value);
+			}
+		}
+		
+		//Updating primary angle.
+		if (_correction_count == 0 || _count % _correction_count == 0)
+		{
+			_angle = point_direction(xx, yy, _x2, _y2) + irandom_range(-_correction_accuracy, _correction_accuracy);
+		}
+		//Updating movement angle.
+		if (_adjustment_count == 0 || _count % _adjustment_count == 0)
+		{
+			var _angle_off = irandom_range(-_adjustment_accuracy, _adjustment_accuracy);
+		}
+		
+		//Moving directly to the target.
+		if (point_distance(xx, yy, _x2, _y2) <= max(_correction_count, _adjustment_count))
+		{
+			_angle = point_direction(xx, yy, _x2, _y2);
+		}
+		
+		_angle += _angle_off;
+		
+		//Calculating a new position.
+		xx += lengthdir_x(1, _angle);
+		yy += lengthdir_y(1, _angle);
+		
+		_count++; //Increment the count.
+		
+		//Exit early if it has reached the destination.
+		if (point_distance(xx, yy, _x2, _y2) <= 0.5) { exit; }
 	}
 }
 #endregion

@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "E_jen_mazes",
+  "name": "A_jen_grids",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

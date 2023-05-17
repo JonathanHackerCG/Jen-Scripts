@@ -17,19 +17,21 @@ JEN_CELLH = 16;
 JEN_CELLW = 16;
 #endregion
 
-//Initialization and Getters/Setters
-#region jen_grid_cellsize(cellw, cellh);
-/// @func jen_grid_cellsize(cellw, cellh):
+//Setup
+#region jen_set_cellsize(cellw, cellh);
+/// @func jen_set_cellsize(cellw, cellh):
 /// @desc Sets the terrain cell width and cell height in pixels.
 ///				Referenced with JEN_CELLW and JEN_CELLH.
 /// @arg	{Real} cellw
 /// @arg	{Real} cellh
-function jen_grid_cellsize(_cellw, _cellh)
+function jen_set_cellsize(_cellw, _cellh)
 {
 	JEN_CELLW = _cellw;
 	JEN_CELLH = _cellh;
 }
 #endregion
+
+//Initialization
 #region jen_grid_create(width, height, [cleared]);
 /// @func jen_grid_create(width, height, [cleared]):
 /// @desc Create a new JenGrid of specified width and height (in cells).
@@ -74,6 +76,41 @@ function jen_grid_destroy(_grid)
 function jen_grid_exists(_grid)
 {
 	return ds_exists(_grid, ds_type_grid);
+}
+#endregion
+//TODO: jen_grid_copy
+
+//Getters/Setters
+#region jen_grid_width(grid);
+/// @func jen_grid_width(grid):
+/// @desc Returns the width of a JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @returns {Integer}
+function jen_grid_width(_grid)
+{
+	return ds_grid_width(_grid);
+}
+#endregion
+#region jen_grid_height(grid);
+/// @func jen_grid_height(grid):
+/// @desc Returns the height of a JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @returns {Real}
+function jen_grid_height(_grid)
+{
+	return ds_grid_height(_grid);
+}
+#endregion
+#region NEW jen_grid_inbounds(JenGrid, xcell, ycell);
+/// @func jen_grid_inbounds(JenGrid, xcell, ycell):
+/// @desc Returns true if the position is in bounds of the JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				xcell
+/// @arg	{Real}				ycell
+/// @returns {Bool}
+function jen_grid_inbounds(_grid, _x, _y)
+{
+	return !(_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid));
 }
 #endregion
 #region jen_get(JenGrid, xcell, ycell);
@@ -164,85 +201,8 @@ function jen_test(_grid, _x, _y, _replace)
 	return false;
 }
 #endregion
-#region jen_grid_width(grid);
-/// @func jen_grid_width(grid):
-/// @desc Returns the width of a JenGrid.
-/// @arg	{Id.DsGrid}		JenGrid
-/// @returns {Integer}
-function jen_grid_width(_grid)
-{
-	return ds_grid_width(_grid);
-}
-#endregion
-#region jen_grid_height(grid);
-/// @func jen_grid_height(grid):
-/// @desc Returns the height of a JenGrid.
-/// @arg	{Id.DsGrid}		JenGrid
-/// @returns {Real}
-function jen_grid_height(_grid)
-{
-	return ds_grid_height(_grid);
-}
-#endregion
-#region NEW jen_grid_inbounds(JenGrid, xcell, ycell);
-/// @func jen_grid_inbounds(JenGrid, xcell, ycell):
-/// @desc Returns true if the position is in bounds of the JenGrid.
-/// @arg	{Id.DsGrid}		JenGrid
-/// @arg	{Real}				xcell
-/// @arg	{Real}				ycell
-/// @returns {Bool}
-function jen_grid_inbounds(_grid, _x, _y)
-{
-	return !(_x < 0 || _y < 0 || _x >= jen_grid_width(_grid) || _y >= jen_grid_height(_grid));
-}
-#endregion
 
 //Transformations
-#region jen_grid_apply(target_JenGrid, apply_JenGrid, replace, xcell, ycell, [chance], [function]);
-/// @func jen_grid_apply(target_JenGrid, apply_JenGrid, replace, xcell, ycell, [chance], [function]):
-/// @desc Transfer all values from applied grid to a target grid.
-///				Values of 'noone' in the applied grid will be ignored.
-/// @arg	{Id.DsGrid}		target_JenGrid
-/// @arg  {Id.DsGrid}		apply_JenGrid
-/// @arg	{Any}					replace			Supports Array (Any)
-/// @arg	{Real}				xcell
-/// @arg	{Real}				ycell
-/// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: undefined
-function jen_grid_apply(_target, _apply, _replace, _x1, _y1, _chance = 100, _function = undefined)
-{
-	//Getting width and height of the grids.
-	var _width = jen_grid_width(_target);
-	var _height = jen_grid_height(_target);
-	var _width_apply = min(jen_grid_width(_apply), _width);
-	var _height_apply = min(jen_grid_height(_apply), _height);
-	
-	//Array conversions.
-	_replace = _jenternal_convert_replace(_replace);
-	
-	//Iterate through the application grid.
-	var _value;
-	for (var yy = 0; yy < _height_apply; yy ++) {
-	for (var xx = 0; xx < _width_apply; xx ++)
-	{
-		//Get the value of the application grid.
-		_value = jen_get(_apply, xx, yy);
-		if (_value != noone) && (_chance >= 100 || random(100) < _chance)
-		{
-			if (_function == undefined)
-			{
-				//Directly set the target value to the application value.
-				jen_set(_target, _x1 + xx, _y1 + yy, _replace, _value);
-			}
-			else if (_replace == all || jen_test(_target, xx, yy, _replace))
-			{
-				//Run the custom function.
-				_function(_target, _x1 + xx, _y1 + yy, _replace, _value);
-			}
-		}
-	} }
-}
-#endregion
 #region jen_grid_mirror(JenGrid, horizontal, vertical);
 /// @func jen_grid_mirror(JenGrid, horizontal, vertical):
 /// @desc Flips the data in a grid horizontally and/or vertically.
@@ -560,46 +520,5 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 			if (tile != -1) { tilemap_set(_tilemap, tile + (_offset * 20), _x1 + xx, _y1 + yy); }
 		}
 	} }
-}
-#endregion
-
-//Debugging Functions
-#region jen_grid_string(JenGrid);
-/// @func jen_grid_string(JenGrid):
-/// @desc Returns the JenGrid formatted as a string.
-/// @arg	{Id.DsGrid}		JenGrid
-/// @returns {String}
-function jen_grid_string(_grid)
-{
-	//Getting width and height of the grid.
-	var _w = jen_grid_width(_grid);
-	var _h = jen_grid_height(_grid);
-	
-	//Looping through the grid to build the string.
-	var _output = "";
-	for (var yy = 0; yy < _h; yy++)
-	{
-		for (var xx = 0; xx < _w; xx++)
-		{
-			_output += string(jen_get(_grid, xx, yy));
-			_output += " ";
-		}
-		_output += "\n";
-	}
-	
-	//Return the final string.
-	return _output;
-}
-#endregion
-#region jen_grid_draw(JenGrid, x, y);
-/// @func jen_grid_draw(JenGrid, x, y):
-/// @desc Draws the data within the grid, using jen_grid_string.
-/// @arg	{Id.DsGrid}		JenGrid
-/// @arg  {Real}				x
-/// @arg  {Real}				y
-function jen_grid_draw(_grid, _x1, _y1)
-{
-	var _text = jen_grid_string(_grid);
-	draw_text(_x1, _y1, _text);
 }
 #endregion
