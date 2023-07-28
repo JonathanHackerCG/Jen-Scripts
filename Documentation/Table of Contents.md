@@ -4,10 +4,10 @@
 * jen_set_cellsize
 ### Initialization
 * [jen_grid_create](jen_grid_create.md)
-* [jen_grid_destroy](jen_grid_destroy.md)
+* [jen_grid_destroy](1. JenGrids/1.2. Initialization/jen_grid_destroy.md)
 * [jen_grid_exists](jen_grid_exists.md)
 ### Properties
-* jen_grid_width
+* [jen_grid_width](jen_grid_width.md)
 * jen_grid_height
 * jen_grid_inbounds
 * jen_get
