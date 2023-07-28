@@ -1,8 +1,6 @@
 //Advanced shapes, wandering lines and mazes.
 
-//Handcrafted content (room functions).
-//Consider, rename these to jen_grid_copy_*?
-//TODO: jen_grid_copy
+//Copying
 #region jen_grid_copy_room();
 /// @func jen_grid_copy_room
 /// @desc Will convert the instances of the current room into a new jen_grid.
@@ -96,7 +94,7 @@ function jen_grid_copy_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h,
 //TODO: jen_grid_copy_tilemap_part
 //TODO: jen_grid_copy_tilemap_array
 
-//Consider, rename these to jen_grid_paste_*?
+//Pasting
 #region jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [function]);
 /// @func jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [function]):
 /// @desc Transfer all values from applied grid to a target grid.
