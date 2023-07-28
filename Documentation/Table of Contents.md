@@ -3,7 +3,7 @@
 ### Setup
 * jen_set_cellsize
 ### Initialization
-* [jen_grid_create](jen_grid_create.md)
+* [jen_grid_create](Documentation/1.%20JenGrids/1.2.%20Initialization/jen_grid_create.md)
 * [jen_grid_destroy](jen_grid_destroy.md)
 * jen_grid_exists
 ### Properties
