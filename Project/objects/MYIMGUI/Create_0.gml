@@ -1,6 +1,7 @@
 /// @desc MYIMGUI: Create
 ImGui.__Initialize();
 
+_example_previous = undefined;
 _examples = [];
 _examples_count = 0;
 _examples_4x = true;
@@ -23,6 +24,9 @@ function register_example(_name, _func, _params = undefined)
 function run_example(_example)
 {
 	CONTROL.clear_room();
+	if (_example == undefined) { exit; }
+	_example_previous = _example;
+	
 	if (!_examples_4x) {
 		_example.func(40, 22, 0, 8);
 	}

@@ -11,6 +11,14 @@ for (var i = 0; i < _examples_count; i++) {
 		run_example(_example);
 	}
 }
+
+if (keyboard_check_pressed(ord("R")))
+{
+	room_restart();
+	call_later(1, time_source_units_frames, function() {
+		run_example(_example_previous);
+	});
+}
 #endregion
 
 ImGui.BeginMainMenuBar();
@@ -19,6 +27,13 @@ if (ImGui.BeginMenu("Game")) {
 	
 	if (ImGui.MenuItem("Exit", "ESC")) {
 		game_end();
+	}
+	
+	if (ImGui.MenuItem("Regenerate", "R")) {
+		room_restart();
+		call_later(1, time_source_units_frames, function() {
+			run_example(_example_previous);
+		});
 	}
 ImGui.EndMenu(); }
 #endregion
