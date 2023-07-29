@@ -74,7 +74,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = und
 				//Replace matching values.
 				jen_set(_grid, xx, yy, _replace, _new_value);
 			}
-			else if (_replace == all || jen_test(_grid, xx, yy, _replace))
+			else
 			{
 				//Run the custom function.
 				_function(_grid, xx, yy, _replace, _new_value);

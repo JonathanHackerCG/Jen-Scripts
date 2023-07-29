@@ -87,7 +87,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 					//Replace matching values.
 					jen_set(_grid, xx, yy, _replace, _new_value);
 				}
-				else if (_replace == all || jen_test(_grid, xx, yy, _replace))
+				else
 				{
 					//Run custom function.
 					_function(_grid, xx, yy, _replace, _new_value);

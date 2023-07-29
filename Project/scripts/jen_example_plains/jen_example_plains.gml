@@ -31,6 +31,8 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	
 	jen_scatter(_terrain, obj_grass, obj_tree, 20);
 	
+	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, obj_grass, obj_borderstone, 0, 100, jen_set_not);
+	
 	//Instantiate the second layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_2)
 	#endregion

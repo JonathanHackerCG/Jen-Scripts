@@ -1,14 +1,14 @@
-This function returns the width of a JenGrid.
+This function returns the height of a JenGrid.
 
 **Syntax**
 ```js
-jen_grid_width(JenGrid);
+jen_grid_height(JenGrid);
 ```
 
 **Arguments**
 - ``JenGrid`` The JenGrid to check.
 
-**Returns:** The width of the JenGrid (Real).
+**Returns:** The height of the JenGrid (Real).
 
 **Example**
 ```js

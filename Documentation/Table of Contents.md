@@ -1,19 +1,19 @@
 # Table of Contents
 ## JenGrids
 ### Setup
-* jen_set_cellsize
+* [jen_set_cellsize](1.%20JenGrids/1.1.%20Setup/jen_set_cellsize.md)
 ### Initialization
 * [jen_grid_create](1.%20JenGrids/1.2.%20Initialization/jen_grid_create.md)
 * [jen_grid_destroy](1.%20JenGrids/1.2.%20Initialization/jen_grid_destroy.md)
 * [jen_grid_exists](1.%20JenGrids/1.2.%20Initialization/jen_grid_exists.md)
 ### Properties
-* [jen_grid_width](jen_grid_width.md)
-* jen_grid_height
-* jen_grid_inbounds
-* jen_get
-* jen_set
-* jen_set_not
-* jen_test
+* [jen_grid_width](1.%20JenGrids/1.3.%20Properties/jen_grid_width.md)
+* [jen_grid_height](1.%20JenGrids/1.3.%20Propertiesjen_grid_height.md)
+* [jen_grid_inbounds](1.%20JenGrids/1.3.%20Properties/jen_grid_inbounds.md)
+* [jen_get](1.%20JenGrids/1.3.%20Propertiesjen_get.md)
+* [jen_set](1.%20JenGrids/1.3.%20Properties/jen_set.md)
+* [jen_set_not](1.%20JenGrids/1.3.%20Properties/jen_set_not.md)
+* [jen_test](1.%20JenGrids/1.3.%20Properties/jen_test.md)
 ### Transformations
 * jen_grid_mirror
 * jen_grid_rotate
