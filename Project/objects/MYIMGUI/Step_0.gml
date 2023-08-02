@@ -49,4 +49,21 @@ if (ImGui.BeginMenu("Examples")) {
 	}
 ImGui.EndMenu(); }
 #endregion
+#region >>> DISPLAY
+if (ImGui.BeginMenu("Display")) {
+	_visible_layer = real(ImGui.InputInt("Layers", _visible_layer, 1, 5));
+ImGui.EndMenu(); }
+#endregion
 ImGui.EndMainMenuBar();
+
+#region More Hotkeys
+if (mouse_wheel_down()) { _visible_layer --; }
+if (mouse_wheel_up())		{ _visible_layer ++; }
+_visible_layer = clamp(_visible_layer, 1, _visible_layer_max);
+if (_visible_layer != _visible_layer_previous) {
+	with (all) {
+		if (depth >= DEPTH_LAYER_5) { visible = (depth >= -MYIMGUI._visible_layer); }
+	}
+	_visible_layer_previous = _visible_layer;
+}
+#endregion
