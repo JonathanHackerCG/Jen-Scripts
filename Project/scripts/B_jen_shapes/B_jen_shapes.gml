@@ -32,6 +32,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 		if (_chance >= 100 || random(100) < _chance)
 		{
 			//Setting the line position/appropriate function.
+			//TODO: This should be simplified to use jen_set as default function parameter...
 			if (_function == undefined)
 			{
 				jen_set(_grid, xx, yy, all, _new_value);
@@ -60,8 +61,8 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 /// @arg	{Any}					new_value		Supports Array (Chooses)
 /// @arg	{Real}				[outline]		Default: 0
 /// @arg	{Real}				[chance]		Default: 100
-/// @arg	{Function}		[function]	Default: undefined
-function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _function = undefined)
+/// @arg	{Function}		[function]	Default: jen_set
+function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _function = jen_set)
 {
 	//Finding corners.
 	var _xx1 = min(_x1, _x2);
@@ -82,16 +83,8 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 			//Random chance and using the appropriate function.
 			if (_chance >= 100 || random(100) < _chance)
 			{
-				if (_function == undefined)
-				{
-					//Replace matching values.
-					jen_set(_grid, xx, yy, _replace, _new_value);
-				}
-				else
-				{
-					//Run custom function.
-					_function(_grid, xx, yy, _replace, _new_value);
-				}
+				//Run custom function.
+				_function(_grid, xx, yy, _replace, _new_value);
 			}
 		}
 		else
@@ -116,7 +109,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _function = undefined)
+function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _function = jen_set)
 {
 	//Drawing three lines. (That's basically all this function does).
 	jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _function);
@@ -125,7 +118,7 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 }
 #endregion
 //TO ADD: jen_polygon???
-//TO ADD: jen_circle
+//TO ADD: jen_circle(JenGrid, x1, y1, radius, replace, new_value, [outline], [chance], [function]);
 #region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
 /// @func jen_ellipse
 /// @desc Creates an ellipse. Define the length of each axis, and the rotation.
@@ -140,7 +133,7 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 /// @arg  outline
 /// @arg  [chance]
 /// @arg  [function]
-function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = undefined)
+function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -148,7 +141,7 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	
 	//Estimating the required increment.
 	var _increment = 90 / (2 * pi * max(_haxis, _vaxis));
-	var _temp_grid = jen_grid_create(_width, _height, noone);
+	var _temp_grid = jen_grid_create(_w, _h, noone);
 	var xx = 0; var yy = 0;
 	
 	//Looping around the course of the ellipse and setting values.
@@ -198,6 +191,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 		//Set the value for that new position.
 		if (_chance >= 100 || random(100) < _chance)
 		{
+			//TODO: Update to use jen_set as default _function parameter.
 			if (_function == undefined)
 			{
 				//Directly set the target value to the application value.
@@ -205,7 +199,6 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 			}
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
-				//Run the custom function.
 				_function(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 		}
@@ -247,7 +240,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = undefined)
+function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = jen_set)
 {
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
@@ -257,6 +250,7 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 		//Set the value for that new position.
 		if (_chance >= 100 || random(100) < _chance)
 		{
+			//TODO: Update to use jen_set as default _function parameter.
 			if (_function == undefined)
 			{
 				//Directly set the target value to the application value.
@@ -264,7 +258,6 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 			}
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
-				//Run the custom function.
 				_function(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 		}

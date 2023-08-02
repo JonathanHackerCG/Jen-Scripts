@@ -53,8 +53,8 @@ function jen_replace_not(_grid, _replace, _new_value)
 /// @arg  {Any}					replace			Supports Array (Any)
 /// @arg  {Any}					new_value		Supports Array (Choose)
 /// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: undefined
-function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = undefined)
+/// @arg  {Function}		[function]	Default: jen_set
+function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -69,16 +69,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = und
 	{
 		if (_chance >= 100 || random(100) < _chance)
 		{
-			if (_function == undefined)
-			{
-				//Replace matching values.
-				jen_set(_grid, xx, yy, _replace, _new_value);
-			}
-			else
-			{
-				//Run the custom function.
-				_function(_grid, xx, yy, _replace, _new_value);
-			}
+			_function(_grid, xx, yy, _replace, _new_value);
 		}
 	} }
 }
@@ -94,7 +85,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _function = und
 /// @arg  new_value
 /// @arg  [chance]
 /// @arg  [function]
-function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _function = undefined)
+function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -129,8 +120,8 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 /// @arg  {Any}					new_value		Supports Array (Choose)
 /// @arg	{Real}				number
 /// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: undefined
-function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = undefined)
+/// @arg  {Function}		[function]	Default: jen_set
+function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -166,16 +157,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 			var yy = _positions[| i].y1;
 			if (_chance >= 100 || random(100) < _chance)
 			{
-				if (_function == undefined)
-				{
-					//Replace matching values.
-					jen_set(_grid, xx, yy, _replace, _new_value);
-				}
-				else
-				{
-					//Run the custom function.
-					_function(_grid, xx, yy, _replace, _new_value);
-				}
+				_function(_grid, xx, yy, _replace, _new_value);
 			}
 		}
 	}
@@ -196,7 +178,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _functi
 /// @arg  number
 /// @arg  [chance]
 /// @arg  [function]
-function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance = 100, _function = undefined)
+function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_value, _number, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -256,8 +238,8 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 /// @arg  {Any}					new_value		Supports Array (Chooses)
 /// @arg  {Real}				radius
 /// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: undefined
-function jen_near(_grid, _target, _replace, _new_value, _radius, _chance = 100, _function = undefined)
+/// @arg  {Function}		[function]	Default: jen_set
+function jen_near(_grid, _target, _replace, _new_value, _radius, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -360,7 +342,7 @@ function jen_obfuscate(_grid, _value, _chance = 100)
 /// @arg  death
 /// @arg  [chance]
 /// @arg  [function]
-function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _function = undefined)
+function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _function = jen_set)
 {
 	//Initialize variables.
 	var _w = jen_grid_width(_grid);

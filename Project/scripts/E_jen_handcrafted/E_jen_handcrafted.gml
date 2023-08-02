@@ -105,8 +105,8 @@ function jen_grid_copy_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h,
 /// @arg	{Real}				xcell
 /// @arg	{Real}				ycell
 /// @arg  {Real}				[chance]		Default: 100
-/// @arg  {Function}		[function]	Default: undefined
-function jen_grid_paste(_target, _paste, _replace, _x1, _y1, _chance = 100, _function = undefined)
+/// @arg  {Function}		[function]	Default: jen_set
+function jen_grid_paste(_target, _paste, _replace, _x1, _y1, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grids.
 	var _width = jen_grid_width(_target);
@@ -126,16 +126,7 @@ function jen_grid_paste(_target, _paste, _replace, _x1, _y1, _chance = 100, _fun
 		_value = jen_get(_paste, xx, yy);
 		if (_value != noone) && (_chance >= 100 || random(100) < _chance)
 		{
-			if (_function == undefined)
-			{
-				//Directly set the target value to the application value.
-				jen_set(_target, _x1 + xx, _y1 + yy, _replace, _value);
-			}
-			else if (_replace == all || jen_test(_target, xx, yy, _replace))
-			{
-				//Run the custom function.
-				_function(_target, _x1 + xx, _y1 + yy, _replace, _value);
-			}
+			_function(_target, _x1 + xx, _y1 + yy, _replace, _value);
 		}
 	} }
 }
@@ -151,7 +142,7 @@ function jen_grid_paste(_target, _paste, _replace, _x1, _y1, _chance = 100, _fun
 /// @arg  replace
 /// @arg  [chance]
 /// @arg  [function]
-function jen_scatter_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = undefined)
+function jen_scatter_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
@@ -173,7 +164,7 @@ function jen_scatter_paste(_target, _paste, _find_value, _xoff, _yoff, _replace,
 		}
 	} }
 	
-	//paste the temporary grid to the base grid.
+	//Paste the temporary grid to the base grid.
 	jen_grid_paste(_target, _temp_grid, _replace, 0, 0, 100, _function);
 	
 	//Clearing memory.
@@ -192,7 +183,7 @@ function jen_scatter_paste(_target, _paste, _find_value, _xoff, _yoff, _replace,
 /// @arg  number
 /// @arg  [chance]
 /// @arg  [function]
-function jen_number_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = undefined)
+function jen_number_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _function = jen_set)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
@@ -230,7 +221,7 @@ function jen_number_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, 
 		}
 	}
 	
-	//paste the temporary grid to the base grid.
+	//Paste the temporary grid to the base grid.
 	jen_grid_paste(_target, _temp_grid, _replace, 0, 0, _chance, _function);
 	
 	//Clearing memory.
