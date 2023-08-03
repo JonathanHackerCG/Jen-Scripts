@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "A_jen_grids",
+  "name": "_4_jen_handcrafted",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

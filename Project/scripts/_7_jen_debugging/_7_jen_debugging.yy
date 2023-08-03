@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "F_jen_mazes",
+  "name": "_7_jen_debugging",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

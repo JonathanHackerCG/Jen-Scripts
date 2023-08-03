@@ -1,8 +1,8 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
 //Primitive shapes.
-#region jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]	);
-/// @func jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]	):
+#region jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]);
+/// @func jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]):
 /// @desc Creates a line between two points.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg  {Real}				x1
@@ -41,8 +41,8 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 	}
 }
 #endregion
-#region jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [setter]	);
-/// @func jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [setter]	):
+#region jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [setter]);
+/// @func jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [setter]):
 /// @desc Creates a rectangle between two positions.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				xcell1
@@ -86,7 +86,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 	} }
 }
 #endregion
-#region jen_triangle(JenGrid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [setter]	);
+#region jen_triangle(JenGrid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [setter]);
 /// @func jen_triangle
 /// @desc This creates a triangle. There is no option for a filled triangle.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -109,8 +109,8 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 }
 #endregion
 //TO ADD: jen_polygon???
-//TO ADD: jen_circle(JenGrid, x1, y1, radius, replace, new_value, [outline], [chance], [setter]	);
-#region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [setter]	);
+//TO ADD: jen_circle(JenGrid, x1, y1, radius, replace, new_value, [outline], [chance], [setter]);
+#region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [setter]);
 /// @func jen_ellipse
 /// @desc Creates an ellipse. Define the length of each axis, and the rotation.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -156,7 +156,7 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 #endregion
 
 //Wandering lines.
-#region jen_wander_direction(JenGrid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [setter]	);
+#region jen_wander_direction(JenGrid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [setter]);
 /// @func jen_wander_direction
 /// @desc Will create a wandering line between two positions.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -214,7 +214,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 	}
 }
 #endregion
-#region jen_wander_line(JenGrid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [setter]	);
+#region jen_wander_line(JenGrid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [setter]);
 /// @func jen_wander_line
 /// @desc Will create a wandering line between two positions.
 /// @arg	{Id.DsGrid}		JenGrid

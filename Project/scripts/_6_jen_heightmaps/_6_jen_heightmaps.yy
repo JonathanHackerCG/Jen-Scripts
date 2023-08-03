@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "E_jen_handcrafted",
+  "name": "_6_jen_heightmaps",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

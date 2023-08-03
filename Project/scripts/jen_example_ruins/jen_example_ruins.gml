@@ -24,9 +24,8 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, all, obj_borderstone, 1);
 	jen_rectangle(_terrain, 1, 1, _cellsw - 2, _cellsh - 2, all, obj_borderstone, 1, 50);
 	
-	jen_grid_paste(_terrain, _ruinB, obj_grass, 4, 4);
-	
-	jen_grid_mirror(_terrain, irandom(1), irandom(1));
+	//jen_grid_paste(_terrain, _ruinB, obj_borderstone, 4, 4, 100, jen_set_not);
+	//jen_grid_mirror(_terrain, irandom(1), irandom(1));
 	
 	//Testing lines.
 	var n = 1;
@@ -36,8 +35,12 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 		var y1 = irandom_range(0, _cellsh);
 		var x2 = irandom_range(0, _cellsw);
 		var y2 = irandom_range(0, _cellsh);
-		jen_line(_terrain, x1, y1, x2, y2, [obj_borderstone, obj_stone], [obj_water, obj_water_light], 90, jen_set_not);
+		jen_line(_terrain, x1, y1, x2, y2, obj_grass, obj_dirt, 90);
 	}
+	
+	jen_obfuscate(_terrain, obj_dirt, obj_grass, 100);
+	jen_near(_terrain, obj_dirt, obj_grass, obj_dirt, 1, 20);
+	jen_near(_terrain, obj_dirt, obj_grass, obj_sand, 1);
 	
 	//Instantiate the first layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);

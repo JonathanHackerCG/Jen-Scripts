@@ -95,10 +95,10 @@ function jen_grid_copy_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h,
 //TODO: jen_grid_copy_tilemap_array
 
 //Pasting
-#region jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [setter]	);
-/// @func jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [setter]	):
-/// @desc Transfer all values from applied grid to a target grid.
-///				Values of 'noone' in the applied grid will be ignored.
+#region jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [setter]);
+/// @func jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [setter]):
+/// @desc Transfer all values from pasted grid to a target grid.
+///				Values of 'noone' in the pasted grid will be ignored.
 /// @arg	{Id.DsGrid}		target_JenGrid
 /// @arg  {Id.DsGrid}		paste_JenGrid
 /// @arg	{Any}					replace			Supports Array (Any)
@@ -131,7 +131,7 @@ function jen_grid_paste(_target, _paste, _replace, _x1, _y1, _chance = 100, _set
 	} }
 }
 #endregion
-#region jen_scatter_paste(target_grid, paste_grid, find_value, x_offset, y_offset, replace, [chance], [setter]	);
+#region jen_scatter_paste(target_grid, paste_grid, find_value, x_offset, y_offset, replace, [chance], [setter]);
 /// @func jen_scatter_paste
 /// @desc Replaces some percentage of one value with the values of another grid with jen_paste.
 /// @arg  target_grid
@@ -171,7 +171,7 @@ function jen_scatter_paste(_target, _paste, _find_value, _xoff, _yoff, _replace,
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_number_paste(target_grid, paste_grid, find_value x_offset, y_offset, replace, number, [chance], [setter]	);
+#region jen_number_paste(target_grid, paste_grid, find_value x_offset, y_offset, replace, number, [chance], [setter]);
 /// @func jen_number_paste
 /// @desc Sets a new value some number of times, offset from a particular search value.
 /// @arg  target_grid

@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "B_jen_shapes",
+  "name": "_1_jen_grids",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

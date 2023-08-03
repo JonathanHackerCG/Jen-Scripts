@@ -153,7 +153,7 @@ function jen_heightmap_gradient(_width, _height, _radius, _density)
 	return _heightmap;
 }
 #endregion
-#region jen_heightmap_apply(JenGrid, heightmap, x1, y1, min, max, replace, new_value, [chance], [setter]	);
+#region jen_heightmap_apply(JenGrid, heightmap, x1, y1, min, max, replace, new_value, [chance], [setter]);
 /// @func jen_heightmap_apply
 /// @desc Converts a range of values in a heightmap to values in a grid.
 /// @arg	{Id.DsGrid}		JenGrid

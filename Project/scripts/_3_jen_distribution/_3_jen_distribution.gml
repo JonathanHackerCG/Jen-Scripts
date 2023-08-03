@@ -1,4 +1,4 @@
-// Basic distribution functions. Scattering and replacing.
+//Basic distribution functions. Scattering and replacing.
 
 #region jen_replace(JenGrid, replace, new_value);
 /// @func jen_replace(JenGrid, replace, new_value):
@@ -46,8 +46,8 @@ function jen_replace_not(_grid, _replace, _new_value)
 	} }
 }
 #endregion
-#region jen_scatter(JenGrid, replace, new_value, [chance], [setter]	);
-/// @func jen_scatter(JenGrid, replace, new_value, [chance], [setter]	):
+#region jen_scatter(JenGrid, replace, new_value, [chance], [setter]);
+/// @func jen_scatter(JenGrid, replace, new_value, [chance], [setter]):
 /// @desc Replaces some percentage of matching values with a new value.
 /// @arg  {Id.DsGrid}		JenGrid
 /// @arg  {Any}					replace			Supports Array (Any)
@@ -74,7 +74,7 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _setter = jen_s
 	} }
 }
 #endregion
-#region jen_scatter_offset(JenGrid, find_value, x_offset, y_offset, replace, new_value, [chance], [setter]	);
+#region jen_scatter_offset(JenGrid, find_value, x_offset, y_offset, replace, new_value, [chance], [setter]);
 /// @func jen_scatter_offset
 /// @desc Replaces some percentage of one value with another, offset by a search value.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -112,8 +112,8 @@ function jen_scatter_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_val
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_number(JenGrid, replace, new_value, number, [chance], [setter]	);
-/// @func jen_number(JenGrid, replace, new_value, number, [chance], [setter]	):
+#region jen_number(JenGrid, replace, new_value, number, [chance], [setter]);
+/// @func jen_number(JenGrid, replace, new_value, number, [chance], [setter]):
 /// @desc Replaces a specific number of matching values with a new value.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg  {Any}					replace			Supports Array (Any)
@@ -166,7 +166,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _setter
 	ds_list_destroy(_positions);
 }
 #endregion
-#region jen_number_offset(JenGrid, find_value x_offset, y_offset, replace, new_value, number, [chance], [setter]	);
+#region jen_number_offset(JenGrid, find_value x_offset, y_offset, replace, new_value, number, [chance], [setter]);
 /// @func jen_number_offset
 /// @desc Sets a new value some number of times, offset from a particular search value.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -229,8 +229,8 @@ function jen_number_offset(_grid, _find_value, _xoff, _yoff, _replace, _new_valu
 #endregion
 
 //Extras
-#region jen_near(JenGrid, target, replace, new_value, radius, [chance], [setter]	);
-/// @func jen_near(JenGrid, target, replace, new_value, radius, [chance], [setter]	):
+#region jen_near(JenGrid, target, replace, new_value, radius, [chance], [setter]);
+/// @func jen_near(JenGrid, target, replace, new_value, radius, [chance], [setter]):
 /// @desc Replaces all matching values with a new value, within radius distance of matching target values.
 /// @arg  {Id.DsGrid}		JenGrid
 /// @arg  {Any}					target			Supports Array (Any)
@@ -272,24 +272,28 @@ function jen_near(_grid, _target, _replace, _new_value, _radius, _chance = 100, 
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_obfuscate(JenGrid, value, [chance]);
-/// @func jen_obfuscate
-/// @desc Causes certain values to swap with values around them.
+#region jen_obfuscate(JenGrid, target, adjacent, [chance]);
+/// @func jen_obfuscate(JenGrid, target, adjacent, [chance]):
+/// @desc Target values swap with valid adjacent values.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  value
-/// @arg  [chance]
-function jen_obfuscate(_grid, _value, _chance = 100)
+/// @arg  {Any}					target
+/// @arg	{Any}					adjacent
+/// @arg	{Real}				[chance]		Default: 100
+function jen_obfuscate(_grid, _target, _adjacent, _chance = 100)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
+	
+	_target = _jenternal_convert_replace(_target);
+	_adjacent = _jenternal_convert_replace(_adjacent);
 	
 	//Create a list of every position in the array.
 	var _positions = ds_list_create();
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_value == all || jen_get(_grid, xx, yy) == _value)
+		if (jen_test(_grid, xx, yy, _target))
 		{
 			var pos = { x1 : xx, y1 : yy }
 			ds_list_add(_positions, pos);
@@ -314,24 +318,24 @@ function jen_obfuscate(_grid, _value, _chance = 100)
 			else { yoff = choose(-1, 1); }
 			
 			//Swapping values with adjacent value.
-			neo = jen_get(_grid, xx + xoff, yy + yoff);
-			if (neo != undefined)
+			if (jen_test(_grid, xx + xoff, yy + yoff, _adjacent))
 			{
-				temp = jen_get(_grid, xx, yy);
-				jen_set(_grid, xx + xoff, yy + yoff, all, temp);
-				jen_set(_grid, xx, yy, all, neo);
+				neo = jen_get(_grid, xx + xoff, yy + yoff);
+				if (neo != undefined)
+				{
+					temp = jen_get(_grid, xx, yy);
+					jen_set(_grid, xx + xoff, yy + yoff, all, temp);
+					jen_set(_grid, xx, yy, all, neo);
+				}
 			}
 		}
-		
-		//Delete the structs when finished with them.
-		delete _positions[| i];
 	}
 	
 	//Clearing memory.
 	ds_list_destroy(_positions);
 }
 #endregion
-#region jen_automata(JenGrid, living, empty, bounds, birth, death, [chance], [setter]	);
+#region jen_automata(JenGrid, living, empty, bounds, birth, death, [chance], [setter]);
 /// @func jen_automata
 /// @desc Applies cellular automata between two different values.
 /// @arg	{Id.DsGrid}		JenGrid

@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "G_jen_heightmaps",
+  "name": "_2_jen_shapes",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
