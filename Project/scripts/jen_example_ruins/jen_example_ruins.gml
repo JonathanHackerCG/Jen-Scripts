@@ -19,7 +19,6 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 	jen_grid_rotate(_ruinB, irandom(3));
 	jen_grid_scale(_ruinB, 3, true);
 	jen_grid_scale(_ruinB, 3, false);
-	
 	#endregion
 	#region First Layer (Terrain)
 	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, all, obj_borderstone, 1);
@@ -28,6 +27,17 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 	jen_grid_paste(_terrain, _ruinB, obj_grass, 4, 4);
 	
 	jen_grid_mirror(_terrain, irandom(1), irandom(1));
+	
+	//Testing lines.
+	var n = 1;
+	repeat (n)
+	{
+		var x1 = irandom_range(0, _cellsw);
+		var y1 = irandom_range(0, _cellsh);
+		var x2 = irandom_range(0, _cellsw);
+		var y2 = irandom_range(0, _cellsh);
+		jen_line(_terrain, x1, y1, x2, y2, [obj_borderstone, obj_stone], [obj_water, obj_water_light], 90, jen_set_not);
+	}
 	
 	//Instantiate the first layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);

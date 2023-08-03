@@ -153,7 +153,7 @@ function jen_heightmap_gradient(_width, _height, _radius, _density)
 	return _heightmap;
 }
 #endregion
-#region jen_heightmap_apply(JenGrid, heightmap, x1, y1, min, max, replace, new_value, [chance], [function]);
+#region jen_heightmap_apply(JenGrid, heightmap, x1, y1, min, max, replace, new_value, [chance], [setter]	);
 /// @func jen_heightmap_apply
 /// @desc Converts a range of values in a heightmap to values in a grid.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -165,8 +165,8 @@ function jen_heightmap_gradient(_width, _height, _radius, _density)
 /// @arg  replace
 /// @arg  new_value
 /// @arg  [chance]
-/// @arg  [function]
-function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, _new_value, _chance = 100, _function = jen_set)
+/// @arg  [setter]	
+function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Getting the width and height of the heightmap.
 	var _width = jen_heightmap_width(_heightmap);
@@ -186,7 +186,7 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 	} }
 	
 	//Apply the changes to the base grid.
-	jen_grid_paste(_grid, _temp_grid, _replace, _x1, _y1, _chance, _function);
+	jen_grid_paste(_grid, _temp_grid, _replace, _x1, _y1, _chance, _setter);
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	jen_grid_destroy(_temp_grid);
 }

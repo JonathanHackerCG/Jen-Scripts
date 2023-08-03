@@ -5,3 +5,7 @@
 *Talk about replace and new_value parameters, because they are everywhere.*
 
 *Add a page for function parameter, because they are also quite frequent.*
+
+## Replace/New Value Parameters
+
+## Setter Parameter

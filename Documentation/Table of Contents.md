@@ -25,7 +25,7 @@
 * jen_grid_instantiate_autotile
 ## Shapes
 #### Basic Shapes
-* jen_line
+* [jen_line](2.%20Shapes/2.1.%20Basic%20Shapes/jen_line.md)
 * jen_rectangle
 * jen_triangle
 * jen_ellipse

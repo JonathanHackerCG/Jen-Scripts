@@ -1,19 +1,19 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
 //Primitive shapes.
-#region jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
-/// @func jen_line
+#region jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]	);
+/// @func jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]	):
 /// @desc Creates a line between two points.
-/// @arg  {Id.Grid} grid
-/// @arg  {Real} x1
-/// @arg  {Real} y1
-/// @arg  {Real} x2
-/// @arg  {Real} y2
-/// @arg  {Any} replace
-/// @arg  {Any} new_value
-/// @arg  {Real} [chance]
-/// @arg  {Function} [function]
-function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100, _function = undefined)
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg  {Real}				x1
+/// @arg  {Real}				y1
+/// @arg  {Real}				x2
+/// @arg  {Real}				y2
+/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					new_value		Supports Array (Chooses)
+/// @arg	{Real}				[chance]		Default: 100
+/// @arg	{Function}		[setter]		Default: jen_set
+function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Calculating _step amounts for the line.
 	var _xdis = _x2 - _x1;
@@ -32,15 +32,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 		if (_chance >= 100 || random(100) < _chance)
 		{
 			//Setting the line position/appropriate function.
-			//TODO: This should be simplified to use jen_set as default function parameter...
-			if (_function == undefined)
-			{
-				jen_set(_grid, xx, yy, all, _new_value);
-			}
-			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
-			{
-				_function(_grid, xx, yy, _replace, _new_value);
-			}
+			_setter(_grid, round(xx), round(yy), _replace, _new_value);
 		}
 		//Increment position.
 		xx += _xdis;
@@ -49,8 +41,8 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 	}
 }
 #endregion
-#region jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [function]);
-/// @func jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [function]):
+#region jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [setter]	);
+/// @func jen_rectangle(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [outline], [chance], [setter]	):
 /// @desc Creates a rectangle between two positions.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				xcell1
@@ -61,8 +53,8 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 /// @arg	{Any}					new_value		Supports Array (Chooses)
 /// @arg	{Real}				[outline]		Default: 0
 /// @arg	{Real}				[chance]		Default: 100
-/// @arg	{Function}		[function]	Default: jen_set
-function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _function = jen_set)
+/// @arg	{Function}		[setter]		Default: jen_set
+function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _setter = jen_set)
 {
 	//Finding corners.
 	var _xx1 = min(_x1, _x2);
@@ -83,8 +75,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 			//Random chance and using the appropriate function.
 			if (_chance >= 100 || random(100) < _chance)
 			{
-				//Run custom function.
-				_function(_grid, xx, yy, _replace, _new_value);
+				_setter(_grid, xx, yy, _replace, _new_value);
 			}
 		}
 		else
@@ -95,7 +86,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 	} }
 }
 #endregion
-#region jen_triangle(JenGrid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [function]);
+#region jen_triangle(JenGrid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [setter]	);
 /// @func jen_triangle
 /// @desc This creates a triangle. There is no option for a filled triangle.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -108,18 +99,18 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 /// @arg  replace
 /// @arg  new_value
 /// @arg  [chance]
-/// @arg  [function]
-function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _function = jen_set)
+/// @arg  [setter]	
+function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Drawing three lines. (That's basically all this function does).
-	jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _function);
-	jen_line(_grid, _x2, _y2, _x3, _y3, _replace, _new_value, _chance, _function);
-	jen_line(_grid, _x3, _y3, _x1, _y1, _replace, _new_value, _chance, _function);
+	jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _setter);
+	jen_line(_grid, _x2, _y2, _x3, _y3, _replace, _new_value, _chance, _setter);
+	jen_line(_grid, _x3, _y3, _x1, _y1, _replace, _new_value, _chance, _setter);
 }
 #endregion
 //TO ADD: jen_polygon???
-//TO ADD: jen_circle(JenGrid, x1, y1, radius, replace, new_value, [outline], [chance], [function]);
-#region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [function]);
+//TO ADD: jen_circle(JenGrid, x1, y1, radius, replace, new_value, [outline], [chance], [setter]	);
+#region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [setter]	);
 /// @func jen_ellipse
 /// @desc Creates an ellipse. Define the length of each axis, and the rotation.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -132,8 +123,8 @@ function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value,
 /// @arg  angle
 /// @arg  outline
 /// @arg  [chance]
-/// @arg  [function]
-function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _function = jen_set)
+/// @arg  [setter]	
+function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -156,7 +147,7 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	}
 	
 	//Applying the temporary grid over the base grid.
-	jen_grid_paste(_grid, _temp_grid, _replace, 0, 0, _chance, _function);
+	jen_grid_paste(_grid, _temp_grid, _replace, 0, 0, _chance, _setter);
 	jen_replace(_grid, "_jenternal_undefined", _new_value);
 	
 	//Clearing memory.
@@ -165,7 +156,7 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 #endregion
 
 //Wandering lines.
-#region jen_wander_direction(JenGrid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+#region jen_wander_direction(JenGrid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [setter]	);
 /// @func jen_wander_direction
 /// @desc Will create a wandering line between two positions.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -180,8 +171,8 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 /// @arg  replace
 /// @arg  new_value
 /// @arg  [chance]
-/// @arg  [function]
-function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = undefined)
+/// @arg  [setter]	
+function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _setter = undefined)
 {
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
@@ -191,15 +182,15 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 		//Set the value for that new position.
 		if (_chance >= 100 || random(100) < _chance)
 		{
-			//TODO: Update to use jen_set as default _function parameter.
-			if (_function == undefined)
+			//TODO: Update to use jen_set as default _setter parameter.
+			if (_setter == undefined)
 			{
 				//Directly set the target value to the application value.
 				jen_set(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
-				_function(_grid, round(xx), round(yy), _replace, _new_value);
+				_setter(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 		}
 		
@@ -223,7 +214,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 	}
 }
 #endregion
-#region jen_wander_line(JenGrid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [function]);
+#region jen_wander_line(JenGrid, x1, y1, x2, y2, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [setter]	);
 /// @func jen_wander_line
 /// @desc Will create a wandering line between two positions.
 /// @arg	{Id.DsGrid}		JenGrid
@@ -239,8 +230,8 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 /// @arg  replace
 /// @arg  new_value
 /// @arg  [chance]
-/// @arg  [function]
-function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _function = jen_set)
+/// @arg  [setter]	
+function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correction_accuracy, _adjustment_count, _adjustment_accuracy, _lifetime, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
@@ -250,15 +241,15 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 		//Set the value for that new position.
 		if (_chance >= 100 || random(100) < _chance)
 		{
-			//TODO: Update to use jen_set as default _function parameter.
-			if (_function == undefined)
+			//TODO: Update to use jen_set as default _setter parameter.
+			if (_setter == undefined)
 			{
 				//Directly set the target value to the application value.
 				jen_set(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 			else if (_replace == all || jen_get(_grid, round(xx), round(yy)) == _replace)
 			{
-				_function(_grid, round(xx), round(yy), _replace, _new_value);
+				_setter(_grid, round(xx), round(yy), _replace, _new_value);
 			}
 		}
 		
