@@ -12,6 +12,11 @@ for (var i = 0; i < _examples_count; i++) {
 	}
 }
 
+if (keyboard_check_pressed(vk_tab))
+{
+	_examples_4x = !_examples_4x;
+}
+
 if (keyboard_check_pressed(ord("R")))
 {
 	room_restart();

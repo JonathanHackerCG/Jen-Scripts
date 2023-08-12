@@ -147,7 +147,7 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	}
 	
 	//Applying the temporary grid over the base grid.
-	jen_grid_paste(_grid, _temp_grid, _replace, 0, 0, _chance, _setter);
+	jen_grid_paste(_grid, _temp_grid, 0, 0, _replace, _chance, _setter);
 	jen_replace(_grid, "_jenternal_undefined", _new_value);
 	
 	//Clearing memory.

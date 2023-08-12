@@ -186,7 +186,7 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 	} }
 	
 	//Apply the changes to the base grid.
-	jen_grid_paste(_grid, _temp_grid, _replace, _x1, _y1, _chance, _setter);
+	jen_grid_paste(_grid, _temp_grid, _x1, _y1, _replace, _chance, _setter);
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	jen_grid_destroy(_temp_grid);
 }

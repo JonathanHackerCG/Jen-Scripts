@@ -95,34 +95,34 @@ function jen_grid_copy_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h,
 //TODO: jen_grid_copy_tilemap_array
 
 //Pasting
-#region jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [setter]);
-/// @func jen_grid_paste(target_JenGrid, paste_JenGrid, replace, xcell, ycell, [chance], [setter]):
+#region jen_grid_paste(target_JenGrid, paste_JenGrid, xcell, ycell, replace, [chance], [setter]);
+/// @func jen_grid_paste(target_JenGrid, paste_JenGrid, xcell, ycell, replace, [chance], [setter]):
 /// @desc Transfer all values from pasted grid to a target grid.
 ///				Values of 'noone' in the pasted grid will be ignored.
 /// @arg	{Id.DsGrid}		target_JenGrid
 /// @arg  {Id.DsGrid}		paste_JenGrid
-/// @arg	{Any}					replace			Supports Array (Any)
 /// @arg	{Real}				xcell
 /// @arg	{Real}				ycell
+/// @arg	{Any}					replace			Supports Array (Any)
 /// @arg  {Real}				[chance]		Default: 100
 /// @arg  {Function}		[setter]		Default: jen_set
-function jen_grid_paste(_target, _paste, _replace, _x1, _y1, _chance = 100, _setter = jen_set)
+function jen_grid_paste(_target, _paste, _x1, _y1, _replace, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grids.
-	var _width = jen_grid_width(_target);
-	var _height = jen_grid_height(_target);
-	var _width_paste = min(jen_grid_width(_paste), _width);
-	var _height_paste = min(jen_grid_height(_paste), _height);
+	var _w = jen_grid_width(_target);
+	var _h = jen_grid_height(_target);
+	var _w_paste = min(jen_grid_width(_paste), _w);
+	var _h_paste = min(jen_grid_height(_paste), _h);
 	
 	//Array conversions.
 	_replace = _jenternal_convert_replace(_replace);
 	
-	//Iterate through the application grid.
+	//Iterate through the pasting grid.
 	var _value;
-	for (var yy = 0; yy < _height_paste; yy ++) {
-	for (var xx = 0; xx < _width_paste; xx ++)
+	for (var yy = 0; yy < _h_paste; yy ++) {
+	for (var xx = 0; xx < _w_paste; xx ++)
 	{
-		//Get the value of the application grid.
+		//Get the value of the pasting grid.
 		_value = jen_get(_paste, xx, yy);
 		if (_value != noone) && (_chance >= 100 || random(100) < _chance)
 		{
@@ -131,59 +131,59 @@ function jen_grid_paste(_target, _paste, _replace, _x1, _y1, _chance = 100, _set
 	} }
 }
 #endregion
-#region jen_scatter_paste(target_grid, paste_grid, find_value, x_offset, y_offset, replace, [chance], [setter]);
+#region jen_scatter_paste(target_grid, paste_grid, x_offset, y_offset, match_value, replace, [chance], [setter]);
 /// @func jen_scatter_paste
 /// @desc Replaces some percentage of one value with the values of another grid with jen_paste.
 /// @arg  target_grid
 /// @arg  paste_grid
-/// @arg  find_value
 /// @arg  x_offset
 /// @arg  y_offset
+/// @arg  match_value
 /// @arg  replace
 /// @arg  [chance]
 /// @arg  [setter]	
-function jen_scatter_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, _chance = 100, _setter = jen_set)
+function jen_scatter_paste(_target, _paste, _xoff, _yoff, _match_value, _replace, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_target);
-	var _height = jen_grid_height(_target);
+	var _w = jen_grid_width(_target);
+	var _h = jen_grid_height(_target);
+	
+	if (!is_array(_paste)) { _paste = [_paste]; }
+	var _size = array_length(_paste);
 	
 	//Create a temporary grid to keep track of changes.
-	var _temp_grid = jen_grid_create(_width, _height, noone);
+	var _temp_grid = jen_grid_create(_w, _h, noone);
 	
 	//Search for every find value in the base grid.
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (jen_get(_target, xx, yy) == _find_value)
+		if (jen_test(_target, xx, yy, _match_value) && (_chance >= 100 || random(100) < _chance))
 		{
-			if (_chance >= 100 || random(100) < _chance)
-			{
-				jen_grid_paste(_temp_grid, _paste, all, xx + _xoff, yy + _yoff);
-			}
+			jen_grid_paste(_temp_grid, _paste[irandom(_size - 1)], xx + _xoff, yy + _yoff, all);
 		}
 	} }
 	
 	//Paste the temporary grid to the base grid.
-	jen_grid_paste(_target, _temp_grid, _replace, 0, 0, 100, _setter);
+	jen_grid_paste(_target, _temp_grid, 0, 0, _replace, 100, _setter);
 	
 	//Clearing memory.
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_number_paste(target_grid, paste_grid, find_value x_offset, y_offset, replace, number, [chance], [setter]);
+#region jen_number_paste(target_grid, paste_grid, match_value x_offset, y_offset, replace, number, [chance], [setter]);
 /// @func jen_number_paste
 /// @desc Sets a new value some number of times, offset from a particular search value.
 /// @arg  target_grid
 /// @arg  paste_grid
-/// @arg  find_values
+/// @arg  match_values
 /// @arg  x_offset
 /// @arg  y_offset
 /// @arg  replace
 /// @arg  number
 /// @arg  [chance]
 /// @arg  [setter]	
-function jen_number_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, _number, _chance = 100, _setter = jen_set)
+function jen_number_paste(_target, _paste, _xoff, _yoff, _match_value, _replace, _number, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
 	var _width = jen_grid_width(_target);
@@ -197,7 +197,7 @@ function jen_number_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, 
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_replace == all || jen_get(_target, xx, yy) == _find_value)
+		if (_replace == all || jen_get(_target, xx, yy) == _match_value)
 		{
 			var pos = { x1 : xx, y1 : yy };
 			ds_list_add(_positions, pos);
@@ -207,7 +207,7 @@ function jen_number_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, 
 	//If there are less than the target number, replace all of them.
 	if (ds_list_size(_positions) <= _number)
 	{
-		jen_scatter_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, _chance, _setter);
+		jen_scatter_paste(_target, _paste, _xoff, _yoff, _match_value, _replace, _chance, _setter);
 	}
 	else //Changing a certain number of the positions.
 	{
@@ -217,12 +217,12 @@ function jen_number_paste(_target, _paste, _find_value, _xoff, _yoff, _replace, 
 			//Get the coordinates of this valid position.
 			var xx = _positions[| i].x1;
 			var yy = _positions[| i].y1;
-			jen_grid_paste(_temp_grid, _paste, all, xx + _xoff, yy + _yoff);
+			jen_grid_paste(_temp_grid, _paste, xx + _xoff, yy + _yoff, all);
 		}
 	}
 	
 	//Paste the temporary grid to the base grid.
-	jen_grid_paste(_target, _temp_grid, _replace, 0, 0, _chance, _setter);
+	jen_grid_paste(_target, _temp_grid, 0, 0, _replace, _chance, _setter);
 	
 	//Clearing memory.
 	var size = ds_list_size(_positions);

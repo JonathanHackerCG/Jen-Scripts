@@ -10,7 +10,7 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	var _terrain = jen_grid_create(_cellsw, _cellsh, obj_grass);
 	
 	#region First Layer (Ground)
-	//Adding some patches of dirt.
+	//Add some patches of dirt.
 	jen_scatter(_terrain, obj_grass, obj_dirt, 5);
 	jen_near(_terrain, obj_dirt, obj_grass, obj_dirt, 2, 40);
 	
@@ -18,7 +18,7 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);
 	#endregion
 	#region Second Layer (Trees/Rocks)
-	//Create wall around outside.
+	//Add borderstone wall.
 	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, all, obj_borderstone, 1);
 	jen_rectangle(_terrain, 1, 1, _cellsw - 2, _cellsh - 2, all, obj_borderstone, 1, 50);
 	
@@ -39,7 +39,7 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_scatter(_terrain, "ground", obj_tree, 25);
 	
 	//Instantiate the second layer of the terrain.
-	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_2)
+	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_2);
 	#endregion
 	
 	//Cleaning up.

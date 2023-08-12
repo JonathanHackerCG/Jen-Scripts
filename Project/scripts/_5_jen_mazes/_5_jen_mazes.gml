@@ -483,7 +483,7 @@ function jen_maze_build_list(_maze, _list, _value, _room_w, _room_h, _wall_w, _w
 	for (var xx = 0; xx < _width; xx ++) {
 		var x1 = xx * (_room_w + _wall_w);
 		var y1 = yy * (_room_h + _wall_h);
-		jen_grid_paste(_grid, _list[| irandom(_size - 1)], noone, x1 + _wall_w, y1 + _wall_h);
+		jen_grid_paste(_grid, _list[| irandom(_size - 1)], x1 + _wall_w, y1 + _wall_h, noone);
 	} }
 	
 	return _grid;
@@ -582,7 +582,7 @@ function jen_maze_build_special(_maze, _value, _room_w, _room_h, _wall_w, _wall_
 		}
 		
 		//Applying the final temp grid to the place in the output maze.
-		jen_grid_paste(_grid, _temp, noone, x1 + _wall_w, y1 + _wall_h);
+		jen_grid_paste(_grid, _temp, x1 + _wall_w, y1 + _wall_h, noone);
 		#endregion
 	} }
 	
