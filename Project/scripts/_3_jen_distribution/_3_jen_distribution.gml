@@ -48,7 +48,7 @@ function jen_replace_not(_grid, _replace, _new_value)
 #endregion
 #region jen_scatter(JenGrid, replace, new_value, [chance], [setter]);
 /// @func jen_scatter(JenGrid, replace, new_value, [chance], [setter]):
-/// @desc Replaces some percentage of matching values with a new value.
+/// @desc Replaces some percentage of replace values with a new value.
 /// @arg  {Id.DsGrid}		JenGrid
 /// @arg  {Any}					replace			Supports Array (Any Of)
 /// @arg  {Any}					new_value		Supports Array (Choose)
@@ -59,9 +59,6 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _setter = jen_s
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
-	
-	//Array conversions.
-	_replace = _jenternal_convert_array_all(_replace);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
@@ -74,23 +71,23 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _setter = jen_s
 	} }
 }
 #endregion
-#region jen_scatter_offset(JenGrid, x_offset, y_offset, match_value, replace, new_value, [chance], [setter]);
-/// @func jen_scatter_offset
-/// @desc Replaces some percentage of one value with another, offset by a search value.
+#region jen_scatter_offset(JenGrid, match_value, xcell_off, ycell_off, replace, new_value, [chance], [setter]);
+/// @func jen_scatter_offset(JenGrid, match_value, xcell_off, ycell_off, replace, new_value, [chance], [setter]):
+/// @desc Replaces some percentage of replace values with another, offset from matching values.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  match_value
-/// @arg  x_offset
-/// @arg  y_offset
-/// @arg  replace
-/// @arg  new_value
-/// @arg  [chance]
-/// @arg  [setter]	
-function jen_scatter_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_value, _chance = 100, _setter = jen_set)
+/// @arg  {Any}					match_value			Supports Array (Any Of)
+/// @arg  {Real}				xcell_off				Supports Array (Any Of)
+/// @arg  {Real}				ycell_off				Supports Array (Any Of)
+/// @arg  {Any}					replace					Supports Array (Any Of)
+/// @arg  {Any}					new_value				Supports Array (Choose)
+/// @arg  {Real}				[chance]				Default: 100
+/// @arg  {Function}		[setter]				Default: jen_set
+function jen_scatter_offset(_grid, _match_value, _xoff, _yoff, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
-	
+
 	//Create a temporary grid to keep track of changes.
 	var _temp_grid = jen_grid_create(_w, _h, noone);
 	
@@ -98,9 +95,12 @@ function jen_scatter_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_va
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (jen_get(_grid, xx, yy) == _match_value)
+		if (jen_test(_grid, xx, yy, _match_value))
 		{
-			jen_set(_temp_grid, xx + _xoff, yy + _yoff, all, "_jenternal_undefined");
+			jen_set(_temp_grid,
+				xx + _jenternal_convert_array_choose(_xoff),
+				yy + _jenternal_convert_array_choose(_yoff),
+				all, "_jenternal_undefined");
 		}
 	} }
 	
@@ -112,30 +112,27 @@ function jen_scatter_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_va
 	jen_grid_destroy(_temp_grid);
 }
 #endregion
-#region jen_number(JenGrid, replace, new_value, number, [chance], [setter]);
-/// @func jen_number(JenGrid, replace, new_value, number, [chance], [setter]):
-/// @desc Replaces a specific number of matching values with a new value.
+#region jen_number(JenGrid, number, replace, new_value, [chance], [setter]);
+/// @func jen_number(JenGrid, number, replace, new_value, [chance], [setter]):
+/// @desc Replaces a specific number of replace values with a new value.
 /// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Real}				number
 /// @arg  {Any}					replace			Supports Array (Any Of)
 /// @arg  {Any}					new_value		Supports Array (Choose)
-/// @arg	{Real}				number
 /// @arg  {Real}				[chance]		Default: 100
 /// @arg  {Function}		[setter]		Default: jen_set
-function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _setter = jen_set)
+function jen_number(_grid, _number, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
-	
-	//Array conversions.
-	_replace = _jenternal_convert_array_all(_replace);
-	
+
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_replace == all || jen_test(_grid, xx, yy, _replace))
+		if (jen_test(_grid, xx, yy, _replace))
 		{
 			var pos = { x1 : xx, y1 : yy };
 			ds_list_add(_positions, pos);
@@ -166,33 +163,33 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _setter
 	ds_list_destroy(_positions);
 }
 #endregion
-#region jen_number_offset(JenGrid, x_offset, y_offset, match_value, replace, new_value, number, [chance], [setter]);
-/// @func jen_number_offset
-/// @desc Sets a new value some number of times, offset from a particular search value.
+#region jen_number_offset(JenGrid, match_value, xcell_off, ycell_off, number, replace, new_value, [chance], [setter]);
+/// @func jen_number_offset(JenGrid, match_value, xcell_off, ycell_off, number, replace, new_value, [chance], [setter]):
+/// @desc Replaces a specific number of replace values with a new values, offset from matching values.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  match_values
-/// @arg  x_offset
-/// @arg  y_offset
-/// @arg  replace
-/// @arg  new_value
-/// @arg  number
-/// @arg  [chance]
-/// @arg  [setter]	
-function jen_number_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_value, _number, _chance = 100, _setter = jen_set)
+/// @arg  {Any}					match_value			Supports Array (Any Of)
+/// @arg  {Real}				xcell_off				Supports Array (Any Of)
+/// @arg  {Real}				ycell_off				Supports Array (Any Of)
+/// @arg	{Real}				number
+/// @arg  {Any}					replace					Supports Array (Any Of)
+/// @arg  {Any}					new_value				Supports Array (Choose)
+/// @arg  {Real}				[chance]				Default: 100
+/// @arg  {Function}		[setter]				Default: jen_set
+function jen_number_offset(_grid, _match_value, _xoff, _yoff, _number, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
 	
 	//Create a temporary grid to store the chances.
-	var _temp_grid = jen_grid_create(_width, _height, noone);
+	var _temp_grid = jen_grid_create(_w, _h, noone);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_replace == all || jen_get(_grid, xx, yy) == _match_value)
+		if (jen_test(_grid, xx, yy, _match_value))
 		{
 			var pos = { x1 : xx, y1 : yy };
 			ds_list_add(_positions, pos);
@@ -200,9 +197,10 @@ function jen_number_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_val
 	} }
 	
 	//If there are less than the target number, replace all of them.
-	if (ds_list_size(_positions) <= _number)
+	var _positions_count = ds_list_size(_positions);
+	if (_positions_count <= _number)
 	{
-		jen_scatter_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_value, _chance, _setter);
+		jen_scatter_offset(_grid, _match_value, _xoff, _yoff, _replace, _new_value, _chance, _setter);
 	}
 	else //Changing a certain number of the positions.
 	{
@@ -210,9 +208,18 @@ function jen_number_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_val
 		for (var i = 0; i < _number; i++)
 		{
 			//Get the coordinates of this valid position.
-			var xx = _positions[| i].x1;
-			var yy = _positions[| i].y1;
-			jen_set(_temp_grid, xx + _xoff, yy + _yoff, all, "_jenternal_undefined");
+			var xx = _positions[| i].x1 + _jenternal_convert_array_choose(_xoff);
+			var yy = _positions[| i].y1 + _jenternal_convert_array_choose(_yoff);
+			if (jen_test(_grid, xx, yy, _replace))
+			{
+				jen_set(_temp_grid, xx, yy, all, "_jenternal_undefined")
+			}
+			else
+			{
+				//Check again if failed to set.
+				_number = min(_number + 1, _positions_count);
+				show_debug_message(_number);
+			}
 		}
 	}
 	
@@ -221,8 +228,6 @@ function jen_number_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_val
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	
 	//Clearing memory.
-	var size = ds_list_size(_positions);
-	for (var i = 0; i < size; i++)	{	delete _positions[| i];	}
 	ds_list_destroy(_positions);
 	jen_grid_destroy(_temp_grid);
 }

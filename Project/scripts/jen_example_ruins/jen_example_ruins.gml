@@ -49,7 +49,7 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 	});
 	
 	//Add ruins around.
-	jen_scatter_paste(_terrain, _ruins_array, "ruins", -2, -2, 20, obj_borderstone, 100);
+	jen_scatter_paste(_terrain, _ruins_array, "ruins", -2, -2, 20, "ground", 100);
 	
 	//Instantiate the second layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_2);

@@ -72,7 +72,6 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 		var _o = _outline;
 		if (!_o || (xx < _xx1 + _o || yy < _yy1 + _o || xx > _xx2 - _o || yy > _yy2 - _o))
 		{
-			//Random chance and using the appropriate function.
 			if (_jenternal_percent(_chance))
 			{
 				_setter(_grid, xx, yy, _replace, _new_value);

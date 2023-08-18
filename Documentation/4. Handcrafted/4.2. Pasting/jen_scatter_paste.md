@@ -12,8 +12,8 @@ jen_scatter_paste(target_JenGrid, paste_JenGrid, match_value, xcell_off, ycell_o
 **Arguments**
 - ``target_JenGrid`` The JenGrid to change.
 - `paste_JenGrid` The JenGrid to paste onto the target JenGrid. Also supports Arrays.
-- `match_value` Values that can be chosen to paste at. Also supports `all` or Arrays.
-- ``xcell_off/ycell_off`` The offset from the `match_value` positions to paste.
+- `match_value` Valid cells to paste from. Also supports `all` or Arrays.
+- ``xcell_off/ycell_off`` The offset from the `match_value` positions to paste. Also supports Arrays.
 - `chance_paste` The chance that a JenGrid will be pasted at any given `match_value`.
 - ``replace`` Values that can be replaced by the paste. Also supports ``all`` or Arrays.
 - `[chance]` Percent chance for a change to occur from pasting in each cell. Default: `100`.

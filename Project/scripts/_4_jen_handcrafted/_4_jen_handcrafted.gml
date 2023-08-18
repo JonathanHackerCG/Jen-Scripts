@@ -139,8 +139,8 @@ function jen_grid_paste(_target, _paste, _x1, _y1, _replace, _chance = 100, _set
 /// @arg	{Id.DsGrid}		target_JenGrid
 /// @arg  {Id.DsGrid}		paste_JenGrid		Supports Array (Chooses)
 /// @arg  {Any}					match_value			Supports Array (Any Of)
-/// @arg  {Real}				xcell_off
-/// @arg  {Real}				ycell_off
+/// @arg  {Real}				xcell_off				Supports Array (Any Of)
+/// @arg  {Real}				ycell_off				Supports Array (Any Of)
 /// @arg	{Real}				chance_paste
 /// @arg  {Any}					replace					Supports Array (Any Of)
 /// @arg  {Real}				[chance]				Default: 100
@@ -158,9 +158,12 @@ function jen_scatter_paste(_target, _paste, _match_value, _xoff, _yoff, _chance_
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (jen_test(_target, xx, yy, _match_value) && (_chance_paste >= 100 || random(100) < _chance_paste))
+		if (jen_test(_target, xx, yy, _match_value) && _jenternal_percent(_chance_paste))
 		{
-			jen_grid_paste(_temp_grid, _paste, xx + _xoff, yy + _yoff, all);
+			jen_grid_paste(_temp_grid, _paste,
+				xx + _jenternal_convert_array_choose(_xoff),
+				yy + _jenternal_convert_array_choose(_yoff),
+				all);
 		}
 	} }
 	

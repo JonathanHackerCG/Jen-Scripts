@@ -1,0 +1,1 @@
+NOTE: jen_number_offset could fail to spawn the required number if it fails to spawn at every matching value (especially with randomized offsets).

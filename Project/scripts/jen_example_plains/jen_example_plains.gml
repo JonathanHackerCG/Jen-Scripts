@@ -26,7 +26,7 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_replace(_terrain, [obj_grass, obj_dirt], "ground");
 	
 	//Generating 3 clumps of stone.
-	jen_number(_terrain, "ground", obj_stone, 3);
+	jen_number(_terrain, 3, "ground", obj_stone);
 	jen_near(_terrain, obj_stone, "ground", obj_stone, 2, 50);
 	jen_near(_terrain, obj_stone, "ground", obj_stone, 1, 50);
 	jen_near(_terrain, obj_stone, "ground", obj_stone, 1, 100);
@@ -35,8 +35,9 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_scatter(_terrain, obj_stone, obj_copper, 1);
 	jen_near(_terrain, obj_copper, obj_stone, obj_copper, 2, 20);
 	
-	//Generating a scattering of trees.
+	//Generating a scattering of trees and branches.
 	jen_scatter(_terrain, "ground", obj_tree, 25);
+	jen_number_offset(_terrain, obj_tree, 0, 1, 5, "ground", obj_branch);
 	
 	//Instantiate the second layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_2);

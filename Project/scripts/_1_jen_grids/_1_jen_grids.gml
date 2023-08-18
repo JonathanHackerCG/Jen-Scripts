@@ -190,7 +190,8 @@ function jen_test(_grid, _x, _y, _replace)
 {
 	//Array conversions.
 	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
-	if (!is_array(_replace)) { _replace = [_replace]; }
+	_replace = _jenternal_convert_array_all(_replace);
+	if (_replace[0] == all) { return true; }
 	
 	//Testing this position.
 	var _test = jen_get(_grid, _x, _y);
