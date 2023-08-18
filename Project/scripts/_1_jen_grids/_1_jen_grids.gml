@@ -135,14 +135,14 @@ function jen_get(_grid, _x, _y)
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				xcell
 /// @arg	{Real}				ycell
-/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					replace			Supports Array (Any Of)
 /// @arg	{Any}					new_value		Supports Array (Choose)
 /// @returns {Bool}
 function jen_set(_grid, _x, _y, _replace, _new_value)
 {
 	//Array conversions and other checks.
 	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
-	_new_value = _jenternal_convert_new_value(_new_value);
+	_new_value = _jenternal_convert_array_choose(_new_value);
 	
 	if (jen_test(_grid, _x, _y, _replace))
 	{
@@ -160,14 +160,14 @@ function jen_set(_grid, _x, _y, _replace, _new_value)
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				xcell
 /// @arg	{Real}				ycell
-/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					replace			Supports Array (Any Of)
 /// @arg	{Any}					new_value		Supports Array (Choose)
 /// @returns {Bool}
 function jen_set_not(_grid, _x, _y, _replace, _new_value)
 {
 	//Array conversions and other checks.
 	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
-	_new_value = _jenternal_convert_new_value(_new_value);
+	_new_value = _jenternal_convert_array_choose(_new_value);
 	
 	if (!jen_test(_grid, _x, _y, _replace))
 	{
@@ -184,7 +184,7 @@ function jen_set_not(_grid, _x, _y, _replace, _new_value)
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				xcell
 /// @arg	{Real}				ycell
-/// @arg	{Any}					target			Supports Array (Any)
+/// @arg	{Any}					target			Supports Array (Any Of)
 /// @returns {Bool}
 function jen_test(_grid, _x, _y, _replace)
 {

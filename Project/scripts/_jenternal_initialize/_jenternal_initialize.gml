@@ -165,10 +165,12 @@ function _jenternal_test(_grid, _x1, _y1, _test, _default)
 }
 #endregion
 
-#region _jenternal_convert_new_value(new_value);
-/// @func _jenternal_convert_new_value
+#region _jenternal_convert_array_choose(new_value);
+/// @func _jenternal_convert_array_choose
+/// @desc	Returns a random value from the array.
 /// @arg new_value
-function _jenternal_convert_new_value(_new_value)
+/// @returns Value
+function _jenternal_convert_array_choose(_new_value)
 {
 	if (is_array(_new_value))
 	{
@@ -181,15 +183,21 @@ function _jenternal_convert_new_value(_new_value)
 	return _new_value;
 }
 #endregion
-#region _jenternal_convert_replace(replace);
-/// @func _jenternal_convert_replace
+#region _jenternal_convert_array_all(replace);
+/// @func _jenternal_convert_array_all
+/// @desc	Wraps the input in an array if it isn't already.
 /// @arg replace
-function _jenternal_convert_replace(_replace)
+/// @returns Array
+function _jenternal_convert_array_all(_replace)
 {
-	if (!is_array(_replace))
-	{
-		return [_replace];
-	}
+	if (!is_array(_replace)) { return [_replace]; }
 	return _replace;
+}
+#endregion
+
+#region _jenternal_percent(chance);
+function _jenternal_percent(_chance)
+{
+	return (_chance >= 100 || random(100) < _chance);
 }
 #endregion

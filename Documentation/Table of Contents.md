@@ -52,9 +52,9 @@
 * jen_grid_copy_room_array
 * jen_grid_copy_room_layer
 #### Pasting
-* jen_grid_paste
-* jen_scatter_paste
-* jen_number_paste
+* [jen_grid_paste](4.%20Handcrafted/4.2.%20Pasting/jen_grid_paste.md)
+* [jen_scatter_paste](4.%20Handcrafted/4.2.%20Pasting/jen_scatter_paste.md)
+* [jen_number_paste](4.%20Handcrafted/4.2.%20Pasting/jen_number_paste.md)
 ## Mazes
 #### Initialization
 * jen_maze_create

@@ -4,7 +4,7 @@
 /// @func jen_replace(JenGrid, replace, new_value):
 /// @desc Replaces all matching values with a new value.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					replace			Supports Array (Any Of)
 /// @arg	{Any}					new_value		Supports Array (Choose)
 function jen_replace(_grid, _replace, _new_value)
 {
@@ -13,7 +13,7 @@ function jen_replace(_grid, _replace, _new_value)
 	var _h = jen_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _jenternal_convert_replace(_replace);
+	_replace = _jenternal_convert_array_all(_replace);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
@@ -27,7 +27,7 @@ function jen_replace(_grid, _replace, _new_value)
 /// @func jen_replace_not(JenGrid, replace, new_value):
 /// @desc Replaces all NOT matching values with a new value.
 /// @arg  {Id.DsGrid}		JenGrid
-/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					replace			Supports Array (Any Of)
 /// @arg  {Any}					new_value		Supports Array (Choose)
 function jen_replace_not(_grid, _replace, _new_value)
 {
@@ -36,7 +36,7 @@ function jen_replace_not(_grid, _replace, _new_value)
 	var _h = jen_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _jenternal_convert_replace(_replace);
+	_replace = _jenternal_convert_array_all(_replace);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
@@ -50,7 +50,7 @@ function jen_replace_not(_grid, _replace, _new_value)
 /// @func jen_scatter(JenGrid, replace, new_value, [chance], [setter]):
 /// @desc Replaces some percentage of matching values with a new value.
 /// @arg  {Id.DsGrid}		JenGrid
-/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					replace			Supports Array (Any Of)
 /// @arg  {Any}					new_value		Supports Array (Choose)
 /// @arg  {Real}				[chance]		Default: 100
 /// @arg  {Function}		[setter]		Default: jen_set
@@ -61,13 +61,13 @@ function jen_scatter(_grid, _replace, _new_value, _chance = 100, _setter = jen_s
 	var _h = jen_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _jenternal_convert_replace(_replace);
+	_replace = _jenternal_convert_array_all(_replace);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_chance >= 100 || random(100) < _chance)
+		if (_jenternal_percent(_chance))
 		{
 			_setter(_grid, xx, yy, _replace, _new_value);
 		}
@@ -116,7 +116,7 @@ function jen_scatter_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_va
 /// @func jen_number(JenGrid, replace, new_value, number, [chance], [setter]):
 /// @desc Replaces a specific number of matching values with a new value.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					replace			Supports Array (Any Of)
 /// @arg  {Any}					new_value		Supports Array (Choose)
 /// @arg	{Real}				number
 /// @arg  {Real}				[chance]		Default: 100
@@ -128,7 +128,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _setter
 	var _h = jen_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _jenternal_convert_replace(_replace);
+	_replace = _jenternal_convert_array_all(_replace);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
@@ -155,7 +155,7 @@ function jen_number(_grid, _replace, _new_value, _number, _chance = 100, _setter
 			//Get the coordinates of this valid position.
 			var xx = _positions[| i].x1;
 			var yy = _positions[| i].y1;
-			if (_chance >= 100 || random(100) < _chance)
+			if (_jenternal_percent(_chance))
 			{
 				_setter(_grid, xx, yy, _replace, _new_value);
 			}
@@ -233,8 +233,8 @@ function jen_number_offset(_grid, _xoff, _yoff, _match_value, _replace, _new_val
 /// @func jen_near(JenGrid, target, replace, new_value, radius, [chance], [setter]):
 /// @desc Replaces all matching values with a new value, within radius distance of matching target values.
 /// @arg  {Id.DsGrid}		JenGrid
-/// @arg  {Any}					target			Supports Array (Any)
-/// @arg  {Any}					replace			Supports Array (Any)
+/// @arg  {Any}					target			Supports Array (Any Of)
+/// @arg  {Any}					replace			Supports Array (Any Of)
 /// @arg  {Any}					new_value		Supports Array (Chooses)
 /// @arg  {Real}				radius
 /// @arg  {Real}				[chance]		Default: 100
@@ -246,8 +246,8 @@ function jen_near(_grid, _target, _replace, _new_value, _radius, _chance = 100, 
 	var _h = jen_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _jenternal_convert_replace(_replace);
-	_target = _jenternal_convert_replace(_target);
+	_replace = _jenternal_convert_array_all(_replace);
+	_target = _jenternal_convert_array_all(_target);
 	
 	//Create a temporary grid to store changes.
 	var _temp_grid = jen_grid_create(_w, _h, noone);
@@ -285,8 +285,8 @@ function jen_obfuscate(_grid, _target, _adjacent, _chance = 100)
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
 	
-	_target = _jenternal_convert_replace(_target);
-	_adjacent = _jenternal_convert_replace(_adjacent);
+	_target = _jenternal_convert_array_all(_target);
+	_adjacent = _jenternal_convert_array_all(_adjacent);
 	
 	//Create a list of every position in the array.
 	var _positions = ds_list_create();
@@ -306,7 +306,7 @@ function jen_obfuscate(_grid, _target, _adjacent, _chance = 100)
 	var size = ds_list_size(_positions);
 	for (var i = 0; i < size; i++)
 	{
-		if (_chance >= 100 || random(100) < _chance)
+		if (_jenternal_percent(_chance))
 		{
 			//Getting the position of this value in the grid.
 			xx = _positions[| i].x1;

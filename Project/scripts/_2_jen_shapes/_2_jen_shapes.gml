@@ -9,7 +9,7 @@
 /// @arg  {Real}				y1
 /// @arg  {Real}				x2
 /// @arg  {Real}				y2
-/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					replace			Supports Array (Any Of)
 /// @arg	{Any}					new_value		Supports Array (Chooses)
 /// @arg	{Real}				[chance]		Default: 100
 /// @arg	{Function}		[setter]		Default: jen_set
@@ -29,7 +29,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 	while (_count <= _step)
 	{
 		//Checking first if the position is valid.
-		if (_chance >= 100 || random(100) < _chance)
+		if (_jenternal_percent(_chance))
 		{
 			//Setting the line position/appropriate function.
 			_setter(_grid, round(xx), round(yy), _replace, _new_value);
@@ -49,7 +49,7 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 /// @arg	{Real}				ycell1
 /// @arg	{Real}				xcell2
 /// @arg	{Real}				ycell2
-/// @arg	{Any}					replace			Supports Array (Any)
+/// @arg	{Any}					replace			Supports Array (Any Of)
 /// @arg	{Any}					new_value		Supports Array (Chooses)
 /// @arg	{Real}				[outline]		Default: 0
 /// @arg	{Real}				[chance]		Default: 100
@@ -63,7 +63,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 	var _yy2 = max(_y1, _y2);
 	
 	//Array conversions.
-	_replace = _jenternal_convert_replace(_replace);
+	_replace = _jenternal_convert_array_all(_replace);
 	
 	//Iterate through the grid.
 	for (var yy = _yy1; yy <= _yy2; yy++) {
@@ -73,7 +73,7 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 		if (!_o || (xx < _xx1 + _o || yy < _yy1 + _o || xx > _xx2 - _o || yy > _yy2 - _o))
 		{
 			//Random chance and using the appropriate function.
-			if (_chance >= 100 || random(100) < _chance)
+			if (_jenternal_percent(_chance))
 			{
 				_setter(_grid, xx, yy, _replace, _new_value);
 			}
@@ -180,7 +180,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 	repeat(_lifetime)
 	{
 		//Set the value for that new position.
-		if (_chance >= 100 || random(100) < _chance)
+		if (_jenternal_percent(_chance))
 		{
 			//TODO: Update to use jen_set as default _setter parameter.
 			if (_setter == undefined)
@@ -239,7 +239,7 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 	repeat(_lifetime)
 	{
 		//Set the value for that new position.
-		if (_chance >= 100 || random(100) < _chance)
+		if (_jenternal_percent(_chance))
 		{
 			//TODO: Update to use jen_set as default _setter parameter.
 			if (_setter == undefined)
