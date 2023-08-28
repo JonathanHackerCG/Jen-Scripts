@@ -6,7 +6,7 @@
 
 *Add a page for function parameter, because they are also quite frequent.*
 
-*Talk about how Jen-Scripts handles string, such as when instantiating.*
+*Talk about how Jen-Scripts handles string, such as ignoring them when instantiating.*
 
 ## Replace/New Value Parameters
 

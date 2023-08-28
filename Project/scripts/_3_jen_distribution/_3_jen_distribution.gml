@@ -218,7 +218,6 @@ function jen_number_offset(_grid, _match_value, _xoff, _yoff, _number, _replace,
 			{
 				//Check again if failed to set.
 				_number = min(_number + 1, _positions_count);
-				show_debug_message(_number);
 			}
 		}
 	}

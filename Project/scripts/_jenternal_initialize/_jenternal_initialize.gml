@@ -2,7 +2,7 @@
 //These should not be referenced by the user of Jen-Scripts. They do not have documentation.
 
 //Internal Jen-Scripts Macros
-#macro JEN_SCRIPTS_VERSION "2.1.0 DEV"
+#macro JEN_SCRIPTS_VERSION "3.0.0 DEV"
 #macro JEN_CELLH global.jen_cellh
 #macro JEN_CELLW global.jen_cellw
 

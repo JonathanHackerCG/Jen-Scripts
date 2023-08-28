@@ -13,7 +13,7 @@
 - `[chance]` Percent chance for a change to occur in each cell. Default: `100`.
 - `[setter]` Function called when setting values. Default: ``jen_set``.
 
-**Returns:** Summary
+**Returns:** N/A
 
 **Example**
 ```js

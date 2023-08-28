@@ -34,8 +34,8 @@
 * jen_wander_line
 ## Distribution
 #### Scattering
-* jen_replace
-* jen_replace_not
+* [jen_replace](3.%20Distribution/3.1.%20Scattering/jen_replace.md)
+* [jen_replace_not](3.%20Distribution/3.1.%20Scattering/jen_replace_not.md)
 * [jen_scatter](3.%20Distribution/3.1.%20Scattering/jen_scatter.md)
 * [jen_scatter_offset](3.%20Distribution/3.1.%20Scattering/jen_scatter_offset.md)
 * jen_number
