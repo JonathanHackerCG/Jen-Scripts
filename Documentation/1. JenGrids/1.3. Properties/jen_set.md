@@ -1,4 +1,4 @@
-This function will set a value at an eligible position in a JenGrid. It has a replace parameter to specify which values should be changed.
+This function will set a value at a position in a JenGrid. It will only change cells that match the replace value(s).
 
 **Syntax**
 ```js
