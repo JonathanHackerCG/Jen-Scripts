@@ -202,6 +202,7 @@ function jen_test(_grid, _x, _y, _replace)
 	return false;
 }
 #endregion
+//TO ADD: jen_grid_count(JenGrid, target); Returns total number of matching values.
 
 //Transformations
 #region jen_grid_mirror(JenGrid, horizontal, vertical);
@@ -381,7 +382,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 	{
 		//Instantiating each object.
 		var _index = jen_get(_grid, xx, yy);
-		if (is_real(_index) && _index != noone && object_exists(_index))
+		if (_jenternal_object_exists_ext(_index) && _index != noone)
 		{
 			if (!is_undefined(_struct))
 			{
@@ -421,7 +422,7 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 	{
 		//Instantiating each object.
 		var _index = jen_get(_grid, xx, yy);
-		if (is_real(_index) && _index != noone && object_exists(_index))
+		if (_jenternal_object_exists_ext(_index) && _index != noone)
 		{
 			if (!is_undefined(_struct))
 			{

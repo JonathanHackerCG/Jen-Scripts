@@ -217,3 +217,13 @@ function _jenternal_percent(_chance)
 	return (_chance >= 100 || random(100) < _chance);
 }
 #endregion
+
+#region _jenternal_object_exists_ext(index);
+/// @func _jenternal_object_exists_ext(index):
+/// @desc Used as a more robust object_exists that should work for LTS and 2023.8+...
+/// There are some edges cases, however. For optimal use, replace with just object_exists on 2023.8+.
+function _jenternal_object_exists_ext(_index)
+{
+	return !is_undefined(_index) && !is_string(_index) && object_exists(_index);
+}
+#endregion
