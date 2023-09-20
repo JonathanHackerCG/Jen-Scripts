@@ -2,7 +2,7 @@ This function will set a value at a position in a JenGrid. It will only change c
 
 **Syntax**
 ```js
-jen_set(JenGrid, xcell, ycell, replace, new_value);
+jen_set_not(JenGrid, xcell, ycell, replace, new_value);
 ```
 
 **Arguments**
@@ -15,10 +15,10 @@ jen_set(JenGrid, xcell, ycell, replace, new_value);
 
 **Example**
 ```js
-var _w = 20;
-var _h = 10;
-var _terrain = jen_grid_create(_w, _h, obj_grass);
+var xx = mouse_x / JEN_CELLH;
+var yy = mouse_y / JEN_CELLY;
+jen_set_not(terrain, xx, yy, [obj_stone, obj_wall], obj_grass);
 
 ```
 
-This code will add ``obj_tree`` to the cell corresponding to the mouse cursor, only on cells that do not contain `obj_stone`.
+This code will add ``obj_tree`` to the cell corresponding to the mouse cursor, only on cells that do not contain `obj_stone` or `obj_wall`.
