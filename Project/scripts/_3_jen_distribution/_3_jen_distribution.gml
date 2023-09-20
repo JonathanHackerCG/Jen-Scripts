@@ -126,41 +126,41 @@ function jen_number(_grid, _number, _replace, _new_value, _chance = 100, _setter
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
+	
+	//Make a temp copy of grid to test for valid placements.
+	var _temp = jen_grid_create(_w, _h);
+	ds_grid_copy(_temp, _grid);
 
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (jen_test(_grid, xx, yy, _replace))
-		{
-			var pos = { x1 : xx, y1 : yy };
-			ds_list_add(_positions, pos);
-		}
+		ds_list_add(_positions, { x1 : xx, y1 : yy });
 	} }
 	
-	//If there are less than the target number, replace all of them.
-	if (ds_list_size(_positions) <= _number)
+	//Go through the entire grid in a random order.
+	ds_list_shuffle(_positions);
+	var _count = 0;
+	for (var i = 0; i < _w * _h; i++)
 	{
-		jen_scatter(_grid, _replace, _new_value, _chance, _setter);
-	}
-	else //Changing a certain number of the positions.
-	{
-		ds_list_shuffle(_positions);
-		for (var i = 0; i < _number; i++)
+		var xx = _positions[| i].x1;
+		var yy = _positions[| i].y1;
+		if (_setter(_temp, xx, yy, _replace, _new_value))
 		{
-			//Get the coordinates of this valid position.
-			var xx = _positions[| i].x1;
-			var yy = _positions[| i].y1;
-			if (_jenternal_percent(_chance))
-			{
-				_setter(_grid, xx, yy, _replace, _new_value);
-			}
+			jen_set(_temp, xx, yy, all, "_jenternal_replace");
+			if (++_count >= _number) { break; }
 		}
 	}
+	
+	//Pasting the final modified JenGrid.
+	jen_replace_not(_temp, "_jenternal_replace", noone);
+	jen_replace(_temp, "_jenternal_replace", _new_value);
+	jen_grid_paste(_grid, _temp, 0, 0, all, _chance, jen_set);
 	
 	//Clearing memory.
 	ds_list_destroy(_positions);
+	jen_grid_destroy(_temp);
 }
 #endregion
 #region jen_number_offset(JenGrid, match_value, xcell_off, ycell_off, number, replace, new_value, [chance], [setter]);
@@ -181,8 +181,9 @@ function jen_number_offset(_grid, _match_value, _xoff, _yoff, _number, _replace,
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
 	
-	//Create a temporary grid to store the chances.
-	var _temp_grid = jen_grid_create(_w, _h, noone);
+	//Make a temp copy of grid to test for valid placements.
+	var _temp = jen_grid_create(_w, _h);
+	ds_grid_copy(_temp, _grid);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
@@ -191,44 +192,34 @@ function jen_number_offset(_grid, _match_value, _xoff, _yoff, _number, _replace,
 	{
 		if (jen_test(_grid, xx, yy, _match_value))
 		{
-			var pos = { x1 : xx, y1 : yy };
-			ds_list_add(_positions, pos);
+			ds_list_add(_positions, { x1 : xx, y1 : yy });
 		}
 	} }
 	
-	//If there are less than the target number, replace all of them.
-	var _positions_count = ds_list_size(_positions);
-	if (_positions_count <= _number)
+	//Go through the entire grid in a random order.
+	ds_list_shuffle(_positions);
+	var _size = ds_list_size(_positions);
+	var _count = 0;
+	for (var i = 0; i < _size; i++)
 	{
-		jen_scatter_offset(_grid, _match_value, _xoff, _yoff, _replace, _new_value, _chance, _setter);
-	}
-	else //Changing a certain number of the positions.
-	{
-		ds_list_shuffle(_positions);
-		for (var i = 0; i < _number; i++)
+		//Get the coordinates of this valid position.
+		var xx = _positions[| i].x1 + _jenternal_convert_array_choose(_xoff);
+		var yy = _positions[| i].y1 + _jenternal_convert_array_choose(_yoff);
+		if (_setter(_temp, xx, yy, _replace, _new_value))
 		{
-			//Get the coordinates of this valid position.
-			var xx = _positions[| i].x1 + _jenternal_convert_array_choose(_xoff);
-			var yy = _positions[| i].y1 + _jenternal_convert_array_choose(_yoff);
-			if (jen_test(_grid, xx, yy, _replace))
-			{
-				jen_set(_temp_grid, xx, yy, all, "_jenternal_undefined")
-			}
-			else
-			{
-				//Check again if failed to set.
-				_number = min(_number + 1, _positions_count);
-			}
+			jen_set(_temp, xx, yy, all, "_jenternal_replace");
+			if (++_count >= _number) { break; }
 		}
 	}
 	
-	//Apply the temporary grid to the base grid.
-	jen_grid_paste(_grid, _temp_grid, 0, 0, _replace, _chance, _setter);
-	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
+	//Pasting the final modified JenGrid.
+	jen_replace_not(_temp, "_jenternal_replace", noone);
+	jen_replace(_temp, "_jenternal_replace", _new_value);
+	jen_grid_paste(_grid, _temp, 0, 0, all, _chance, jen_set);
 	
 	//Clearing memory.
 	ds_list_destroy(_positions);
-	jen_grid_destroy(_temp_grid);
+	jen_grid_destroy(_temp);
 }
 #endregion
 

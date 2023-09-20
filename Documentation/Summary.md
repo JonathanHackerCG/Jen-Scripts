@@ -8,6 +8,8 @@
 
 *Talk about how Jen-Scripts handles string, such as ignoring them when instantiating.*
 
+*Talk about performance, notably that every function is at least N^2. Do not use Jen-Scripts for huge masses of terrain, without doing it chunk by chunk...*
+
 ## Replace/New Value Parameters
 
 ## Setter Parameter

@@ -135,7 +135,7 @@ function jen_grid_paste(_target, _paste, _x1, _y1, _replace, _chance = 100, _set
 #region jen_scatter_paste(target_JenGrid, paste_JenGrid, match_value, xcell_off, ycell_off, chance_paste, replace, [chance], [setter]);
 /// @func jen_scatter_paste(target_JenGrid, paste_JenGrid, match_value, xcell_off, ycell_off, chance_paste, replace, [chance], [setter]):
 /// @desc Pastes a JenGrid (or array of JenGrids) at matching values with a given paste chance.
-///				Values of 'noone' in the pasted grid will be ignored.
+///				Values of 'noone' in the pasted grid(s) will be ignored.
 /// @arg	{Id.DsGrid}		target_JenGrid
 /// @arg  {Id.DsGrid}		paste_JenGrid		Supports Array (Chooses)
 /// @arg  {Any}					match_value			Supports Array (Any Of)
@@ -177,61 +177,50 @@ function jen_scatter_paste(_target, _paste, _match_value, _xoff, _yoff, _chance_
 #region jen_number_paste(target_grid, paste_grid, match_value, x_offset, y_offset, replace, number, [chance], [setter]);
 /// @func jen_number_paste
 /// @desc Sets a new value some number of times, offset from a particular search value.
-/// @arg  target_grid
-/// @arg  paste_grid
-/// @arg  match_values
-/// @arg  x_offset
-/// @arg  y_offset
-/// @arg  replace
-/// @arg  number
-/// @arg  [chance]
-/// @arg  [setter]	
-function jen_number_paste(_target, _paste, _match_value, _xoff, _yoff, _replace, _number, _chance = 100, _setter = jen_set)
+///				Values of 'noone' in the pasted grid(s) will be ignored.
+/// @arg	{Id.DsGrid}		target_JenGrid
+/// @arg  {Id.DsGrid}		paste_JenGrid		Supports Array (Chooses)
+/// @arg  {Any}					match_value			Supports Array (Any Of)
+/// @arg  {Real}				xcell_off				Supports Array (Any Of)
+/// @arg  {Real}				ycell_off				Supports Array (Any Of)
+/// @arg	{Real}				number
+/// @arg  {Any}					replace					Supports Array (Any Of)
+/// @arg  {Real}				[chance]				Default: 100
+/// @arg  {Function}		[setter]				Default: jen_set
+function jen_number_paste(_target, _paste, _match_value, _xoff, _yoff, _number, _replace, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
-	var _width = jen_grid_width(_target);
-	var _height = jen_grid_height(_target);
-	
-	//Create a temporary grid to store the chances.
-	var _temp_grid = jen_grid_create(_width, _height, noone);
+	var _w = jen_grid_width(_target);
+	var _h = jen_grid_height(_target);
+	var _temp = jen_grid_create(_w, _h, noone);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_replace == all || jen_get(_target, xx, yy) == _match_value)
+		if (jen_test(_target, xx, yy, _match_value))
 		{
-			var pos = { x1 : xx, y1 : yy };
-			ds_list_add(_positions, pos);
+			ds_list_add(_positions, { x1 : xx, y1 : yy });
 		}
 	} }
 	
-	//If there are less than the target number, replace all of them.
-	if (ds_list_size(_positions) <= _number)
+	//Pasting the paste grid specified number of times.
+	ds_list_shuffle(_positions);
+	var _size = ds_list_size(_positions);
+	for (var i = 0; i < min(_number, _size); i++)
 	{
-		jen_scatter_paste(_target, _paste, _xoff, _yoff, _match_value, _replace, _chance, _setter);
-	}
-	else //Changing a certain number of the positions.
-	{
-		ds_list_shuffle(_positions);
-		for (var i = 0; i < _number; i++)
-		{
-			//Get the coordinates of this valid position.
-			var xx = _positions[| i].x1;
-			var yy = _positions[| i].y1;
-			jen_grid_paste(_temp_grid, _paste, xx + _xoff, yy + _yoff, all);
-		}
+		//Get the coordinates of this valid position.
+		var xx = _positions[| i].x1 + _jenternal_convert_array_choose(_xoff);
+		var yy = _positions[| i].y1 + _jenternal_convert_array_choose(_yoff);
+		jen_grid_paste(_temp, _paste, xx, yy, all);
 	}
 	
-	//Paste the temporary grid to the base grid.
-	jen_grid_paste(_target, _temp_grid, 0, 0, _replace, _chance, _setter);
+	//Paste the final modified grid.
+	jen_grid_paste(_target, _temp, 0, 0, _replace, _chance, _setter);
 	
 	//Clearing memory.
-	var size = ds_list_size(_positions);
-	for (var i = 0; i < size; i++)	{	delete _positions[| i];	}
 	ds_list_destroy(_positions);
-	jen_grid_destroy(_temp_grid);
+	jen_grid_destroy(_temp);
 }
 #endregion
-//TODO: Above scatter/number paste should support arrays for paste_grid parameter.
