@@ -75,7 +75,7 @@ function jen_grid_destroy(_grid)
 /// @returns {Bool}
 function jen_grid_exists(_grid)
 {
-	return ds_exists(_grid, ds_type_grid);
+	return is_real(_grid) && ds_exists(_grid, ds_type_grid);
 }
 #endregion
 //TODO: jen_grid_copy

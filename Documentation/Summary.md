@@ -8,8 +8,15 @@
 
 *Talk about how Jen-Scripts handles string, such as ignoring them when instantiating.*
 
-*Talk about performance, notably that every function is at least N^2. Do not use Jen-Scripts for huge masses of terrain, without doing it chunk by chunk...*
-
 ## Replace/New Value Parameters
 
 ## Setter Parameter
+
+## Performance
+The goal for Jen-Scripts is flexibility and readability. Very little effort was put into performance, and any optimizations beyond writing clean code are out of scope for this project. By necessity of its flexibility, Jen-Scripts iterates through every cell in the grid for every line, even those that could be combined into a single iteration. It performs many extra checks to support optional parameters.
+
+This means that Jen-Scripts is only well suited for small-scale terrain generation. At larger grid sizes and complex terrain you will notice performance impacts. If you run into this:
+1) Use Jen-Scripts only in chunks over multiple frames.
+2) Don't use Jen-Scripts. Though, feel free to use Jen-Scripts as a template.
+
+If anyone happens to notice performance gains possible without sacrificing any features or robust error checking, feel free to write me a pull request. I'm sure they exist, and would not mind including them, but it's not my focus.

@@ -330,53 +330,74 @@ function jen_obfuscate(_grid, _target, _adjacent, _chance = 100)
 	ds_list_destroy(_positions);
 }
 #endregion
-#region jen_automata(JenGrid, living, empty, bounds, birth, death, [chance], [setter]);
-/// @func jen_automata
-/// @desc Applies cellular automata between two different values.
+#region jen_automata(JenGrid, live, dead, bounds, birth, death, [chance], [setter]);
+/// @func jen_automata(JenGrid, live, dead, bounds, birth, death, [chance], [setter]):
+/// @desc Performs cellular automata between live and dead cells.
+/// A live cell will die if surrounded by `>= death` live cells.
+/// A dead cell will live if surrounded by `>= birth` live cells.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  living
-/// @arg  empty
-/// @arg  bounds
-/// @arg  birth
-/// @arg  death
-/// @arg  [chance]
-/// @arg  [setter]	
-function jen_automata(_grid, _living, _empty, _bounds, _birth, _death, _chance = 100, _setter = jen_set)
+/// @arg  {Any}					live					Supports Array (Any Of)
+/// @arg  {Any}					dead					Supports Array (Any Of)
+/// @arg  {Bool}				bounds				Note: If the out of bounds are considered living cells or not.
+/// @arg  {Array.Real}	live_changes
+/// @arg  {Array.Real}	dead_changes
+/// @arg  {Real}				[chance]			Default: 100
+/// @arg  {Function}		[setter]			Default: jen_set
+function jen_automata(_grid, _live, _dead, _bounds, _live_changes, _dead_changes, _chance = 100, _setter = jen_set)
 {
 	//Initialize variables.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
-	var _temp = jen_grid_create(_width, _height);
+	var _temp = jen_grid_create(_w, _h);
 	
 	//Iterate through the grid.
-	for (var yy = 0; yy < _height; yy ++) {
-	for (var xx = 0; xx < _width; xx ++) {
-		var count = 0;
-		var cell = jen_get(_grid, xx, yy);
-
-		//Counting the surrounding cells.
-		if (_jenternal_test(_grid, xx + 1, yy + 0, _living, _bounds)) { count ++; }
-		if (_jenternal_test(_grid, xx - 1, yy + 0, _living, _bounds)) { count ++; }
-		if (_jenternal_test(_grid, xx + 0, yy + 1, _living, _bounds)) { count ++; }
-		if (_jenternal_test(_grid, xx + 0, yy - 1, _living, _bounds)) { count ++; }
-		if (_jenternal_test(_grid, xx + 1, yy + 1, _living, _bounds)) { count ++; }
-		if (_jenternal_test(_grid, xx + 1, yy - 1, _living, _bounds)) { count ++; }
-		if (_jenternal_test(_grid, xx - 1, yy + 1, _living, _bounds)) { count ++; }
-		if (_jenternal_test(_grid, xx - 1, yy - 1, _living, _bounds)) { count ++; }
+	for (var yy = 0; yy < _h; yy ++) {
+	for (var xx = 0; xx < _w; xx ++) {
 		
-		if (cell == _living && count <= _death)
+		//Counting the surrounding cells.
+		var _count_live = 0;
+		if (_jenternal_test(_grid, xx + 1, yy + 0, _live, _bounds)) { _count_live ++; }
+		if (_jenternal_test(_grid, xx - 1, yy + 0, _live, _bounds)) { _count_live ++; }
+		if (_jenternal_test(_grid, xx + 0, yy + 1, _live, _bounds)) { _count_live ++; }
+		if (_jenternal_test(_grid, xx + 0, yy - 1, _live, _bounds)) { _count_live ++; }
+		if (_jenternal_test(_grid, xx + 1, yy + 1, _live, _bounds)) { _count_live ++; }
+		if (_jenternal_test(_grid, xx + 1, yy - 1, _live, _bounds)) { _count_live ++; }
+		if (_jenternal_test(_grid, xx - 1, yy + 1, _live, _bounds)) { _count_live ++; }
+		if (_jenternal_test(_grid, xx - 1, yy - 1, _live, _bounds)) { _count_live ++; }
+		
+		#region Notes
+		/*
+		EXAMPLE: Conway's Life. Source: https://en.wikipedia.org/wiki/Cellular_automaton
+		1) Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+		2) Any live cell with two or three live neighbours lives on to the next generation.
+		3) Any live cell with more than three live neighbours dies, as if by overpopulation.
+		4) Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+		
+		1) live -> dead IF live_count <= 1
+		2) live -> live IF live_count >= 2 && live_count <= 3
+		3) live -> dead IF live_count >= 4
+		4) dead -> live IF live_count == 3
+		
+		THEREFORE:
+		live_changes = [0, 1, 4, 5, 6, 7, 8];
+		dead_changes = [3];
+		*/
+		#endregion
+		//Change live/dead cells.
+		if (jen_test(_grid, xx, yy, _live) && _jenternal_array_has_value(_live_changes, _count_live))
 		{
-			jen_set(_temp, xx, yy, all, "_jenternal_empty");
+			jen_set(_temp, xx, yy, all, "_jenternal_dead");
 		}
-		if (cell == _empty && count >= _birth)
+		if (jen_test(_grid, xx, yy, _dead) && _jenternal_array_has_value(_dead_changes, _count_live))
 		{
-			jen_set(_temp, xx, yy, all, "_jenternal_living");
+			jen_set(_temp, xx, yy, all, "_jenternal_live");
 		}
 	}	}
 	
-	jen_grid_paste(_grid, _temp, , 0, 0, all, _chance, _setter);
-	jen_replace(_grid, "_jenternal_empty", _empty);
-	jen_replace(_grid, "_jenternal_living", _living);
+	//Paste the final grid.
+	jen_grid_paste(_grid, _temp, 0, 0, all, 100, jen_set);
+	jen_scatter(_grid, "_jenternal_dead", _dead, _chance, _setter);
+	jen_scatter(_grid, "_jenternal_live", _live, _chance, _setter);
 	jen_grid_destroy(_temp);
 }
 #endregion

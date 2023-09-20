@@ -152,6 +152,8 @@ function _jenternal_autotile(_grid, _x1, _y1, _test, _default)
 #endregion
 #region _jenternal_test(JenGrid, x1, y1, test, default);
 /// @func _jenternal_test
+/// @desc Used internally to do a specialized variation of jen_test.
+/// This could probably be replaced but this code-base is over five years old and I ain't touching it.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
@@ -159,9 +161,8 @@ function _jenternal_autotile(_grid, _x1, _y1, _test, _default)
 /// @arg  default
 function _jenternal_test(_grid, _x1, _y1, _test, _default)
 {
-	var val = jen_get(_grid, _x1, _y1);
-	if (val == undefined) { return _default; }
-	else { return val == _test; }
+	if (!jen_grid_inbounds(_grid, _x1, _y1)) { return _default; }
+	return jen_test(_grid, _x1, _y1, _test);
 }
 #endregion
 
@@ -192,6 +193,21 @@ function _jenternal_convert_array_all(_replace)
 {
 	if (!is_array(_replace)) { return [_replace]; }
 	return _replace;
+}
+#endregion
+
+#region _jenternal_array_has_value(array, value);
+/// @func _jenternal_array_has_value(array, value):
+/// @arg {Array} array
+/// @arg {Any} value
+function _jenternal_array_has_value(_array, _value)
+{
+	var _size = array_length(_array);
+	for (var i = 0; i < _size; i++)
+	{
+		if (_array[i] == _value) { return true; }
+	}
+	return false;
 }
 #endregion
 

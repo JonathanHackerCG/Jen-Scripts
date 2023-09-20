@@ -12,6 +12,7 @@
     {"id":{"name":"jen_function_template","path":"scripts/jen_function_template/jen_function_template.yy",},"order":0,},
     {"id":{"name":"obj_stone","path":"objects/obj_stone/obj_stone.yy",},"order":5,},
     {"id":{"name":"obj_torch","path":"objects/obj_torch/obj_torch.yy",},"order":6,},
+    {"id":{"name":"jen_example_caves","path":"scripts/jen_example_caves/jen_example_caves.yy",},"order":2,},
     {"id":{"name":"spr_branch","path":"sprites/spr_branch/spr_branch.yy",},"order":8,},
     {"id":{"name":"spr_stone","path":"sprites/spr_stone/spr_stone.yy",},"order":2,},
     {"id":{"name":"jen_example_plains","path":"scripts/jen_example_plains/jen_example_plains.yy",},"order":0,},
