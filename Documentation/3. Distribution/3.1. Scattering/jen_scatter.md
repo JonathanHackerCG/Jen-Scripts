@@ -1,4 +1,4 @@
-Replaces some percentage of replace values with a new value. Often used for "scattering" flowers across a field, or generating "seed" values to use as starting points for other terrain generation.
+Replaces some percentage of replace values with new values. Often used for "scattering" flowers across a field, or generating "seed" values to use as starting points for other terrain generation.
 
 The chance parameter applies to each position independently.
 

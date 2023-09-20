@@ -8,7 +8,7 @@ jen_scatter_offset(JenGrid, match_value, xcell_off, ycell_off, replace, new_valu
 **Arguments**
 - ``JenGrid`` The JenGrid to change.
 - `match_value` Valid cells to offset from.
-- ``xcell/ycell`` The cell to change.
+- ``xcell_off/ycell_off`` The offset from the `match_value` to change. Also supports Arrays.
 - ``replace`` Values to replace. Also supports ``all`` or Arrays.
 - ``new_value`` Value to set. Also supports Arrays.
 - `[chance]` Percent chance for a change to occur in each cell. Default: `100`.

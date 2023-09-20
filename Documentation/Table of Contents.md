@@ -38,8 +38,8 @@
 * [jen_replace_not](3.%20Distribution/3.1.%20Scattering/jen_replace_not.md)
 * [jen_scatter](3.%20Distribution/3.1.%20Scattering/jen_scatter.md)
 * [jen_scatter_offset](3.%20Distribution/3.1.%20Scattering/jen_scatter_offset.md)
-* jen_number
-* jen_number_offset
+* [jen_number](3.%20Distribution/3.1.%20Scattering/jen_number.md)
+* [jen_number_offset](3.%20Distribution/3.1.%20Scattering/jen_number_offset.md)
 #### Extras
 * jen_near
 * jen_obfuscate
