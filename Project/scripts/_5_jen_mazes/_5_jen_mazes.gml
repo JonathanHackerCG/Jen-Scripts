@@ -1,16 +1,140 @@
 //Maze generation, including creation, modification, and instantiation.
 
+enum JEN_DIR
+{
+	R = 1,
+	U = 2,
+	L = 4,
+	D = 8,
+	ANY = 15
+}
+
 //Initialization
 #region jen_maze_create(width, height);
-/// @func jen_maze_create
+/// @func jen_maze_create(width, height):
 /// @desc Creates a blank maze. Mostly for internal use.
+/// @arg  {Real}	width
+/// @arg  {Real}	height
+function jen_maze_create(_w, _h)
+{
+	var _maze = ds_grid_create(_w, _h);
+	ds_grid_clear(_maze, 0);
+	return _maze;
+}
+#endregion
+#region jen_maze_create_prim(width, height);
+/// @func jen_maze_create_prim(width, height):
+/// @desc Creates a new maze using Prim's algorithm.
+/// https://en.wikipedia.org/wiki/Prim%27s_algorithm
+/// @arg  {real}	width
+/// @arg  {real}	height
+function jen_maze_create_prim(_w, _h)
+{
+	//Create an empty maze to fill with the new maze.
+	var _maze = jen_maze_create(_w, _h);
+
+	//Create the queues for storing positions.
+	var _positions = ds_list_create();
+	var _options = ds_list_create();
+
+	//Initial Starting Point
+	var xx = irandom(_w - 1);
+	var yy = irandom(_h - 1);
+	ds_list_add(_positions, { x1 : xx, y1 : yy});
+
+	while (ds_list_size(_positions) >= 1)
+	{
+		//Choose a new random position from among the list
+		var _index = irandom(ds_list_size(_positions) - 1);
+		var _pos = _positions[| _index];
+		xx = _pos.x1;
+		yy = _pos.y1;
+	
+		//If all surrounding positions are filled.
+		ds_list_clear(_options);
+		if (jen_maze_get(_maze, xx + 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.R); }
+		if (jen_maze_get(_maze, xx, yy - 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.U); }
+		if (jen_maze_get(_maze, xx - 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.L); }
+		if (jen_maze_get(_maze, xx, yy + 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.D); }
+		if (ds_list_size(_options) == 0)
+		{
+			ds_list_delete(_positions, _index);
+		}
+		else //There is an open position.
+		{
+			var _dir = _options[| irandom(ds_list_size(_options) - 1)];
+			jen_maze_set(_maze, xx, yy, _dir, true);
+			switch (_dir) {
+				case JEN_DIR.R: { ds_list_add(_positions, { x1 : xx + 1, y1 : yy }); } break;
+				case JEN_DIR.U: { ds_list_add(_positions, { x1 : xx, y1 : yy - 1 }); } break;
+				case JEN_DIR.L: { ds_list_add(_positions, { x1 : xx - 1, y1 : yy }); } break;
+				case JEN_DIR.D: { ds_list_add(_positions, { x1 : xx, y1 : yy + 1 }); } break;
+			}
+		}
+	}
+
+	//Destroy unneeded data structures.
+	ds_list_destroy(_positions);
+
+	return _maze;
+}
+#endregion
+#region jen_maze_create_backtrack(width, height);
+/// @func jen_maze_create_backtrack
+/// @desc Creates a new maze using Recursive Backtrack algorithm.
 /// @arg  width
 /// @arg  height
-function jen_maze_create(_width, _height)
+function jen_maze_create_backtrack(_w, _h)
 {
-	var _grid = ds_grid_create(_width, _height);
-	ds_grid_clear(_grid, 0);
-	return _grid;
+	//Create an empty maze to fill.
+	var _maze = jen_maze_create(_w, _h);
+
+	//Create the queues for storing positions
+	var _positions = ds_list_create();
+	var _options = ds_list_create();
+
+	//Initial Starting Point
+	var xx = irandom(_w - 1);
+	var yy = irandom(_h - 1);
+
+	do
+	{
+		//If all surrounding positions are filled. Also, add open positions to the options.
+		ds_list_clear(_options);
+		if (jen_maze_get(_maze, xx + 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.R); }
+		if (jen_maze_get(_maze, xx, yy - 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.U); }
+		if (jen_maze_get(_maze, xx - 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.L); }
+		if (jen_maze_get(_maze, xx, yy + 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.D); }
+		if (ds_list_size(_options) == 0) //There are no surrounding options.
+		{
+			var _size = ds_list_size(_positions);
+			var _pos = _positions[| _size - 1];
+			xx = _pos.x1;
+			yy = _pos.y1;
+			ds_list_delete(_positions, _size - 1);
+		}
+		else //At least one unvisited neighbor cell.
+		{
+			//Add this current cell to the list.
+			ds_list_add(_positions, { x1 : xx, y1 : yy });
+		
+			//Connect this cell with a random adjacent cell.
+			var _dir = _options[| irandom(ds_list_size(_options) - 1)];
+			jen_maze_set(_maze, xx, yy, _dir, true);
+			switch (_dir) {
+				case JEN_DIR.R: { xx ++; } break;
+				case JEN_DIR.U: { yy --; } break;
+				case JEN_DIR.L: { xx --; } break;
+				case JEN_DIR.D: { yy ++; } break;
+			}
+		}
+	} until (ds_list_size(_positions) == 0);
+
+	//Destroy unneeded data structures.
+	ds_list_destroy(_positions);
+	ds_list_destroy(_options);
+
+	return _maze;
 }
 #endregion
 #region jen_maze_destroy(maze);
@@ -34,13 +158,8 @@ function jen_maze_destroy(_maze)
 /// @arg  jen_dir
 function jen_maze_get(_maze, _x1, _y1, _dir)
 {
-	switch(_dir)
-	{
-		case jen_dir.R: { return (_maze[# _x1, _y1] & 1) != 0; } break;
-		case jen_dir.U: { return (_maze[# _x1, _y1] & 2) != 0; } break;
-		case jen_dir.L: { return (_maze[# _x1, _y1] & 4) != 0; } break;
-		case jen_dir.D: { return (_maze[# _x1, _y1] & 8) != 0; } break;
-	}
+	if (!jen_grid_inbounds(_maze, _x1, _y1)) { return undefined; }
+	return (_maze[# _x1, _y1] & _dir) != 0;
 }
 #endregion
 #region jen_maze_set(maze, x1, y1, jen_dir, connected);
@@ -50,29 +169,27 @@ function jen_maze_get(_maze, _x1, _y1, _dir)
 /// @arg  x1
 /// @arg  y1
 /// @arg  jen_dir
-/// @arg  connected
-function jen_maze_set(_maze, _x1, _y1, _dir, _connected)
+/// @arg  {Bool} value
+/// @arg	[one-way] Default: false
+function jen_maze_set(_maze, _x1, _y1, _dir, _value, _oneway = false)
 {
-	if (_connected)
+	if (_value)
 	{
-		//Setting values to true.
-		switch(_dir)
-		{
-			case jen_dir.R: { _maze[# _x1, _y1] = _maze[# _x1, _y1] | 1; } break;
-			case jen_dir.U: { _maze[# _x1, _y1] = _maze[# _x1, _y1] | 2; } break;
-			case jen_dir.L: { _maze[# _x1, _y1] = _maze[# _x1, _y1] | 4; } break;
-			case jen_dir.D: { _maze[# _x1, _y1] = _maze[# _x1, _y1] | 8; } break;
-		}
+		_maze[# _x1, _y1] = _maze[# _x1, _y1] | _dir;
 	}
 	else
 	{
-		//Setting values to false.
-		switch(_dir)
+		_maze[# _x1, _y1] = _maze[# _x1, _y1] & ~_dir;
+	}
+	
+	if (!_oneway)
+	{
+		switch (_dir)
 		{
-			case jen_dir.R: { _maze[# _x1, _y1] = _maze[# _x1, _y1] & ~1; } break;
-			case jen_dir.U: { _maze[# _x1, _y1] = _maze[# _x1, _y1] & ~2; } break;
-			case jen_dir.L: { _maze[# _x1, _y1] = _maze[# _x1, _y1] & ~4; } break;
-			case jen_dir.D: { _maze[# _x1, _y1] = _maze[# _x1, _y1] & ~8; } break;
+			case JEN_DIR.R: { jen_maze_set(_maze, _x1 + 1, _y1, JEN_DIR.L, _value, true); } break;
+			case JEN_DIR.U: { jen_maze_set(_maze, _x1, _y1 - 1, JEN_DIR.D, _value, true); } break;
+			case JEN_DIR.L: { jen_maze_set(_maze, _x1 - 1, _y1, JEN_DIR.R, _value, true); } break;
+			case JEN_DIR.D: { jen_maze_set(_maze, _x1, _y1 + 1, JEN_DIR.U, _value, true); } break;
 		}
 	}
 }
@@ -97,167 +214,6 @@ function jen_maze_height(_maze)
 #endregion
 
 //Maze creation/modification.
-#region jen_maze_prim(width, height);
-/// @func jen_maze_prim
-/// @desc Creates a new maze using Prim's algorithm.
-/// @arg  width
-/// @arg  height
-function jen_maze_prim(_width, _height)
-{
-	//Create an empty maze to fill with the new maze.
-	var _grid = jen_maze_create(_width, _height);
-
-	//Create the queues for storing positions
-	var Qx = ds_list_create();
-	var Qy = ds_list_create();
-
-	//Initial Starting Point
-	var xx = irandom(_width - 1);
-	var yy = irandom(_height - 1);
-
-	ds_list_add(Qx, xx);
-	ds_list_add(Qy, yy);
-
-	while (ds_list_size(Qx) >= 1)
-	{
-		//Choose a new random position from among the list
-		var pos = irandom(ds_list_size(Qx) - 1);
-		xx = Qx[| pos];
-		yy = Qy[| pos];
-	
-		//If all surrounding positions are filled.
-		var check = 0;
-		if (xx < _width - 1) { if (_grid[# xx + 1, yy] != 0) { check ++; } } else { check ++; }
-		if (yy > 0) { if (_grid[# xx, yy - 1] != 0) { check ++; } } else { check ++; }
-		if (xx > 0) { if (_grid[# xx - 1, yy] != 0) { check ++; } } else { check ++; }
-		if (yy < _height - 1) { if (_grid[# xx, yy + 1] != 0) { check ++; } } else { check ++; }
-		if (check == 4)
-		{
-			ds_list_delete(Qx, pos);
-			ds_list_delete(Qy, pos);
-		}
-		else //There is an open position.
-		{
-			var chance = irandom(3);
-			if (chance == 0 && xx < _width - 1 && _grid[# xx + 1, yy] == 0) //RIGHT (And not at edge or to left of filled tile)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.R, true);
-				jen_maze_set(_grid, xx + 1, yy, jen_dir.L, true);
-				ds_list_add(Qx, xx + 1);
-				ds_list_add(Qy, yy);
-			}
-			else if (chance == 1 && yy > 0 && _grid[# xx, yy - 1] == 0) //UP (And not at edge or under a filled tile)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.U, true);
-				jen_maze_set(_grid, xx, yy - 1, jen_dir.D, true);
-				ds_list_add(Qx, xx);
-				ds_list_add(Qy, yy - 1);
-			}
-			else if (chance == 2 && xx > 0 && _grid[# xx - 1, yy] == 0) //LEFT (And not at edge or to right of filled tile)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.L, true);
-				jen_maze_set(_grid, xx - 1, yy, jen_dir.R, true);
-				ds_list_add(Qx, xx - 1);
-				ds_list_add(Qy, yy);
-			}
-			else if (chance == 3 && yy < _height - 1 && _grid[# xx, yy + 1] == 0) //DOWN (And not at edge or above filled tile)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.D, true);
-				jen_maze_set(_grid, xx, yy + 1, jen_dir.U, true);
-				ds_list_add(Qx, xx);
-				ds_list_add(Qy, yy + 1);
-			}
-		}
-	}
-
-	//Destroy unneeded data structures.
-	ds_list_destroy(Qx);
-	ds_list_destroy(Qy);
-
-	return _grid;
-}
-#endregion
-#region jen_maze_backtrack(width, height);
-/// @func jen_maze_backtrack
-/// @desc Creates a new maze using Recursive Backtrack algorithm.
-/// @arg  width
-/// @arg  height
-function jen_maze_backtrack(_width, _height)
-{
-	//Create an empty maze to fill.
-	var _grid = jen_maze_create(_width, _height);
-
-	//Create the queues for storing positions
-	var Qx = ds_list_create();
-	var Qy = ds_list_create();
-	var Qlist = ds_list_create();
-
-	//Initial Starting Point
-	var xx = irandom(_width - 1);
-	var yy = irandom(_height - 1);
-
-	var init = false;
-	while (ds_list_size(Qx) >= 1 || !init)
-	{
-		init = true;
-	
-		//If all surrounding positions are filled. Also, add open positions to the Qlist.
-		var check = 0;
-		ds_list_clear(Qlist);
-		if (xx < _width - 1) { if (_grid[# xx + 1, yy] != 0) { check ++; } else { ds_list_add(Qlist, 1); } } else { check ++; }
-		if (yy > 0) { if (_grid[# xx, yy - 1] != 0) { check ++; } else { ds_list_add(Qlist, 2); } } else { check ++; }
-		if (xx > 0) { if (_grid[# xx - 1, yy] != 0) { check ++; } else { ds_list_add(Qlist, 3); } } else { check ++; }
-		if (yy < _height - 1) { if (_grid[# xx, yy + 1] != 0) { check ++; } else { ds_list_add(Qlist, 4); } } else { check ++; }
-		if (check == 4) //There is no surrounding options
-		{
-			xx = Qx[| ds_list_size(Qy) - 1];
-			yy = Qy[| ds_list_size(Qy) - 1];
-			ds_list_delete(Qx, ds_list_size(Qx) - 1);
-			ds_list_delete(Qy, ds_list_size(Qy) - 1);
-		}
-		else //At least one unvisited neighbor cell.
-		{
-			//Add this current cell to the list.
-			ds_list_add(Qx, xx);
-			ds_list_add(Qy, yy);
-		
-			//Connect this cell with a random adjacent cell.
-			var value = Qlist[| irandom(ds_list_size(Qlist) - 1)];
-			if (value == 1)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.R, true);
-				jen_maze_set(_grid, xx + 1, yy, jen_dir.L, true);
-				xx ++;
-			}
-			else if (value == 2)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.U, true);
-				jen_maze_set(_grid, xx, yy - 1, jen_dir.D, true);
-				yy --;
-			}
-			else if (value == 3)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.L, true);
-				jen_maze_set(_grid, xx - 1, yy, jen_dir.R, true);
-				xx --;
-			}
-			else if (value == 4)
-			{
-				jen_maze_set(_grid, xx, yy, jen_dir.D, true);
-				jen_maze_set(_grid, xx, yy + 1, jen_dir.U, true);
-				yy ++;
-			}
-		}
-	}
-
-	//Destroy unneeded data structures.
-	ds_list_destroy(Qx);
-	ds_list_destroy(Qy);
-	ds_list_destroy(Qlist);
-
-	return _grid;
-}
-#endregion
 #region jen_maze_exits(maze, edge_buffer_min, edge_buffer_max, numU, numR, numD, numL);
 /// @func jen_maze_exits
 /// @desc Adds exits on the edges of a maze.
@@ -289,7 +245,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numU, size); i++)
 		{
-			jen_maze_set(_maze, _list[| i], 0, jen_dir.U, true);
+			jen_maze_set(_maze, _list[| i], 0, JEN_DIR.U, true);
 		}
 		
 		//Destroy the list.
@@ -311,7 +267,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numR, size); i++)
 		{
-			jen_maze_set(_maze, _width - 1, _list[| i], jen_dir.R, true);
+			jen_maze_set(_maze, _width - 1, _list[| i], JEN_DIR.R, true);
 		}
 		
 		//Destroy the list.
@@ -333,7 +289,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numD, size); i++)
 		{
-			jen_maze_set(_maze, _list[| i], _height - 1, jen_dir.D, true);
+			jen_maze_set(_maze, _list[| i], _height - 1, JEN_DIR.D, true);
 		}
 		
 		//Destroy the list.
@@ -355,7 +311,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numL, size); i++)
 		{
-			jen_maze_set(_maze, 0, _list[| i], jen_dir.L, true);
+			jen_maze_set(_maze, 0, _list[| i], JEN_DIR.L, true);
 		}
 		
 		//Destroy the list.
@@ -406,7 +362,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		var y1 = yy * (_room_h + _wall_h);
 		
 		#region RIGHT
-		if (jen_maze_get(_maze, xx, yy, jen_dir.R))
+		if (jen_maze_get(_maze, xx, yy, JEN_DIR.R))
 		{
 			jen_rectangle(_grid,
 				x1 + _wall_w + _room_w,
@@ -417,7 +373,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		}
 		#endregion
 		#region UP
-		if (jen_maze_get(_maze, xx, yy, jen_dir.U)) //UP
+		if (jen_maze_get(_maze, xx, yy, JEN_DIR.U)) //UP
 		{
 			jen_rectangle(_grid,
 			x1 + _wall_w + ((_room_w - _door_w) / 2), //?
@@ -428,7 +384,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		}
 		#endregion
 		#region LEFT
-		if (jen_maze_get(_maze, xx, yy, jen_dir.L)) //LEFT
+		if (jen_maze_get(_maze, xx, yy, JEN_DIR.L)) //LEFT
 		{
 			jen_rectangle(_grid,
 			x1,
@@ -439,7 +395,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		}
 		#endregion
 		#region DOWN
-		if (jen_maze_get(_maze, xx, yy, jen_dir.D)) //DOWN
+		if (jen_maze_get(_maze, xx, yy, JEN_DIR.D)) //DOWN
 		{
 			jen_rectangle(_grid,
 			x1 + _wall_w + ((_room_w - _door_w) / 2), //?
@@ -523,10 +479,10 @@ function jen_maze_build_special(_maze, _value, _room_w, _room_h, _wall_w, _wall_
 		var y1 = yy * (_room_h + _wall_h);
 		
 		#region Get connection values.
-		var R = jen_maze_get(_maze, xx, yy, jen_dir.R);
-		var U = jen_maze_get(_maze, xx, yy, jen_dir.U);
-		var L = jen_maze_get(_maze, xx, yy, jen_dir.L);
-		var D = jen_maze_get(_maze, xx, yy, jen_dir.D);
+		var R = jen_maze_get(_maze, xx, yy, JEN_DIR.R);
+		var U = jen_maze_get(_maze, xx, yy, JEN_DIR.U);
+		var L = jen_maze_get(_maze, xx, yy, JEN_DIR.L);
+		var D = jen_maze_get(_maze, xx, yy, JEN_DIR.D);
 		
 		var _data = R;
 		_data += U * 2;

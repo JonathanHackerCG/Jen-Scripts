@@ -40,16 +40,16 @@ function jen_grid_draw(_grid, _x1, _y1)
 }
 #endregion
 #region jen_maze_draw(maze, x1, y1);
-/// @func jen_maze_draw
-/// @desc Draws the layout of a maze grid.
-/// @arg  maze
-/// @arg  x1
-/// @arg  y1
+/// @func jen_maze_draw(maze, x, y):
+/// @desc Draws the layout of a maze grid (debugging).
+/// @arg  {Id.DsGrid}		maze
+/// @arg  {Real}				x
+/// @arg  {Real}				y
 function jen_maze_draw(_maze, _x1, _y1)
 {
 	//Getting the width and height of the grid.
-	var _height = jen_maze_height(_maze);
-	var _width = jen_maze_width(_maze);
+	var _h = jen_maze_height(_maze);
+	var _w = jen_maze_width(_maze);
 	
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)

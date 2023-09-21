@@ -1,17 +1,5 @@
 //General Jen-Scripts functions. Initialization and grid transformations.
 
-#region Main enumerators and macros.
-//Enumerator to denote directions for maze functions.
-enum jen_dir
-{
-	R,
-	U,
-	D,
-	L,
-	
-	_total
-}
-#endregion
 #region Main global variables.
 JEN_CELLH = 16;
 JEN_CELLW = 16;

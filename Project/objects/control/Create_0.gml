@@ -13,3 +13,5 @@ function clear_room()
 		}
 	}
 }
+
+maze = noone;
