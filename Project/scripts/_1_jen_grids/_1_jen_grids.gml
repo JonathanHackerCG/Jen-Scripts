@@ -45,10 +45,8 @@ function jen_grid_create(_width, _height, _cleared = noone)
 /// @returns {Bool}
 function jen_grid_destroy(_grid)
 {
-	//Check if the grid exists.
 	if (jen_grid_exists(_grid))
 	{
-		//Destroy the grid and return true.
 		ds_grid_destroy(_grid);
 		return true;
 	}
@@ -63,7 +61,7 @@ function jen_grid_destroy(_grid)
 /// @returns {Bool}
 function jen_grid_exists(_grid)
 {
-	return is_real(_grid) && ds_exists(_grid, ds_type_grid);
+	return _jenternal_ds_exists(_grid, ds_type_grid);
 }
 #endregion
 //TODO: jen_grid_copy
@@ -190,7 +188,7 @@ function jen_test(_grid, _x, _y, _replace)
 	return false;
 }
 #endregion
-//TO ADD: jen_grid_count(JenGrid, target); Returns total number of matching values.
+//TODO: jen_grid_count(JenGrid, target); Returns total number of matching values.
 
 //Transformations
 #region jen_grid_mirror(JenGrid, horizontal, vertical);
@@ -370,7 +368,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 	{
 		//Instantiating each object.
 		var _index = jen_get(_grid, xx, yy);
-		if (_jenternal_object_exists_ext(_index) && _index != noone)
+		if (_jenternal_object_exists(_index) && _index != noone)
 		{
 			if (!is_undefined(_struct))
 			{
@@ -410,7 +408,7 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 	{
 		//Instantiating each object.
 		var _index = jen_get(_grid, xx, yy);
-		if (_jenternal_object_exists_ext(_index) && _index != noone)
+		if (_jenternal_object_exists(_index) && _index != noone)
 		{
 			if (!is_undefined(_struct))
 			{

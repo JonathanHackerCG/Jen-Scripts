@@ -2,6 +2,7 @@
 
 enum JEN_DIR
 {
+	NONE = 0,
 	R = 1,
 	U = 2,
 	L = 4,
@@ -30,14 +31,12 @@ function jen_maze_create(_w, _h)
 /// @arg  {real}	height
 function jen_maze_create_prim(_w, _h)
 {
-	//Create an empty maze to fill with the new maze.
+	//Create maze and lists.
 	var _maze = jen_maze_create(_w, _h);
-
-	//Create the queues for storing positions.
 	var _positions = ds_list_create();
-	var _options = ds_list_create();
+	static _options = ds_list_create();
 
-	//Initial Starting Point
+	//Initialize a random starting position.
 	var xx = irandom(_w - 1);
 	var yy = irandom(_h - 1);
 	ds_list_add(_positions, { x1 : xx, y1 : yy});
@@ -47,15 +46,14 @@ function jen_maze_create_prim(_w, _h)
 		//Choose a new random position from among the list
 		var _index = irandom(ds_list_size(_positions) - 1);
 		var _pos = _positions[| _index];
-		xx = _pos.x1;
-		yy = _pos.y1;
+		xx = _pos.x1; yy = _pos.y1;
 	
 		//If all surrounding positions are filled.
 		ds_list_clear(_options);
-		if (jen_maze_get(_maze, xx + 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.R); }
-		if (jen_maze_get(_maze, xx, yy - 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.U); }
-		if (jen_maze_get(_maze, xx - 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.L); }
-		if (jen_maze_get(_maze, xx, yy + 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.D); }
+		if (jen_maze_get_dir(_maze, xx + 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.R); }
+		if (jen_maze_get_dir(_maze, xx, yy - 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.U); }
+		if (jen_maze_get_dir(_maze, xx - 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.L); }
+		if (jen_maze_get_dir(_maze, xx, yy + 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.D); }
 		if (ds_list_size(_options) == 0)
 		{
 			ds_list_delete(_positions, _index);
@@ -63,7 +61,7 @@ function jen_maze_create_prim(_w, _h)
 		else //There is an open position.
 		{
 			var _dir = _options[| irandom(ds_list_size(_options) - 1)];
-			jen_maze_set(_maze, xx, yy, _dir, true);
+			jen_maze_set_dir(_maze, xx, yy, _dir, true);
 			switch (_dir) {
 				case JEN_DIR.R: { ds_list_add(_positions, { x1 : xx + 1, y1 : yy }); } break;
 				case JEN_DIR.U: { ds_list_add(_positions, { x1 : xx, y1 : yy - 1 }); } break;
@@ -73,9 +71,8 @@ function jen_maze_create_prim(_w, _h)
 		}
 	}
 
-	//Destroy unneeded data structures.
+	//Cleanup and return.
 	ds_list_destroy(_positions);
-
 	return _maze;
 }
 #endregion
@@ -86,41 +83,38 @@ function jen_maze_create_prim(_w, _h)
 /// @arg  height
 function jen_maze_create_backtrack(_w, _h)
 {
-	//Create an empty maze to fill.
+	//Create maze and lists.
 	var _maze = jen_maze_create(_w, _h);
-
-	//Create the queues for storing positions
 	var _positions = ds_list_create();
-	var _options = ds_list_create();
+	static _options = ds_list_create();
 
-	//Initial Starting Point
+	//Initialize a random starting position.
 	var xx = irandom(_w - 1);
 	var yy = irandom(_h - 1);
-
 	do
 	{
-		//If all surrounding positions are filled. Also, add open positions to the options.
+		//Build a list of all adjacent rooms that have not been connected.
 		ds_list_clear(_options);
-		if (jen_maze_get(_maze, xx + 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.R); }
-		if (jen_maze_get(_maze, xx, yy - 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.U); }
-		if (jen_maze_get(_maze, xx - 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.L); }
-		if (jen_maze_get(_maze, xx, yy + 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.D); }
-		if (ds_list_size(_options) == 0) //There are no surrounding options.
+		if (jen_maze_get_dir(_maze, xx + 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.R); }
+		if (jen_maze_get_dir(_maze, xx, yy - 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.U); }
+		if (jen_maze_get_dir(_maze, xx - 1, yy, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.L); }
+		if (jen_maze_get_dir(_maze, xx, yy + 1, JEN_DIR.ANY) == false) { ds_list_add(_options, JEN_DIR.D); }
+		if (ds_list_size(_options) == 0) //There are no options.
 		{
+			//Delete the end of the backtrack chain.
 			var _size = ds_list_size(_positions);
 			var _pos = _positions[| _size - 1];
-			xx = _pos.x1;
-			yy = _pos.y1;
+			xx = _pos.x1; yy = _pos.y1;
 			ds_list_delete(_positions, _size - 1);
 		}
-		else //At least one unvisited neighbor cell.
+		else
 		{
-			//Add this current cell to the list.
+			//Add the next cell to the list.
 			ds_list_add(_positions, { x1 : xx, y1 : yy });
 		
 			//Connect this cell with a random adjacent cell.
 			var _dir = _options[| irandom(ds_list_size(_options) - 1)];
-			jen_maze_set(_maze, xx, yy, _dir, true);
+			jen_maze_set_dir(_maze, xx, yy, _dir, true);
 			switch (_dir) {
 				case JEN_DIR.R: { xx ++; } break;
 				case JEN_DIR.U: { yy --; } break;
@@ -130,49 +124,69 @@ function jen_maze_create_backtrack(_w, _h)
 		}
 	} until (ds_list_size(_positions) == 0);
 
-	//Destroy unneeded data structures.
+	//Cleanup and return.
 	ds_list_destroy(_positions);
-	ds_list_destroy(_options);
-
 	return _maze;
 }
 #endregion
-#region jen_maze_destroy(maze);
-/// @func jen_maze_destroy
-/// @desc Destroy a maze grid.
-/// @arg  maze
+#region jen_maze_destroy(JenMaze);
+/// @func jen_maze_destroy(JenMaze):
+/// @desc Destroy a JenMaze, clearing it from memory.
+///				Returns true if the JenMaze was successfully destroyed.
+/// @arg  {Id.DsGrid}	JenMaze
+/// @returns {Bool}
 function jen_maze_destroy(_maze)
 {
-	ds_grid_destroy(_maze);
+	if (jen_maze_exists(_maze))
+	{
+		ds_grid_destroy(_maze);
+		return true;
+	}
+	return false;
 }
 #endregion
-//TODO: jen_maze_exists(maze);
+#region NEW jen_maze_exists(JenMaze);
+/// @func jen_maze_exists(JenMaze):
+/// @desc Returns true if a JenMaze exists.
+///				NOTE: Currently cannot distinguish between a JenMaze and a DS Grid.
+/// @arg	{Id.DsGrid}	JenMaze
+/// @returns {Bool}
+function jen_maze_exists(_grid)
+{
+	return _jenternal_ds_exists(_grid, ds_type_grid);
+}
+#endregion
 
 //Getters/Setters
-#region jen_maze_get(maze, x1, y1, jen_dir);
-/// @func jen_maze_get
+#region jen_maze_get_dir(JenMaze, xcell, ycell, jen_dir);
+/// @func jen_maze_get_dir(JenMaze, xcell, ycell, jen_dir):
 /// @desc Returns true/false if a particular direction is connected.
-/// @arg  maze
-/// @arg  x1
-/// @arg  y1
-/// @arg  jen_dir
-function jen_maze_get(_maze, _x1, _y1, _dir)
+///				Also supports JEN_DIR.ANY to check for any connection.
+///				Returns undefined if it is out of bounds.
+/// @arg  {Id.DsGrid}			JenMaze
+/// @arg  {Real}					xcell
+/// @arg  {Real}					ycell
+/// @arg  {Enum.JEN_DIR}	jen_dir
+function jen_maze_get_dir(_maze, _x1, _y1, _dir)
 {
 	if (!jen_grid_inbounds(_maze, _x1, _y1)) { return undefined; }
 	return (_maze[# _x1, _y1] & _dir) != 0;
 }
 #endregion
-#region jen_maze_set(maze, x1, y1, jen_dir, connected);
-/// @func jen_maze_set
+#region jen_maze_set_dir(JenMaze, xcell, ycell, jen_dir, is_connected, [one_way]);
+/// @func jen_maze_set_dir(JenMaze, xcell, ycell, jen_dir, is_connected, [one_way]):
 /// @desc Sets a particular direction to be connected (true/false).
-/// @arg  maze
-/// @arg  x1
-/// @arg  y1
-/// @arg  jen_dir
-/// @arg  {Bool} value
-/// @arg	[one-way] Default: false
-function jen_maze_set(_maze, _x1, _y1, _dir, _value, _oneway = false)
+///				Returns true if the value is successfully set.
+/// @arg  {Id.DsGrid}			JenMaze
+/// @arg  {Real}					xcell
+/// @arg  {Real}					ycell
+/// @arg  {Enum.JEN_DIR}	jen_dir
+/// @arg  {Bool}					is_connected
+/// @arg	{Bool}					[one_way]			Default: false
+/// @returns {Bool}
+function jen_maze_set_dir(_maze, _x1, _y1, _dir, _value, _oneway = false)
 {
+	if (!jen_grid_inbounds(_maze, _x1, _y1)) { return false; }
 	if (_value)
 	{
 		_maze[# _x1, _y1] = _maze[# _x1, _y1] | _dir;
@@ -184,29 +198,31 @@ function jen_maze_set(_maze, _x1, _y1, _dir, _value, _oneway = false)
 	
 	if (!_oneway)
 	{
+		//TODO: Update to allow bitwise | operation to change multiple directions at once.
 		switch (_dir)
 		{
-			case JEN_DIR.R: { jen_maze_set(_maze, _x1 + 1, _y1, JEN_DIR.L, _value, true); } break;
-			case JEN_DIR.U: { jen_maze_set(_maze, _x1, _y1 - 1, JEN_DIR.D, _value, true); } break;
-			case JEN_DIR.L: { jen_maze_set(_maze, _x1 - 1, _y1, JEN_DIR.R, _value, true); } break;
-			case JEN_DIR.D: { jen_maze_set(_maze, _x1, _y1 + 1, JEN_DIR.U, _value, true); } break;
+			case JEN_DIR.R: { jen_maze_set_dir(_maze, _x1 + 1, _y1, JEN_DIR.L, _value, true); } break;
+			case JEN_DIR.U: { jen_maze_set_dir(_maze, _x1, _y1 - 1, JEN_DIR.D, _value, true); } break;
+			case JEN_DIR.L: { jen_maze_set_dir(_maze, _x1 - 1, _y1, JEN_DIR.R, _value, true); } break;
+			case JEN_DIR.D: { jen_maze_set_dir(_maze, _x1, _y1 + 1, JEN_DIR.U, _value, true); } break;
 		}
 	}
+	return true;
 }
 #endregion
-#region jen_maze_width(maze);
-/// @func jen_maze_width
-/// @desc Returns the width of a maze.
-/// @arg  maze
+#region jen_maze_width(JenMaze);
+/// @func jen_maze_width(JenMaze):
+/// @desc Returns the width of a JenMaze.
+/// @arg  {Id.DsGrid}	JenMaze
 function jen_maze_width(_maze)
 {
 	return ds_grid_width(_maze);
 }
 #endregion
-#region jen_maze_height(maze);
-/// @func jen_maze_height
-/// @desc Returns the height of a jen_maze.
-/// @arg  maze
+#region jen_maze_height(JenMaze);
+/// @func jen_maze_height(JenMaze):
+/// @desc Returns the height of a JenMaze.
+/// @arg  {Id.DsGrid}	JenMaze
 function jen_maze_height(_maze)
 {
 	return ds_grid_height(_maze);
@@ -245,7 +261,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numU, size); i++)
 		{
-			jen_maze_set(_maze, _list[| i], 0, JEN_DIR.U, true);
+			jen_maze_set_dir(_maze, _list[| i], 0, JEN_DIR.U, true);
 		}
 		
 		//Destroy the list.
@@ -267,7 +283,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numR, size); i++)
 		{
-			jen_maze_set(_maze, _width - 1, _list[| i], JEN_DIR.R, true);
+			jen_maze_set_dir(_maze, _width - 1, _list[| i], JEN_DIR.R, true);
 		}
 		
 		//Destroy the list.
@@ -289,7 +305,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numD, size); i++)
 		{
-			jen_maze_set(_maze, _list[| i], _height - 1, JEN_DIR.D, true);
+			jen_maze_set_dir(_maze, _list[| i], _height - 1, JEN_DIR.D, true);
 		}
 		
 		//Destroy the list.
@@ -311,7 +327,7 @@ function jen_maze_exits(_maze, _edge_bufferL, _edge_bufferR, _numU, _numR, _numD
 		var size = ds_list_size(_list);
 		for (var i = 0; i < min(_numL, size); i++)
 		{
-			jen_maze_set(_maze, 0, _list[| i], JEN_DIR.L, true);
+			jen_maze_set_dir(_maze, 0, _list[| i], JEN_DIR.L, true);
 		}
 		
 		//Destroy the list.
@@ -362,7 +378,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		var y1 = yy * (_room_h + _wall_h);
 		
 		#region RIGHT
-		if (jen_maze_get(_maze, xx, yy, JEN_DIR.R))
+		if (jen_maze_get_dir(_maze, xx, yy, JEN_DIR.R))
 		{
 			jen_rectangle(_grid,
 				x1 + _wall_w + _room_w,
@@ -373,7 +389,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		}
 		#endregion
 		#region UP
-		if (jen_maze_get(_maze, xx, yy, JEN_DIR.U)) //UP
+		if (jen_maze_get_dir(_maze, xx, yy, JEN_DIR.U)) //UP
 		{
 			jen_rectangle(_grid,
 			x1 + _wall_w + ((_room_w - _door_w) / 2), //?
@@ -384,7 +400,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		}
 		#endregion
 		#region LEFT
-		if (jen_maze_get(_maze, xx, yy, JEN_DIR.L)) //LEFT
+		if (jen_maze_get_dir(_maze, xx, yy, JEN_DIR.L)) //LEFT
 		{
 			jen_rectangle(_grid,
 			x1,
@@ -395,7 +411,7 @@ function jen_maze_build(_maze, _value, _room_w, _room_h, _wall_w, _wall_h, _door
 		}
 		#endregion
 		#region DOWN
-		if (jen_maze_get(_maze, xx, yy, JEN_DIR.D)) //DOWN
+		if (jen_maze_get_dir(_maze, xx, yy, JEN_DIR.D)) //DOWN
 		{
 			jen_rectangle(_grid,
 			x1 + _wall_w + ((_room_w - _door_w) / 2), //?
@@ -479,10 +495,10 @@ function jen_maze_build_special(_maze, _value, _room_w, _room_h, _wall_w, _wall_
 		var y1 = yy * (_room_h + _wall_h);
 		
 		#region Get connection values.
-		var R = jen_maze_get(_maze, xx, yy, JEN_DIR.R);
-		var U = jen_maze_get(_maze, xx, yy, JEN_DIR.U);
-		var L = jen_maze_get(_maze, xx, yy, JEN_DIR.L);
-		var D = jen_maze_get(_maze, xx, yy, JEN_DIR.D);
+		var R = jen_maze_get_dir(_maze, xx, yy, JEN_DIR.R);
+		var U = jen_maze_get_dir(_maze, xx, yy, JEN_DIR.U);
+		var L = jen_maze_get_dir(_maze, xx, yy, JEN_DIR.L);
+		var D = jen_maze_get_dir(_maze, xx, yy, JEN_DIR.D);
 		
 		var _data = R;
 		_data += U * 2;

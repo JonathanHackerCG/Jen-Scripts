@@ -39,10 +39,10 @@ function jen_grid_draw(_grid, _x1, _y1)
 	draw_text(_x1, _y1, _text);
 }
 #endregion
-#region jen_maze_draw(maze, x1, y1);
-/// @func jen_maze_draw(maze, x, y):
+#region jen_maze_draw(JenMaze, x, y);
+/// @func jen_maze_draw(JenMaze, x, y):
 /// @desc Draws the layout of a maze grid (debugging).
-/// @arg  {Id.DsGrid}		maze
+/// @arg  {Id.DsGrid}		JenMaze
 /// @arg  {Real}				x
 /// @arg  {Real}				y
 function jen_maze_draw(_maze, _x1, _y1)

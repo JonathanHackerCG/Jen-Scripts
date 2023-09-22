@@ -62,6 +62,7 @@
     {"id":{"name":"obj_dirt","path":"objects/obj_dirt/obj_dirt.yy",},"order":3,},
     {"id":{"name":"rm_initialize","path":"rooms/rm_initialize/rm_initialize.yy",},"order":1,},
     {"id":{"name":"spr_dirt","path":"sprites/spr_dirt/spr_dirt.yy",},"order":2,},
+    {"id":{"name":"_0_jen_CONFIG","path":"scripts/_0_jen_CONFIG/_0_jen_CONFIG.yy",},"order":16,},
     {"id":{"name":"spr_wood","path":"sprites/spr_wood/spr_wood.yy",},"order":7,},
     {"id":{"name":"jen_example_ruins","path":"scripts/jen_example_ruins/jen_example_ruins.yy",},"order":1,},
     {"id":{"name":"rm_dungeons","path":"rooms/rm_dungeons/rm_dungeons.yy",},"order":2,},
