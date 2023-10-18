@@ -13,7 +13,7 @@ enum JEN_DIR
 //Initialization
 #region jen_maze_create(width, height);
 /// @func jen_maze_create(width, height):
-/// @desc Creates a blank maze. Mostly for internal use.
+/// @desc Creates a new blank JenMaze. Mostly for internal use.
 /// @arg  {Real}	width
 /// @arg  {Real}	height
 function jen_maze_create(_w, _h)
@@ -173,20 +173,19 @@ function jen_maze_get_dir(_maze, _x1, _y1, _dir)
 	return (_maze[# _x1, _y1] & _dir) != 0;
 }
 #endregion
-#region jen_maze_set_dir(JenMaze, xcell, ycell, jen_dir, is_connected, [one_way]);
-/// @func jen_maze_set_dir(JenMaze, xcell, ycell, jen_dir, is_connected, [one_way]):
-/// @desc Sets a particular direction to be connected (true/false).
-///				Returns true if the value is successfully set.
+#region jen_maze_set_dir(JenMaze, xcell, ycell, direction, is_connected, [one_way]);
+/// @func jen_maze_set_dir(JenMaze, xcell, ycell, direction, is_connected, [one_way]):
+/// @desc Sets a direction from a cell in the JenMaze to be connected (true/false).
 /// @arg  {Id.DsGrid}			JenMaze
 /// @arg  {Real}					xcell
 /// @arg  {Real}					ycell
-/// @arg  {Enum.JEN_DIR}	jen_dir
+/// @arg  {Enum.JEN_DIR}	direction
 /// @arg  {Bool}					is_connected
 /// @arg	{Bool}					[one_way]			Default: false
 /// @returns {Bool}
 function jen_maze_set_dir(_maze, _x1, _y1, _dir, _value, _oneway = false)
 {
-	if (!jen_grid_inbounds(_maze, _x1, _y1)) { return false; }
+	if (!jen_grid_inbounds(_maze, _x1, _y1)) { exit; }
 	if (_value)
 	{
 		_maze[# _x1, _y1] = _maze[# _x1, _y1] | _dir;
@@ -207,7 +206,6 @@ function jen_maze_set_dir(_maze, _x1, _y1, _dir, _value, _oneway = false)
 			case JEN_DIR.D: { jen_maze_set_dir(_maze, _x1, _y1 + 1, JEN_DIR.U, _value, true); } break;
 		}
 	}
-	return true;
 }
 #endregion
 #region jen_maze_width(JenMaze);

@@ -8,6 +8,8 @@
 
 *Talk about how Jen-Scripts handles string, such as ignoring them when instantiating.*
 
+*Add note about out of bounds values usually being ignored.*
+
 ## Replace/New Value Parameters
 
 ## Setter Parameter
