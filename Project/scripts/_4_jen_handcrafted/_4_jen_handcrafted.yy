@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Jen-Scripts",
-    "path": "folders/Jen-Scripts.yy",
+    "name": "JenScripts",
+    "path": "folders/JenScripts.yy",
   },
 }

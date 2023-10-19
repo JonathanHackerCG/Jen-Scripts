@@ -1,4 +1,4 @@
-//General Jen-Scripts functions. Initialization and grid transformations.
+//General JenScripts functions. Initialization and grid transformations.
 
 #region Main global variables.
 JEN_CELLH = 16;
@@ -239,7 +239,7 @@ function jen_grid_rotate(_grid, _rotations)
 	var _h = jen_grid_height(_grid);
 	
 	//Different rotation operations depending on the angle.
-	if (_rotations < 0 || _rotations > 3) { show_error("Jen-Scripts 'jen_rotate' expects a rotation number of 0, 1, 2, or 3.", false); exit; }
+	if (_rotations < 0 || _rotations > 3) { show_error("JenScripts 'jen_rotate' expects a rotation number of 0, 1, 2, or 3.", false); exit; }
 	if (_rotations == 0) { exit; }
 	
 	//Apply each rotation based on the number of rotations.
@@ -510,3 +510,59 @@ function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _ti
 	} }
 }
 #endregion
+
+function jen_autotile_16(_grid, _x1, _y1, _match_value, _closed_edge)
+{
+	static _MAPPING = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+	#region Compute Autotile
+	static _compute_autotile = function(_grid, xx, yy, _match_value, _closed_edge)
+	{
+		var _adjacent 
+		= _jenternal_test(_grid, xx, yy - 1, _match_value, _closed_edge) * 1
+		+ _jenternal_test(_grid, xx - 1, yy, _match_value, _closed_edge) * 2
+		+ _jenternal_test(_grid, xx + 1, yy, _match_value, _closed_edge) * 4
+		+ _jenternal_test(_grid, xx, yy + 1, _match_value, _closed_edge) * 8;
+									
+		if (_adjacent == 0) { return 15; }
+		if (_adjacent == 16)
+		{
+			var _diagonal
+			= _jenternal_test(_grid, xx, yy - 1, _match_value, _closed_edge) * 1
+			+ _jenternal_test(_grid, xx - 1, yy, _match_value, _closed_edge) * 2
+			+ _jenternal_test(_grid, xx + 1, yy, _match_value, _closed_edge) * 4
+			+ _jenternal_test(_grid, xx, yy + 1, _match_value, _closed_edge) * 8;
+			
+			if (_diagonal > 9) { return 15; }
+			return _diagonal;
+		}
+		switch (_adjacent)
+		{
+			case 1:		return 3;
+			case 2:		return 5;
+			case 4:		return 10;
+			case 8:		return 12;
+			case 3:		return 7;
+			case 5:		return 11;
+			case 10:	return 13;
+			case 12:	return 14;
+			default:	return 15;
+		}
+	}
+	#endregion
+	
+	//Getting width and height of the grid.
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
+	
+	//Loop through the grid, checking for matching values.
+	for (var xx = 0; xx < _w; xx++) {
+	for (var yy = 0; yy < _h; yy++)
+	{
+		//Setting each tile value in the tilemap.
+		if (jen_test(_grid, xx, yy, _match_value))
+		{
+			var _tile = _compute_autotile(_grid, xx, yy, _match_value, _closed_edge);
+			jen_set(_grid, xx, yy, all, _MAPPING[_tile]);
+		}
+	} }
+}

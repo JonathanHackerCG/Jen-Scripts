@@ -1,4 +1,4 @@
-This function returns the width of a JenGrid.
+This function returns the width of a JenGrid in cells.
 
 **Syntax**
 ```js

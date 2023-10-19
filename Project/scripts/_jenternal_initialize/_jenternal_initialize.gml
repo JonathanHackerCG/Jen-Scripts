@@ -1,15 +1,15 @@
-//This contains internal functions referenced inside of other functions in Jen-Scripts.
-//These should not be referenced by the user of Jen-Scripts. They do not have documentation.
+//This contains internal functions referenced inside of other functions in JenScripts.
+//These should not be referenced by the user of JenScripts. They do not have documentation.
 
-//Internal Jen-Scripts Macros
+//Internal JenScripts Macros
 #macro JEN_SCRIPTS_VERSION "3.0.0 DEV"
 #macro JEN_CELLH global.jen_cellh
 #macro JEN_CELLW global.jen_cellw
 
 //Initialization Message
-show_debug_message(">>> Jen-Scripts version '" + JEN_SCRIPTS_VERSION + "' initialized!");
+show_debug_message(">>> JenScripts version '" + JEN_SCRIPTS_VERSION + "' initialized!");
 
-//Internal Jen-Scripts Functions (Undocumented)
+//Internal JenScripts Functions (Undocumented)
 #region _jenternal_autotile(JenGrid, xx, yy, test, default);
 /// @func _jenternal_autotile
 /// @desc Converts a value between 0-15 reflecting surrounding tiles to an appropriate tilemap index

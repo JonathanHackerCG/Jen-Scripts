@@ -99,6 +99,6 @@
   "nineSlice": null,
   "parent": {
     "name": "_Internal",
-    "path": "folders/Jen-Scripts/_Internal.yy",
+    "path": "folders/JenScripts/_Internal.yy",
   },
 }

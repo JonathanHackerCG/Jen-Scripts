@@ -6,6 +6,6 @@
   "isCompatibility": false,
   "parent": {
     "name": "Templates",
-    "path": "folders/Jen-Scripts/Templates.yy",
+    "path": "folders/JenScripts/Templates.yy",
   },
 }

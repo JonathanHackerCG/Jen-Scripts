@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "_6_jen_heightmaps",
+  "name": "_X_jen_heightmaps",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Jen-Scripts",
-    "path": "folders/Jen-Scripts.yy",
+    "name": "JenScripts - WIP",
+    "path": "folders/JenScripts - WIP.yy",
   },
 }

@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMTileSet",
+  "resourceVersion": "1.0",
+  "name": "tst_jen_autotile_template",
   "spriteId": {
     "name": "spr_jen_autotile_template",
     "path": "sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",
@@ -19,7 +22,7 @@
   "out_columns": 4,
   "tile_count": 20,
   "autoTileSets": [
-    {"tiles":[
+    {"resourceType":"GMAutoTileSet","resourceVersion":"1.0","name":"autotile_1","tiles":[
         1,
         14,
         12,
@@ -36,7 +39,7 @@
         10,
         11,
         8,
-      ],"closed_edge":false,"resourceVersion":"1.0","name":"autotile_1","tags":[],"resourceType":"GMAutoTileSet",},
+      ],"closed_edge":false,},
   ],
   "tileAnimationFrames": [],
   "tileAnimationSpeed": 15.0,
@@ -72,10 +75,6 @@
   },
   "parent": {
     "name": "Templates",
-    "path": "folders/Jen-Scripts/Templates.yy",
+    "path": "folders/JenScripts/Templates.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "tst_jen_autotile_template",
-  "tags": [],
-  "resourceType": "GMTileSet",
 }

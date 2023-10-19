@@ -108,6 +108,7 @@
   "gridY": 16,
   "frames": [
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"cb0f4f8e-2a1e-4538-8e38-d98a27f27e2a",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -119,12 +120,13 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 2.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"da0e8b41-3355-4824-9793-2863391d5e1f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bf8de2d9-61d0-44a1-88fe-ab2d0a81b8b5","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"786af94e-c058-4b72-af62-e1d2d03fe65c","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"cb0f4f8e-2a1e-4538-8e38-d98a27f27e2a","path":"sprites/spr_jen_autotile_template/spr_jen_autotile_template.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -150,6 +152,6 @@
   "nineSlice": null,
   "parent": {
     "name": "Templates",
-    "path": "folders/Jen-Scripts/Templates.yy",
+    "path": "folders/JenScripts/Templates.yy",
   },
 }

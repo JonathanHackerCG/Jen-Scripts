@@ -1,23 +1,22 @@
-[TODO](TODO.md)
+This function returns the width of a JenMaze in cells.
 
 **Syntax**
 ```js
-
+jen_maze_width(JenMaze);
 ```
 
 **Arguments**
-- ``JenGrid`` The JenGrid to change.
-- ``xcell/ycell`` The cell to change.
-- ``replace`` Values to replace. Also supports ``all`` or Arrays.
-- ``new_value`` Value to set. Also supports Arrays.
-- `[chance]` Percent chance for a change to occur in each cell. Default: `100`.
-- `[setter]` Function called when setting values. Default: ``jen_set``.
+- ``JenMaze`` The JenMaze to check.
 
-**Returns:** N/A
+**Returns:** The width of the JenMaze (Real).
 
 **Example**
 ```js
-
+var w = jen_maze_width(maze);
+var h = jen_maze_height(maze);
+var x1 = floor(w / 2);
+var y1 = h - 1;
+jen_maze_set_dir(maze, x1, y1, JEN_DIR.D, true, true);
 ```
 
-Summary
+This code gets the width and height of the JenMaze `maze`, and uses them to calculate the room at the center of the bottom edge of the maze. It then adds a one-way exit to the south.
