@@ -1,16 +1,18 @@
 Returns `true` if a position on the grid matches the provided target value(s). Used internally in many places to check for `replace` values.
 
+Returns `undefined` if the position is out of bounds. This allows for setting default values out of bounds using nullish syntax: `jen_test(...) ?? default.
+
 **Syntax**
 ```js
-jen_test(JenGrid, xcell, ycell, target);
+jen_test(JenGrid, xcell, ycell, match_value);
 ```
 
 **Arguments**
 - ``JenGrid`` The JenGrid to check.
 - ``xcell/ycell`` The cell to check.
-- ``target`` The value(s) to test for. Also supports Arrays.
+- ``match_value`` The value(s) to test for. Also supports Arrays.
 
-**Returns:** True/False if the position matches.
+**Returns:** True/False if the position matches. Returns `undefined` if the cell is out of bounds.
 
 **Example**
 ```js

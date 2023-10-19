@@ -7,7 +7,7 @@
 function jen_example_autotiles(_cellsw, _cellsh, _x1, _y1)
 {
 	//Create a new JenGrid to store the terrain.
-	var _terrain = jen_grid_create(_cellsw / 2, _cellsh / 2, noone);
+	var _terrain = jen_grid_create(_cellsw, _cellsh, noone);
 	jen_scatter(_terrain, noone, "tile", 50);
 	jen_grid_scale(_terrain, 2, true);
 	jen_TEST_autotile_16(_terrain, _x1, _y1, "tile", true, "Tiles");

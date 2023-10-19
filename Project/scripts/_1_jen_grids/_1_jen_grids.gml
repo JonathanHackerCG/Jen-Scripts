@@ -164,26 +164,28 @@ function jen_set_not(_grid, _x, _y, _replace, _new_value)
 	return false;
 }
 #endregion
-#region NEW jen_test(JenGrid, xcell, ycell, target);
-/// @func jen_test(JenGrid, xcell, ycell, target):
-/// @desc Returns true if a position on the grid matches the provided target value(s).
+#region NEW jen_test(JenGrid, xcell, ycell, match_value);
+/// @func jen_test(JenGrid, xcell, ycell, match_value):
+/// @desc Returns true if a position on the grid matches the provided match value(s).
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				xcell
 /// @arg	{Real}				ycell
-/// @arg	{Any}					target			Supports Array (Any Of)
+/// @arg	{Any}					match_value		Supports Array (Any Of)
 /// @returns {Bool}
-function jen_test(_grid, _x, _y, _replace)
+function jen_test(_grid, _x, _y, _match_value)
 {
+	//Return undefined if out of bounds.
+	if (!jen_grid_inbounds(_grid, _x, _y)) { return undefined; }
+	
 	//Array conversions.
-	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
-	_replace = _jenternal_convert_array_all(_replace);
-	if (_replace[0] == all) { return true; }
+	_match_value = _jenternal_convert_array_all(_match_value);
+	if (_match_value[0] == all) { return true; }
 	
 	//Testing this position.
 	var _test = jen_get(_grid, _x, _y);
-	var i = 0; repeat(array_length(_replace))
+	var i = 0; repeat(array_length(_match_value))
 	{
-		if (_replace[i] == all || _replace[i] == _test) { return true; }
+		if (_match_value[i] == all || _match_value[i] == _test) { return true; }
 	i++; }
 	return false;
 }
@@ -518,18 +520,18 @@ function jen_TEST_autotile_16(_grid, _x1, _y1, _match_value, _closed_edge, _tile
 	static _compute_autotile = function(_grid, xx, yy, _match_value, _closed_edge)
 	{
 		var _adjacent 
-		= !_jenternal_test(_grid, xx, yy - 1, _match_value, _closed_edge) * 1
-		+ !_jenternal_test(_grid, xx - 1, yy, _match_value, _closed_edge) * 2
-		+ !_jenternal_test(_grid, xx + 1, yy, _match_value, _closed_edge) * 4
-		+ !_jenternal_test(_grid, xx, yy + 1, _match_value, _closed_edge) * 8;
+		= !(jen_test(_grid, xx, yy - 1, _match_value) ?? _closed_edge) * 1
+		+ !(jen_test(_grid, xx - 1, yy, _match_value) ?? _closed_edge) * 2
+		+ !(jen_test(_grid, xx + 1, yy, _match_value) ?? _closed_edge) * 4
+		+ !(jen_test(_grid, xx, yy + 1, _match_value) ?? _closed_edge) * 8;
 									
 		if (_adjacent == 0)
 		{
 			var _diagonal
-			= !_jenternal_test(_grid, xx - 1, yy - 1, _match_value, _closed_edge) * 1
-			+ !_jenternal_test(_grid, xx + 1, yy - 1, _match_value, _closed_edge) * 2
-			+ !_jenternal_test(_grid, xx - 1, yy + 1, _match_value, _closed_edge) * 4
-			+ !_jenternal_test(_grid, xx + 1, yy + 1, _match_value, _closed_edge) * 8;
+			= !(jen_test(_grid, xx - 1, yy - 1, _match_value) ?? _closed_edge) * 1
+			+ !(jen_test(_grid, xx + 1, yy - 1, _match_value) ?? _closed_edge) * 2
+			+ !(jen_test(_grid, xx - 1, yy + 1, _match_value) ?? _closed_edge) * 4
+			+ !(jen_test(_grid, xx + 1, yy + 1, _match_value) ?? _closed_edge) * 8;
 			
 			if (_diagonal > 9) { return 15; }
 			return _diagonal;
