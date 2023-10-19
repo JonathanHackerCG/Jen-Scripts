@@ -2,5 +2,5 @@
 
 if (keyboard_check_pressed(ord("M")))
 {
-	maze = jen_maze_create_prim(20, 20);
+	maze = jen_maze_create_prim(30, 10);
 }

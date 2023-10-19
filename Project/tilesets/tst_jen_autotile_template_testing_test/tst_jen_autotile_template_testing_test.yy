@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "tst_jen_autotile_template_testing_test",
   "spriteId": {
-    "name": "spr_jen_autotile_template_testing_test",
-    "path": "sprites/spr_jen_autotile_template_testing_test/spr_jen_autotile_template_testing_test.yy",
+    "name": "spr_jen_autotile16_default_16px",
+    "path": "sprites/spr_jen_autotile16_default_16px/spr_jen_autotile16_default_16px.yy",
   },
   "tileWidth": 16,
   "tileHeight": 16,
