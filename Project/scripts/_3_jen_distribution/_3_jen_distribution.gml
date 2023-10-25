@@ -356,14 +356,14 @@ function jen_automata(_grid, _live, _dead, _bounds, _live_changes, _dead_changes
 		
 		//Counting the surrounding cells.
 		var _count_live = 0;
-		if (_jenternal_test(_grid, xx + 1, yy + 0, _live, _bounds)) { _count_live ++; }
-		if (_jenternal_test(_grid, xx - 1, yy + 0, _live, _bounds)) { _count_live ++; }
-		if (_jenternal_test(_grid, xx + 0, yy + 1, _live, _bounds)) { _count_live ++; }
-		if (_jenternal_test(_grid, xx + 0, yy - 1, _live, _bounds)) { _count_live ++; }
-		if (_jenternal_test(_grid, xx + 1, yy + 1, _live, _bounds)) { _count_live ++; }
-		if (_jenternal_test(_grid, xx + 1, yy - 1, _live, _bounds)) { _count_live ++; }
-		if (_jenternal_test(_grid, xx - 1, yy + 1, _live, _bounds)) { _count_live ++; }
-		if (_jenternal_test(_grid, xx - 1, yy - 1, _live, _bounds)) { _count_live ++; }
+		if (jen_test(_grid, xx + 1, yy + 0, _live) ?? _bounds) { _count_live ++; }
+		if (jen_test(_grid, xx - 1, yy + 0, _live) ?? _bounds) { _count_live ++; }
+		if (jen_test(_grid, xx + 0, yy + 1, _live) ?? _bounds) { _count_live ++; }
+		if (jen_test(_grid, xx + 0, yy - 1, _live) ?? _bounds) { _count_live ++; }
+		if (jen_test(_grid, xx + 1, yy + 1, _live) ?? _bounds) { _count_live ++; }
+		if (jen_test(_grid, xx + 1, yy - 1, _live) ?? _bounds) { _count_live ++; }
+		if (jen_test(_grid, xx - 1, yy + 1, _live) ?? _bounds) { _count_live ++; }
+		if (jen_test(_grid, xx - 1, yy - 1, _live) ?? _bounds) { _count_live ++; }
 		
 		#region Notes
 		/*

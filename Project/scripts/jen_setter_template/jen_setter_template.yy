@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "_X_jen_heightmaps",
+  "name": "jen_setter_template",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "JenScripts - Deprecated",
-    "path": "folders/JenScripts - Deprecated.yy",
+    "name": "Setters",
+    "path": "folders/JenScripts/Templates/Setters.yy",
   },
 }

@@ -473,81 +473,34 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 	} }
 }
 #endregion
-#region TODO jen_grid_instantiate_autotile(JenGrid, x, y, test, closed_edge, tilemap/layer, [offset]);
-/// @func jen_grid_instantiate_autotile
-/// @desc Instantiates a grid, searching for adjacent test values, and converting to an autotile tile index.
+#region jen_grid_instantiate_autotile16(grid, x, y, match_value, bounds, tilemap/layer, [mapping], [offset]);
+/// @func jen_grid_instantiate_autotile16(grid, x, y, match_value, bounds, tilemap/layer, [mapping], [offset]):
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  x
-/// @arg  y
-/// @arg  test
-/// @arg  closed_edge
-/// @arg  tilemap/layer
-/// @arg  [offset]
-function jen_grid_instantiate_autotile(_grid, _x1, _y1, _test, _closed_edge, _tilemap, _offset = 0)
+/// @arg	{Real}				x
+/// @arg	{Real}				y
+/// @arg	{Any}					layer
+function jen_grid_instantiate_autotile16(_grid, _x1, _y1, _match_value, _bounds, _tilemap, _mapping = JEN_AUTOTILE16_DEFAULT, _offset = 0)
 {
-	//Getting width and height of the grid.
-	var _w = jen_grid_width(_grid);
-	var _h = jen_grid_height(_grid);
-	
-	//TODO: Convert (x, y) into tile positions.
-	
-	//Converting a layer name into a tilemap id.
-	if (is_string(_tilemap))
+	#region _compute_autotile(_grid, xx, yy, _match_value, _bounds);
+	static _compute_autotile = function(_grid, xx, yy, _match_value, _bounds)
 	{
-		_tilemap = layer_get_id(_tilemap);
-		_tilemap = layer_tilemap_get_id(_tilemap);
-	}
-	
-	//Loop through the grid, checking for matching values.
-	for (var xx = 0; xx < _w; xx++) {
-	for (var yy = 0; yy < _h; yy++)
-	{
-		//Setting each tile value in the tilemap.
-		var val = jen_get(_grid, xx, yy);
-		if (val == _test)
-		{
-			var tile = _jenternal_autotile(_grid, xx, yy, _test, _closed_edge);
-			if (tile != -1) { tilemap_set(_tilemap, tile + (_offset * 20), _x1 + xx, _y1 + yy); }
-		}
-	} }
-}
-#endregion
-
-function jen_TEST_autotile_16(_grid, _x1, _y1, _match_value, _closed_edge, _tilemap, _offset = 0)
-{
-	static _MAPPING = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-	#region Compute Autotile
-	static _compute_autotile = function(_grid, xx, yy, _match_value, _closed_edge)
-	{
-		var _adjacent 
-		= !(jen_test(_grid, xx, yy - 1, _match_value) ?? _closed_edge) * 1
-		+ !(jen_test(_grid, xx - 1, yy, _match_value) ?? _closed_edge) * 2
-		+ !(jen_test(_grid, xx + 1, yy, _match_value) ?? _closed_edge) * 4
-		+ !(jen_test(_grid, xx, yy + 1, _match_value) ?? _closed_edge) * 8;
-									
-		if (_adjacent == 0)
-		{
-			var _diagonal
-			= !(jen_test(_grid, xx - 1, yy - 1, _match_value) ?? _closed_edge) * 1
-			+ !(jen_test(_grid, xx + 1, yy - 1, _match_value) ?? _closed_edge) * 2
-			+ !(jen_test(_grid, xx - 1, yy + 1, _match_value) ?? _closed_edge) * 4
-			+ !(jen_test(_grid, xx + 1, yy + 1, _match_value) ?? _closed_edge) * 8;
-			
-			if (_diagonal > 9) { return 15; }
-			return _diagonal;
-		}
-		switch (_adjacent)
-		{
-			case 1:		return 3;
-			case 2:		return 5;
-			case 4:		return 10;
-			case 8:		return 12;
-			case 3:		return 7;
-			case 5:		return 11;
-			case 10:	return 13;
-			case 12:	return 14;
-			default:	return 15;
-		}
+		var _checks
+		= (jen_test(_grid, xx - 1, yy - 1, _match_value) ?? _bounds) << 0
+		| (jen_test(_grid, xx,     yy - 1, _match_value) ?? _bounds) << 1
+		| (jen_test(_grid, xx + 1, yy - 1, _match_value) ?? _bounds) << 2
+		| (jen_test(_grid, xx + 1, yy,     _match_value) ?? _bounds) << 3
+		| (jen_test(_grid, xx + 1, yy + 1, _match_value) ?? _bounds) << 4
+		| (jen_test(_grid, xx,     yy + 1, _match_value) ?? _bounds) << 5
+		| (jen_test(_grid, xx - 1, yy + 1, _match_value) ?? _bounds) << 6
+		| (jen_test(_grid, xx - 1, yy,     _match_value) ?? _bounds) << 7;
+		_checks = 255 ^ _checks; //Invert--we care about empty cells.
+		
+		var _index
+		= bool(_checks & 131) << 0  //10000011 NW
+		| bool(_checks &  14) << 1  //00001110 NE
+		| bool(_checks & 224) << 2  //11100000 SW
+		| bool(_checks &  56) << 3; //00111000 SE
+		return _index;
 	}
 	#endregion
 	
@@ -565,17 +518,17 @@ function jen_TEST_autotile_16(_grid, _x1, _y1, _match_value, _closed_edge, _tile
 	//Convert room coordinates to tilemap coordinates.
 	_x1 /= tilemap_get_tile_width(_tilemap);
 	_y1 /= tilemap_get_tile_height(_tilemap);
-	
+		
 	//Loop through the grid, checking for matching values.
-	for (var xx = 0; xx < _w; xx++) {
-	for (var yy = 0; yy < _h; yy++)
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
 	{
 		//Setting each tile value in the tilemap.
 		if (jen_test(_grid, xx, yy, _match_value))
 		{
-			var _tile = _MAPPING[_compute_autotile(_grid, xx, yy, _match_value, _closed_edge)] + 1;
-			//jen_set(_grid, xx, yy, all, _MAPPING[_tile]);
+			var _tile = _mapping[_compute_autotile(_grid, xx, yy, _match_value, _bounds)] + 1 + _offset;
 			tilemap_set(_tilemap, _tile, _x1 + xx, _y1 + yy);
 		}
 	} }
 }
+#endregion

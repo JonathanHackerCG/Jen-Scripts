@@ -10,7 +10,7 @@ function jen_example_autotiles(_cellsw, _cellsh, _x1, _y1)
 	var _terrain = jen_grid_create(_cellsw, _cellsh, noone);
 	jen_scatter(_terrain, noone, "tile", 50);
 	jen_grid_scale(_terrain, 2, true);
-	jen_TEST_autotile_16(_terrain, _x1, _y1, "tile", true, "Tiles");
+	jen_grid_instantiate_autotile16(_terrain, _x1, _y1, "tile", true, "Tiles");
 	
 	//Cleaning up.
 	jen_grid_destroy(_terrain);
