@@ -1,14 +1,14 @@
 //Basic shape functions. Lines, circle, rectangles, etcetera.
 
 //Primitive shapes.
-#region jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]);
-/// @func jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [setter]):
+#region jen_line(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [chance], [setter]);
+/// @func jen_line(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [chance], [setter]):
 /// @desc Creates a line between two points.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  {Real}				x1
-/// @arg  {Real}				y1
-/// @arg  {Real}				x2
-/// @arg  {Real}				y2
+/// @arg	{Real}				xcell1
+/// @arg	{Real}				ycell1
+/// @arg	{Real}				xcell2
+/// @arg	{Real}				ycell2
 /// @arg	{Any}					replace			Supports Array (Any Of)
 /// @arg	{Any}					new_value		Supports Array (Chooses)
 /// @arg	{Real}				[chance]		Default: 100
@@ -49,12 +49,12 @@ function jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance = 100
 /// @arg	{Real}				ycell1
 /// @arg	{Real}				xcell2
 /// @arg	{Real}				ycell2
+/// @arg	{Real}				outline			0 = Filled
 /// @arg	{Any}					replace			Supports Array (Any Of)
 /// @arg	{Any}					new_value		Supports Array (Chooses)
-/// @arg	{Real}				[outline]		Default: 0
 /// @arg	{Real}				[chance]		Default: 100
 /// @arg	{Function}		[setter]		Default: jen_set
-function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline = 0, _chance = 100, _setter = jen_set)
+function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _outline, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Finding corners.
 	var _xx1 = min(_x1, _x2);
@@ -85,45 +85,43 @@ function jen_rectangle(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _outline
 	} }
 }
 #endregion
-#region jen_triangle(JenGrid, x1, y1, x2, y2, x3, y3, replace, new_value, [chance], [setter]);
-/// @func jen_triangle
-/// @desc This creates a triangle. There is no option for a filled triangle.
+#region jen_circle(JenGrid, xcell1, ycell1, radius, filled, replace, new_value, [chance], [setter]);
+/// @func jen_circle(JenGrid, xcell1, ycell1, radius, filled, replace, new_value, [chance], [setter]):
+/// @desc	Creates a circle at a location with given radius. The circle may be filled or left an outline.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  x1
-/// @arg  y1
-/// @arg  x2
-/// @arg  y2
-/// @arg  x3
-/// @arg  y3
-/// @arg  replace
-/// @arg  new_value
-/// @arg  [chance]
-/// @arg  [setter]	
-function jen_triangle(_grid, _x1, _y1, _x2, _y2, _x3, _y3, _replace, _new_value, _chance = 100, _setter = jen_set)
+/// @arg	{Real}				xcell1
+/// @arg	{Real}				ycell1
+/// @arg	{Bool}				filled
+/// @arg	{Any}					replace			Supports Array (Any Of)
+/// @arg	{Any}					new_value		Supports Array (Chooses)
+/// @arg	{Real}				[chance]		Default: 100
+/// @arg	{Function}		[setter]		Default: jen_set
+function jen_circle(_grid, _x1, _y1, _radius, _filled, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
-	//Drawing three lines. (That's basically all this function does).
-	jen_line(_grid, _x1, _y1, _x2, _y2, _replace, _new_value, _chance, _setter);
-	jen_line(_grid, _x2, _y2, _x3, _y3, _replace, _new_value, _chance, _setter);
-	jen_line(_grid, _x3, _y3, _x1, _y1, _replace, _new_value, _chance, _setter);
+	for (var yy = -_radius; yy <= _radius; yy++) {
+	for (var xx = -_radius; xx <= _radius; xx++) {
+		var _dis = xx * xx + yy * yy;
+		if (_dis >= _radius * _radius + _radius) { continue; }
+		if (!_filled && _dis <= _radius * _radius - _radius) { continue; }
+		_setter(_grid, _x1 + xx, _y1 + yy, _replace, _new_value);
+	} }
 }
 #endregion
-//TO ADD: jen_polygon???
-//TO ADD: jen_circle(JenGrid, x1, y1, radius, replace, new_value, [outline], [chance], [setter]);
-#region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, replace, new_value, angle, outline, [chance], [setter]);
-/// @func jen_ellipse
+#region jen_ellipse(JenGrid, x1, y1, haxis, vaxis, angle, filled, replace, new_value, [chance], [setter]);
+/// @func jen_ellipse(JenGrid, x1, y1, haxis, vaxis, angle, filled, replace, new_value, [chance], [setter]):
 /// @desc Creates an ellipse. Define the length of each axis, and the rotation.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  x1
-/// @arg  y1
-/// @arg  haxis
-/// @arg  vaxis
-/// @arg  replace
-/// @arg  new_value
-/// @arg  angle
-/// @arg  outline
-/// @arg  [chance]
-/// @arg  [setter]	
-function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _angle, _outline, _chance = 100, _setter = jen_set)
+/// @arg	{Real}				xcell1
+/// @arg	{Real}				ycell1
+/// @arg  {Real}				haxis
+/// @arg  {Real}				vaxis
+/// @arg  {Real}				angle
+/// @arg	{Bool}				filled
+/// @arg	{Any}					replace			Supports Array (Any Of)
+/// @arg	{Any}					new_value		Supports Array (Chooses)
+/// @arg	{Real}				[chance]		Default: 100
+/// @arg	{Function}		[setter]		Default: jen_set
+function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis,  _angle, _filled, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -131,26 +129,21 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis, _replace, _new_value, _ang
 	
 	//Estimating the required increment.
 	var _increment = 90 / (2 * pi * max(_haxis, _vaxis));
-	var _temp_grid = jen_grid_create(_w, _h, noone);
-	var xx = 0; var yy = 0;
+	var _temp = jen_grid_create(_w, _h, noone);
 	
 	//Looping around the course of the ellipse and setting values.
 	for (var theta = 0; theta <= 360; theta += _increment)
 	{
-		xx = (_haxis * dcos(theta) * dcos(_angle)) - (_vaxis * dsin(theta) * dsin(_angle));
-		yy = (_haxis * dcos(theta) * dsin(_angle)) + (_vaxis * dsin(theta) * dcos(_angle));
+		var xx = (_haxis * dcos(theta) * dcos(_angle)) - (_vaxis * dsin(theta) * dsin(_angle));
+		var yy = (_haxis * dcos(theta) * dsin(_angle)) + (_vaxis * dsin(theta) * dcos(_angle));
 		
 		//Creating the ellipse in the temporary grid.
-		jen_set(_temp_grid, round(_x1 + xx), round(_y1 + yy), all, "_jenternal_undefined");
-		if (!_outline) { jen_line(_temp_grid, _x1 + xx, _y1 + yy, _x1, _y1, all, "_jenternal_undefined"); }
+		jen_set(_temp, round(_x1 + xx), round(_y1 + yy), all, _new_value);
 	}
+	//if (_filled) { jen_fill(_temp, _x1, _y1, [_new_value, noone], _new_value, false); }
 	
-	//Applying the temporary grid over the base grid.
-	jen_grid_paste(_grid, _temp_grid, 0, 0, _replace, _chance, _setter);
-	jen_replace(_grid, "_jenternal_undefined", _new_value);
-	
-	//Clearing memory.
-	jen_grid_destroy(_temp_grid);
+	jen_grid_paste(_grid, _temp, 0, 0, _replace, _chance, _setter);
+	jen_grid_destroy(_temp); //Cleanup
 }
 #endregion
 

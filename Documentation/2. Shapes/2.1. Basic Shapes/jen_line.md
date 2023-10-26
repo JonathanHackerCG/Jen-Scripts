@@ -2,13 +2,13 @@ Generates a line between two points.
 
 **Syntax**
 ```js
-jen_line(JenGrid, x1, y1, x2, y2, replace, new_value, [chance], [function]);
+jen_line(JenGrid, xcell1, ycell1, xcell2, ycell2, replace, new_value, [chance], [function]);
 ```
 
 **Arguments**
 - ``JenGrid`` The JenGrid to change.
-- ``x1/y1`` Starting point of the line.
-- `x2/y2` Ending point of the line.
+- ``xcell1/ycell1`` Starting point of the line.
+- `xcell2/ycell2` Ending point of the line.
 - ``replace`` Values to replace. Also supports ``all`` or Arrays.
 - ``new_value`` Value to set. Also supports Arrays.
 - `[chance]` Percent chance for a change to occur in each cell. Default: `100`.

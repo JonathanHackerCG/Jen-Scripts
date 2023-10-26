@@ -9,7 +9,7 @@ function jen_example_caves(_cellsw, _cellsh, _x1, _y1)
 	//Create a new JenGrid to store the terrain.
 	var _terrain = jen_grid_create(_cellsw, _cellsh, obj_dirt);
 	
-	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, obj_dirt, obj_stone, 1);
+	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, 1, obj_dirt, obj_stone);
 	jen_scatter(_terrain, obj_dirt, obj_stone, 35);
 	
 	//Intantiation Example:

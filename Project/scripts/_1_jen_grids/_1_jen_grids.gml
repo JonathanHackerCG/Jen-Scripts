@@ -358,7 +358,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 /// @arg	{Real}				x
 /// @arg	{Real}				y
 /// @arg	{Any}					layer
-/// @arg	{Struct}			[struct]		Supports a function(xcell, ycell) that returns a struct.
+/// @arg	{Struct}			[struct]		Also supports a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined)
 {
 	//Getting width and height of the grid.
@@ -398,7 +398,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined
 /// @arg	{Real}				x
 /// @arg	{Real}				y
 /// @arg	{Real}				depth
-/// @arg	{Struct}			[struct]		Supports a function(xcell, ycell) that returns a struct.
+/// @arg	{Struct}			[struct]		Also supports a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined)
 {
 	//Getting width and height of the grid.

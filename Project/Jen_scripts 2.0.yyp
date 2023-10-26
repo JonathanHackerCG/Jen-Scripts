@@ -43,6 +43,7 @@
     {"id":{"name":"CAM","path":"objects/CAM/CAM.yy",},"order":2,},
     {"id":{"name":"tst_16tile_8px_default","path":"tilesets/tst_16tile_8px_default/tst_16tile_8px_default.yy",},"order":0,},
     {"id":{"name":"spr_blue","path":"sprites/spr_blue/spr_blue.yy",},"order":1,},
+    {"id":{"name":"jen_example_lake","path":"scripts/jen_example_lake/jen_example_lake.yy",},"order":4,},
     {"id":{"name":"obj_tree","path":"objects/obj_tree/obj_tree.yy",},"order":2,},
     {"id":{"name":"obj_grass","path":"objects/obj_grass/obj_grass.yy",},"order":4,},
     {"id":{"name":"_jenternal_initialize","path":"scripts/_jenternal_initialize/_jenternal_initialize.yy",},"order":0,},

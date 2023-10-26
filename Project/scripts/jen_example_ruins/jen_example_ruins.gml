@@ -18,7 +18,7 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 	repeat (_n)
 	{
 		var _ruin = jen_grid_create(_ruins_w, _ruins_h, noone);
-		jen_rectangle(_ruin, 0, 0, _ruins_w - 1, _ruins_h - 1, all, obj_wall, 1, 80);
+		jen_rectangle(_ruin, 0, 0, _ruins_w - 1, _ruins_h - 1, 1, all, obj_wall, 80);
 		jen_set(_ruin, 2, 2, noone, obj_chest);
 		jen_scatter(_ruin, noone, [obj_spike, obj_torch], 25);
 		
@@ -35,8 +35,8 @@ function jen_example_ruins(_cellsw, _cellsh, _x1, _y1)
 	#endregion
 	#region Second Layer (Walls and Ruins)
 	//Add borderstone wall.
-	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, all, obj_borderstone, 1);
-	jen_rectangle(_terrain, 1, 1, _cellsw - 2, _cellsh - 2, all, obj_borderstone, 1, 50);
+	jen_rectangle(_terrain, 0, 0, _cellsw - 1, _cellsh - 1, 1, all, obj_borderstone);
+	jen_rectangle(_terrain, 1, 1, _cellsw - 2, _cellsh - 2, 1, all, obj_borderstone, 50);
 	
 	//Categorize grass and dirt as ground.
 	jen_replace(_terrain, [obj_grass, obj_dirt], "ground");

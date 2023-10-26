@@ -112,3 +112,4 @@ register_example("Plains", jen_example_plains);
 register_example("Ruins", jen_example_ruins);
 register_example("Caves", jen_example_caves, jen_example_caves_iterate);
 register_example("Autotiles", jen_example_autotiles);
+register_example("Like", jen_example_lake);
