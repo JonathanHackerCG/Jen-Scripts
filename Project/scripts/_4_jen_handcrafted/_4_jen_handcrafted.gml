@@ -152,7 +152,7 @@ function jen_scatter_paste(_target, _paste, _match_value, _xoff, _yoff, _chance_
 	var _h = jen_grid_height(_target);
 	
 	//Create a temporary grid to keep track of changes.
-	var _temp_grid = jen_grid_create(_w, _h, noone);
+	var _temp = jen_grid_create(_w, _h, noone);
 	
 	//Search for every find value in the base grid.
 	for (var yy = 0; yy < _h; yy++) {
@@ -160,7 +160,7 @@ function jen_scatter_paste(_target, _paste, _match_value, _xoff, _yoff, _chance_
 	{
 		if (jen_test(_target, xx, yy, _match_value) && _jenternal_percent(_chance_paste))
 		{
-			jen_grid_paste(_temp_grid, _paste,
+			jen_grid_paste(_temp, _paste,
 				xx + _jenternal_convert_array_choose(_xoff),
 				yy + _jenternal_convert_array_choose(_yoff),
 				all);
@@ -168,10 +168,10 @@ function jen_scatter_paste(_target, _paste, _match_value, _xoff, _yoff, _chance_
 	} }
 	
 	//Paste the temporary grid to the base grid.
-	jen_grid_paste(_target, _temp_grid, 0, 0, _replace, _chance, _setter);
+	jen_grid_paste(_target, _temp, 0, 0, _replace, _chance, _setter);
 	
 	//Clearing memory.
-	jen_grid_destroy(_temp_grid);
+	jen_grid_destroy(_temp);
 }
 #endregion
 #region jen_number_paste(target_grid, paste_grid, match_value, x_offset, y_offset, replace, number, [chance], [setter]);

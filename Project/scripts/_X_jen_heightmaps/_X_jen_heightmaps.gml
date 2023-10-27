@@ -92,7 +92,7 @@ function jen_heightmap_sampling(_width, _height, _range, _iterations)
 	for (var yy = 0; yy < _height; yy ++) {
 	for (var xx = 0; xx < _width; xx ++) {
 		jen_heightmap_set(_heightmap_new, xx, yy, irandom(1.0));
-	} xx = 0; }
+	} }
 
 	repeat(_iterations)
 	{
@@ -173,7 +173,7 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 	var _height = jen_heightmap_height(_heightmap);
 	
 	//Create a temporary grid for storing the changes.
-	var _temp_grid = jen_grid_create(_width, _height, noone);
+	var _temp = jen_grid_create(_width, _height, noone);
 	
 	//Checking each value in the heightmap.
 	for (var yy = 0; yy < _height; yy ++) {
@@ -181,14 +181,14 @@ function jen_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace, 
 		var val = jen_heightmap_get(_heightmap, xx, yy);
 		if (val >= _min && val <= _max)
 		{
-			jen_set(_temp_grid, xx, yy, all, "_jenternal_undefined");
+			jen_set(_temp, xx, yy, all, "_jenternal_undefined");
 		}
 	} }
 	
 	//Apply the changes to the base grid.
-	jen_grid_paste(_grid, _temp_grid, _x1, _y1, _replace, _chance, _setter);
+	jen_grid_paste(_grid, _temp, _x1, _y1, _replace, _chance, _setter);
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
-	jen_grid_destroy(_temp_grid);
+	jen_grid_destroy(_temp);
 }
 #endregion
 #region jen_heightmap_normalize(heightmap);

@@ -89,7 +89,7 @@ function jen_scatter_offset(_grid, _match_value, _xoff, _yoff, _replace, _new_va
 	var _h = jen_grid_height(_grid);
 
 	//Create a temporary grid to keep track of changes.
-	var _temp_grid = jen_grid_create(_w, _h, noone);
+	var _temp = jen_grid_create(_w, _h, noone);
 	
 	//Search for every find value in the base grid.
 	for (var yy = 0; yy < _h; yy++) {
@@ -97,7 +97,7 @@ function jen_scatter_offset(_grid, _match_value, _xoff, _yoff, _replace, _new_va
 	{
 		if (jen_test(_grid, xx, yy, _match_value))
 		{
-			jen_set(_temp_grid,
+			jen_set(_temp,
 				xx + _jenternal_convert_array_choose(_xoff),
 				yy + _jenternal_convert_array_choose(_yoff),
 				all, "_jenternal_undefined");
@@ -105,11 +105,11 @@ function jen_scatter_offset(_grid, _match_value, _xoff, _yoff, _replace, _new_va
 	} }
 	
 	//Apply the temporary grid to the base grid.
-	jen_grid_paste(_grid, _temp_grid, 0, 0, _replace, _chance, _setter);
+	jen_grid_paste(_grid, _temp, 0, 0, _replace, _chance, _setter);
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	
 	//Clearing memory.
-	jen_grid_destroy(_temp_grid);
+	jen_grid_destroy(_temp);
 }
 #endregion
 #region jen_number(JenGrid, number, replace, new_value, [chance], [setter]);
@@ -245,7 +245,7 @@ function jen_near(_grid, _target, _replace, _new_value, _radius, _chance = 100, 
 	_target = _jenternal_convert_array_all(_target);
 	
 	//Create a temporary grid to store changes.
-	var _temp_grid = jen_grid_create(_w, _h, noone);
+	var _temp = jen_grid_create(_w, _h, noone);
 	
 	//Create circles around every matching value.
 	for (var yy = 0; yy < _h; yy++) {
@@ -255,16 +255,16 @@ function jen_near(_grid, _target, _replace, _new_value, _radius, _chance = 100, 
 		if (jen_test(_grid, xx, yy, _target))
 		{
 			//Set to an undefined value (to allow the jen_grid_paste to override noone).
-			ds_grid_set_disk(_temp_grid, xx, yy, _radius, "_jenternal_undefined");
+			ds_grid_set_disk(_temp, xx, yy, _radius, "_jenternal_undefined");
 		}
 	} }
 	
 	//Apply the temporary grid to the target grid.
-	jen_grid_paste(_grid, _temp_grid, 0, 0, _replace, _chance, _setter);
+	jen_grid_paste(_grid, _temp, 0, 0, _replace, _chance, _setter);
 	jen_replace(_grid, "_jenternal_undefined", _new_value); //Replace with the intended value.
 	
 	//Clearing memory.
-	jen_grid_destroy(_temp_grid);
+	jen_grid_destroy(_temp);
 }
 #endregion
 #region jen_obfuscate(JenGrid, target, adjacent, [chance]);
@@ -405,25 +405,25 @@ function jen_automata(_grid, _live, _dead, _bounds, _live_changes, _dead_changes
 /// @func jen_fill
 /// @desc Fills a space of matching values. May cross diagonals or not.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  x1
-/// @arg  y1
-/// @arg  diagonal
-/// @arg  replace
-/// @arg  new_value
-/// @arg	[chance]
-/// @arg	[setter] (?)
+/// @arg  {Real}				xcell1
+/// @arg  {Real}				ycell1
+/// @arg  {Bool}				diagonal
+/// @arg  {Any}					replace			Supports Array (Any Of)
+/// @arg  {Any}					new_value		Supports Array (Choose)
+/// @arg  {Real}				[chance]		Default: 100
+/// @arg  {Function}		[setter]		Default: jen_set
 function jen_fill(_grid, xx, yy, _diagonal, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
-	//Update JSDOC.
-	//Cleanup comments/regions.
-	//Test _setter parameter.
+	#region _fill_pos(temp, points, xx, yy, replace, setter);
 	static _fill_pos = function(_temp, _points, xx, yy, _replace, _setter)
 	{
+		if (jen_test(_temp, xx, yy, "_jenternal_replace")) { exit; }
 		if (_setter(_temp, xx, yy, _replace, "_jenternal_replace"))
 		{
 			ds_queue_enqueue(_points, { xx : xx, yy : yy });
 		}
 	}
+	#endregion
 	
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);

@@ -201,6 +201,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
 	var _angle = _initial_angle + irandom_range(-_correction_accuracy, _correction_accuracy);
+	var _angle_off = 0;
 	repeat(_lifetime)
 	{
 		//Set the value for that new position.
@@ -226,7 +227,7 @@ function jen_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_count
 		//Updating movement angle.
 		if (_adjustment_count == 0 || _count % _adjustment_count == 0)
 		{
-			var _angle_off = irandom_range(-_adjustment_accuracy, _adjustment_accuracy);
+			_angle_off = irandom_range(-_adjustment_accuracy, _adjustment_accuracy);
 		}
 		_angle += _angle_off;
 		
@@ -260,6 +261,7 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 	//Execute the wandering.
 	var _count = 0; var xx = _x1; var yy = _y1;
 	var _angle = point_direction(_x1, _y1, _x2, _y2) + irandom_range(-_correction_accuracy, _correction_accuracy);
+	var _angle_off = 0;
 	repeat(_lifetime)
 	{
 		//Set the value for that new position.
@@ -285,7 +287,7 @@ function jen_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correcti
 		//Updating movement angle.
 		if (_adjustment_count == 0 || _count % _adjustment_count == 0)
 		{
-			var _angle_off = irandom_range(-_adjustment_accuracy, _adjustment_accuracy);
+			_angle_off = irandom_range(-_adjustment_accuracy, _adjustment_accuracy);
 		}
 		
 		//Moving directly to the target.

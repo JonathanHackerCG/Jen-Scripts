@@ -71,7 +71,7 @@ function jen_grid_exists(_grid)
 /// @func jen_grid_width(grid):
 /// @desc Returns the width of a JenGrid.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @returns {Integer}
+/// @returns {Real}
 function jen_grid_width(_grid)
 {
 	return ds_grid_width(_grid);
@@ -206,7 +206,7 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 	var _h = jen_grid_height(_grid);
 	
 	//Create a temporary grid.
-	var _temp_grid = jen_grid_create(_w, _h, noone);
+	var _temp = jen_grid_create(_w, _h, noone);
 	
 	//Iterate through the target grid, copying values.
 	var set, xcopy, ycopy;
@@ -221,12 +221,12 @@ function jen_grid_mirror(_grid, _horizontal, _vertical)
 		if (_horizontal) { ycopy = _h - yy - 1; }
 		
 		set = jen_get(_grid, xx, yy);
-		jen_set(_temp_grid, xcopy, ycopy, all, set);
+		jen_set(_temp, xcopy, ycopy, all, set);
 	} }
 	
 	//Copy the grid and clear memory.
-	ds_grid_copy(_grid, _temp_grid);
-	ds_grid_destroy(_temp_grid);
+	ds_grid_copy(_grid, _temp);
+	ds_grid_destroy(_temp);
 }
 #endregion
 #region jen_grid_rotate(JenGrid, rotations);
@@ -246,9 +246,10 @@ function jen_grid_rotate(_grid, _rotations)
 	
 	//Apply each rotation based on the number of rotations.
 	#region 90 degrees.
+	var _temp;
 	if (_rotations == 1)
 	{
-		var _temp_grid = jen_grid_create(_h, _w);
+		_temp = jen_grid_create(_h, _w);
 		
 		var xcopy, ycopy, val;
 		for (var yy = 0; yy < _h; yy++) {			
@@ -257,14 +258,14 @@ function jen_grid_rotate(_grid, _rotations)
 			val = jen_get(_grid, xx, yy);
 			xcopy = yy;
 			ycopy = _w - xx - 1;
-			jen_set(_temp_grid, xcopy, ycopy, all, val);
+			jen_set(_temp, xcopy, ycopy, all, val);
 		}	}
 	}
 	#endregion
 	#region 180 degrees.
 	else if (_rotations == 2)
 	{
-		var _temp_grid = jen_grid_create(_w, _h);
+		_temp = jen_grid_create(_w, _h);
 		
 		var xcopy, ycopy, val;
 		for (var yy = 0; yy < _h; yy++) {			
@@ -273,14 +274,14 @@ function jen_grid_rotate(_grid, _rotations)
 			val = jen_get(_grid, xx, yy);
 			xcopy = _w - xx - 1;
 			ycopy = _h - yy - 1;
-			jen_set(_temp_grid, xcopy, ycopy, all, val);
+			jen_set(_temp, xcopy, ycopy, all, val);
 		}	}
 	}
 	#endregion
 	#region 270 degrees.
 	else if (_rotations == 3)
 	{
-		var _temp_grid = jen_grid_create(_h, _w);
+		_temp = jen_grid_create(_h, _w);
 		
 		var xcopy, ycopy, val;
 		for (var yy = 0; yy < _h; yy++) {			
@@ -289,14 +290,14 @@ function jen_grid_rotate(_grid, _rotations)
 			val = jen_get(_grid, xx, yy);
 			xcopy = _h - yy - 1;
 			ycopy = xx;
-			jen_set(_temp_grid, xcopy, ycopy, all, val);
+			jen_set(_temp, xcopy, ycopy, all, val);
 		}	}
 	}
 	#endregion
 	
 	//Copy the grid and clear memory.
-	ds_grid_copy(_grid, _temp_grid);
-	ds_grid_destroy(_temp_grid);
+	ds_grid_copy(_grid, _temp);
+	ds_grid_destroy(_temp);
 }
 #endregion
 #region jen_grid_scale(JenGrid, factor, upscale);
@@ -314,9 +315,10 @@ function jen_grid_scale(_grid, _factor, _upscale)
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
 	
+	var _temp;
 	if (_upscale) //Upscaling.
 	{
-		var _temp_grid = ds_grid_create(_w * _factor, _h * _factor);
+		_temp = ds_grid_create(_w * _factor, _h * _factor);
 	
 		var x1, y1, val;
 		for (var xx = 0; xx < _w; xx++) {
@@ -326,12 +328,12 @@ function jen_grid_scale(_grid, _factor, _upscale)
 			x1 = xx * _factor;
 			y1 = yy * _factor;
 			val = jen_get(_grid, xx, yy);
-			ds_grid_set_region(_temp_grid, x1, y1, x1 + _factor, y1 + _factor, val);
+			ds_grid_set_region(_temp, x1, y1, x1 + _factor, y1 + _factor, val);
 		} }
 	}
 	else //Downscaling.
 	{
-		var _temp_grid = ds_grid_create(_w / _factor, _h / _factor);
+		_temp = ds_grid_create(_w / _factor, _h / _factor);
 		
 		var x1, y1, val;
 		for (var xx = 0; xx < _w; xx += _factor) {
@@ -340,13 +342,13 @@ function jen_grid_scale(_grid, _factor, _upscale)
 			x1 = xx / _factor;
 			y1 = yy / _factor;
 			val = jen_get(_grid, xx, yy);
-			jen_set(_temp_grid, x1, y1, all, val);
+			jen_set(_temp, x1, y1, all, val);
 		} }
 	}
 	
 	//Copy the temporary grid and clear memory.
-	ds_grid_copy(_grid, _temp_grid);
-	ds_grid_destroy(_temp_grid);
+	ds_grid_copy(_grid, _temp);
+	ds_grid_destroy(_temp);
 }
 #endregion
 
