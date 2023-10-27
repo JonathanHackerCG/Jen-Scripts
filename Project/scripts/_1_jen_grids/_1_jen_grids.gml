@@ -130,7 +130,7 @@ function jen_set(_grid, _x, _y, _replace, _new_value)
 	if (!jen_grid_inbounds(_grid, _x, _y)) { return false; }
 	_new_value = _jenternal_convert_array_choose(_new_value);
 	
-	if (jen_test(_grid, _x, _y, _replace))
+	if (jen_test(_grid, _x, _y, _replace) ?? false)
 	{
 		//Setting the new value.
 		_grid[# _x, _y] = _new_value;

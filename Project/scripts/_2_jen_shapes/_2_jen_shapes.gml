@@ -140,7 +140,12 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis,  _angle, _filled, _replace
 		//Creating the ellipse in the temporary grid.
 		jen_set(_temp, round(_x1 + xx), round(_y1 + yy), all, _new_value);
 	}
-	//if (_filled) { jen_fill(_temp, _x1, _y1, [_new_value, noone], _new_value, false); }
+	if (_filled)
+	{
+		//TODO: This fill is still not robust in this context!
+		//Experimented with everything, I think we need a scanning solution.
+		jen_fill(_temp, _x1, _y1, false, noone, _new_value);
+	}
 	
 	jen_grid_paste(_grid, _temp, 0, 0, _replace, _chance, _setter);
 	jen_grid_destroy(_temp); //Cleanup

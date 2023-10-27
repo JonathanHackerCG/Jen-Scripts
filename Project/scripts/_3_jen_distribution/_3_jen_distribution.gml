@@ -401,88 +401,69 @@ function jen_automata(_grid, _live, _dead, _bounds, _live_changes, _dead_changes
 	jen_grid_destroy(_temp);
 }
 #endregion
-#region jen_fill(JenGrid, x1, y1, replace, new_value, diagonal);
+#region jen_fill(JenGrid, x1, y1, diagonal, replace, new_value);
 /// @func jen_fill
 /// @desc Fills a space of matching values. May cross diagonals or not.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg  x1
 /// @arg  y1
+/// @arg  diagonal
 /// @arg  replace
 /// @arg  new_value
-/// @arg  diagonal
-function jen_fill(_grid, xx, yy, _replace, _new_value, _diagonal)
+/// @arg	[chance]
+/// @arg	[setter] (?)
+function jen_fill(_grid, xx, yy, _diagonal, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
-	//Attempt to set the starting position. Only runs if this part works.
-	if (jen_set(_grid, xx, yy, _replace, _new_value))
+	static _fill_pos = function(_temp, _points, xx, yy, _replace, _setter)
 	{
-		//Create a queue to keep track of every position to fill.
-		var _Qx = ds_queue_create();
-		var _Qy = ds_queue_create();
-		
-		//Add the initial point to the queue.
-		ds_queue_enqueue(_Qx, xx);
-		ds_queue_enqueue(_Qy, yy);
-		
-		//In theory, the x and y queue should always be the same size.
-		while (ds_queue_size(_Qx) != 0)
+		if (_setter(_temp, xx, yy, _replace, "_jenternal_replace"))
 		{
-			//Get the top point in the queue.
-			xx = ds_queue_dequeue(_Qx);
-			yy = ds_queue_dequeue(_Qy);
-			
-			//Check for fillable positions in each direction and add them to the queue.
-			#region Right/Up/Left/Down
-			if (jen_set(_grid, xx + 1, yy, _replace, _new_value))
-			{
-				ds_queue_enqueue(_Qx, xx + 1);
-				ds_queue_enqueue(_Qy, yy);
-			}
-			if (jen_set(_grid, xx, yy - 1, _replace, _new_value))
-			{
-				ds_queue_enqueue(_Qx, xx);
-				ds_queue_enqueue(_Qy, yy - 1);
-			}
-			if (jen_set(_grid, xx - 1, yy, _replace, _new_value))
-			{
-				ds_queue_enqueue(_Qx, xx - 1);
-				ds_queue_enqueue(_Qy, yy);
-			}
-			if (jen_set(_grid, xx, yy + 1, _replace, _new_value))
-			{
-				ds_queue_enqueue(_Qx, xx);
-				ds_queue_enqueue(_Qy, yy + 1);
-			}
-			#endregion
-			#region Diagonals
-			if (_diagonal)
-			{
-				if (jen_set(_grid, xx + 1, yy + 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx + 1);
-					ds_queue_enqueue(_Qy, yy + 1);
-				}
-				if (jen_set(_grid, xx + 1, yy - 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx + 1);
-					ds_queue_enqueue(_Qy, yy - 1);
-				}
-				if (jen_set(_grid, xx - 1, yy - 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx - 1);
-					ds_queue_enqueue(_Qy, yy - 1);
-				}
-				if (jen_set(_grid, xx - 1, yy + 1, _replace, _new_value))
-				{
-					ds_queue_enqueue(_Qx, xx - 1);
-					ds_queue_enqueue(_Qy, yy + 1);
-				}
-			}
-			#endregion
+			ds_queue_enqueue(_points, { xx : xx, yy : yy });
 		}
-		
-		//Clearing memory.
-		ds_queue_destroy(_Qx);
-		ds_queue_destroy(_Qy);
 	}
+	
+	//Getting width and height of the grid.
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
+	
+	//Make a temp copy of grid to test for valid placements.
+	var _temp = jen_grid_create(_w, _h);
+	ds_grid_copy(_temp, _grid);
+	var _points = ds_queue_create();
+	
+	//Attempt to set the starting position. Only runs if this part works.
+	_fill_pos(_temp, _points, xx, yy, _replace, _setter);
+	while (ds_queue_size(_points) != 0)
+	{
+		//Get the top point in the queue.
+		var _point = ds_queue_dequeue(_points);
+		xx = _point.xx;
+		yy = _point.yy;
+		
+		//Check for fillable positions in each direction and add them to the queue.
+		//Adjacent
+		_fill_pos(_temp, _points, xx + 1, yy, _replace, _setter);
+		_fill_pos(_temp, _points, xx, yy + 1, _replace, _setter);
+		_fill_pos(_temp, _points, xx - 1, yy, _replace, _setter);
+		_fill_pos(_temp, _points, xx, yy - 1, _replace, _setter);
+			
+		//Diagonal
+		if (_diagonal)
+		{
+			_fill_pos(_temp, _points, xx + 1, yy + 1, _replace, _setter);
+			_fill_pos(_temp, _points, xx + 1, yy - 1, _replace, _setter);
+			_fill_pos(_temp, _points, xx - 1, yy + 1, _replace, _setter);
+			_fill_pos(_temp, _points, xx - 1, yy - 1, _replace, _setter);
+		}
+	}
+	
+	//Pasting the final modified JenGrid.
+	jen_replace_not(_temp, "_jenternal_replace", noone);
+	jen_replace(_temp, "_jenternal_replace", _new_value);
+	jen_grid_paste(_grid, _temp, 0, 0, all, _chance, jen_set);
+		
+	//Cleanup.
+	ds_queue_destroy(_points);
+	jen_grid_destroy(_temp);
 }
 #endregion
