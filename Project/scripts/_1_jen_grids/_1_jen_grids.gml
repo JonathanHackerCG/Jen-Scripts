@@ -433,31 +433,31 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 	} }
 }
 #endregion
-#region TODO jen_grid_instantiate_tiles(JenGrid, x, y, tilemap/layer, [flipx], [flipy]);
-/// @func jen_grid_instantiate_tiles
-/// @desc Instantiates a grid, treating each value as a tile index.
+#region jen_grid_instantiate_tiles(JenGrid, x, y, layer/tilemap, [flipx], [flipy]);
+/// @func jen_grid_instantiate_tiles(JenGrid, x, y, layer/tilemap, [flipx], [flipy]):
+/// @desc Instantiates a JenGrid, treating each value as a tile index.
 /// @arg	{Id.DsGrid}		JenGrid
-/// @arg  x
-/// @arg  y
-/// @arg  tilemap/layer
-/// @arg  [flipx]
-/// @arg  [flipy]
+/// @arg  {Real}				x
+/// @arg  {Real}				y
+/// @arg  {String}			layer			Layer name or tilemap ID.
+/// @arg  {Bool}				[flipx]		Default: false
+/// @arg  {Bool}				[flipy]		Default: false
 function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _flipy = false)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
-	
-	//Updating the coordinate position to cell position.
-	_x1 = _x1 div JEN_CELLW;
-	_y1 = _y1 div JEN_CELLH;
-	
+
 	//Converting a layer name into a tilemap id.
 	if (is_string(_tilemap))
 	{
 		_tilemap = layer_get_id(_tilemap);
 		_tilemap = layer_tilemap_get_id(_tilemap);
 	}
+	
+	//Convert room coordinates to tilemap coordinates.
+	_x1 /= tilemap_get_tile_width(_tilemap);
+	_y1 /= tilemap_get_tile_height(_tilemap);
 	
 	for (var xx = 0; xx < _w; xx++) {
 	for (var yy = 0; yy < _h; yy++)
@@ -466,21 +466,27 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 		var val = jen_get(_grid, xx, yy);
 		if (is_real(val) && val >= 1)
 		{
-			var _data = tilemap_get(_tilemap, xx, yy);
-			_data = tile_set_index(data, val);
-			if (_flipx) { data = tile_set_mirror(data, irandom(1)); }
-			if (_flipy) { data = tile_set_flip(data, irandom(1)); }
+			if (_flipx || _flipy)
+			{
+				var _data = tilemap_get(_tilemap, xx, yy);
+				_data = tile_set_index(_data, val);
+				if (_flipx) { _data = tile_set_mirror(_data, irandom(1)); }
+				if (_flipy) { _data = tile_set_flip(_data, irandom(1)); }
+			}
 			tilemap_set(_tilemap, _data, _x1 + xx, _y1 + yy);
 		}
 	} }
 }
 #endregion
-#region jen_grid_instantiate_autotile16(grid, x, y, match_value, bounds, tilemap/layer, [mapping], [offset]);
-/// @func jen_grid_instantiate_autotile16(grid, x, y, match_value, bounds, tilemap/layer, [mapping], [offset]):
+#region jen_grid_instantiate_autotile16(JenGrid, x, y, match_value, bounds, layer/tilemap, [mapping], [offset]);
+/// @func jen_grid_instantiate_autotile16(JenGrid, x, y, match_value, bounds, layer/tilemap, [mapping], [offset]):
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				x
 /// @arg	{Real}				y
-/// @arg	{Any}					layer
+/// @arg	{Any}					match_value		Supports Array (Any Of)
+/// @arg	{String}			layer					Layer name or tilemap ID.
+/// @arg	{Array}				[mapping]			Default: JEN_AUTOTILE16_DEFAULT
+/// @arg	{Real}				[offset]			Default: 0
 function jen_grid_instantiate_autotile16(_grid, _x1, _y1, _match_value, _bounds, _tilemap, _mapping = JEN_AUTOTILE16_DEFAULT, _offset = 0)
 {
 	#region _compute_autotile(_grid, xx, yy, _match_value, _bounds);
