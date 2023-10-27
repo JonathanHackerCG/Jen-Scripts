@@ -414,6 +414,9 @@ function jen_automata(_grid, _live, _dead, _bounds, _live_changes, _dead_changes
 /// @arg	[setter] (?)
 function jen_fill(_grid, xx, yy, _diagonal, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
+	//Update JSDOC.
+	//Cleanup comments/regions.
+	//Test _setter parameter.
 	static _fill_pos = function(_temp, _points, xx, yy, _replace, _setter)
 	{
 		if (_setter(_temp, xx, yy, _replace, "_jenternal_replace"))

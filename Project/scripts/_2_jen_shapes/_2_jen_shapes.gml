@@ -123,9 +123,18 @@ function jen_circle(_grid, _x1, _y1, _radius, _filled, _replace, _new_value, _ch
 /// @arg	{Function}		[setter]		Default: jen_set
 function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis,  _angle, _filled, _replace, _new_value, _chance = 100, _setter = jen_set)
 {
+	static L = [];
+	static R = [];
+	
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
 	var _h = jen_grid_height(_grid);
+	
+	if (_filled)
+	{
+		L = array_create(_h, undefined);
+		R = array_create(_h, undefined);
+	}
 	
 	//Estimating the required increment.
 	var _increment = 90 / (2 * pi * max(_haxis, _vaxis));
@@ -138,19 +147,37 @@ function jen_ellipse(_grid, _x1, _y1, _haxis, _vaxis,  _angle, _filled, _replace
 		var yy = (_haxis * dcos(theta) * dsin(_angle)) + (_vaxis * dsin(theta) * dcos(_angle));
 		
 		//Creating the ellipse in the temporary grid.
-		jen_set(_temp, round(_x1 + xx), round(_y1 + yy), all, _new_value);
+		xx = round(_x1 + xx);
+		yy = round(_y1 + yy);
+		jen_set(_temp, xx, yy, all, _new_value);
+		
+		//Caching L/R bounds of the ellipse for filling later.
+		if (_filled && yy >= 0 && yy < _h)
+		{
+			L[yy] = min(xx, L[yy] ?? xx);
+			R[yy] = max(xx, R[yy] ?? xx);
+		}
 	}
+	
+	//Filling (scanlines).
 	if (_filled)
 	{
-		//TODO: This fill is still not robust in this context!
-		//Experimented with everything, I think we need a scanning solution.
-		jen_fill(_temp, _x1, _y1, false, noone, _new_value);
+		for (var yy = 0; yy < _h; yy++)
+		{
+			if (L[yy] != undefined && R[yy] != undefined)
+			{
+				jen_line(_temp, L[yy], yy, R[yy], yy, noone, _new_value);
+			}
+		}
+		L = [];
+		R = [];
 	}
 	
 	jen_grid_paste(_grid, _temp, 0, 0, _replace, _chance, _setter);
 	jen_grid_destroy(_temp); //Cleanup
 }
 #endregion
+//jen_polygon(...);
 
 //Wandering lines.
 #region jen_wander_direction(JenGrid, x1, y1, initial_angle, correction_count, correction_accuracy, adjustment_count, adjustment_accuracy, lifetime, replace, new_value, [chance], [setter]);
