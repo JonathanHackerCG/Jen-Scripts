@@ -4,6 +4,7 @@
 /// @func jen_grid_string(JenGrid):
 /// @desc Returns the JenGrid formatted as a string.
 /// @arg	{Id.DsGrid}		JenGrid
+///TODO: [separator] (in place of " " below).
 /// @returns {String}
 function jen_grid_string(_grid)
 {

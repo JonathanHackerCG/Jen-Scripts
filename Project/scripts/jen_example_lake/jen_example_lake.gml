@@ -16,7 +16,7 @@ function jen_example_lake(_cellsw, _cellsh, _x1, _y1)
 	
 	//jen_line(_terrain, 5, 0, 3, _cellsh, obj_sand, obj_stone, 100);
 	jen_fill(_terrain, 0, 0, true, obj_water, [obj_dirt, obj_grass], 50, jen_set_not);
-	
+		
 	//Instantiate the first layer of the terrain.
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);
 	#endregion

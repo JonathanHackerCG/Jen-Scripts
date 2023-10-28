@@ -32,6 +32,7 @@ function jen_grid_create(_width, _height, _cleared = noone)
 	return _grid;
 }
 #endregion
+//TODO: NEW jen_grid_create_string(width, height, string, [separator]);
 #region jen_grid_destroy(JenGrid);
 /// @func jen_grid_destroy(grid):
 /// @desc Destroy a JenGrid, clearing it from memory.
@@ -232,6 +233,7 @@ function jen_grid_count(_grid, _match_value)
 	{
 		_count += real(jen_test(_grid, xx, yy, _match_value));
 	} }
+	return _count;
 }
 #endregion
 
