@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_spike",
   "spriteId": {
     "name": "spr_spikes",
     "path": "sprites/spr_spikes/spr_spikes.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Dungeon",
-    "path": "folders/Testing/Terrain/Dungeon.yy",
+    "name": "Objects",
+    "path": "folders/Testing/Terrain/Objects.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_spike",
-  "tags": [],
-  "resourceType": "GMObject",
 }

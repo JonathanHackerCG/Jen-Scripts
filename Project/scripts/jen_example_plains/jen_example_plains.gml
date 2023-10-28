@@ -26,14 +26,14 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_replace(_terrain, [obj_grass, obj_dirt], "ground");
 	
 	//Generating 3 clumps of stone.
-	jen_number(_terrain, 3, "ground", obj_stone);
-	jen_near(_terrain, obj_stone, "ground", obj_stone, 2, 50);
-	jen_near(_terrain, obj_stone, "ground", obj_stone, 1, 50);
-	jen_near(_terrain, obj_stone, "ground", obj_stone, 1, 100);
+	jen_number(_terrain, 3, "ground", obj_cliff);
+	jen_near(_terrain, obj_cliff, "ground", obj_cliff, 2, 50);
+	jen_near(_terrain, obj_cliff, "ground", obj_cliff, 1, 50);
+	jen_near(_terrain, obj_cliff, "ground", obj_cliff, 1, 100);
 	
 	//Generating some rare copper veins.
-	jen_scatter(_terrain, obj_stone, obj_copper, 1);
-	jen_near(_terrain, obj_copper, obj_stone, obj_copper, 2, 20);
+	jen_scatter(_terrain, obj_cliff, obj_cliff_copper, 1);
+	jen_near(_terrain, obj_cliff_copper, obj_cliff, obj_cliff_copper, 2, 20);
 	
 	//Generating a scattering of trees and branches.
 	jen_scatter(_terrain, "ground", obj_tree, 25);

@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_wood",
   "spriteId": {
     "name": "spr_wood",
     "path": "sprites/spr_wood/spr_wood.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Dungeon",
-    "path": "folders/Testing/Terrain/Dungeon.yy",
+    "name": "Terrain (Floors)",
+    "path": "folders/Testing/Terrain/Terrain (Floors).yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_wood",
-  "tags": [],
-  "resourceType": "GMObject",
 }

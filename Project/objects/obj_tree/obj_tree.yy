@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_tree",
   "spriteId": {
     "name": "spr_tree",
     "path": "sprites/spr_tree/spr_tree.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Overworld",
-    "path": "folders/Testing/Terrain/Overworld.yy",
+    "name": "Objects",
+    "path": "folders/Testing/Terrain/Objects.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_tree",
-  "tags": [],
-  "resourceType": "GMObject",
 }

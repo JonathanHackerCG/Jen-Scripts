@@ -48,9 +48,9 @@ function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _filter = undefined
 }
 #endregion
 //TODO: jen_grid_copy_instances_layer(xcell, ycell, wcells, hcells, layer);
-//TODO: jen_grid_copy_tilemap
+//TODO: jen_grid_copy_tilemap(xcell, ycell, wecells, hcells, layer/tilemap);
 
-//TODO: jen_grid_subdivide?
+//TODO: jen_grid_split(JenGrid, ... ?);
 
 //DEPRECATED (Delete Later)
 #region jen_grid_copy_instances_array(x1, y1, width, height, rooms_w, rooms_h, [xspace], [yspace]);

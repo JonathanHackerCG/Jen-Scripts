@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_chest",
   "spriteId": {
     "name": "spr_chest",
     "path": "sprites/spr_chest/spr_chest.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Dungeon",
-    "path": "folders/Testing/Terrain/Dungeon.yy",
+    "name": "Objects",
+    "path": "folders/Testing/Terrain/Objects.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_chest",
-  "tags": [],
-  "resourceType": "GMObject",
 }

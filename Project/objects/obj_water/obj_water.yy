@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_water",
   "spriteId": {
     "name": "spr_water",
     "path": "sprites/spr_water/spr_water.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Overworld",
-    "path": "folders/Testing/Terrain/Overworld.yy",
+    "name": "Terrain (Floors)",
+    "path": "folders/Testing/Terrain/Terrain (Floors).yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_water",
-  "tags": [],
-  "resourceType": "GMObject",
 }

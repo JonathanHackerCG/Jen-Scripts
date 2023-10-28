@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_borderstone",
   "spriteId": {
     "name": "spr_borderstone",
     "path": "sprites/spr_borderstone/spr_borderstone.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Overworld",
-    "path": "folders/Testing/Terrain/Overworld.yy",
+    "name": "Terrain (Walls)",
+    "path": "folders/Testing/Terrain/Terrain (Walls).yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_borderstone",
-  "tags": [],
-  "resourceType": "GMObject",
 }

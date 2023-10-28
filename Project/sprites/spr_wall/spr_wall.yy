@@ -69,6 +69,6 @@
   "nineSlice": null,
   "parent": {
     "name": "_Sprites",
-    "path": "folders/Testing/Terrain/Dungeon/_Sprites.yy",
+    "path": "folders/Testing/Terrain/Terrain (Walls)/_Sprites.yy",
   },
 }

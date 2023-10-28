@@ -28,7 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Overworld",
-    "path": "folders/Testing/Terrain/Overworld.yy",
+    "name": "Terrain (Floors)",
+    "path": "folders/Testing/Terrain/Terrain (Floors).yy",
   },
 }

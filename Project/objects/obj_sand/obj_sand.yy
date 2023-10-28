@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_sand",
   "spriteId": {
     "name": "spr_sand",
     "path": "sprites/spr_sand/spr_sand.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Overworld",
-    "path": "folders/Testing/Terrain/Overworld.yy",
+    "name": "Terrain (Floors)",
+    "path": "folders/Testing/Terrain/Terrain (Floors).yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_sand",
-  "tags": [],
-  "resourceType": "GMObject",
 }

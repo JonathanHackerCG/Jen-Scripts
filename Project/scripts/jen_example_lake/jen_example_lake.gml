@@ -14,7 +14,7 @@ function jen_example_lake(_cellsw, _cellsh, _x1, _y1)
 	//jen_circle(_terrain, _cellsw / 2, _cellsh / 2, irandom_range(1, 10), choose(true, false), obj_sand, obj_water);
 	jen_ellipse(_terrain, _cellsw / 2, _cellsh / 2, irandom_range(1, 10), irandom_range(1, 10), irandom(359), true, obj_sand, obj_water);
 	
-	//jen_line(_terrain, 5, 0, 3, _cellsh, obj_sand, obj_stone, 100);
+	//jen_line(_terrain, 5, 0, 3, _cellsh, obj_sand, obj_cliff, 100);
 	jen_fill(_terrain, 0, 0, true, obj_water, [obj_dirt, obj_grass], 50, jen_set_not);
 		
 	//Instantiate the first layer of the terrain.

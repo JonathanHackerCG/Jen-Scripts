@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_torch",
   "spriteId": {
     "name": "spr_torch",
     "path": "sprites/spr_torch/spr_torch.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Dungeon",
-    "path": "folders/Testing/Terrain/Dungeon.yy",
+    "name": "Objects",
+    "path": "folders/Testing/Terrain/Objects.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_torch",
-  "tags": [],
-  "resourceType": "GMObject",
 }

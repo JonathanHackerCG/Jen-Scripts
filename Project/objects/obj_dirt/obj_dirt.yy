@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_dirt",
   "spriteId": {
     "name": "spr_dirt",
     "path": "sprites/spr_dirt/spr_dirt.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Overworld",
-    "path": "folders/Testing/Terrain/Overworld.yy",
+    "name": "Terrain (Floors)",
+    "path": "folders/Testing/Terrain/Terrain (Floors).yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_dirt",
-  "tags": [],
-  "resourceType": "GMObject",
 }

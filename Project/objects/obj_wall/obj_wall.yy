@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_wall",
   "spriteId": {
     "name": "spr_wall",
     "path": "sprites/spr_wall/spr_wall.yy",
@@ -25,11 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Dungeon",
-    "path": "folders/Testing/Terrain/Dungeon.yy",
+    "name": "Terrain (Walls)",
+    "path": "folders/Testing/Terrain/Terrain (Walls).yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_wall",
-  "tags": [],
-  "resourceType": "GMObject",
 }
