@@ -1,65 +1,60 @@
 //Advanced shapes, wandering lines and mazes.
 
 //Copying
-#region jen_grid_copy_room();
-/// @func jen_grid_copy_room
-/// @desc Will convert the instances of the current room into a new jen_grid.
-function jen_grid_copy_room()
+#region jen_grid_copy_instances(xcell, ycell, wcells, hcells, [filter]);
+/// @func jen_grid_copy_instances(xcell, ycell, wcells, hcells, [filter]):
+/// @desc Stores the instances in a region of the current room in a new JenGrid.
+/// @arg  {Real}			xcell
+/// @arg  {Real}			ycell
+/// @arg  {Real}			wcells
+/// @arg  {Real}			hcells
+/// @arg	{Function}	[filter]	function predicate(Id.Instance) -> Bool
+/// @returns {Id.DsGrid}
+function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _filter = undefined)
 {
+	static _collisions = ds_list_create();
+	
 	//Getting grid variables, making the grid.
 	var _xgrid = JEN_CELLW;
 	var _ygrid = JEN_CELLH;
+	var _grid = jen_grid_create(_cellsw, _cellsh, noone);
+	var _inst, _size;
 	
-	var _width = room_width / _xgrid;
-	var _height = room_height / _ygrid;
-	var _grid = jen_grid_create(_width, _height, noone);
-	
-	//Iterate through the entire grid.
-	for (var yy = 0; yy < _h; yy++) {
-	for (var xx = 0; xx < _w; xx++)
+	//Iterate through the region of the room.
+	for (var yy = _y1; yy < _y1 + _cellsh; yy++) {
+	for (var xx = _x1; xx < _x1 + _cellsw; xx++)
 	{
-		var inst = collision_rectangle((xx * _xgrid), (yy * _ygrid), ((xx + 1) * _xgrid) - 1, ((yy + 1) * _ygrid) - 1, all, false, true);
-		if (inst != noone)
+		var x1 = xx * JEN_CELLW;
+		var y1 = yy * JEN_CELLH;
+		var x2 = x1 + JEN_CELLW - 1;
+		var y2 = y1 + JEN_CELLH - 1;
+		
+		//Checking all instances in the cell.
+		ds_list_clear(_collisions);
+		_size = collision_rectangle_list(x1, y1, x2, y2, all, false, true, _collisions, false);
+		for (var i = 0; i < _size; i++)
 		{
-			jen_set(_grid, xx, yy, all, inst.object_index);
+			_inst = _collisions[| i];
+			if (_filter == undefined || _filter(_inst))
+			{
+				jen_set(_grid, xx - _x1, yy - _y1, all, _inst.object_index);
+				break;
+			}
 		}
 	} }
 
-	//Return the final grid.
+	ds_list_clear(_collisions);
 	return _grid;
 }
 #endregion
-#region jen_grid_copy_room_part(x1, y1, width, height);
-/// @func jen_grid_copy_room_part
-/// @desc Converts a region of the room into a new jen_grid.
-/// @arg  x1
-/// @arg  y1
-/// @arg  width
-/// @arg  height
-function jen_grid_copy_room_part(_x1, _y1, _width, _height)
-{
-	//Getting grid variables, making the grid.
-	var _xgrid = JEN_CELLW;
-	var _ygrid = JEN_CELLH;
-	var _grid = jen_grid_create(_width, _height, noone);
-	
-	//Iterate through the entire grid.
-	for (var yy = _y1; yy < _y1 + _height; yy++) {
-	for (var xx = _x1; xx < _x1 + _width; xx++)
-	{
-		var inst = collision_rectangle((xx * _xgrid), (yy * _ygrid), ((xx + 1) * _xgrid) - 1, ((yy + 1) * _ygrid) - 1, all, false, true);
-		if (inst != noone)
-		{
-			jen_set(_grid, xx - _x1, yy - _y1, all, inst.object_index);
-		}
-	} }
+//TODO: jen_grid_copy_instances_layer(xcell, ycell, wcells, hcells, layer);
+//TODO: jen_grid_copy_tilemap
 
-	//Return the final grid.
-	return _grid;
-}
-#endregion
-#region jen_grid_copy_room_array(x1, y1, width, height, rooms_w, rooms_h, [xspace], [yspace]);
-/// @func jen_grid_copy_room_array
+//TODO: jen_grid_subdivide?
+
+//DEPRECATED (Delete Later)
+#region jen_grid_copy_instances_array(x1, y1, width, height, rooms_w, rooms_h, [xspace], [yspace]);
+/// @func jen_grid_copy_instances_array
 /// @desc Divides the current room into a grid, and outputs a list of jen_grids.
 /// @arg  x1
 /// @arg  y1
@@ -69,7 +64,7 @@ function jen_grid_copy_room_part(_x1, _y1, _width, _height)
 /// @arg  rooms_h
 /// @arg  [xspace]
 /// @arg  [yspace]
-function jen_grid_copy_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h, _xspace = 0, _yspace = 0)
+function jen_grid_copy_instances_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h, _xspace = 0, _yspace = 0)
 {
 	var _xgrid = JEN_CELLW;
 	var _ygrid = JEN_CELLH;
@@ -79,7 +74,7 @@ function jen_grid_copy_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h,
 	for (var yy = 0; yy < _rooms_h; yy ++) {
 	for (var xx = 0; xx < _rooms_w; xx ++)
 	{
-		var _grid = jen_grid_copy_room_part((_x1 + _xspace + (xx * (_xspace + _width))),
+		var _grid = jen_grid_copy_instances_part((_x1 + _xspace + (xx * (_xspace + _width))),
 			(_y1 + _yspace + (yy * (_yspace + _height))), _width, _height, _xgrid, _ygrid);
 		ds_list_add(_list, _grid);
 	} }
@@ -87,12 +82,6 @@ function jen_grid_copy_room_array(_x1, _y1, _width, _height, _rooms_w, _rooms_h,
 	return _list;
 }
 #endregion
-//TODO: jen_grid_copy_layer
-//TODO: jen_grid_copy_layer_part
-//TODO: jen_grid_copy_layer_array
-//TODO: jen_grid_copy_tilemap
-//TODO: jen_grid_copy_tilemap_part
-//TODO: jen_grid_copy_tilemap_array
 
 //Pasting
 #region jen_grid_paste(target_JenGrid, paste_JenGrid, xcell, ycell, replace, [chance], [setter]);

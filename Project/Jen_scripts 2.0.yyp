@@ -4,6 +4,7 @@
   "name": "Jen_scripts 2.0",
   "resources": [
     {"id":{"name":"shdImGui","path":"shaders/shdImGui/shdImGui.yy",},"order":3,},
+    {"id":{"name":"jen_example_dungeon","path":"scripts/jen_example_dungeon/jen_example_dungeon.yy",},"order":0,},
     {"id":{"name":"spr_boundaries","path":"sprites/spr_boundaries/spr_boundaries.yy",},"order":2,},
     {"id":{"name":"obj_borderstone","path":"objects/obj_borderstone/obj_borderstone.yy",},"order":1,},
     {"id":{"name":"_1_jen_grids","path":"scripts/_1_jen_grids/_1_jen_grids.yy",},"order":0,},
@@ -70,7 +71,7 @@
     {"id":{"name":"_0_jen_CONFIG","path":"scripts/_0_jen_CONFIG/_0_jen_CONFIG.yy",},"order":8,},
     {"id":{"name":"spr_wood","path":"sprites/spr_wood/spr_wood.yy",},"order":7,},
     {"id":{"name":"jen_example_ruins","path":"scripts/jen_example_ruins/jen_example_ruins.yy",},"order":1,},
-    {"id":{"name":"rm_dungeons","path":"rooms/rm_dungeons/rm_dungeons.yy",},"order":2,},
+    {"id":{"name":"rm_example_dungeon","path":"rooms/rm_example_dungeon/rm_example_dungeon.yy",},"order":1,},
     {"id":{"name":"tst_16tile_8px_organized2","path":"tilesets/tst_16tile_8px_organized2/tst_16tile_8px_organized2.yy",},"order":2,},
     {"id":{"name":"obj_water_light","path":"objects/obj_water_light/obj_water_light.yy",},"order":7,},
     {"id":{"name":"CONTROL","path":"objects/CONTROL/CONTROL.yy",},"order":0,},
@@ -101,13 +102,14 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_initialize","path":"rooms/rm_initialize/rm_initialize.yy",},},
-    {"roomId":{"name":"rm_dungeons","path":"rooms/rm_dungeons/rm_dungeons.yy",},},
+    {"roomId":{"name":"rm_example_dungeon","path":"rooms/rm_example_dungeon/rm_example_dungeon.yy",},},
     {"roomId":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"JenScripts - Deprecated","folderPath":"folders/JenScripts - Deprecated.yy","order":6,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"JenScripts - Examples","folderPath":"folders/JenScripts - Examples.yy","order":5,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Dungeon","folderPath":"folders/JenScripts - Examples/Dungeon.yy","order":7,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"JenScripts","folderPath":"folders/JenScripts.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_Internal","folderPath":"folders/JenScripts/_Internal.yy","order":4,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Templates","folderPath":"folders/JenScripts/Templates.yy","order":9,},

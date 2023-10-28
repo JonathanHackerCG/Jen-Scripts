@@ -128,8 +128,7 @@ function jen_number(_grid, _number, _replace, _new_value, _chance = 100, _setter
 	var _h = jen_grid_height(_grid);
 	
 	//Make a temp copy of grid to test for valid placements.
-	var _temp = jen_grid_create(_w, _h);
-	ds_grid_copy(_temp, _grid);
+	var _temp = jen_grid_copy(_grid);
 
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
@@ -182,8 +181,7 @@ function jen_number_offset(_grid, _match_value, _xoff, _yoff, _number, _replace,
 	var _h = jen_grid_height(_grid);
 	
 	//Make a temp copy of grid to test for valid placements.
-	var _temp = jen_grid_create(_w, _h);
-	ds_grid_copy(_temp, _grid);
+	var _temp = jen_grid_copy(_grid);
 	
 	//Create a list to store all the viable positions.
 	var _positions = ds_list_create();
@@ -430,8 +428,7 @@ function jen_fill(_grid, xx, yy, _diagonal, _replace, _new_value, _chance = 100,
 	var _h = jen_grid_height(_grid);
 	
 	//Make a temp copy of grid to test for valid placements.
-	var _temp = jen_grid_create(_w, _h);
-	ds_grid_copy(_temp, _grid);
+	var _temp = jen_grid_copy(_grid);
 	var _points = ds_queue_create();
 	
 	//Attempt to set the starting position. Only runs if this part works.

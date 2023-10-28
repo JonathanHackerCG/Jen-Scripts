@@ -1,10 +1,5 @@
 //General JenScripts functions. Initialization and grid transformations.
 
-#region Main global variables.
-JEN_CELLH = 16;
-JEN_CELLW = 16;
-#endregion
-
 //Setup
 #region jen_set_cellsize(cellw, cellh);
 /// @func jen_set_cellsize(cellw, cellh):
@@ -37,7 +32,7 @@ function jen_grid_create(_width, _height, _cleared = noone)
 	return _grid;
 }
 #endregion
-#region jen_grid_destroy(grid);
+#region jen_grid_destroy(JenGrid);
 /// @func jen_grid_destroy(grid):
 /// @desc Destroy a JenGrid, clearing it from memory.
 ///				Returns true if the JenGrid was successfully destroyed.
@@ -53,7 +48,7 @@ function jen_grid_destroy(_grid)
 	return false;
 }
 #endregion
-#region NEW jen_grid_exists(grid);
+#region NEW jen_grid_exists(JenGrid);
 /// @func jen_grid_exists(grid):
 /// @desc Returns true if a JenGrid exists.
 ///				NOTE: Currently cannot distinguish between a JenGrid and a DS Grid.
@@ -64,7 +59,35 @@ function jen_grid_exists(_grid)
 	return _jenternal_ds_exists(_grid, ds_type_grid);
 }
 #endregion
-//TODO: jen_grid_copy
+#region NEW jen_grid_copy(JenGrid);
+/// @func jen_grid_copy(JenGrid):
+/// @desc Returns a copy of a JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @returns {Id.DsGrid}
+function jen_grid_copy(_grid)
+{
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
+	
+	var _new = jen_grid_create(_w, _h);
+	ds_grid_copy(_new, _grid);
+	return _new;
+}
+#endregion
+#region NEW jen_grid_copy_region(JenGrid, xcell, ycell, wcells, hcells);
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg  {Real}				xcell
+/// @arg  {Real}				ycell
+/// @arg  {Real}				wcells
+/// @arg  {Real}				hcells
+/// @returns {Id.DsGrid}
+function jen_grid_copy_region(_grid, _x1, _y1, _wcells, _hcells)
+{
+	var _new = jen_grid_create(_wcells, _hcells);
+	ds_grid_set_grid_region(_new, _grid, _x1, _y1, _x1 + _wcells, _y1 + _hcells, 0, 0);
+	return _new;
+}
+#endregion
 
 //Getters/Setters
 #region jen_grid_width(grid);
@@ -190,7 +213,27 @@ function jen_test(_grid, _x, _y, _match_value)
 	return false;
 }
 #endregion
-//TODO: jen_grid_count(JenGrid, target); Returns total number of matching values.
+#region NEW jen_grid_count(JenGrid, match_value);
+/// @func jen_grid_count(JenGrid, match_value):
+/// @desc	Returns the total number of matching values in the entire JenGrid.
+/// @arg	{Id.DsGrid}		JenGrid
+/// @arg	{Any}					match_value		Supports Array (Any Of)
+/// @returns {Real}
+function jen_grid_count(_grid, _match_value)
+{
+	//Getting width and height of the grid.
+	var _w = jen_grid_width(_grid);
+	var _h = jen_grid_height(_grid);
+	
+	//Looping through the grid to replace each matching value.
+	var _count = 0;
+	for (var yy = 0; yy < _h; yy++) {
+	for (var xx = 0; xx < _w; xx++)
+	{
+		_count += real(jen_test(_grid, xx, yy, _match_value));
+	} }
+}
+#endregion
 
 //Transformations
 #region jen_grid_mirror(JenGrid, horizontal, vertical);

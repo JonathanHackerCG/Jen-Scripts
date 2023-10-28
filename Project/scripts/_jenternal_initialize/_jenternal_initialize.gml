@@ -5,6 +5,8 @@
 #macro JEN_SCRIPTS_VERSION "3.0.0 DEV"
 #macro JEN_CELLH global.jen_cellh
 #macro JEN_CELLW global.jen_cellw
+JEN_CELLH = 16;
+JEN_CELLW = 16;
 
 //Autotile Mappings
 #macro JEN_AUTOTILE16_DEFAULT			[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
