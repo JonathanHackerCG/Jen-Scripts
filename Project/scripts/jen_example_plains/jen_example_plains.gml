@@ -33,6 +33,8 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	
 	//Generating some rare copper and iron veins.
 	jen_scatter(_terrain, obj_cliff, [obj_cliff_copper, obj_cliff_iron], 2);
+	if (jen_grid_count(_terrain, obj_cliff_copper) == 0)	{ jen_number(_terrain, 1, obj_cliff, obj_cliff_copper); }
+	if (jen_grid_count(_terrain, obj_cliff_iron) == 0)		{ jen_number(_terrain, 1, obj_cliff, obj_cliff_iron);		}
 	jen_near(_terrain, obj_cliff_copper, obj_cliff, obj_cliff_copper, 2, 20);
 	jen_near(_terrain, obj_cliff_iron, obj_cliff, obj_cliff_iron, 2, 20);
 	
