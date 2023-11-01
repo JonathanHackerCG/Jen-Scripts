@@ -463,16 +463,16 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 			{
 				if (is_struct(_struct))
 				{
-					instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index, _struct);
+					instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, real(_index), _struct);
 				}
 				else
 				{
-					instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index, _struct(xx, yy));
+					instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, real(_index), _struct(xx, yy));
 				}
 			}
 			else
 			{
-				instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, _index);
+				instance_create_depth(_x1 + (xx * JEN_CELLW), _y1 + (yy * JEN_CELLH), _depth, real(_index));
 			}
 		}
 	} }
@@ -509,14 +509,14 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 	{
 		//Setting each tile value in the tilemap.
 		var val = jen_get(_grid, xx, yy);
-		if (is_real(val) && val >= 1)
+		if (is_numeric(val) && val >= 0)
 		{
+			var _data = tilemap_get(_tilemap, xx, yy);
+			_data = tile_set_index(_data, real(val));
 			if (_flipx || _flipy)
-			{
-				var _data = tilemap_get(_tilemap, xx, yy);
-				_data = tile_set_index(_data, val);
+			{	
 				if (_flipx) { _data = tile_set_mirror(_data, irandom(1)); }
-				if (_flipy) { _data = tile_set_flip(_data, irandom(1)); }
+				if (_flipy) { _data =   tile_set_flip(_data, irandom(1)); }
 			}
 			tilemap_set(_tilemap, _data, _x1 + xx, _y1 + yy);
 		}

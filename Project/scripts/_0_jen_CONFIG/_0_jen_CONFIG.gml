@@ -16,7 +16,7 @@
 /// @arg	{Real} index
 function _jenternal_object_exists(_index)
 {
-	return is_real(_index) && object_exists(_index);
+	return is_numeric(_index) && object_exists(_index);
 }
 #endregion
 #region _jenternal_ds_exists(index);
