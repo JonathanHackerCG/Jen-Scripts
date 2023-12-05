@@ -7,6 +7,9 @@ var width = room_width / global.jen_xcell;
 var height = room_height / global.jen_ycell;
 gridA = jen_grid_create(width, height, ".");
 jen_scatter(gridA, ".", "O", 40);
+jen_replace(gridA, ".", obj_blue);
+jen_replace(gridA, "O", obj_red);
+jen_grid_instantiate_layer(gridA, 0, 0, "Instances");
 
 /*
 tree_list = ds_list_create();

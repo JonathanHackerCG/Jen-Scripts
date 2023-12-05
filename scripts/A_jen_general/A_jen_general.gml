@@ -320,7 +320,7 @@ function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer)
 	{
 		//Instantiating each object.
 		var index = jen_get(_grid, xx, yy);
-		if (is_real(index) && index != noone && object_exists(index))
+		if (object_exists(index) && index != noone)
 		{
 			instance_create_layer(_x1 + (xx * global.jen_xcell), _y1 + (yy * global.jen_ycell), _layer, index);
 		}
@@ -345,7 +345,7 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth)
 	{
 		//Instantiating each object.
 		var index = jen_get(_grid, xx, yy);
-		if (is_real(index) && index != noone && object_exists(index))
+		if (object_exists(index) && index != noone)
 		{
 			instance_create_depth(_x1 + (xx * global.jen_xcell), _y1 + (yy * global.jen_ycell), _depth, index);
 		}
