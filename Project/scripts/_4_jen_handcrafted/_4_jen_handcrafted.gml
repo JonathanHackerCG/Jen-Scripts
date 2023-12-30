@@ -1,18 +1,20 @@
 //Advanced shapes, wandering lines and mazes.
 
 //Copying
-#region jen_grid_copy_instances(xcell, ycell, wcells, hcells, [filter]);
+#region jen_grid_copy_instances(xcell, ycell, wcells, hcells, [layer], [filter]);
 /// @func jen_grid_copy_instances(xcell, ycell, wcells, hcells, [filter]):
 /// @desc Stores the instances in a region of the current room in a new JenGrid.
 /// @arg  {Real}			xcell
 /// @arg  {Real}			ycell
 /// @arg  {Real}			wcells
 /// @arg  {Real}			hcells
+/// @arg	{Id.Layer,String} [layer]
 /// @arg	{Function}	[filter]	function predicate(Id.Instance) -> Bool
 /// @returns {Id.DsGrid}
-function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _filter = undefined)
+function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _layer = undefined, _filter = undefined)
 {
 	static _collisions = ds_list_create();
+	if (is_string(_layer)) { _layer = layer_get_id(_layer); }
 	
 	//Getting grid variables, making the grid.
 	var _xgrid = JEN_CELLW;
@@ -35,6 +37,7 @@ function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _filter = undefined
 		for (var i = 0; i < _size; i++)
 		{
 			_inst = _collisions[| i];
+			if (_layer  != undefined && _inst.layer != _layer) { continue; }
 			if (_filter == undefined || _filter(_inst))
 			{
 				jen_set(_grid, xx - _x1, yy - _y1, all, _inst.object_index);
@@ -47,7 +50,6 @@ function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _filter = undefined
 	return _grid;
 }
 #endregion
-//TODO: jen_grid_copy_instances_layer(xcell, ycell, wcells, hcells, layer, [filter]);
 //TODO: jen_grid_copy_tilemap(xcell, ycell, wecells, hcells, layer/tilemap);
 
 //TODO: jen_grid_split(JenGrid, ... ?);

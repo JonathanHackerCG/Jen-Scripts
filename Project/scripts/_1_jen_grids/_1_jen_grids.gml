@@ -404,7 +404,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				x
 /// @arg	{Real}				y
-/// @arg	{Any}					layer
+/// @arg	{Id.Layer, String} layer
 /// @arg	{Struct}			[struct]		Also supports a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined)
 {

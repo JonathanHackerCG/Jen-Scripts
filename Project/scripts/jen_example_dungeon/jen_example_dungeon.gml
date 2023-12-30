@@ -11,7 +11,7 @@ function jen_example_dungeon_init()
 		
 		var cellsw = room_width / JEN_CELLW;
 		var cellsh = room_height / JEN_CELLH;
-		global.dungeon_data = jen_grid_copy_instances(0, 0, cellsw, cellsh, function(_inst)
+		global.dungeon_data = jen_grid_copy_instances(0, 0, cellsw, cellsh, undefined, function(_inst)
 		{
 			return (_inst.object_index == obj_wall);
 		});
