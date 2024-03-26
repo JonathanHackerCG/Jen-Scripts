@@ -2,13 +2,13 @@
 
 //Copying
 #region jen_grid_copy_instances(xcell, ycell, wcells, hcells, [layer], [filter]);
-/// @func jen_grid_copy_instances(xcell, ycell, wcells, hcells, [filter]):
+/// @func jen_grid_copy_instances(xcell, ycell, wcells, hcells, [layer], [filter]):
 /// @desc Stores the instances in a region of the current room in a new JenGrid.
 /// @arg  {Real}			xcell
 /// @arg  {Real}			ycell
 /// @arg  {Real}			wcells
 /// @arg  {Real}			hcells
-/// @arg	{Id.Layer,String} [layer]
+/// @arg	{String|Id.Layer|Undefined} [layer]
 /// @arg	{Function}	[filter]	function predicate(Id.Instance) -> Bool
 /// @returns {Id.DsGrid}
 function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _layer = undefined, _filter = undefined)
@@ -17,8 +17,6 @@ function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _layer = undefined,
 	if (is_string(_layer)) { _layer = layer_get_id(_layer); }
 	
 	//Getting grid variables, making the grid.
-	var _xgrid = JEN_CELLW;
-	var _ygrid = JEN_CELLH;
 	var _grid = jen_grid_create(_cellsw, _cellsh, noone);
 	var _inst, _size;
 	
@@ -50,7 +48,44 @@ function jen_grid_copy_instances(_x1, _y1, _cellsw, _cellsh, _layer = undefined,
 	return _grid;
 }
 #endregion
-//TODO: jen_grid_copy_tilemap(xcell, ycell, wecells, hcells, layer/tilemap);
+#region jen_grid_copy_tiles(xcell, ycell, wcells, hcells, layer/tilemap);
+/// @func jen_grid_copy_tiles(xcell, ycell, wcells, hcells, layer/tilemap):
+/// @desc Stores the tiledata in a region of the current room in a new JenGrid.
+/// @arg  {Real}			xcell
+/// @arg  {Real}			ycell
+/// @arg  {Real}			wcells
+/// @arg  {Real}			hcells
+/// @arg	{String|Id.Tilemap} layer/tilemap
+/// @arg  {Function}		[modify_tiledata]		function modify_tiledata(tiledata) -> Constant.Tilemask
+/// @returns {Id.DsGrid}
+function jen_grid_copy_tiles(_x1, _y1, _cellsw, _cellsh, _tilemap, _modify_tiledata = undefined)
+{
+	//Converting a layer name into a tilemap id.
+	if (is_string(_tilemap))
+	{
+		_tilemap = layer_get_id(_tilemap);
+		_tilemap = layer_tilemap_get_id(_tilemap);
+	}
+	
+	//Getting grid variables, making the grid.
+	var _grid = jen_grid_create(_cellsw, _cellsh, noone);
+	var _inst, _size;
+	
+	//Iterate through the region of the room.
+	for (var yy = _y1; yy < _y1 + _cellsh; yy++) {
+	for (var xx = _x1; xx < _x1 + _cellsw; xx++)
+	{
+		var _data = tilemap_get(_tilemap, xx, yy);
+		if (_modify_tiledata != undefined)
+		{
+			_data = _modify_tiledata(_data);
+		}
+		jen_set(_grid, xx - _x1, yy - _y1, all, _data);
+	} }
+
+	return _grid;
+}
+#endregion
 
 //TODO: jen_grid_split(JenGrid, ... ?);
 

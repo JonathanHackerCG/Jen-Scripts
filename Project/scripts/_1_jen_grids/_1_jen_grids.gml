@@ -404,7 +404,7 @@ function jen_grid_scale(_grid, _factor, _upscale)
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg	{Real}				x
 /// @arg	{Real}				y
-/// @arg	{Id.Layer, String} layer
+/// @arg	{Id.Layer|String} layer
 /// @arg	{Struct}			[struct]		Also supports a function(xcell, ycell) that returns a struct.
 function jen_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined)
 {
@@ -478,16 +478,15 @@ function jen_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined
 	} }
 }
 #endregion
-#region jen_grid_instantiate_tiles(JenGrid, x, y, layer/tilemap, [flipx], [flipy]);
-/// @func jen_grid_instantiate_tiles(JenGrid, x, y, layer/tilemap, [flipx], [flipy]):
-/// @desc Instantiates a JenGrid, treating each value as a tile index.
+#region jen_grid_instantiate_tiles(JenGrid, x, y, layer/tilemap, [modify_tiledata]);
+/// @func jen_grid_instantiate_tiles(JenGrid, x, y, layer/tilemap, [modify_tiledata]):
+/// @desc Instantiates a JenGrid, treating each value as tile data.
 /// @arg	{Id.DsGrid}		JenGrid
 /// @arg  {Real}				x
 /// @arg  {Real}				y
-/// @arg  {String}			layer			Layer name or tilemap ID.
-/// @arg  {Bool}				[flipx]		Default: false
-/// @arg  {Bool}				[flipy]		Default: false
-function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _flipy = false)
+/// @arg  {Id.Tilemap|String}			layer			Layer name or tilemap ID.
+/// @arg  {Function}		[modify_tiledata]		function modify_tiledata(tiledata) -> Constant.Tilemask
+function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _modify_tiledata = undefined)
 {
 	//Getting width and height of the grid.
 	var _w = jen_grid_width(_grid);
@@ -508,15 +507,12 @@ function jen_grid_instantiate_tiles(_grid, _x1, _y1, _tilemap, _flipx = false, _
 	for (var yy = 0; yy < _h; yy++)
 	{
 		//Setting each tile value in the tilemap.
-		var val = jen_get(_grid, xx, yy);
-		if (is_numeric(val) && val >= 0)
+		var _data = jen_get(_grid, xx, yy);
+		if (is_numeric(_data) && _data >= 0)
 		{
-			var _data = tilemap_get(_tilemap, xx, yy);
-			_data = tile_set_index(_data, real(val));
-			if (_flipx || _flipy)
-			{	
-				if (_flipx) { _data = tile_set_mirror(_data, irandom(1)); }
-				if (_flipy) { _data =   tile_set_flip(_data, irandom(1)); }
+			if (_modify_tiledata != undefined)
+			{
+				_data = _modify_tiledata(_data);
 			}
 			tilemap_set(_tilemap, _data, _x1 + xx, _y1 + yy);
 		}
@@ -585,3 +581,4 @@ function jen_grid_instantiate_autotile16(_grid, _x1, _y1, _match_value, _bounds,
 	} }
 }
 #endregion
+//TODO: NEW jen_grid_instantiate_autotile47(...);

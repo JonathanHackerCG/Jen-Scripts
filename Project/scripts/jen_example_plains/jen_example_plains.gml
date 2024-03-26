@@ -51,7 +51,11 @@ function jen_example_plains(_cellsw, _cellsh, _x1, _y1)
 	jen_near(_terrain, TILES_FLOWERS, "ground", TILES_FLOWERS, 2, 50);
 	
 	//Instantiate the second tile layer of the terrain.
-	jen_grid_instantiate_tiles(_terrain, _x1, _y1, "Tiles_2", true, false);
+	jen_grid_instantiate_tiles(_terrain, _x1, _y1, "Tiles_2", function(_data)
+	{
+		_data = tile_set_mirror(_data, irandom(1));
+		return _data;
+	});
 	#endregion
 	
 	//Cleaning up.

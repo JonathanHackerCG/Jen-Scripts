@@ -9,12 +9,10 @@ function jen_example_dungeon_init()
 	call_later(1, time_source_units_frames, function()
 	{
 		
-		var cellsw = room_width / JEN_CELLW;
+		var cellsw = room_width  / JEN_CELLW;
 		var cellsh = room_height / JEN_CELLH;
-		global.dungeon_data = jen_grid_copy_instances(0, 0, cellsw, cellsh, undefined, function(_inst)
-		{
-			return (_inst.object_index == obj_wall);
-		});
+		global.dungeon_tiles = jen_grid_copy_tiles(0, 0, cellsw, cellsh, "Tiles");
+		global.dungeon_instances = jen_grid_copy_instances(0, 0, cellsw, cellsh, undefined);
 		
 		room_goto(rm_main); //Return to main room.
 	});
@@ -28,8 +26,14 @@ function jen_example_dungeon(_cellsw, _cellsh, _x1, _y1)
 {
 	//Create a new JenGrid to store the terrain.
 	var _terrain = jen_grid_create(_cellsw, _cellsh);
-	jen_grid_paste(_terrain, global.dungeon_data, 0, 0, all);
 	
+	//Tiles
+	jen_grid_paste(_terrain, global.dungeon_tiles, 0, 0, all);
+	jen_grid_instantiate_tiles(_terrain, _x1, _y1, "Tiles_1");
+	
+	//Instances
+	jen_replace(_terrain, all, noone);
+	jen_grid_paste(_terrain, global.dungeon_instances, 0, 0, all);
 	jen_grid_instantiate_depth(_terrain, _x1, _y1, DEPTH_LAYER_1);
 	
 	//Cleaning up.
