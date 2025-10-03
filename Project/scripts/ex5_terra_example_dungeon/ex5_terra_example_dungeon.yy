@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"terra_example_autotiles",
+  "%Name":"ex5_terra_example_dungeon",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"terra_example_autotiles",
+  "name":"ex5_terra_example_dungeon",
   "parent":{
     "name":"Terraform - Examples",
     "path":"folders/Terraform - Examples.yy",

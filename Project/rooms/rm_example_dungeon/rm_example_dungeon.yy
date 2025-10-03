@@ -1940,8 +1940,8 @@
   ],
   "name":"rm_example_dungeon",
   "parent":{
-    "name":"Dungeon",
-    "path":"folders/Terraform - Examples/Dungeon.yy",
+    "name":"Terraform - Examples",
+    "path":"folders/Terraform - Examples.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

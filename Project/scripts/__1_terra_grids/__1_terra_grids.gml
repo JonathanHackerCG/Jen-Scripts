@@ -14,6 +14,16 @@ function terra_set_cellsize(_cellw, _cellh)
 }
 #endregion
 
+//TerraObject
+#region TerraObject(object_index, [struct]);
+/// TUDU: JSDOC
+function TerraObject(_object_index, _var_struct = undefined) constructor
+{
+	object_index = _object_index;
+	var_struct = _var_struct;
+}
+#endregion
+
 //Initialization
 #region terra_grid_create(width, height, [cleared]);
 /// @func terra_grid_create(width, height, [cleared]):
@@ -57,7 +67,7 @@ function terra_grid_destroy(_grid)
 /// @returns {Bool}
 function terra_grid_exists(_grid)
 {
-	return __terra_ds_exists(_grid, ds_type_grid);
+	return ds_exists(_grid, ds_type_grid);
 }
 #endregion
 #region NEW terra_grid_copy(TerraGrid);
@@ -405,6 +415,46 @@ function terra_grid_scale(_grid, _factor, _upscale)
 #endregion
 
 //Instantiation
+#region __terra_instance_create(x1, y1, cellx, celly, index, [struct]);
+/// @arg	{Real} x1
+/// @arg	{Real} y1
+/// @arg	{Real} cellx
+/// @arg	{Real} celly
+/// @arg	{Asset.GMObject|Struct.TerraObject} index
+/// @arg	{Struct|Function} [struct]
+/// @arg	{Id.Layer|String} [layer]
+/// @arg	{Real} [depth]
+function __terra_instance_create(_x1, _y1, _cellx, _celly, _index, _struct = undefined, _layer = undefined, _depth = 0)
+{
+	var _object = _index;
+	if (is_string(_index)) { return undefined; }
+	if (is_callable(_struct))
+	{
+		_struct = _struct(_cellx, _celly);
+	}
+	if (is_struct(_index))
+	{
+		if (is_instanceof(_index, TerraObject))
+		{
+			_object = _index.object_index;
+			_struct = __terra_struct_join(_index.var_struct, _struct);
+		}
+		else { return undefined; }
+	}
+	if (!object_exists(_object)) { return undefined; }
+	
+	var _x = _cellx * TERRA_CELLW;
+	var _y = _celly * TERRA_CELLH;
+	if (_layer != undefined)
+	{
+		return instance_create_layer(_x1 + _x, _y1 + _y, _layer, _object, _struct ?? {});
+	}
+	else
+	{
+		return instance_create_depth(_x1 + _x, _y1 + _y, _depth, _object, _struct ?? {});
+	}
+}
+#endregion
 #region terra_grid_instantiate_layer(TerraGrid, x, y, layer, [struct]);
 /// @func terra_grid_instantiate_layer(TerraGrid, x, y, layer, [struct]):
 /// @desc Instantiates a TerraGrid on a particular layer, treating each value as an object index.
@@ -415,35 +465,20 @@ function terra_grid_scale(_grid, _factor, _upscale)
 /// @arg	{Struct}			[struct]		Also supports a function(xcell, ycell) that returns a struct.
 function terra_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefined)
 {
-	//TODO: Add error message for invalid layer.
-	
-	//Getting width and height of the grid.
 	var _w = terra_grid_width(_grid);
 	var _h = terra_grid_height(_grid);
+	
+	if (!layer_exists(_layer))
+	{
+		show_error($"Terraform 'terra_grid_instantiate_layer' layer {_layer} does not exist.", true);
+	}
 	
 	for (var xx = 0; xx < _w; xx++) {
 	for (var yy = 0; yy < _h; yy++)
 	{
 		//Instantiating each object.
 		var _index = terra_get(_grid, xx, yy);
-		if (__terra_object_exists(_index) && _index != noone)
-		{
-			if (!is_undefined(_struct))
-			{
-				if (is_struct(_struct))
-				{
-					instance_create_layer(_x1 + (xx * TERRA_CELLW), _y1 + (yy * TERRA_CELLH), _layer, _index, _struct);
-				}
-				else
-				{
-					instance_create_layer(_x1 + (xx * TERRA_CELLW), _y1 + (yy * TERRA_CELLH), _layer, _index, _struct(xx, yy));
-				}
-			}
-			else
-			{
-				instance_create_layer(_x1 + (xx * TERRA_CELLW), _y1 + (yy * TERRA_CELLH), _layer, _index);
-			}
-		}
+		__terra_instance_create(_x1, _y1, xx, yy, _index, _struct, _layer);
 	} }
 }
 #endregion
@@ -457,33 +492,14 @@ function terra_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefin
 /// @arg	{Struct}			[struct]		Also supports a function(xcell, ycell) that returns a struct.
 function terra_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefined)
 {
-	//Getting width and height of the grid.
 	var _w = terra_grid_width(_grid);
 	var _h = terra_grid_height(_grid);
 	
 	for (var xx = 0; xx < _w; xx++) {
 	for (var yy = 0; yy < _h; yy++)
 	{
-		//Instantiating each object.
 		var _index = terra_get(_grid, xx, yy);
-		if (__terra_object_exists(_index) && _index != noone)
-		{
-			if (!is_undefined(_struct))
-			{
-				if (is_struct(_struct))
-				{
-					instance_create_depth(_x1 + (xx * TERRA_CELLW), _y1 + (yy * TERRA_CELLH), _depth, real(_index), _struct);
-				}
-				else
-				{
-					instance_create_depth(_x1 + (xx * TERRA_CELLW), _y1 + (yy * TERRA_CELLH), _depth, real(_index), _struct(xx, yy));
-				}
-			}
-			else
-			{
-				instance_create_depth(_x1 + (xx * TERRA_CELLW), _y1 + (yy * TERRA_CELLH), _depth, real(_index));
-			}
-		}
+		__terra_instance_create(_x1, _y1, xx, yy, _index, _struct, undefined, _depth);
 	} }
 }
 #endregion
@@ -569,6 +585,10 @@ function terra_grid_instantiate_autotile16(_grid, _x1, _y1, _match, _bounds, _ti
 	//Converting a layer name into a tilemap id.
 	if (is_string(_tilemap))
 	{
+		if (!layer_exists(_tilemap))
+		{
+			show_error($"Terraform 'terra_grid_instantiate_autotile16' layer {_tilemap} does not exist.", true);
+		}
 		_tilemap = layer_get_id(_tilemap);
 		_tilemap = layer_tilemap_get_id(_tilemap);
 	}

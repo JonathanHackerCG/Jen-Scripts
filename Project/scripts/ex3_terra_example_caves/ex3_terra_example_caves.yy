@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"terra_example_ruins",
+  "%Name":"ex3_terra_example_caves",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"terra_example_ruins",
+  "name":"ex3_terra_example_caves",
   "parent":{
     "name":"Terraform - Examples",
     "path":"folders/Terraform - Examples.yy",

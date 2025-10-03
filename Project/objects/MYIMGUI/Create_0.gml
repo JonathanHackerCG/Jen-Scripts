@@ -114,3 +114,4 @@ register_example("Caves", terra_example_caves, terra_example_caves_iterate);
 register_example("Lakes", terra_example_lake);
 register_example("Dungeon", terra_example_dungeon);
 register_example("Autotiles", terra_example_autotiles);
+register_example("TerraObjects", terra_example_TerraObjects);

@@ -10,7 +10,7 @@ function terra_example_autotiles(_cellsw, _cellsh, _x1, _y1)
 	var _terrain = terra_grid_create(_cellsw, _cellsh, noone);
 	terra_scatter(_terrain, noone, "tile", 50);
 	terra_grid_scale(_terrain, 2, true);
-	terra_grid_instantiate_autotile16(_terrain, _x1, _y1, "tile", true, "Tiles");
+	terra_grid_instantiate_autotile16(_terrain, _x1, _y1, "tile", true, "Autotiles_16");
 	
 	//Cleaning up.
 	terra_grid_destroy(_terrain);

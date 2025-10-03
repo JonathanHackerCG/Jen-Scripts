@@ -18,7 +18,7 @@ function terra_example_dungeon_init()
 	});
 }
 
-/// @func terra_example_autotiles
+/// @func terra_example_dungeon
 /// @desc Autotiles, basically.
 /// @arg	cellsw
 /// @arg	cellsh

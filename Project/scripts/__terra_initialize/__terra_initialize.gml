@@ -71,3 +71,35 @@ function __terra_percent(_chance)
 	return (_chance >= 100 || random(100) < _chance);
 }
 #endregion
+
+//Utilities
+#region __terra_struct_join(base, add);
+/// @func __terra_struct_join(base, add);
+/// @desc Returns two structs combined. 'undefined' values of 'add' use the value of 'base'.
+/// Used in terra_grid_instantiate_* for processing both TerraObjects and var_structs.
+/// @arg	{Struct} base
+/// @arg	{Struct|undefined} add
+/// @returns {Struct}
+function __terra_struct_join(_base, _add)
+{
+	if (_base == undefined) { return _add; }
+	
+	var _new = _base;
+	if (_base != self)
+	{
+		_new = variable_clone(_base);
+	}
+	
+	if (_add != undefined)
+	{
+		var _vars = struct_get_names(_add);
+		var _size = array_length(_vars);
+		for (var i = 0; i < _size; i++)
+		{
+			var _var = _vars[i];
+			_new[$ _var] = _add[$ _var] ?? _base[$ _var];
+		}
+	}
+	return _new;
+}
+#endregion
