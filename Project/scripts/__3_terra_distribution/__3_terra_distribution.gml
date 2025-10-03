@@ -13,7 +13,7 @@ function terra_replace(_grid, _replace, _value)
 	var _h = terra_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _terraternal_convert_array_all(_replace);
+	_replace = __terra_convert_array_all(_replace);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
@@ -36,7 +36,7 @@ function terra_replace_not(_grid, _replace, _value)
 	var _h = terra_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _terraternal_convert_array_all(_replace);
+	_replace = __terra_convert_array_all(_replace);
 	
 	//Looping through the grid to replace each matching value.
 	for (var yy = 0; yy < _h; yy++) {
@@ -64,7 +64,7 @@ function terra_scatter(_grid, _replace, _value, _chance = 100, _setter = terra_s
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (_terraternal_percent(_chance))
+		if (__terra_percent(_chance))
 		{
 			_setter(_grid, xx, yy, _replace, _value);
 		}
@@ -98,15 +98,15 @@ function terra_scatter_offset(_grid, _match, _xoff, _yoff, _replace, _value, _ch
 		if (terra_test(_grid, xx, yy, _match))
 		{
 			terra_set(_temp,
-				xx + _terraternal_convert_array_choose(_xoff),
-				yy + _terraternal_convert_array_choose(_yoff),
-				all, "_terraternal_undefined");
+				xx + __terra_convert_array_choose(_xoff),
+				yy + __terra_convert_array_choose(_yoff),
+				all, "__terra_undefined");
 		}
 	} }
 	
 	//Apply the temporary grid to the base grid.
 	terra_grid_paste(_grid, _temp, 0, 0, _replace, _chance, _setter);
-	terra_replace(_grid, "_terraternal_undefined", _value); //Replace with the intended value.
+	terra_replace(_grid, "__terra_undefined", _value); //Replace with the intended value.
 	
 	//Clearing memory.
 	terra_grid_destroy(_temp);
@@ -147,14 +147,14 @@ function terra_number(_grid, _number, _replace, _value, _chance = 100, _setter =
 		var yy = _positions[| i].y1;
 		if (_setter(_temp, xx, yy, _replace, _value))
 		{
-			terra_set(_temp, xx, yy, all, "_terraternal_replace");
+			terra_set(_temp, xx, yy, all, "__terra_replace");
 			if (++_count >= _number) { break; }
 		}
 	}
 	
 	//Pasting the final modified TerraGrid.
-	terra_replace_not(_temp, "_terraternal_replace", noone);
-	terra_replace(_temp, "_terraternal_replace", _value);
+	terra_replace_not(_temp, "__terra_replace", noone);
+	terra_replace(_temp, "__terra_replace", _value);
 	terra_grid_paste(_grid, _temp, 0, 0, all, _chance, terra_set);
 	
 	//Clearing memory.
@@ -201,18 +201,18 @@ function terra_number_offset(_grid, _match, _xoff, _yoff, _number, _replace, _va
 	for (var i = 0; i < _size; i++)
 	{
 		//Get the coordinates of this valid position.
-		var xx = _positions[| i].x1 + _terraternal_convert_array_choose(_xoff);
-		var yy = _positions[| i].y1 + _terraternal_convert_array_choose(_yoff);
+		var xx = _positions[| i].x1 + __terra_convert_array_choose(_xoff);
+		var yy = _positions[| i].y1 + __terra_convert_array_choose(_yoff);
 		if (_setter(_temp, xx, yy, _replace, _value))
 		{
-			terra_set(_temp, xx, yy, all, "_terraternal_replace");
+			terra_set(_temp, xx, yy, all, "__terra_replace");
 			if (++_count >= _number) { break; }
 		}
 	}
 	
 	//Pasting the final modified TerraGrid.
-	terra_replace_not(_temp, "_terraternal_replace", noone);
-	terra_replace(_temp, "_terraternal_replace", _value);
+	terra_replace_not(_temp, "__terra_replace", noone);
+	terra_replace(_temp, "__terra_replace", _value);
 	terra_grid_paste(_grid, _temp, 0, 0, all, _chance, terra_set);
 	
 	//Clearing memory.
@@ -240,8 +240,8 @@ function terra_near(_grid, _target, _replace, _value, _radius, _chance = 100, _s
 	var _h = terra_grid_height(_grid);
 	
 	//Array conversions.
-	_replace = _terraternal_convert_array_all(_replace);
-	_target = _terraternal_convert_array_all(_target);
+	_replace = __terra_convert_array_all(_replace);
+	_target = __terra_convert_array_all(_target);
 	
 	//Create a temporary grid to store changes.
 	var _temp = terra_grid_create(_w, _h, noone);
@@ -254,13 +254,13 @@ function terra_near(_grid, _target, _replace, _value, _radius, _chance = 100, _s
 		if (terra_test(_grid, xx, yy, _target))
 		{
 			//Set to an undefined value (to allow the terra_grid_paste to override noone).
-			ds_grid_set_disk(_temp, xx, yy, _radius, "_terraternal_undefined");
+			ds_grid_set_disk(_temp, xx, yy, _radius, "__terra_undefined");
 		}
 	} }
 	
 	//Apply the temporary grid to the target grid.
 	terra_grid_paste(_grid, _temp, 0, 0, _replace, _chance, _setter);
-	terra_replace(_grid, "_terraternal_undefined", _value); //Replace with the intended value.
+	terra_replace(_grid, "__terra_undefined", _value); //Replace with the intended value.
 	
 	//Clearing memory.
 	terra_grid_destroy(_temp);
@@ -279,8 +279,8 @@ function terra_obfuscate(_grid, _target, _adjacent, _chance = 100)
 	var _w = terra_grid_width(_grid);
 	var _h = terra_grid_height(_grid);
 	
-	_target = _terraternal_convert_array_all(_target);
-	_adjacent = _terraternal_convert_array_all(_adjacent);
+	_target = __terra_convert_array_all(_target);
+	_adjacent = __terra_convert_array_all(_adjacent);
 	
 	//Create a list of every position in the array.
 	var _positions = ds_list_create();
@@ -300,7 +300,7 @@ function terra_obfuscate(_grid, _target, _adjacent, _chance = 100)
 	var size = ds_list_size(_positions);
 	for (var i = 0; i < size; i++)
 	{
-		if (_terraternal_percent(_chance))
+		if (__terra_percent(_chance))
 		{
 			//Getting the position of this value in the grid.
 			xx = _positions[| i].x1;
@@ -383,20 +383,20 @@ function terra_automata(_grid, _live, _dead, _bounds, _live_changes, _dead_chang
 		*/
 		#endregion
 		//Change live/dead cells.
-		if (terra_test(_grid, xx, yy, _live) && _terraternal_array_has_value(_live_changes, _count_live))
+		if (terra_test(_grid, xx, yy, _live) && __terra_array_has_value(_live_changes, _count_live))
 		{
-			terra_set(_temp, xx, yy, all, "_terraternal_dead");
+			terra_set(_temp, xx, yy, all, "__terra_dead");
 		}
-		if (terra_test(_grid, xx, yy, _dead) && _terraternal_array_has_value(_dead_changes, _count_live))
+		if (terra_test(_grid, xx, yy, _dead) && __terra_array_has_value(_dead_changes, _count_live))
 		{
-			terra_set(_temp, xx, yy, all, "_terraternal_live");
+			terra_set(_temp, xx, yy, all, "__terra_live");
 		}
 	}	}
 	
 	//Paste the final grid.
 	terra_grid_paste(_grid, _temp, 0, 0, all, 100, terra_set);
-	terra_scatter(_grid, "_terraternal_dead", _dead, _chance, _setter);
-	terra_scatter(_grid, "_terraternal_live", _live, _chance, _setter);
+	terra_scatter(_grid, "__terra_dead", _dead, _chance, _setter);
+	terra_scatter(_grid, "__terra_live", _live, _chance, _setter);
 	terra_grid_destroy(_temp);
 }
 #endregion
@@ -416,8 +416,8 @@ function terra_fill(_grid, xx, yy, _diagonal, _replace, _value, _chance = 100, _
 	#region _fill_pos(temp, points, xx, yy, replace, setter);
 	static _fill_pos = function(_temp, _points, xx, yy, _replace, _setter)
 	{
-		if (terra_test(_temp, xx, yy, "_terraternal_replace")) { exit; }
-		if (_setter(_temp, xx, yy, _replace, "_terraternal_replace"))
+		if (terra_test(_temp, xx, yy, "__terra_replace")) { exit; }
+		if (_setter(_temp, xx, yy, _replace, "__terra_replace"))
 		{
 			ds_queue_enqueue(_points, { xx : xx, yy : yy });
 		}
@@ -459,8 +459,8 @@ function terra_fill(_grid, xx, yy, _diagonal, _replace, _value, _chance = 100, _
 	}
 	
 	//Pasting the final modified TerraGrid.
-	terra_replace_not(_temp, "_terraternal_replace", noone);
-	terra_replace(_temp, "_terraternal_replace", _value);
+	terra_replace_not(_temp, "__terra_replace", noone);
+	terra_replace(_temp, "__terra_replace", _value);
 	terra_grid_paste(_grid, _temp, 0, 0, all, _chance, terra_set);
 		
 	//Cleanup.

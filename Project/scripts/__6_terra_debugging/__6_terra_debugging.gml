@@ -57,7 +57,7 @@ function terra_maze_draw(_maze, _x1, _y1)
 	{
 		if (_maze[# xx, yy] >= 0)
 		{
-			draw_sprite(_spr_terraternal_maze, _maze[# xx, yy], _x1 + (xx * 16), _y1 + (yy * 16));
+			draw_sprite(_spr__terra_maze, _maze[# xx, yy], _x1 + (xx * 16), _y1 + (yy * 16));
 		}
 	} }
 }

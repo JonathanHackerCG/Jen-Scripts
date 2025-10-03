@@ -103,8 +103,8 @@ function terra_grid_copy_tiles(_x1, _y1, _cellsw, _cellsh, _tilemap, _modify_til
 function terra_grid_paste(_target, _paste, _x1, _y1, _replace, _chance = 100, _setter = terra_set)
 {
 	//Array conversions.
-	_paste = _terraternal_convert_array_choose(_paste);
-	_replace = _terraternal_convert_array_all(_replace);
+	_paste = __terra_convert_array_choose(_paste);
+	_replace = __terra_convert_array_all(_replace);
 	
 	//Getting width and height of the grids.
 	var _w = terra_grid_width(_target);
@@ -119,7 +119,7 @@ function terra_grid_paste(_target, _paste, _x1, _y1, _replace, _chance = 100, _s
 	{
 		//Get the value of the pasting grid.
 		_value = terra_get(_paste, xx, yy);
-		if (_value != noone) && (_terraternal_percent(_chance))
+		if (_value != noone) && (__terra_percent(_chance))
 		{
 			_setter(_target, _x1 + xx, _y1 + yy, _replace, _value);
 		}
@@ -152,11 +152,11 @@ function terra_scatter_paste(_target, _paste, _match, _xoff, _yoff, _chance_past
 	for (var yy = 0; yy < _h; yy++) {
 	for (var xx = 0; xx < _w; xx++)
 	{
-		if (terra_test(_target, xx, yy, _match) && _terraternal_percent(_chance_paste))
+		if (terra_test(_target, xx, yy, _match) && __terra_percent(_chance_paste))
 		{
 			terra_grid_paste(_temp, _paste,
-				xx + _terraternal_convert_array_choose(_xoff),
-				yy + _terraternal_convert_array_choose(_yoff),
+				xx + __terra_convert_array_choose(_xoff),
+				yy + __terra_convert_array_choose(_yoff),
 				all);
 		}
 	} }
@@ -206,8 +206,8 @@ function terra_number_paste(_target, _paste, _match, _xoff, _yoff, _number, _rep
 	for (var i = 0; i < min(_number, _size); i++)
 	{
 		//Get the coordinates of this valid position.
-		var xx = _positions[| i].x1 + _terraternal_convert_array_choose(_xoff);
-		var yy = _positions[| i].y1 + _terraternal_convert_array_choose(_yoff);
+		var xx = _positions[| i].x1 + __terra_convert_array_choose(_xoff);
+		var yy = _positions[| i].y1 + __terra_convert_array_choose(_yoff);
 		terra_grid_paste(_temp, _paste, xx, yy, all);
 	}
 	

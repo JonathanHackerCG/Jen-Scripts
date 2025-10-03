@@ -63,7 +63,7 @@ function terra_wander_direction(_grid, _x1, _y1, _initial_angle, _correction_cou
 	repeat(_lifetime)
 	{
 		//Set the value for that new position.
-		if (_terraternal_percent(_chance))
+		if (__terra_percent(_chance))
 		{
 			//TODO: Update to use terra_set as default _setter parameter.
 			if (_setter == undefined)
@@ -125,7 +125,7 @@ function terra_wander_line(_grid, _x1, _y1, _x2, _y2, _correction_count, _correc
 	repeat(_lifetime)
 	{
 		//Set the value for that new position.
-		if (_terraternal_percent(_chance))
+		if (__terra_percent(_chance))
 		{
 			//TODO: Update to use terra_set as default _setter parameter.
 			if (_setter == undefined)
@@ -371,13 +371,13 @@ function terra_heightmap_apply(_grid, _heightmap, _x1, _y1, _min, _max, _replace
 		var val = terra_heightmap_get(_heightmap, xx, yy);
 		if (val >= _min && val <= _max)
 		{
-			terra_set(_temp, xx, yy, all, "_terraternal_undefined");
+			terra_set(_temp, xx, yy, all, "__terra_undefined");
 		}
 	} }
 	
 	//Apply the changes to the base grid.
 	terra_grid_paste(_grid, _temp, _x1, _y1, _replace, _chance, _setter);
-	terra_replace(_grid, "_terraternal_undefined", _value); //Replace with the intended value.
+	terra_replace(_grid, "__terra_undefined", _value); //Replace with the intended value.
 	terra_grid_destroy(_temp);
 }
 */

@@ -57,7 +57,7 @@ function terra_grid_destroy(_grid)
 /// @returns {Bool}
 function terra_grid_exists(_grid)
 {
-	return _terraternal_ds_exists(_grid, ds_type_grid);
+	return __terra_ds_exists(_grid, ds_type_grid);
 }
 #endregion
 #region NEW terra_grid_copy(TerraGrid);
@@ -152,7 +152,7 @@ function terra_set(_grid, _x, _y, _replace, _value)
 {
 	//Array conversions and other checks.
 	if (!terra_grid_inbounds(_grid, _x, _y)) { return false; }
-	_value = _terraternal_convert_array_choose(_value);
+	_value = __terra_convert_array_choose(_value);
 	
 	if (terra_test(_grid, _x, _y, _replace) ?? false)
 	{
@@ -177,7 +177,7 @@ function terra_set_not(_grid, _x, _y, _replace, _value)
 {
 	//Array conversions and other checks.
 	if (!terra_grid_inbounds(_grid, _x, _y)) { return false; }
-	_value = _terraternal_convert_array_choose(_value);
+	_value = __terra_convert_array_choose(_value);
 	
 	if (!terra_test(_grid, _x, _y, _replace))
 	{
@@ -202,7 +202,7 @@ function terra_test(_grid, _x, _y, _match)
 	if (!terra_grid_inbounds(_grid, _x, _y)) { return undefined; }
 	
 	//Array conversions.
-	_match = _terraternal_convert_array_all(_match);
+	_match = __terra_convert_array_all(_match);
 	if (_match[0] == all) { return true; }
 	
 	//Testing this position.
@@ -426,7 +426,7 @@ function terra_grid_instantiate_layer(_grid, _x1, _y1, _layer, _struct = undefin
 	{
 		//Instantiating each object.
 		var _index = terra_get(_grid, xx, yy);
-		if (_terraternal_object_exists(_index) && _index != noone)
+		if (__terra_object_exists(_index) && _index != noone)
 		{
 			if (!is_undefined(_struct))
 			{
@@ -466,7 +466,7 @@ function terra_grid_instantiate_depth(_grid, _x1, _y1, _depth, _struct = undefin
 	{
 		//Instantiating each object.
 		var _index = terra_get(_grid, xx, yy);
-		if (_terraternal_object_exists(_index) && _index != noone)
+		if (__terra_object_exists(_index) && _index != noone)
 		{
 			if (!is_undefined(_struct))
 			{

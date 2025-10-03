@@ -29,7 +29,7 @@ function terra_line(_grid, _x1, _y1, _x2, _y2, _replace, _value, _chance = 100, 
 	while (_count <= _step)
 	{
 		//Checking first if the position is valid.
-		if (_terraternal_percent(_chance))
+		if (__terra_percent(_chance))
 		{
 			//Setting the line position/appropriate function.
 			_setter(_grid, round(xx), round(yy), _replace, _value);
@@ -63,7 +63,7 @@ function terra_rectangle(_grid, _x1, _y1, _x2, _y2, _outline, _replace, _value, 
 	var _yy2 = max(_y1, _y2);
 	
 	//Array conversions.
-	_replace = _terraternal_convert_array_all(_replace);
+	_replace = __terra_convert_array_all(_replace);
 	
 	//Iterate through the grid.
 	for (var yy = _yy1; yy <= _yy2; yy++) {
@@ -72,7 +72,7 @@ function terra_rectangle(_grid, _x1, _y1, _x2, _y2, _outline, _replace, _value, 
 		var _o = _outline;
 		if (!_o || (xx < _xx1 + _o || yy < _yy1 + _o || xx > _xx2 - _o || yy > _yy2 - _o))
 		{
-			if (_terraternal_percent(_chance))
+			if (__terra_percent(_chance))
 			{
 				_setter(_grid, xx, yy, _replace, _value);
 			}

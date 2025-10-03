@@ -2,29 +2,29 @@
 // 2023.8+ --------------------------------------------------------------------------------------------------
 
 /*
-#macro _terraternal_object_exists object_exists
-#macro _terraternal_ds_exists ds_exists
+#macro __terra_object_exists object_exists
+#macro __terra_ds_exists ds_exists
 */
 
 // ----------------------------------------------------------------------------------------------------------
 // <2023.8 (LTS) --------------------------------------------------------------------------------------------
 
 //TODO: Cleanup, not sure if LTS will be supported at all. Maybe for v3.1.0.
-#region _terraternal_object_exists(index);
-/// @func _terraternal_object_exists(index):
+#region __terra_object_exists(index);
+/// @func __terra_object_exists(index):
 /// @desc Used as a robust object_exists for <2023.8.
 /// @arg	{Real} index
-function _terraternal_object_exists(_index)
+function __terra_object_exists(_index)
 {
 	return is_numeric(_index) && object_exists(_index);
 }
 #endregion
-#region _terraternal_ds_exists(index);
-/// @func _terraternal_ds_exists(index):
+#region __terra_ds_exists(index);
+/// @func __terra_ds_exists(index):
 /// @desc Used as a robust ds_exists for <2023.8.
 /// @arg	{Real} index
 /// @arg	{Real} type
-function _terraternal_ds_exists(_index, _type)
+function __terra_ds_exists(_index, _type)
 {
 	return is_real(_index) && ds_exists(_index, _type);
 }

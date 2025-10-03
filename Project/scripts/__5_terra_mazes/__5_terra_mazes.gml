@@ -153,7 +153,7 @@ function terra_maze_destroy(_maze)
 /// @returns {Bool}
 function terra_maze_exists(_grid)
 {
-	return _terraternal_ds_exists(_grid, ds_type_grid);
+	return __terra_ds_exists(_grid, ds_type_grid);
 }
 #endregion
 

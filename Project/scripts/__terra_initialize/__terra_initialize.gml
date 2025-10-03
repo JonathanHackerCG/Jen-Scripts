@@ -22,12 +22,12 @@ show_debug_message(">>> Terraform version '" + TERRAFORM_VERSION + "' initialize
 
 //Internal Terraform Functions (Undocumented)
 //TODO: Consider the implication of duplicate values in these arrays--document or sanitize.
-#region _terraternal_convert_array_choose(value);
-/// @func _terraternal_convert_array_choose
+#region __terra_convert_array_choose(value);
+/// @func __terra_convert_array_choose
 /// @desc	Returns a random value from the array.
 /// @arg value
 /// @returns Value
-function _terraternal_convert_array_choose(_value)
+function __terra_convert_array_choose(_value)
 {
 	if (is_array(_value))
 	{
@@ -40,22 +40,22 @@ function _terraternal_convert_array_choose(_value)
 	return _value;
 }
 #endregion
-#region _terraternal_convert_array_all(replace);
-/// @func _terraternal_convert_array_all
+#region __terra_convert_array_all(replace);
+/// @func __terra_convert_array_all
 /// @desc	Wraps the input in an array if it isn't already.
 /// @arg replace
 /// @returns Array
-function _terraternal_convert_array_all(_replace)
+function __terra_convert_array_all(_replace)
 {
 	if (!is_array(_replace)) { return [_replace]; }
 	return _replace;
 }
 #endregion
-#region _terraternal_array_has_value(array, value);
-/// @func _terraternal_array_has_value(array, value):
+#region __terra_array_has_value(array, value);
+/// @func __terra_array_has_value(array, value):
 /// @arg {Array} array
 /// @arg {Any} value
-function _terraternal_array_has_value(_array, _value)
+function __terra_array_has_value(_array, _value)
 {
 	var _size = array_length(_array);
 	for (var i = 0; i < _size; i++)
@@ -65,8 +65,8 @@ function _terraternal_array_has_value(_array, _value)
 	return false;
 }
 #endregion
-#region _terraternal_percent(chance);
-function _terraternal_percent(_chance)
+#region __terra_percent(chance);
+function __terra_percent(_chance)
 {
 	return (_chance >= 100 || random(100) < _chance);
 }

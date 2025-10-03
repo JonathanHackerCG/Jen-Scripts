@@ -1,5 +1,5 @@
 {
-  "$GMProject":"",
+  "$GMProject":"v1",
   "%Name":"Jen_scripts 2.0",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
@@ -10,7 +10,7 @@
   },
   "defaultScriptType":1,
   "Folders":[
-    {"$GMFolder":"","%Name":"Fonts","folderPath":"folders/Testing/Fonts.yy","name":"Fonts","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"__Libraries","folderPath":"folders/__Libraries.yy","name":"__Libraries","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"ImGui_GM","folderPath":"folders/__Libraries/ImGui_GM.yy","name":"ImGui_GM","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Terraform - Examples","folderPath":"folders/Terraform - Examples.yy","name":"Terraform - Examples","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Dungeon","folderPath":"folders/Terraform - Examples/Dungeon.yy","name":"Dungeon","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -20,11 +20,11 @@
     {"$GMFolder":"","%Name":"Autotiles","folderPath":"folders/Terraform/Templates/Autotiles.yy","name":"Autotiles","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"__Sprites","folderPath":"folders/Terraform/Templates/Autotiles/__Sprites.yy","name":"__Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Setters","folderPath":"folders/Terraform/Templates/Setters.yy","name":"Setters","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"__Libraries","folderPath":"folders/__Libraries.yy","name":"__Libraries","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Rooms","folderPath":"folders/Testing/Rooms.yy","name":"Rooms","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Testing","folderPath":"folders/Testing.yy","name":"Testing","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Assets","folderPath":"folders/Testing/Assets.yy","name":"Assets","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Control","folderPath":"folders/Testing/Control.yy","name":"Control","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Fonts","folderPath":"folders/Testing/Fonts.yy","name":"Fonts","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Rooms","folderPath":"folders/Testing/Rooms.yy","name":"Rooms","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Terrain","folderPath":"folders/Testing/Terrain.yy","name":"Terrain","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Generic","folderPath":"folders/Testing/Terrain/Generic.yy","name":"Generic","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"_Sprites","folderPath":"folders/Testing/Terrain/Generic/_Sprites.yy","name":"_Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -36,6 +36,7 @@
     {"$GMFolder":"","%Name":"_Sprites","folderPath":"folders/Testing/Terrain/Terrain (Walls)/_Sprites.yy","name":"_Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Tiles","folderPath":"folders/Testing/Terrain/Tiles.yy","name":"Tiles","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
+  "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"LICENSE.txt","CopyToMask":-1,"filePath":"datafiles/fonts","name":"LICENSE.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Roboto-Regular.ttf","CopyToMask":-1,"filePath":"datafiles/fonts","name":"Roboto-Regular.ttf","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -43,7 +44,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.6.2.162",
+    "IDEVersion":"2024.13.1.193",
   },
   "name":"Jen_scripts 2.0",
   "resources":[
