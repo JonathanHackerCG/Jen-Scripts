@@ -4,7 +4,7 @@
 #region General
 
 // Whether to show debug messages in Output (true) or not (false).
-#macro ROOMLOADER_ENABLE_DEBUG true
+#macro ROOMLOADER_ENABLE_DEBUG false
 
 // Default X origin used in Loading and Screenshotting.
 // Origins range from 0 to 1: 0 is left, 0.5 is center, 1 is right.

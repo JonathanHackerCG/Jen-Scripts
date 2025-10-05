@@ -6,6 +6,10 @@
 /// @arg	cellsh
 function terra_example_TerraObjects(_cellsw, _cellsh, _x1, _y1)
 {
+	static TEST_ROOM = terra_grid_roomloader(rm_roomloader_test_01, "X");
+	static TEST_ROOM_W = terra_grid_width(TEST_ROOM);
+	static TEST_ROOM_H = terra_grid_height(TEST_ROOM);
+	
 	var _T1_chest = new TerraObject(obj_chest, {
 		reward: "1",
 		image_blend: c_white
@@ -26,6 +30,8 @@ function terra_example_TerraObjects(_cellsw, _cellsh, _x1, _y1)
 	terra_scatter(_terrain, noone, _T1_chest, 50);
 	terra_scatter(_terrain, _T1_chest, _T2_chest, 50);
 	terra_scatter(_terrain, _T2_chest, _T3_chest, 50);
+	
+	terra_grid_paste(_terrain, TEST_ROOM, irandom(_cellsw - TEST_ROOM_W), irandom(_cellsh - TEST_ROOM_H), all);
 	
 	terra_grid_instantiate_layer(_terrain, _x1, _y1, "Instances_1");
 	
